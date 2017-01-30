@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+
+#HELP:COMMAND_NAME: run tests of NDR rules
+#HELP:Usage: COMMAND_NAME option* filename* ...
+#HELP:Options:
+#HELP:  --help | -h: print this help
+#HELP:  --verbose | -v: print debugging and status output
+#HELP:  --keep-temps | -k: Don't delete temporary files
+
+. "$(dirname "$0")"/../lib/common.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_opt_help.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_opt_verbose.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_fail.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_ensure.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/temp.bash
+
+OPTIND=1
+while getopts :hkv-: OPTION
+do
+    case "$OPTION" in
+        h ) opt_help;;
+        k ) opt_keep_temps;;
+        v ) opt_verbose;;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                verbose ) opt_verbose;;
+                keep-temps ) opt_keep_temps;;
+                help=* | verbose=* | keep-temps ) fail "No argument expected for long option \"${OPTARG%%=*}\"";;
+                *=* ) fail "Unexpected long option (with argument) \"${OPTARG%%=*}\"";;
+                * ) fail "Unexpected long option \"$OPTARG\"";;
+            esac;;
+        '?' ) fail "Unknown short option \"$OPTARG\"";;
+        : ) fail "Short option \"$OPTARG\" missing argument";;
+        * ) fail "bad state OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND-1))
+
+TESTS=()
+
+add_tests_in_dir () {
+    ensure "Require 1 arg" test $# = 1
+    ensure "Require 1 directory" test -d "$1"
+    while read -r -d $'\0'
+    do TESTS+=("$REPLY")
+    done < <(find "$1" -type f -name 'run-test*' ! -name '*~' -perm -500 -print0)
+}
+
+if (( $# > 0 ))
+then 
+    for ARG in "$@"
+    do if [[ -d "$ARG" ]]
+        then add_tests_in_dir "$ARG"
+        else TESTS+=( "$(cd "$(dirname "$ARG")"; pwd)/$(basename "$ARG")" )
+        fi
+    done
+else add_tests_in_dir "$NDR_TOOLS_ROOT_DIR"/tests
+fi
+
+ensure "No tests found" test ${#TESTS[@]} != 0
+
+RESULT=0
+for TEST in "${TESTS[@]}"
+do printf "Test %q\n" "$TEST" >&2
+    if vrun "$TEST" 
+    then true
+    else RESULT=$?
+    fi
+done
+
+exit $RESULT
+

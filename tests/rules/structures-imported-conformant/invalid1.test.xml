@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/structures-imported-conformant/invalid1.xsd</resource>
+		<rule>rule_${structures-imported-conformant}</rule>
+		<result>
+		<lineNumber>15</lineNumber>
+		<message>Rule ${structures-imported-conformant}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/no-ct-final/invalid1.xsd</resource>
+		<rule>rule_${no-ct-final}</rule>
+		<result>
+		<lineNumber>40</lineNumber>
+		<message>Rule ${no-ct-final}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

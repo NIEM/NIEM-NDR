@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<schema
+   targetNamespace="http://example.org/ns2"
+   xmlns:ns2="http://example.org/ns2"
+   xmlns:structures="http://release.niem.gov/niem/structures/3.0/"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns="http://www.w3.org/2001/XMLSchema">
+
+  <import namespace="http://release.niem.gov/niem/structures/3.0/" schemaLocation="structures.xsd"/>
+
+  <element name="BaseElementAbstract" type="xs:anySimpleType" abstract="true"/>
+
+  <complexType name="ComplexType">
+    <simpleContent>
+      <extension base="xs:date">
+        <attributeGroup ref="structures:SimpleObjectAttributeGroup"/>
+        <attribute name="attr1"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+
+  <element name="ConcreteElement" type="ns2:ComplexType" substitutionGroup="ns2:BaseElementAbstract"/>
+
+</schema>
+ 
+<!-- 
+  Local Variables:
+  mode: sgml
+  indent-tabs-mode: nil
+  fill-column: 9999
+  End:
+-->

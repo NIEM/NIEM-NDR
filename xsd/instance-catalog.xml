@@ -1,0 +1,7 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+  <uri
+     name="http://niem.gtri.gatech.edu/instance/1.0"
+     uri="instance-1.0.xsd"/>
+
+</catalog>

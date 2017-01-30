@@ -1,0 +1,41 @@
+#!/bin/bash
+
+mode=validate
+opt_reset () {
+    mode=reset
+}
+
+opt_help () {
+    {
+        printf 'validate: run validations & check against expectations\n'
+        printf 'Options\n'
+        printf '  --reset: reset expectations\n'
+    } >&2
+    exit 0
+}
+
+OPTIND=1
+while getopts :h-: option
+do
+    case "$option" in
+        h ) opt_help;;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                * ) printf "unknown long option \"%s\"\n" "$OPTARG" >&2
+                    exit 1;;
+            esac;;
+        '?' ) printf "unknown arg \"%s\"\n" "$OPTARG" >&2
+            exit 1;;
+        : ) printf "option \"%s\" missing argument\n" "$OPTARG" >&2
+            exit 1;;
+        * ) printf "bad state OPTARG=\"%s\"" "$OPTARG" >&2
+            exit 1;;
+    esac
+done
+shift $((OPTIND-1))
+
+../bin/assess-is-xsd-valid-to-xsd ref1.xsd
+
+../bin/assess-ref ref1.xsd
+

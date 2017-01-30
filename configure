@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+
+#HELP:configure: set up installation
+
+. ./configure-helper.bash
+
+COMMON_DECLS_M4=common-decls.m4
+
+# config_decl_set_package_name bin
+
+#HELP:
+#HELP:Options:
+#HELP:  -h | --help: print this help
+opt_help () {
+    config_print_help
+    exit 0
+}
+
+#HELP:  --tools-root=$dir | -t $dir: use tools rooted in $dir
+unset TOOLS_ROOT
+opt_tools_root () {
+    config_ensure "opt_tools_root() called with bad # of args" test $# = 1
+    config_ensure "the value of \"--tools-root\" was not a directory ($1)" test -d "$1"
+    TOOLS_ROOT="$1"
+}
+
+OPTIND=1
+while getopts :ht:-: option
+do
+    case "$option" in
+        t ) opt_tools_root "$OPTARG";;
+        h ) opt_help;;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                tools-root=* ) opt_tools_root "${OPTARG#*=}";;
+                tools-root ) config_ensure "option \"${OPTARG%%*=}\" requires argument" false;;
+                * ) config_ensure "bad long option or mismatched arg: \"$OPTARG\"" false;;
+            esac
+            ;;
+        '?' ) config_ensure "unknown option \"$OPTARG\"" false;;
+        : ) config_ensure "missing arg to option \"$OPTARG\"" false;;
+        * ) assert false;;
+    esac
+done
+shift $((OPTIND - 1))
+
+if [[ is-set != "${TOOLS_ROOT:+is-set}" ]]
+then 
+    if [[ is-set = "${IEAD_TOOLS_ROOT:+is-set}" ]]
+    then printf 'Option --tools-root not provided. Using value of $IEAD_TOOLS_ROOT (%s).\n' "$IEAD_TOOLS_ROOT" >&2
+        opt_tools_root "$IEAD_TOOLS_ROOT"
+    else printf 'ERROR: Option --tools-root not provided, and no value for $IEAD_TOOLS_ROOT found.\n' >&2
+        exit 1
+    fi
+fi
+
+ROOT_DIR="$(realpath "$(dirname "$0")")"
+
+##################################################################
+# pre
+
+config_decl_set_command_bash
+
+# Tools stuff
+
+# # commands
+
+config_decl_set_command CONFIG_PROCESS_DOC_COMMAND "$TOOLS_ROOT"/bin/process-doc
+config_decl_set_command CONFIG_CHECK_DOC_COMMAND "$TOOLS_ROOT"/bin/check-doc
+config_decl_set_command CONFIG_CHECK_SCHEMATRON_COMMAND "$TOOLS_ROOT"/bin/check-schematron
+config_decl_set_command CONFIG_SCHEMATRON_COMMAND "$TOOLS_ROOT"/bin/schematron
+config_decl_set_command CONFIG_XSDVALID_COMMAND "$TOOLS_ROOT"/bin/xsdvalid
+config_decl_set_command CONFIG_SAXON_COMMAND "$TOOLS_ROOT"/bin/saxon
+config_decl_set_command CONFIG_CONSOLIDATE_SCHEMAS_COMMAND "$TOOLS_ROOT"/bin/consolidate-schemas
+config_decl_set_command CONFIG_SVN_WDIFF_HTML_COMMAND "$TOOLS_ROOT"/bin/svn-wdiff-html
+config_decl_set_command CONFIG_MKDIR_COMMAND gmkdir mkdir
+config_decl_set_command CONFIG_RSYNC_COMMAND rsync
+config_decl_set_command CONFIG_ZIP_COMMAND zip
+# # # non-tools commands
+config_decl_set_command CONFIG_RM_COMMAND grm rm
+
+# # support files
+
+config_decl_set_file CONFIG_DOC_PROCESSING_COMMON_XSL "$TOOLS_ROOT"/share/doc-processing/common.xsl
+config_decl_set_file CONFIG_DOC_PROCESSING_DOC_TO_XHTML_XSL "$TOOLS_ROOT"/share/doc-processing/doc-to-xhtml.xsl
+config_decl_set_file CONFIG_COMMON_DECLS_M4 "$ROOT_DIR"/"$COMMON_DECLS_M4"
+
+##################################################################
+# post
+
+config_decl_set CONFIG_NDR_FUNCTIONS_XSL "$TOOLS_ROOT"/tmp/ndr-functions.xsl
+
+##################################################################
+# products
+
+config_decl_set CONFIG_PRODUCTS "Makefile dependent.mk reconfigure $CONFIG_DECLS_M4 postinstall"
+
+FILES_TO_REWRITE=(
+    Makefile
+    dependent.mk
+    postinstall
+    distro.mk
+)
+
+for FILE_TO_REWRITE in "${FILES_TO_REWRITE[@]}"
+do
+    rm -f "$FILE_TO_REWRITE"
+    m4 -P "$CONFIG_DECLS_M4" "$COMMON_DECLS_M4" "$FILE_TO_REWRITE".in > "$FILE_TO_REWRITE"
+    chmod uog-w "$FILE_TO_REWRITE"
+done
+    
+rm -f reconfigure
+cat > reconfigure <<EOF
+./configure --tools-root="$TOOLS_ROOT"
+EOF
+chmod 555 reconfigure

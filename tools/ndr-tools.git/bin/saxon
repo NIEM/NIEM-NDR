@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+#HELP:COMMAND_NAME: Run the Saxon XSLT processor
+#HELP:Usage: COMMAND_NAME option* -- saxon-option* 
+#HELP:Options:
+#HELP:  --help | -h: print this help
+#HELP:  --verbose | -v: print debugging and status output
+
+. "$(dirname "$0")"/../lib/common.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_opt_help.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_opt_verbose.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_fail.bash
+
+vecho "in $0"
+
+#HELP:  --saxon-help: print Saxon's help
+opt_saxon_help () {
+    run_saxon_java '-?'
+    exit
+}
+
+SAXON_CLASSPATH="$NDR_TOOLS_ROOT_DIR"/pkg/saxon/saxon9he.jar
+
+run_saxon_java () {
+    COMMAND=(vrun java -classpath "$SAXON_CLASSPATH" net.sf.saxon.Transform)
+    if (( ${#CATALOGS} > 0 ))
+    then COMMAND+=( "-catalog:$CATALOGS"  )
+    fi
+    COMMAND+=("$@")
+    vrun "${COMMAND[@]}"
+}
+
+#HELP:  --catalog=$xml-catalog.xml | -c $xml-catalog.xml: Use this XML catalog
+#HELP:      can be used multiple times if there are multiple catalogs
+
+CATALOGS=""
+opt_catalog () {
+    if (( ${#CATALOGS} == 0 ))
+    then SAXON_CLASSPATH+=":$NDR_TOOLS_ROOT_DIR/pkg/xml-commons-resolver/resolver.jar"
+        CATALOGS="$1"
+    else CATALOGS+=";$1"
+    fi
+}
+
+OPTIND=1
+while getopts :hv-: OPTION
+do
+    case "$OPTION" in
+        h ) opt_help;;
+        v ) opt_verbose;;
+        c ) opt_catalog "$OPTARG";;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                verbose ) opt_verbose;;
+                saxon-help ) opt_saxon_help;;
+                catalog=* ) opt_catalog "${OPTARG#*=}";;
+                help=* | verbose=* | saxon-help=* ) fail "No argument expected for long option \"${OPTARG%%=*}\"";;
+                catalog ) fail "Argument required for long option \"$OPTARG\"";;
+                *=* ) fail "Unexpected long option (with argument) \"${OPTARG%%=*}\"";;
+                * ) fail "Unexpected long option \"$OPTARG\"";;
+            esac;;
+        '?' ) fail "Unknown short option \"$OPTARG\"";;
+        : ) fail "Short option \"$OPTARG\" missing argument";;
+        * ) fail "bad state OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND-1))
+
+run_saxon_java "$@"

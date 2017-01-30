@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<instance:instance
+   xmlns:instance="http://niem.gtri.gatech.edu/instance/1.0"
+   xmlns:ns="http://example.org/ns"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+      http://example.org/ns no-attribute-type.xsd
+      http://niem.gtri.gatech.edu/instance/1.0 ../../xsd/instance-1.0.xsd"
+   ns:test="8239832928"
+   ></instance:instance>

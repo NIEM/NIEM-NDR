@@ -1,0 +1,465 @@
+National Information Exchange Model Naming and Design Rules
+
+Version 3.0
+
+July 31, 2014
+
+NIEM Technical Architecture Committee (NTAC)
+
+Contents
+
+   The table of contents is omitted from this edition.
+
+Table of Figures
+
+   The table of figures is omitted from this edition.
+
+Table of Tables
+
+   The table of tables is omitted from this edition.
+
+Authors
+
+   Webb Roberts, Georgia Tech Research Institute (<webb.roberts@gtri.gatech.edu>), Lead Author
+
+Abstract
+
+   This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version 3.0.
+
+Status
+
+   This document is a draft of the specification for XML Schema documents, components, and instances for use with NIEM. It represents the design that has evolved from the collaborative work of the NIEM Business Architecture Committee (NBAC), the NIEM Technical Architecture Committee (NTAC), and their predecessors.
+
+   This specification is a product of the NIEM Program Management Office (PMO).
+
+   Send comments on this specification via email to niem-comments@lists.gatech.edu.
+
+1. Introduction
+
+   This Naming and Design Rules (NDR) document specifies XML Schema documents for use with the National Information Exchange Model (NIEM). NIEM is an information sharing framework based on the World Wide Web Consortium (W3C) Extensible Markup Language (XML) Schema standard. In February 2005, the U.S. Departments of Justice (DOJ) and Homeland Security (DHS) signed a cooperative agreement to jointly develop NIEM by leveraging and expanding the Global Justice XML Data Model (GJXDM) into multiple domains. NIEM is a result of a combined government and industry effort to improve information interoperability and exchange within the United States at federal, state, tribal, and local levels of government.
+
+   NIEM specifies a set of reusable information components for defining standard information exchange messages, transactions, and documents on a large scale: across multiple communities of interest and lines of business. These reusable components are rendered in XML Schema documents as type, element, and attribute declarations that comply with the W3C XML Schema specification. The resulting reference schemas are available to government practitioners and developers at http://niem.gov/.
+
+   The W3C XML Schema standard enables information interoperability and sharing by providing a common language for describing data precisely. The constructs it defines are basic metadata building blocks -- baseline data types and structural components. Developers employ these building blocks to describe their own domain-oriented data semantics and structures, as well as structures for specific information exchanges and components for reuse across multiple information exchanges. Rules that profile allowable XML Schema constructs and describe how to use them help ensure that those components are consistent and reusable.
+
+   This document specifies principles and enforceable rules for NIEM data components and schemas. Schemas and components that obey the rules set forth here are considered to be conformant to specific conformance targets. These targets are defined in order that they may be leveraged for comprehensive definitions of NIEM conformance. Such definitions may include more than the level of conformance defined by this NDR, and may include specific patterns of use, additional quality criteria, and requirements to reuse NIEM release schemas.
+
+1.1. Scope
+
+   This document was developed to specify NIEM 3.0. Later releases of NIEM may be specified by later versions of this document. The document covers the following issues in depth:
+
+      *  The underlying NIEM data model
+
+      *  Guiding principles behind the design of NIEM
+
+      *  Rules for using XML Schema constructs in NIEM
+
+      *  Rules for modeling and structuring NIEM-conformant schemas
+
+      *  Rules for creating NIEM-conformant instances
+
+      *  Rules for naming NIEM components
+
+      *  Rules for extending NIEM-conformant components
+
+   This document does NOT address the following:
+
+      *  A formal definition of the NIEM data model.
+
+         Such a definition would focus on the Resource Definition Framework (RDF) and concepts not strictly required for interoperability. This document instead focuses on definition of schemas that work with the data model, to ensure translatability and interoperability.
+
+      *  A detailed discussion of NIEM architecture and schema versioning.
+
+      *  Aggregate artifacts that define information exchanges and models, including information exchange packages (IEPs) and their specifications, information exchange package descriptions (IEPDs) or other forms of information exchange specifications (IESs), as well as enterprise information exchange models (EIEMs), and other other forms of model package descriptions (MPDs).
+
+      *  Normative guidance for the location of [schema documents] or for schema assembly.
+
+   This document is intended as a technical specification. It is not intended to be a tutorial or a user guide.
+
+1.2. Audience
+
+   This document targets practitioners and developers who employ NIEM for information exchange and interoperability. Such information exchanges may be between organizations or within an organization. The NIEM reference schemas provide system implementers much content on which to build specific exchanges. However, there is a need for extended and additional content. The purpose of this document is to define the rules for such new content, so that it will be consistent with the NIEM reference schemas. These rules are intended to establish and, more importantly, enforce a degree of standardization across a broad set of users.
+
+2. Document conventions and normative content
+
+   This document uses formatting and syntactic conventions to clarify meaning and avoid ambiguity.
+
+2.1. Document references
+
+   This document relies on references to many outside documents. Such references are noted by bold, bracketed inline terms. For example, a reference to RFC 2119 is shown as [RFC 2119]. All reference documents are recorded in Appendix A, References, below.
+
+2.2. Clark notation and qualified names
+
+   This document uses both Clark notation and QName notation to represent qualified names.
+
+   QName notation is defined by [XML Namespaces] Section 4, Qualified Names. A QName for the XML Schema string datatype is xs:string. Namespace prefixes used within this specification are listed in Section 2.3, Use of namespaces and namespace prefixes, below.
+
+   This document sometimes uses Clark notation to represent qualified names in normative text. Clark notation is described by [ClarkNS], and provides the information in a QName without the need to first define a namespace prefix, and then to reference that namespace prefix. A Clark notation representation for the qualified name for the XML Schema string datatype is {http://www.w3.org/2001/XMLSchema}string.
+
+   Each Clark notation value usually consists of a namespace URI surrounded by curly braces, concatenated with a local name. The exception to this is when Clark notation is used to represent the qualified name for an attribute with no namespace, which is ambiguous when represented using QName notation. For example, the element targetNamespace, which has no [namespace name] property, is represented in Clark notation as {}targetNamespace.
+
+2.3. Use of namespaces and namespace prefixes
+
+   The following namespace prefixes are used consistently within this specification. These prefixes are not normative; this document issues no requirement that these prefixes be used in any conformant artifact. Although there is no requirement for a schema or XML document to use a particular namespace prefix, the meaning of the following namespace prefixes have fixed meaning in this document.
+
+      *  xs: The namespace for the XML Schema definition language as defined by [XML Schema Structures] and [XML Schema Datatypes], "http://www.w3.org/2001/XMLSchema".
+
+      *  xsi: The XML Schema instance namespace, defined by [XML Schema Structures] Section 2.6, Schema-Related Markup in Documents Being Validated, for use in XML documents, "http://www.w3.org/2001/XMLSchema-instance".
+
+      *  sch: The Schematron namespace, as defined by [Schematron], "http://purl.oclc.org/dsdl/schematron".
+
+      *  nf: The namespace defined by this specification for XPath functions, "http://reference.niem.gov/niem/specification/naming-and-design-rules/3.0/#NDRFunctions".
+
+      *  ct: The namespace defined by [CTAS] for the conformanceTargets attribute, "http://release.niem.gov/niem/conformanceTargets/3.0/".
+
+      *  appinfo: The namespace for the [appinfo namespace], "http://release.niem.gov/niem/appinfo/3.0/".
+
+      *  structures: The namespace for the [structures namespace], "http://release.niem.gov/niem/structures/3.0/".
+
+      *  term: The namespace for the [local terminology appinfo namespace], "http://release.niem.gov/niem/localTerminology/3.0/".
+
+2.4. Normative and informative content
+
+   This document includes a variety of content. Some content of this document is [normative], while other content is [informative]. In general, the informative material appears as supporting text, description, and rationales for the normative material.
+
+   [Definition: normative]
+
+      The term "normative" is as defined by [ConfReq] Section 7.2, Conformance by key words, which states:
+
+         NORMATIVE -- statements provided for the prescriptive parts of the specification, providing that which is necessary in order to be able to claim conformance to the specification.
+
+   [Definition: informative]
+
+      The term "informative" is as defined by [ConfReq] Section 7.2, Conformance by key words, which states:
+
+         INFORMATIVE (NON-NORMATIVE) -- statements provided for informational purposes, intended to assist the understanding or use of the specification and shall not contain provisions that are required for conformance.
+
+   Conventions used within this document include:
+
+   [Definition: <term>]
+
+      A formal definition of a term associated with NIEM.
+
+   Definitions are [normative]. Uses of these terms are given special formatting, using raised dots to identify the term, for example this use of the term [conformance target].
+
+   [Principle <number>]
+
+      A guiding principle for NIEM.
+
+   The principles represent requirements, concepts, and goals that have helped shape NIEM. Principles are informative, not normative, but act as the basis on which the rules are defined.
+
+   Accompanying each principle is a short discussion that justifies the application of the principle to NIEM design.
+
+   Principles are numbered in the order in which they appear in the document.
+
+2.4.1. Rules
+
+   A rule states a specific requirement on an artifact or on the interpretation of an artifact. The classes of artifacts are identified by [conformance targets] that are enumerated by this document in Section 4.1, Conformance targets defined, below. The rules are normative. Human-readable text in rules uses [RFC 2119] terminology as described in Section 3.1, RFC 2119 terminology, below, for normative requirements and recommendations.
+
+   [Rule <section>-<number>] (<applicability>)
+
+      An enforceable rule for NIEM.
+
+   Each rule has a classification, which is either "Constraint" or "Interpretation". If the classification is "Constraint", then the rule is a [constraint rule]. If the classification is "Interpretation", then the rule is an [interpretation rule].
+
+   [Definition: constraint rule]
+
+      A constraint rule is a rule that sets a requirement on an artifact with respect to its conformance to a [conformance target].
+
+   [Definition: interpretation rule]
+
+      An interpretation rule is a rule that sets the methodology, pattern, or procedure for understanding some aspect of an instance of a conformance target.
+
+   Each rule identifies its applicability. This identifies the conformance targets to which the rule applies. Each entry in the list is a code from Table Table 4-1, Codes representing conformance targets, below. If a code appears in the applicability list for a rule, then the rule applies to the corresponding conformance target. The conformance targets are defined in Section 4, Conformance targets, below. For example, a rule with applicability "(REF, EXT)" would be applicable to a [reference schema document], as well as to an [extension schema document].
+
+   Rules are stated with the help of XML Infoset terminology (e.g., elements and attributes), as described by Section 3.3, XML Information Set terminology, below, and XML Schema terminology (e.g., schema components), as described by Section 3.4, XML Schema terminology, below. The choice of terminology is driven by which terms best express a concept. Certain concepts are more clearly expressed using XML Infoset terms items, others using XML Schema terms; still others are best expressed using a combination of terminology drawn from each standard.
+
+   Rules are numbered according to the section in which they appear and the order in which they appear within that section. For example, the first rule in Section 7 is Rule 7-1.
+
+2.4.2. Use of normative Schematron
+
+   This document defines many normative rules using Schematron rule-based validation syntax, as defined by [Schematron]. For example, see Rule 9-28, Complex type content is explicitly simple or complex. Effort has been made to make the rules precise and unambiguous. Very detailed text descriptions of rules can introduce ambiguity, and they are not directly executable by users. Providing NDR rules that are expressed as Schematron rules ensures that the rules are precise, and that they are directly executable through commercially-available and free tools.
+
+   Many rules herein do not have executable Schematron supporting them. Some are not fit for automatic validation, and others may be difficult or cumbersome to express in Schematron. In neither case are such rules any less normative. A rule that has no Schematron is just as normative as a rule that does have Schematron. The level of requirements and recommendations within a rule is expressed using terminology from [RFC 2119] as described in Section 3.1, RFC 2119 terminology, below.
+
+   The Schematron rules are written using XPath2 as defined by [XPath 2]. These executable rules are normative.
+
+   An execution of a Schematron pattern that issues a failed assertion (represented via sch:assert) represents a validation error, and signifies that the assessed artifact violates a requirement of a conformance rule. An example of a constraint rule that uses schematron is Rule 9-10, Simple type definition is top-level.
+
+   An execution of a Schematron pattern that issues a report (represented via sch:report) indicates cause for concern. This may be:
+
+      *  An indication that the automated rules are not sufficient to validate a conformance rule, and that another means is required to ensure conformance. This is frequently a reference to another specification. For example, see Rule 9-83, Target namespace is absolute URI, which references [RFC 3986].
+
+      *  an indication that an automated rule has found that the assessed artifact violates a recommendation of the specification (e.g., a SHOULD, rather than a MUST), and that attention should be paid to ensure that the artifact maintains the spirit of the specification. For example, see Rule 10-41, Name of element that ends in "Representation" is abstract.
+
+   In either case, a diagnostic report generated by testing an XML document against the Schematron rules may identify specific locations (e.g., line numbers) within the document that need further attention.
+
+2.4.3. Normative XPath functions
+
+   The Schematron within this document is supported by functions, to make the rules more comprehensible, and to abstract away process-specific operations. Each function has a normative XPath interface and a normative text definition. Any implementation provided for these functions should be considered informative, not normative, but may be useful for certain implementations of the rules.
+
+   The following XPath functions are defined normatively when used within Schematron by this specification:
+
+      *  nf:get-document-element($context as element()) as element()
+
+         Yields the document element of the XML document in which $context occurs.
+
+         This function provides the ability for a validator to consolidate multiple XML Schema documents and XML instance documents into a single XML document, which may simplify validation, and allow for preprocessing of xs:include elements.
+
+      *  nf:get-target-namespace($element as element()) as xs:anyURI?
+
+         Yields the target namespace of the XML Schema document in which $element appears. If it is a [schema document] with no target namespace defined, then it yields the zero-length xs:anyURI value (xs:anyURI('')). If the [XML document] in which $element appears is not a [schema document], then the function yields the empty sequence (()).
+
+      *  nf:resolve-namespace($context as element(), $namespace-uri as xs:anyURI) as element(xs:schema)?
+
+         Yields the document element of the first available [schema document] that has the target namespace $namespace-uri. If there is no such [schema document] available, it yields the empty sequence (()).
+
+      *  nf:resolve-type($context as element(), $qname as xs:QName) as element()?
+
+         Yields the first occurence of an element xs:simpleType or xs:complexType that defines a type with a {target namespace} and {name} matching $qname, that is a [child] of the element yielded by nf:resolve-namespace(), above. If there is no such occurrence, it yields the empty sequence (()).
+
+      *  nf:resolve-element($context as element(), $qname as xs:QName) as element(xs:element)?
+
+         Yields the first occurrence of an element xs:element that declares an element with a {target namespace} and {name} matching $qname, that is a [child] of the element yielded by nf:resolve-namespace(), above. If there is no occurrence available, it yields the empty sequence. (())
+
+      *  nf:has-effective-conformance-target-identifier($context as element(), $match as xs:anyURI) as xs:boolean
+
+         Yields true if and only if an [effective conformance target identifier] of the XML document containing $context is $match.
+
+2.4.4. Normative Schematron namespace declarations
+
+   The following Schematron namespace declarations are normative for the Schematron rules and supporting Schematron code within this specification:
+
+   Figure 2-1: Normative Schematron namespace declarations
+
+      <sch:ns prefix="xs" uri="http://www.w3.org/2001/XMLSchema"/>
+      <sch:ns prefix="xsl" uri="http://www.w3.org/1999/XSL/Transform"/>
+      <sch:ns prefix="nf" uri="http://reference.niem.gov/niem/specification/naming-and-design-rules/3.0/#NDRFunctions"/>
+      <sch:ns prefix="ct" uri="http://release.niem.gov/niem/conformanceTargets/3.0/"/>
+      <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+      <sch:ns prefix="appinfo" uri="http://release.niem.gov/niem/appinfo/3.0/"/>
+      <sch:ns prefix="structures" uri="http://release.niem.gov/niem/structures/3.0/"/>
+      <sch:ns prefix="term" uri="http://release.niem.gov/niem/localTerminology/3.0/"/>
+
+   Note that the binding of the prefix xml to the XML namespace ("http://www.w3.org/XML/1998/namespace") is implicit.
+
+2.5. Additional formatting
+
+   In addition to the special formatting above, this document uses additional formatting conventions.
+
+   [square brackets]: Terms in plain [square brackets] are properties of XML information set information items, as defined by [XML Infoset]. The information items and many of the information items' properties are defined in that document. [XML Schema Structures] defines additional information item properties that are contributed by validation of an [XML document] against an [XML Schema].
+
+   {curly brackets}: Terms in plain {curly brackets} are properties of [schema components], as defined by [XML Schema Structures].
+
+   Courier: All words appearing in Courier font are values, objects, keywords, or literal XML text.
+
+   Italics: A phrase appearing in italics is one of:
+
+      *  a title of a section of document or a rule,
+
+      *  a locally-defined term, often one that is not normatively defined, or
+
+      *  is emphasized for importance or prominence.
+
+   Bold: A phrase appearing in bold is one of:
+
+      *  a term being defined within a definition,
+
+      *  a term that was bold in the original source text for a quote
+
+      *  a heading, such as for a section, a figure, a principle, definition, or rule, or
+
+      *  a cross-reference within the document, to a reference to an outside document, or to a normative heading.
+
+   Throughout the document, fragments of XML Schema or XML instances are used to clarify a principle or rule. These fragments are specially formatted in Courier font and appear in text boxes. An example of such a fragment follows:
+
+   Figure 2-2: Example of an XML fragment
+
+      <xs:complexType name="PersonType">
+        ...
+      </xs:complexType>
+
+3. Terminology
+
+   This document uses standard terminology from other standards to explain the principles and rules that describe NIEM. In addition, it defines terms related to these other standards. This section enumerates this externally-dependent terminology.
+
+3.1. RFC 2119 terminology
+
+   Within normative content (rules and definitions), the key words MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD, SHOULD NOT, RECOMMENDED, MAY, and OPTIONAL in this document are to be interpreted as described in [RFC 2119].
+
+3.2. XML terminology
+
+   [Definition: XML document]
+
+      The term "XML document" is as defined by [XML] Section 2, Documents, which states:
+
+         A data object is an XML document if it is well-formed, as defined in this specification. In addition, the XML document is valid if it meets certain further constraints.
+
+3.3. XML Information Set terminology
+
+   When discussing XML documents, this document uses terminology and language as defined by [XML Infoset].
+
+   [XML Infoset] uses the term "information item" to describe pieces of XML documents. Documents, elements, and attributes are types of information items. The use of the term "element information item", for example, refers to the term as defined by [XML Infoset]. Shorthand terms may also be used to refer to information items, such as [element], as defined below. The information items are identified and defined by [XML Infoset] Section 2, Information Items.
+
+   [Definition: element]
+
+      An element is an element information item, as defined by [XML Infoset] Section 2.2, Element Information Items
+
+   [Definition: attribute]
+
+      An attribute is an attribute information item, as defined by [XML Infoset] Section 2.3, Attribute Information Items
+
+   [XML Infoset] also describes properties of information items. Each class of information item carries a set of properties. Each property has a name, and the property is identified by putting the name into square brackets. For example, the element that contains an attribute is described as the [owner element] of an attribute information item, as defined in [XML Infoset] Section 2.3, Attribute Information Items.
+
+   Shorthand terms for properties of information items include:
+
+      *  parent (of an element): the value of the [parent] property of an element information item
+
+      *  child (of an element): a member of the list of information items that is the value of the [children] property of an element information item
+
+      *  owner (of an attribute): the value of the [owner element] property of an attribute information item
+
+      *  document element: the value of the [document element] property of a document information item; preferred over the term "root element".
+
+3.4. XML Schema terminology
+
+   This document uses many terms from [XML Schema Structures] and [XML Schema Datatypes] in a normative way.
+
+   [Definition: schema component]
+
+      The term "schema component" is as defined by [XML Schema Structures] Section 2.2, XML Schema Abstract Data Model, which states:
+
+         Schema component is the generic term for the building blocks that comprise the abstract data model of the schema.
+
+   Note that this defines an abstract concept. This is not a direct reference to elements that are defined by the [XML Schema definition language]; this is an abstract concept that might be realized within a tool as an in-memory model of data objects.
+
+   [Definition: XML Schema]
+
+      The term "XML Schema" is as defined by [XML Schema Structures] Section 2.2, XML Schema Abstract Data Model, which states:
+
+         An XML Schema is a set of schema components.
+
+   Note, again, that this is an abstract concept: the set of abstract [schema components] that are put together to define a schema against which an XML document might be validated.
+
+   [Definition: XML Schema definition language]
+
+      The term "XML Schema definition language" is as defined by [XML Schema Structures] subsection Abstract, which states:
+
+         XML Schema: Structures specifies the XML Schema definition language, which offers facilities for describing the structure and constraining the contents of XML 1.0 documents, including those which exploit the XML Namespace facility. The schema language, which is itself represented in XML 1.0 and uses namespaces, substantially reconstructs and considerably extends the capabilities found in XML 1.0 document type definitions (DTDs).
+
+   This describes the XML syntax (and related semantics) defined by the XML Schema specifications. It is through the [XML Schema definition language] that a complex type definition schema component is created using the xs:complexType element.
+
+   [Definition: schema document]
+
+      The term "schema document" is as defined by [XML Schema Structures] Section 3.1.2, XML Representations of Components, which states:
+
+         A document in this form (i.e. a <schema> element information item) is a schema document.
+
+   This definition describes an [XML document] that follows the syntax of the [XML Schema definition language].
+
+   [Definition: valid]
+
+      The term "valid" is as defined by [XML Schema Structures] Section 2.1, Overview of XML Schema, which states:
+
+         [Definition:] the word valid and its derivatives are used to refer to clause 1 above, the determination of local schema-validity.
+
+      The referenced clause 1 is a part of a description of schema-validity:
+
+         Schema-validity assessment has two aspects:
+
+            1. Determining local schema-validity, that is whether an element or attribute information item satisfies the constraints embodied in the relevant components of an XML Schema;
+
+            2. Synthesizing an overall validation outcome for the item, combining local schema-validity with the results of schema-validity assessments of its descendants, if any, and adding appropriate augmentations to the infoset to record this outcome.
+
+   In addition, this specification locally defines terms relevant to XML Schema concepts:
+
+   [Definition: instance document]
+
+      An instance document (of an [XML Schema]) is an [XML document] that is [valid] against the [XML Schema].
+
+   The term "instance document" is used with [XML Schema Structures], but is not defined therein.
+
+   [Definition: XML Schema document set]
+
+      An XML Schema document set is a set of [schema documents] that together define an [XML Schema] suitable for assessing the [validity] of an [XML document].
+
+   Schema assembly is a tricky topic that is not resolved by this document. Other specifications may express specifics about the process of turning a set of [schema documents] into an [XML Schema]. Methods used may include use of tool-specific schema caches and mappings, use of XML catalogs and entity resolvers, use of schemaLocation attributes on xs:import elements, and xsi:schemaLocation attributes in XML documents, among others. The topic of schema assembly is discussed in Section 6.2.10, Schema locations provided in schema documents are hints, below. This specification abstracts away details of schema assembly through the use of XPath functions described by Section 2.4.3, Normative XPath functions, above.
+
+3.4.1. Schema components
+
+   In this document, the name of a referenced schema component may appear without the suffix "schema component" to enhance readability of the text. For example, the term "complex type definition" may be used instead of "complex type definition schema component".
+
+   [Definition: base type definition]
+
+      The term "base type definition" is as defined by [XML Schema Structures] Section 2.2.1.1, Type Definition Hierarchy, which states:
+
+         A type definition used as the basis for an extension or restriction is known as the base type definition of that definition.
+
+   [Definition: simple type definition]
+
+      The term "simple type definition" is as defined by [XML Schema Structures] Section 2.2.1.2, Simple Type Definition.
+
+   [Definition: complex type definition]
+
+      The term "complex type definition" is as defined by [XML Schema Structures] Section 2.2.1.3, Complex Type Definition.
+
+   [Definition: element declaration]
+
+      The term "element declaration" is as defined by [XML Schema Structures] Section 2.2.2.1, Element Declaration.
+
+3.5. XML Namespaces terminology
+
+   This document uses XML Namespaces as defined by [XML Namespaces] and [XML Namespaces Errata].
+
+3.6. Conformance Targets Attribute Specification terminology
+
+   [CTAS] defines several terms used normatively within this specification.
+
+   [Definition: conformance target]
+
+      The term "conformance target" is as defined by [CTAS], which states:
+
+         A conformance target is a class of artifact, such as an interface, protocol, document, platform, process or service, that is the subject of conformance clauses and normative statements. There may be several conformance targets defined within a specification, and these targets may be diverse so as to reflect different aspects of a specification. For example, a protocol message and a protocol engine may be different conformance targets.
+
+   [Definition: conformance target identifier]
+
+      The term "conformance target identifier" is as defined by [CTAS], which states:
+
+         A conformance target identifier is an internationalized resource identifier that uniquely identifies a conformance target.
+
+   [Definition: effective conformance target identifier]
+
+      The term "effective conformance target identifier" is as defined by [CTAS] Section 4, Semantics and Use, which states:
+
+         An effective conformance target identifier of a conformant document is an internationalized resource identifier reference that occurs in the document's effective conformance targets attribute.
+
+4. Conformance targets
+
+4.1. Conformance targets defined
+
+   This section defines and describes conformance targets of this specification. Each conformance target has a formal definition, along with a notional description of the characterstics and intent of each. These include:
+
+   * Section 4.1.1, Reference schema document
+   * Section 4.1.2, Extension schema document
+   * Section 4.1.3, Schema document set
+   * Section 4.1.4, Instance documents and elements
+
+4.1.1. Reference schema document
+
+   [Definition: reference schema document]
+
+      A reference schema document is a [schema document] that is intended to provide the authoritative definitions of broadly reusable [schema components]. It is a [conformance target] of this specification. A reference schema document MUST conform to all rules of this specification that apply to this conformance target. An [XML document] with a [conformance target identifier] of http://reference.niem.gov/niem/specification/naming-and-design-rules/3.0/#ReferenceSchemaDocument MUST be a conformant reference schema document.
+
+   A [reference schema document] is a [schema document] that is intended to be the authoritative definition schema for a namespace. Examples include NIEM Core and NIEM domains.
+
+   Some characteristics of a [reference schema document]:
+
+      *  It is explicitly designated as a reference schema via the conformance targets attribute, per Rule 4-5, Schema claims reference schema conformance target.
+
+      *  It provides the broadest, most fundamental definitions of components in its namespace.
+
+      *  It provides the authoritative definition of business semantics for components in its namespace.
+
+      *  It is intended to serve as the basis for components in information exchanges and extension schema documents.
+
+      *  It sa

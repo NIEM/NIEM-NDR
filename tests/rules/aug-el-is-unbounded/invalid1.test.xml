@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/aug-el-is-unbounded/invalid1.xsd</resource>
+		<rule>rule_${aug-el-is-unbounded}</rule>
+		<result>
+		<lineNumber>23</lineNumber>
+		<message>Rule ${aug-el-is-unbounded}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

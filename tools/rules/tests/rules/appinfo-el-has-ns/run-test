@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+NDR_ROOT_DIR=$(cd "$(dirname "$0")"/../../..; pwd)
+. "$NDR_ROOT_DIR"/tools/lib/fn_test.bash
+
+test_run "$NDR_ROOT_DIR"/tools/bin/get-test-report -r ref -c xml-catalog.xml test1.xsd
+

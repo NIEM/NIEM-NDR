@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+#HELP:COMMAND_NAME: Generate an XML catalog for the listed artifacts
+#HELP:Usage: COMMAND_NAME $option* $file1 $file2 ... $fileN
+#HELP:Options:
+#HELP:  --help | -h: print this help
+#HELP:  --verbose | -v: print debugging and status output
+
+NDR_TOOLS_ROOT_DIR=$(cd "$(dirname "$0")"/..; pwd)
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_opt_help.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_opt_verbose.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_fail.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_ensure.bash
+
+OPTIND=1
+while getopts :hv-: OPTION
+do
+    case "$OPTION" in
+        h ) opt_help;;
+        v ) opt_verbose;;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                verbose ) opt_verbose;;
+                help=* | verbose=* ) fail "No argument expected for long option \"${OPTARG%%=*}\"";;
+                *=* ) fail "Unexpected long option (with argument) \"${OPTARG%%=*}\"";;
+                * ) fail "Unexpected long option \"$OPTARG\"";;
+            esac;;
+        '?' ) fail "Unknown short option \"$OPTARG\"";;
+        : ) fail "Short option \"$OPTARG\" missing argument";;
+        * ) fail "bad state OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND-1))
+
+cat <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+EOF
+
+for NAME
+do 
+    SCHEMA_NAMESPACE=$("$NDR_TOOLS_ROOT_DIR/bin/xalan" -- -XSL "$NDR_TOOLS_ROOT_DIR/lib/get-xsd-target-namespace.xsl" -IN "$NAME")
+    printf "  <uri name=\"%s\" uri=\"%s\"/>\n" "$SCHEMA_NAMESPACE" "$NAME"
+done
+
+cat <<EOF
+</catalog>
+EOF
+
+
+

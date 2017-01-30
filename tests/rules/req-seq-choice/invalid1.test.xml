@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/req-seq-choice/invalid1.xsd</resource>
+		<rule>rule_${req-seq-choice}</rule>
+		<result>
+		<lineNumber>22</lineNumber>
+		<message>Rule ${req-seq-choice}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

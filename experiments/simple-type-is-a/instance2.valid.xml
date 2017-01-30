@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<instance:instance
+   xmlns:instance="http://niem.gtri.gatech.edu/instance/1.0"
+   xmlns:ns1="http://example.org/ns1"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+      http://example.org/ns1 ns1.xsd
+      http://niem.gtri.gatech.edu/instance/1.0 ../../xsd/instance-1.0.xsd">
+  <ns1:element_anySimpleType>hello</ns1:element_anySimpleType>
+  <ns1:element_anySimpleType xsi:type="xs:string">hello</ns1:element_anySimpleType>
+</instance:instance>

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+while read line
+do
+    case "$line" in
+        file:/* )
+            file=$(printf '%s\n' "$line" | sed -e 's/^file:\([^:]*\).*/\1/')
+            rest=$(printf '%s\n' "$line" | sed -e 's/^file:[^:]*\(.*\)/\1/')
+            file_reference=$(realpath --relative-to . "$file")
+            printf '%s%s\n' "$file_reference" "$rest"
+            ;;
+        * ) printf '%s\n' "$line";;
+    esac
+done

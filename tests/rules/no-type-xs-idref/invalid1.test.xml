@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/no-type-xs-idref/invalid1.xsd</resource>
+		<rule>rule_${no-type-xs-idref}</rule>
+		<result>
+		<lineNumber>18</lineNumber>
+		<message>Rule ${no-type-xs-idref}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

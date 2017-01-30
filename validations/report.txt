@@ -1,0 +1,93 @@
+make -C .. dest/ndr-rules-conformance-target-ref.sch
+make[1]: `dest/ndr-rules-conformance-target-ref.sch' is up to date.
+mkdir -p tmp/sandbox/v5-schemas-meet-ref-rules.d/
+install --no-target-directory ../dest/ndr-rules-conformance-target-ref.sch tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch
+make -C .. dest/ndr-functions.xsl
+make[1]: `dest/ndr-functions.xsl' is up to date.
+mkdir -p tmp/sandbox/v5-schemas-meet-ref-rules.d/
+install --no-target-directory ../dest/ndr-functions.xsl tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-functions.xsl
+/Users/webbroberts/working/tools/bin/schematron -ee -schema tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch niem-3.0-alpha2/niem/adapters/edxl-cap/3.0/edxl-cap.xsd
+niem-3.0-alpha2/niem/adapters/edxl-cap/3.0/edxl-cap.xsd:2:report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.
+niem-3.0-alpha2/niem/adapters/edxl-cap/3.0/edxl-cap.xsd:2:report:The document MUST be a well-formed XML document, as defined by Extensible Markup Language.
+niem-3.0-alpha2/niem/adapters/edxl-cap/3.0/edxl-cap.xsd:2:report:The document MUST be namespace-well-formed.
+niem-3.0-alpha2/niem/adapters/edxl-cap/3.0/edxl-cap.xsd:2:report:The document MUST be namespace-valid.
+niem-3.0-alpha2/niem/adapters/edxl-cap/3.0/edxl-cap.xsd:2:report:The document MUST be a schema document.
+niem-3.0-alpha2/niem/adapters/edxl-cap/3.0/edxl-cap.xsd:2:report:The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.
+mkdir -p tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/adapters/edxl-cap/3.0/
+touch tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/adapters/edxl-cap/3.0/edxl-cap.xsd
+/Users/webbroberts/working/tools/bin/schematron -ee -schema tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch niem-3.0-alpha2/niem/adapters/edxl-de/3.0/edxl-de.xsd
+niem-3.0-alpha2/niem/adapters/edxl-de/3.0/edxl-de.xsd:2:report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.
+niem-3.0-alpha2/niem/adapters/edxl-de/3.0/edxl-de.xsd:2:report:The document MUST be a well-formed XML document, as defined by Extensible Markup Language.
+niem-3.0-alpha2/niem/adapters/edxl-de/3.0/edxl-de.xsd:2:report:The document MUST be namespace-well-formed.
+niem-3.0-alpha2/niem/adapters/edxl-de/3.0/edxl-de.xsd:2:report:The document MUST be namespace-valid.
+niem-3.0-alpha2/niem/adapters/edxl-de/3.0/edxl-de.xsd:2:report:The document MUST be a schema document.
+niem-3.0-alpha2/niem/adapters/edxl-de/3.0/edxl-de.xsd:2:report:The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.
+mkdir -p tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/adapters/edxl-de/3.0/
+touch tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/adapters/edxl-de/3.0/edxl-de.xsd
+/Users/webbroberts/working/tools/bin/schematron -ee -schema tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch niem-3.0-alpha2/niem/adapters/edxl-have/3.0/edxl-have.xsd
+niem-3.0-alpha2/niem/adapters/edxl-have/3.0/edxl-have.xsd:2:report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.
+niem-3.0-alpha2/niem/adapters/edxl-have/3.0/edxl-have.xsd:2:report:The document MUST be a well-formed XML document, as defined by Extensible Markup Language.
+niem-3.0-alpha2/niem/adapters/edxl-have/3.0/edxl-have.xsd:2:report:The document MUST be namespace-well-formed.
+niem-3.0-alpha2/niem/adapters/edxl-have/3.0/edxl-have.xsd:2:report:The document MUST be namespace-valid.
+niem-3.0-alpha2/niem/adapters/edxl-have/3.0/edxl-have.xsd:2:report:The document MUST be a schema document.
+niem-3.0-alpha2/niem/adapters/edxl-have/3.0/edxl-have.xsd:2:report:The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.
+mkdir -p tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/adapters/edxl-have/3.0/
+touch tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/adapters/edxl-have/3.0/edxl-have.xsd
+/Users/webbroberts/working/tools/bin/schematron -ee -schema tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch niem-3.0-alpha2/niem/adapters/geospatial/3.0/geospatial.xsd
+niem-3.0-alpha2/niem/adapters/geospatial/3.0/geospatial.xsd:2:report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.
+niem-3.0-alpha2/niem/adapters/geospatial/3.0/geospatial.xsd:2:report:The document MUST be a well-formed XML document, as defined by Extensible Markup Language.
+niem-3.0-alpha2/niem/adapters/geospatial/3.0/geospatial.xsd:2:report:The document MUST be namespace-well-formed.
+niem-3.0-alpha2/niem/adapters/geospatial/3.0/geospatial.xsd:2:report:The document MUST be namespace-valid.
+niem-3.0-alpha2/niem/adapters/geospatial/3.0/geospatial.xsd:2:report:The document MUST be a schema document.
+niem-3.0-alpha2/niem/adapters/geospatial/3.0/geospatial.xsd:2:report:The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.
+mkdir -p tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/adapters/geospatial/3.0/
+touch tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/adapters/geospatial/3.0/geospatial.xsd
+/Users/webbroberts/working/tools/bin/schematron -ee -schema tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch niem-3.0-alpha2/niem/codes/ansi_d20/3.0/ansi_d20.xsd
+niem-3.0-alpha2/niem/codes/ansi_d20/3.0/ansi_d20.xsd:2:report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.
+niem-3.0-alpha2/niem/codes/ansi_d20/3.0/ansi_d20.xsd:2:report:The document MUST be a well-formed XML document, as defined by Extensible Markup Language.
+niem-3.0-alpha2/niem/codes/ansi_d20/3.0/ansi_d20.xsd:2:report:The document MUST be namespace-well-formed.
+niem-3.0-alpha2/niem/codes/ansi_d20/3.0/ansi_d20.xsd:2:report:The document MUST be namespace-valid.
+niem-3.0-alpha2/niem/codes/ansi_d20/3.0/ansi_d20.xsd:2:report:The document MUST be a schema document.
+niem-3.0-alpha2/niem/codes/ansi_d20/3.0/ansi_d20.xsd:2:report:The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.
+mkdir -p tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/codes/ansi_d20/3.0/
+touch tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/codes/ansi_d20/3.0/ansi_d20.xsd
+/Users/webbroberts/working/tools/bin/schematron -ee -schema tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch niem-3.0-alpha2/niem/codes/apco_event/3.0/apco_event.xsd
+niem-3.0-alpha2/niem/codes/apco_event/3.0/apco_event.xsd:2:report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.
+niem-3.0-alpha2/niem/codes/apco_event/3.0/apco_event.xsd:2:report:The document MUST be a well-formed XML document, as defined by Extensible Markup Language.
+niem-3.0-alpha2/niem/codes/apco_event/3.0/apco_event.xsd:2:report:The document MUST be namespace-well-formed.
+niem-3.0-alpha2/niem/codes/apco_event/3.0/apco_event.xsd:2:report:The document MUST be namespace-valid.
+niem-3.0-alpha2/niem/codes/apco_event/3.0/apco_event.xsd:2:report:The document MUST be a schema document.
+niem-3.0-alpha2/niem/codes/apco_event/3.0/apco_event.xsd:2:report:The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.
+mkdir -p tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/codes/apco_event/3.0/
+touch tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/codes/apco_event/3.0/apco_event.xsd
+/Users/webbroberts/working/tools/bin/schematron -ee -schema tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch niem-3.0-alpha2/niem/codes/atf/3.0/atf.xsd
+niem-3.0-alpha2/niem/codes/atf/3.0/atf.xsd:2:report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.
+niem-3.0-alpha2/niem/codes/atf/3.0/atf.xsd:2:report:The document MUST be a well-formed XML document, as defined by Extensible Markup Language.
+niem-3.0-alpha2/niem/codes/atf/3.0/atf.xsd:2:report:The document MUST be namespace-well-formed.
+niem-3.0-alpha2/niem/codes/atf/3.0/atf.xsd:2:report:The document MUST be namespace-valid.
+niem-3.0-alpha2/niem/codes/atf/3.0/atf.xsd:2:report:The document MUST be a schema document.
+niem-3.0-alpha2/niem/codes/atf/3.0/atf.xsd:2:report:The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.
+mkdir -p tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/codes/atf/3.0/
+touch tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/codes/atf/3.0/atf.xsd
+/Users/webbroberts/working/tools/bin/schematron -ee -schema tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch niem-3.0-alpha2/niem/codes/canada_post/3.0/post-canada.xsd
+niem-3.0-alpha2/niem/codes/canada_post/3.0/post-canada.xsd:2:report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.
+niem-3.0-alpha2/niem/codes/canada_post/3.0/post-canada.xsd:2:report:The document MUST be a well-formed XML document, as defined by Extensible Markup Language.
+niem-3.0-alpha2/niem/codes/canada_post/3.0/post-canada.xsd:2:report:The document MUST be namespace-well-formed.
+niem-3.0-alpha2/niem/codes/canada_post/3.0/post-canada.xsd:2:report:The document MUST be namespace-valid.
+niem-3.0-alpha2/niem/codes/canada_post/3.0/post-canada.xsd:2:report:The document MUST be a schema document.
+niem-3.0-alpha2/niem/codes/canada_post/3.0/post-canada.xsd:2:report:The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.
+mkdir -p tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/codes/canada_post/3.0/
+touch tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/codes/canada_post/3.0/post-canada.xsd
+/Users/webbroberts/working/tools/bin/schematron -ee -schema tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:2:report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:2:report:The document MUST be a well-formed XML document, as defined by Extensible Markup Language.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:2:report:The document MUST be namespace-well-formed.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:2:report:The document MUST be namespace-valid.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:2:report:The document MUST be a schema document.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:2:report:The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:7526:assert:The name of a complex type definition schema component that does not define a proxy type must end in 'Type'.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:8478:assert:The name of a complex type definition schema component that does not define a proxy type must end in 'Type'.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:8827:assert:The name of a complex type definition schema component that does not define a proxy type must end in 'Type'.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:8894:assert:The name of a complex type definition schema component that does not define a proxy type must end in 'Type'.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:8926:assert:The name of a complex type definition schema component that does not define a proxy type must end in 'Type'.
+make: *** [tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/codes/cbrncl/3.0/cbrncl.xsd] Error 1

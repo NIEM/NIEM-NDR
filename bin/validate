@@ -1,0 +1,262 @@
+#!/bin/bash
+
+. "$HOME"/working/tools/lib/script-helper.bash
+
+NDR_ROOT="$(realpath --relative-to=. "$(dirname "$0")"/..)"
+COMMON_TMP_DIR="$NDR_ROOT/tmp/validate.d"
+
+IS_CATALOG="$NDR_ROOT/bin/is-catalog"
+IS_REF_SCHEMA="$NDR_ROOT/bin/is-ref-schema"
+IS_SCHEMA="$NDR_ROOT/bin/is-schema"
+CATALOG_GET_FILES="$NDR_ROOT/bin/catalog-get-files"
+
+TOOLS_BIN="$HOME"/working/tools/bin
+SCHEMATRON="$TOOLS_BIN"/schematron 
+XSDVALID="$TOOLS_BIN"/xsdvalid
+CONSOLIDATE_SCHEMAS="$TOOLS_BIN"/consolidate-schemas
+CHECK_XML="$TOOLS_BIN"/check-xml
+
+#HELP:  --help | -h: Print this help
+opt_help () {
+    print_help
+    exit 0
+}
+
+#HELP:  --make | -m: rebuild necessary files
+unset MAKE
+opt_make () { 
+    MAKE=true
+}
+
+#HELP:  --clean clean intermediate files before doing other stuff
+unset CLEAN
+opt_clean () { 
+    CLEAN=true
+}
+
+#HELP:  --catalog=$file | -c $file: use the indicated catalog for validation
+unset CATALOG
+opt_catalog () {
+    assert test -f "$1"
+    assert "$IS_CATALOG" "$1"
+    CATALOG="$1"
+}
+
+#HELP:  --ignore-errors | -i: ignore validation failures
+IGNORE_ERRORS=false
+opt_ignore_errors () {
+    assert test $# = 0
+    IGNORE_ERRORS=true
+}
+
+default_catalog () {
+    assert test -f "$1"
+    if ! test is-set = "${CATALOG:+is-set}"
+    then if "$IS_CATALOG" "$1"
+        then CATALOG="$1"
+        else CANDIDATE_CATALOG="$(dirname "$1")"/xml-catalog.xml
+            if test -f "$CANDIDATE_CATALOG"
+            then CATALOG="$CANDIDATE_CATALOG"
+            else fail "no catalog found for \"$1\""
+            fi
+        fi
+        printf "using catalog \"%s\"\n" "$CATALOG"
+    fi
+}
+
+OPTIND=1
+while getopts :c:him-: OPTION
+do
+    case "$OPTION" in
+        c ) opt_catalog "$OPTARG" ;;
+        h ) opt_help ;;
+        i ) opt_ignore_errors;;
+        m ) opt_make ;;
+        - )
+            case "$OPTARG" in
+                catalog=* ) opt_catalog "${OPTARG#*=}";;
+                clean ) opt_clean ;;
+                help ) opt_help ;;
+                ignore-errors ) opt_ignore_errors ;;
+                make ) opt_make ;;
+                * ) fail "Unknown long parameter \"$OPTARG\"";;
+            esac
+            ;;
+        '?') fail "unknown parameter \"$OPTARG\"";;
+        : ) fail "Parameter \"$OPTARG\" missing argument";;
+        * ) fail "Bad state in $0. OPTION=\"$OPTION\". OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND - 1))
+
+if test $# = 0
+then
+    printf '%s\n' "Need an argument: one or more files to be validated." >&2
+    exit 1
+fi
+
+if test is-set = "${CLEAN:+is-set}"
+then
+    echo cleaning
+    make -C "$NDR_ROOT" clean
+    rm -rf "$COMMON_TMP_DIR"
+fi
+
+# usage: install_if_older $source $destination
+install_if_stale () {
+    assert test $# = 2
+    assert test -f $1
+    if test "$2" -ot "$1"
+    then install -T -D "$1" "$2"
+    fi
+}
+
+NDR_FUNCTIONS_XSL="$COMMON_TMP_DIR"/ndr-functions.xsl
+ensure_ndr_functions () {
+    if test is-set = "${MAKE:+is-set}"
+    then make -C "$NDR_ROOT" -f dependent.mk dest/ndr-functions.xsl
+    fi
+    install_if_stale "$NDR_ROOT"/dest/ndr-functions.xsl "$NDR_FUNCTIONS_XSL"
+}
+
+RULES_SET="$COMMON_TMP_DIR"/ndr-rules-conformance-target-set.sch
+ensure_set () {
+    if test is-set = "${MAKE:+is-set}"
+    then make -C "$NDR_ROOT" -f dependent.mk dest/ndr-rules-conformance-target-set.sch
+    fi
+    install_if_stale "$NDR_ROOT"/dest/ndr-rules-conformance-target-set.sch "$RULES_SET"
+    ensure_ndr_functions
+}
+
+RULES_REF="$COMMON_TMP_DIR"/ndr-rules-conformance-target-ref.sch
+ensure_ref () {
+    if test is-set = "${MAKE:+is-set}"
+    then make -C "$NDR_ROOT" -f dependent.mk dest/ndr-rules-conformance-target-ref.sch
+    fi
+    install_if_stale "$NDR_ROOT"/dest/ndr-rules-conformance-target-ref.sch "$RULES_REF"
+    ensure_ndr_functions
+}
+    
+RULES_EXT="$COMMON_TMP_DIR"/ndr-rules-conformance-target-ext.sch
+ensure_ext () {
+    if test is-set = "${MAKE:+is-set}"
+    then make -C "$NDR_ROOT" dependent.mk dest/ndr-rules-conformance-target-ext.sch
+    fi
+    install_if_stale "$NDR_ROOT"/dest/ndr-rules-conformance-target-ext.sch "$RULES_EXT"
+    ensure_ndr_functions
+}
+
+RULES_CATALOG="$COMMON_TMP_DIR"/xml-catalog.sch
+ensure_catalog_rules () {
+    if test is-set = "${MAKE:+is-set}"
+    then make -C "$NDR_ROOT" -f dependent.mk dest/xml-catalog.sch
+    fi
+    install_if_stale "$NDR_ROOT"/dest/xml-catalog.sch "$RULES_CATALOG"
+}
+
+# is_older_than $dest $src1 $src2 ...
+# indicates 
+is_older_than () {
+    local dest="$1"
+    shift
+    while test $# -gt 0
+    do 
+        if test "$dest" -ot "$1"
+        then 
+            printf -- '%s\n' "$dest -ot $1"
+            return 0
+        fi
+        shift
+    done
+    return 1
+}
+
+while test $# -gt 0
+do
+    printf '# file %s\n' "$1"
+    if test ! -f "$1"
+    then 
+        shift
+        continue
+    fi
+
+    case "$1" in 
+        *~ ) true ;;
+        *.valid.xml )
+            "$XSDVALID" $(if test -f catalog.xml; then printf -- '-catalog catalog.xml'; fi) "$1"
+            ;;
+        
+        catalog.xml | */catalog.xml | xml-catalog.xml | */xml-catalog.xml | xml-catalog-*.xml )
+            assert "$IS_CATALOG" "$1"
+            printf '#   catalog %s\n' "$1" >&2
+            ensure_catalog_rules
+            "$SCHEMATRON" -ee -schema "$RULES_CATALOG" "$1"
+            default_catalog "$1"
+            ensure_set
+            TMP_DIR="$(realpath --relative-to=. "$(dirname "$1")/tmp")"
+            if test is-set = "${CLEAN:+is-set}"
+            then rm -rf "$TMP_DIR"
+            fi
+            mkdir -p "$TMP_DIR"
+            CONSOLIDATED_TMP_DIR="$TMP_DIR"/consolidated.d
+            CONSOLIDATED_XML="$TMP_DIR"/consolidated.xml
+            CATALOG_FILES=($("$CATALOG_GET_FILES" "$1"))
+            if is_older_than "$CONSOLIDATED_XML" "${CATALOG_FILES[@]}"
+            then
+                printf '#     consolidating (%s)\n' "${CATALOG_FILES[*]}"
+                "$CONSOLIDATE_SCHEMAS" -tmp "$CONSOLIDATED_TMP_DIR" "${CATALOG_FILES[@]}" > "$CONSOLIDATED_XML"
+            fi
+            if ! "$SCHEMATRON" -ee -schema "$RULES_SET" "$CONSOLIDATED_XML"
+            then if [[ "$IGNORE_ERRORS" = false ]]
+                then false
+                else true
+                fi
+            fi
+            echo "# OK $1"
+            ;;
+        
+        *.xsd )
+            "$CHECK_XML" "$1"
+            "$IS_SCHEMA" "$1" 
+            printf '#   XSD file %s\n' "$1" >&2
+            if "$TOOLS_BIN"/set-has-member -n <(xsltproc "$NDR_ROOT"/xsl/get-conformance-targets.xsl "$1" | xargs "$TOOLS_BIN"/set-create) http://reference.niem.gov/niem/specification/naming-and-design-rules/3.0/#ReferenceSchemaDocument
+            then
+                printf '#       ref schema %s\n' "$1" >&2
+                default_catalog "$1"
+                "$XSDVALID" -catalog "$NDR_ROOT"/xsd/catalog-xmlschema-strict.xml -catalog "$NDR_ROOT"/xsd/catalog.xml -catalog "$CATALOG" "$1"
+                ensure_ref
+                if "$SCHEMATRON" -ee -schema "$RULES_REF" "$1"
+                then true
+                else 
+                    if test "$IGNORE_ERRORS" = false
+                    then false
+                    else true
+                    fi
+                fi
+            elif "$TOOLS_BIN"/set-has-member -n <(xsltproc "$NDR_ROOT"/xsl/get-conformance-targets.xsl "$1" | xargs "$TOOLS_BIN"/set-create) http://reference.niem.gov/niem/specification/naming-and-design-rules/3.0/#ExtensionSchemaDocument
+            then
+                printf '#       ext schema %s\n' "$1" >&2
+                default_catalog "$1"
+                "$XSDVALID" -catalog "$NDR_ROOT"/xsd/catalog-xmlschema-strict.xml -catalog "$NDR_ROOT"/xsd/catalog.xml -catalog "$CATALOG" "$1"
+                ensure_ext
+                if "$SCHEMATRON" -ee -schema "$RULES_EXT" "$1"
+                then true
+                else
+                    if test "$IGNORE_ERRORS" = false
+                    then false
+                    else true
+                    fi
+                fi
+            else
+                printf '#       other schema %s\n' "$1" >&2
+                "$XSDVALID" -catalog "$NDR_ROOT"/xsd/catalog.xml "$1"
+            fi
+            ;;
+        
+        * )
+            fail "unknown file type $1"
+            ;;
+    esac
+    shift
+done    
+

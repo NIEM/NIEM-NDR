@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo '# -*-grep-*-'
+cat "$@" | sed -e 's/^file://'

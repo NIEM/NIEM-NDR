@@ -1,0 +1,8 @@
+impl:get-clark-name($qname as xs:QName) as xs:string
+impl:get-document-element($context as element()) as element()
+impl:get-target-namespace($element as element()) as xs:anyURI?
+impl:resolve-namespace($context as element(), $namespace-uri as xs:anyURI) as element(xs:schema)?
+impl:resolve-type($context as element(), $qname as xs:QName) as element()?
+impl:resolve-element($context as element(), $qname as xs:QName) as element(xs:element)?
+impl:has-effective-conformance-target-identifier($context as element(), $match as xs:anyURI) as xs:boolean
+impl:get-location($context as node()) as xs:string

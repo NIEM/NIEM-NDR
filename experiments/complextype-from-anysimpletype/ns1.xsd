@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<schema
+   targetNamespace="http://example.org/ns1"
+   xmlns:ns1="http://example.org/ns1"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns="http://www.w3.org/2001/XMLSchema">
+
+  <element name="e-base" type="xs:anySimpleType" abstract="true"/>
+
+  <complexType name="ct">
+    <simpleContent>
+      <extension base="xs:date">
+        <attribute name="a1"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+
+  <element name="e-derived" type="ns1:ct" substitutionGroup="ns1:e-base"/>
+
+</schema>
+ 
+<!-- 
+  Local Variables:
+  mode: sgml
+  indent-tabs-mode: nil
+  fill-column: 9999
+  End:
+-->

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+   targetNamespace="http://example.org/ns1"
+   xmlns:ns1="http://example.org/ns1"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns="http://www.w3.org/2001/XMLSchema">
+
+  <element name="element_anyType" type="xs:anyType"/>
+
+  <element name="element_anySimpleType" type="xs:anySimpleType" substitutionGroup="ns1:element_anyType"/>
+
+  <element name="element_token" type="xs:token"/>
+
+  <element name="element_NMTOKEN" type="xs:NMTOKEN"/>
+
+  <element name="element_NMTOKENS" type="xs:NMTOKENS"/>
+
+  <simpleType name="base">
+    <restriction base="integer">
+      <maxInclusive value="60"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="baseList">
+    <list itemType="ns1:base"/>
+  </simpleType>
+
+
+  <simpleType name="derived">
+    <restriction base="ns1:base">
+      <maxInclusive value="30"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="derivedList">
+    <list itemType="ns1:derived"/>
+  </simpleType>
+
+  <simpleType name="altDerivedList">
+    <restriction>
+      <simpleType>
+        <list itemType="ns1:derived"/>
+      </simpleType>
+    </restriction>
+  </simpleType>
+
+  <element name="element_derived" type="ns1:derived" substitutionGroup="ns1:element_base"/>
+
+  <element name="element_altDerivedList" type="ns1:altDerivedList"/>
+
+  <simpleType name="union">
+    <union memberTypes="ns1:base ns1:derived"/>
+  </simpleType>
+
+  <element name="element_base" type="ns1:base"/>
+  <element name="element_union" type="ns1:union"/>
+  <element name="element_base2" type="ns1:base" substitutionGroup="ns1:element_union"/>
+  <element name="element_derived2" type="ns1:derived" substitutionGroup="ns1:element_union"/>
+  <element name="element_baseList" type="ns1:baseList"/>
+  <!-- not allowed
+  <element name="element_base3" type="ns1:base" substitutionGroup="ns1:element_baseList"/>
+  -->
+
+  <simpleType name="Ta">
+    <restriction base="xs:integer"></restriction>
+  </simpleType>
+
+  <simpleType name="Tb">
+    <restriction base="xs:integer"></restriction>
+  </simpleType>
+
+  <simpleType name="Tc">
+    <restriction base="xs:integer"></restriction>
+  </simpleType>
+
+  <simpleType name="union_TaTbTc">
+    <union memberTypes="ns1:Ta ns1:Tb ns1:Tc"/>
+  </simpleType>
+
+  <simpleType name="union_TaTb">
+    <union memberTypes="ns1:Ta ns1:Tb"/>
+  </simpleType>
+
+  <element name="element_union_TaTbTc" type="ns1:union_TaTbTc"/>
+  <element name="element_union_TaTb" type="ns1:union_TaTb"/>
+
+  <simpleType name="union_TaTb_2">
+    <union memberTypes="ns1:Ta ns1:Tb"/>
+  </simpleType>
+
+  <simpleType name="union_TaTbTc_2">
+    <union memberTypes="ns1:union_TaTb_2 ns1:Tc"/>
+  </simpleType>
+
+  <element name="element_union_TaTb_2" type="ns1:union_TaTb_2"/>
+  <element name="element_union_TaTbTc_2" type="ns1:union_TaTbTc_2"/>
+
+</schema>
+ 
+<!-- 
+  Local Variables:
+  mode: sgml
+  indent-tabs-mode: nil
+  fill-column: 9999
+  End:
+-->

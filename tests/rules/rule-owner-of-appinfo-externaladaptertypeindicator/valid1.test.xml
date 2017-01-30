@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/rule-owner-of-appinfo-externaladaptertypeindicator/valid1.xsd</resource>
+	<rule>rule_${rule-owner-of-appinfo-externaladaptertypeindicator}</rule>
+</ns2:test-case>

@@ -1,0 +1,6 @@
+# -*-grep-*-
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:7526:assert:The name of a complex type definition schema component that does not define a proxy type must end in 'Type'.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:8478:assert:The name of a complex type definition schema component that does not define a proxy type must end in 'Type'.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:8827:assert:The name of a complex type definition schema component that does not define a proxy type must end in 'Type'.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:8894:assert:The name of a complex type definition schema component that does not define a proxy type must end in 'Type'.
+niem-3.0-alpha2/niem/codes/cbrncl/3.0/cbrncl.xsd:8926:assert:The name of a complex type definition schema component that does not define a proxy type must end in 'Type'.

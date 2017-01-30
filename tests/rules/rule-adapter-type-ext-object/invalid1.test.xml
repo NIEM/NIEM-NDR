@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/rule-adapter-type-ext-object/invalid1.xsd</resource>
+		<rule>rule_${rule-adapter-type-ext-object}</rule>
+		<result>
+		<lineNumber>12</lineNumber>
+		<message>Rule ${rule-adapter-type-ext-object}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

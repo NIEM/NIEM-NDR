@@ -1,0 +1,20 @@
+#!/bin/bash
+
+BIN=$HOME/working/tools/bin
+
+xs () {
+    printf '# xs %s\n' "$1"
+    "$BIN"/xsdvalid -catalog catalog.xml "$1"
+}
+saxon () {
+    printf '# saxon %s\n' "$1"
+    "$BIN"/saxon -catalog catalog.xml -ee -sa -xsl run.xsl -in "$1"
+    printf '\n'
+}
+
+for f in instance1.xml instance2.xml instance3.xml instance4.xml
+do
+    xs $f
+    saxon $f
+done
+

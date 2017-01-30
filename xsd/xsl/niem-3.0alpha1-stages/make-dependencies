@@ -1,0 +1,52 @@
+#!/bin/bash
+
+. "/Users/webbroberts/working/tools/lib/script-helper.bash"
+
+#HELP:make-dependencies: get dependencies for listed files
+#HELP:Options:
+
+#HELP:  --help | -h: print this help
+opt_help () {
+    print_help
+    exit 0
+}
+
+#HELP:  --target $target | -t $target: Generate dependencies for the listed target
+unset TARGET
+opt_target () {
+    assert test $# = 1
+    TARGET="$1"
+}
+
+OPTIND=1
+while getopts :ht:-: option
+do
+    case "$option" in
+        h ) opt_help;;
+        t ) opt_target "$OPTARG";;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                target=* ) opt_target "${OPTARG#*=}";;
+                * ) fail "unknown long option: \"$OPTARG\"";;
+            esac
+            ;;
+        : ) fail "option missing argument: \"$OPTARG\"";;
+        '?' ) fail "unknown option: \"$OPTARG\"";;
+        * ) assert false;;
+    esac
+done
+shift $((OPTIND - 1))
+
+{
+    while test $# -gt 0
+    do echo "$1"
+        case "$1" in
+            *.xsl ) saxon -xsl make-dependencies.xsl -in "$1";;
+            * ) fail "unknown file type for $1";;
+        esac
+        shift
+    done
+} | sed -e "s/^/$TARGET /"
+
+

@@ -1,0 +1,127 @@
+#!/usr/bin/env bash
+
+#HELP:COMMAND_NAME: run NDR Schematron rules against an XML document, producing a report
+#HELP:Usage: COMMAND_NAME option* $file-to-test.xml
+
+. "$(dirname "$0")"/../lib/common.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_opt_help.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_opt_verbose.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_fail.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_ensure.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/temp.bash
+
+NDR_ID_MAP="$NDR_TOOLS_ROOT_DIR"/lib/ndr-id-map.xml
+ensure_file_exists "$NDR_ID_MAP"
+
+ANNOTATE_SVRL_XSL="$NDR_TOOLS_ROOT_DIR"/lib/annotate-svrl.xsl
+ensure_file_exists "$ANNOTATE_SVRL_XSL"
+
+ANNOTATED_SVRL_TO_TEXT_XSL="$NDR_TOOLS_ROOT_DIR"/lib/annotated-svrl-to-text.xsl
+ensure_file_exists "$ANNOTATED_SVRL_TO_TEXT_XSL"
+
+#HELP:Options:
+#HELP:  --help | -h: print this help
+#HELP:  --verbose | -v: print debugging and status output
+#HELP:  --keep-temps | -k: Don't delete temporary files
+
+#HELP:  --rules=$code | -r $code: use NIEM NDR rule set for conformance target $code
+#HELP:      codes: ref, ext, ins, set
+
+unset RULES
+
+opt_rules () {
+    ensure "You can only use --rules or --auto-rules once" test is-set != "${RULES:+is-set}"
+    case "$1" in 
+        ext | ins | ref | set ) RULES="$1";;
+        * ) fail "Unknown conformance target code: $1. Expecting ext, ins, ref, or set.";;
+    esac
+}
+
+#HELP:  --auto-rules | -a: set rules by autodetecting conformance targets
+opt_auto_rules () {
+    ensure "You can only use --rules or --auto-rules once" test is-set != "${RULES:+is-set}"
+    RULES=auto
+}
+
+#HELP:  --xml-catalog=$xml-catalog | -c $xml-catalog: Use XML catalog for cross-references
+unset XML_CATALOG
+opt_xml_catalog () {
+    XML_CATALOG=$1
+}
+
+OPTIND=1
+while getopts :ac:hkr:v-: OPTION
+do
+    case "$OPTION" in
+        a ) opt_auto_rules;;
+        c ) opt_xml_catalog "$OPTARG";;
+        h ) opt_help;;
+        k ) opt_keep_temps;;
+        r ) opt_rules "$OPTARG";;
+        v ) opt_verbose;;
+        - )
+            case "$OPTARG" in
+                auto-rules ) opt_auto_rules;;
+                help ) opt_help;;
+                keep-temps ) opt_keep_temps;;
+                rules=* ) opt_rules "${OPTARG#*=}";;
+                verbose ) opt_verbose;;
+                xml-catalog=* ) opt_xml_catalog "${OPTARG#*=}";;
+                rules | xml-catalog ) fail "Missing required argument for long option \"$OPTARG\"";;
+                help=* | verbose=* | auto-rules=* | keep-temps=* ) fail "No argument expected for long option \"${OPTARG%%=*}\"";;
+                *=* ) fail "Unexpected long option (with argument) \"${OPTARG%%=*}\"";;
+                * ) fail "Unexpected long option \"$OPTARG\"";;
+            esac;;
+        '?' ) fail "Unknown short option \"$OPTARG\"";;
+        : ) fail "Short option \"$OPTARG\" missing argument";;
+        * ) fail "bad state OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND-1))
+
+ensure "You must use one of --rules or --auto-rules" test is-set = "${RULES:+is-set}"
+
+ensure "No file to validate" test $# -gt 0
+ensure "Only can validate one file" test $# = 1
+ensure_file_exists "$1"
+
+temp_make_file SVRL_RESULTS
+
+if [[ $RULES = auto ]]
+then
+    unset RULES
+    while read -rd $'\n'
+    do  vecho found conformance target "$REPLY"
+        case "$REPLY" in
+            "http://reference.niem.gov/niem/specification/naming-and-design-rules/3.0/#ReferenceSchemaDocument" )
+                RULES=ref
+                ;;
+            * )
+                printf "Warning: ignoring unknown conformance target %q\n" "$REPLY" >&2
+                ;;
+        esac
+    done < <("$NDR_TOOLS_ROOT_DIR"/bin/get-conformance-target-uris "$1")
+    ensure "No conformance target identified for file \"$1\"" test is-set = "${RULES:+is-set}"
+fi
+
+ensure "No rules specified for file \"$1\"" test is-set = "${RULES:+is-set}"
+
+SCHEMA=$NDR_TOOLS_ROOT_DIR/ndr-rules-conformance-target-"$RULES".sch
+ensure_file_exists "$SCHEMA"
+vecho "Validating against Schematron schema \"$1\""
+
+COMMAND=("$NDR_TOOLS_ROOT_DIR"/bin/schematron --schematron-schema="$SCHEMA")
+if [[ ${XML_CATALOG:+is-set} ]]
+then COMMAND+=(--param=+xml-catalog="$XML_CATALOG")
+fi
+COMMAND+=("$1")
+
+vrun "${COMMAND[@]}" > "$SVRL_RESULTS"
+
+temp_make_file ANNOTATED_SVRL_RESULTS
+
+vrun "$NDR_TOOLS_ROOT_DIR"/bin/xalan -- -L -XSL "$ANNOTATE_SVRL_XSL"  -IN "$SVRL_RESULTS" -PARAM ndr-id-map "$NDR_ID_MAP" -OUT "$ANNOTATED_SVRL_RESULTS"
+
+vrun "$NDR_TOOLS_ROOT_DIR"/bin/xalan -- -XSL "$ANNOTATED_SVRL_TO_TEXT_XSL" -IN "$ANNOTATED_SVRL_RESULTS"
+# output to stdout
+

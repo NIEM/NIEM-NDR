@@ -1,0 +1,3 @@
+#!/bin/bash
+
+~/working/tools/bin/xsdvalid -catalog ~/working/ndr3/xsd/catalog.xml "$@"

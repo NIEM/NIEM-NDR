@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/ccc-base-has-cc/invalid1.xsd</resource>
+		<rule>rule_${ccc-base-has-cc}</rule>
+		<result>
+		<lineNumber>37</lineNumber>
+		<message>Rule ${ccc-base-has-cc}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

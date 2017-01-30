@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element xmlns="http://example.org/ns">
+  <e1 a1="hello"/>
+  <e1 a1=" hello "/>
+  <e1 a1="  hello  "/>
+  <e1 a1="  hello  goodbye  "/>
+  <e1 a1="  hello  
+          goodbye  
+          there      "/>
+</element>

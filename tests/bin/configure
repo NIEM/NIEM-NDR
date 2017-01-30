@@ -1,0 +1,48 @@
+#!/bin/bash
+# Setup the testing structure by checking the current list of rules
+# Then adding new directories for the new rules
+# And deleting any rules that no longer exists
+
+# Begin configuration
+echo "Configuration initiated."
+
+# Setup the test root for local pathing
+TESTS_ROOT=$(realpath "$(dirname "$0")"/..)
+
+# Global variables
+DIRECTORY_TMP="$TESTS_ROOT/tmp"
+DIRECTORY_RULES="$TESTS_ROOT/rules"
+DIRECTORY_RULES_TMP="$TESTS_ROOT/tmp/rules"
+LIST_OF_RULES="$TESTS_ROOT/common/list-of-rules-as-java-properties.txt"
+PROPERTIES="$TESTS_ROOT/common/rule-mappings.properties"
+
+# Create new list of rules based on properties file
+cat "$LIST_OF_RULES" | sed 's/\([^=]*\)=Rule \([^\#]*\)\ #\([a-zA-Z]*\)/\1=\2/g' | cut -d ' ' -f 1 | cut -d '=' -f 1 | sed '/^#/ d' > "$PROPERTIES"
+
+# Check for a tmp directory
+if [ -d "$DIRECTORY_TMP" ]; then
+	# Remove tmp if it exists already
+	rm -rf "$DIRECTORY_TMP"
+fi
+mkdir "$DIRECTORY_TMP"
+
+# Move current rules to the tmp directory
+mv "$DIRECTORY_RULES" "$DIRECTORY_RULES_TMP"
+
+# Create new rule directory
+mkdir "$DIRECTORY_RULES"
+
+# For each rule in the property file
+while read RULE
+do
+	echo "$RULE"
+	# Make a new directory for that rule
+	mkdir "$DIRECTORY_RULES/$RULE"
+	# Cross-reference new rule set with existing
+	if [ -d "$DIRECTORY_RULES_TMP/$RULE" ]; then
+		cp -r "$DIRECTORY_RULES_TMP/$RULE" "$DIRECTORY_RULES"
+	fi
+done < "$PROPERTIES"
+
+# Finished configuring
+echo "Configuration complete."

@@ -1,0 +1,6 @@
+:report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.$
+:report:The document MUST be a well-formed XML document, as defined by Extensible Markup Language.$
+:report:The document MUST be namespace-well-formed.$
+:report:The document MUST be namespace-valid.$
+:report:The document MUST be a schema document.$
+:report:The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.

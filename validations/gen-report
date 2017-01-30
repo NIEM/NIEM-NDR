@@ -1,0 +1,29 @@
+#!/bin/bash
+
+export IGNORE
+unset IGNORE
+opt_ignore () {
+    export IGNORE=true
+}    
+
+OPTIND=1
+while getopts :i OPTION
+do
+    case "$OPTION" in
+        i ) opt_ignore;;
+        '?' ) echo "$0:ERROR:Unknown option \"$OPTARG\"" >&2; exit 1;;
+        ':' ) echo "$0:ERROR:Option \"$OPTARG\" missing argument" >&2; exit 1;;
+    esac
+done
+shift $((OPTIND-1))
+
+mkdir -p tmp
+
+{
+    echo '# -*-grep-*-'
+    make valid 2>&1 \
+        | sed -e "s@file:$PWD/@@" \
+        | tee report.txt \
+        | grep ':assert:'
+} | tee assert-report.txt
+

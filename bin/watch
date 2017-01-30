@@ -1,0 +1,63 @@
+#!/bin/bash
+
+WATCHED_FILES=()
+
+fail () {
+    printf 'ERROR: %s\n' >&2
+    exit 1
+}
+
+ensure () {
+    message="$1"
+    shift
+    if ! "$@"
+    then fail "$message"
+    fi
+}
+
+while test $# -gt 0
+do
+    case "$1" in
+        : ) 
+            break;;
+        * )
+            WATCHED_FILES+=( "$1" )
+            shift;;
+    esac
+done
+
+ensure "Bad syntax; expected more arguments" test "$#" -gt 0
+ensure "Bad syntax; expected a colon" test "$1" = :
+
+shift
+
+unset TRIED
+
+while :
+do
+    NEED_TO_TRY=false
+    if test is-set != "${TRIED:+is-set}"
+    then NEED_TO_TRY=true
+    else
+        for WATCHED_FILE in "${WATCHED_FILES[@]}"
+        do
+            if test "$WATCHED_FILE" -nt "$TRIED"
+            then NEED_TO_TRY=true
+                break
+            fi
+        done
+    fi
+    
+    if test "$NEED_TO_TRY" = true
+    then "$@"
+        if test is-set = "${TRIED:+is-set}"
+        then touch "$TRIED"
+        else TRIED=$(mktemp -t)
+        fi
+    else printf '.'
+    fi
+    sleep 5
+done
+
+
+

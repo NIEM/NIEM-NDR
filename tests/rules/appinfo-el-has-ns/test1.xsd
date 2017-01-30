@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="p" />
+</xs:schema>

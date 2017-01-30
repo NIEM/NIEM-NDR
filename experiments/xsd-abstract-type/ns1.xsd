@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+   targetNamespace="http://example.org/ns1"
+   xmlns:ns1="http://example.org/ns1"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns="http://www.w3.org/2001/XMLSchema">
+
+  <complexType name="DateAbstractType" abstract="true" mixed="true"/>
+  
+  <complexType name="DateSimpleContentType">
+    <simpleContent>
+      <restriction base="ns1:DateAbstractType">
+        <simpleType>
+          <restriction base="xs:date"/>
+        </simpleType>
+      </restriction>
+    </simpleContent>
+  </complexType>
+
+  <complexType name="DateComplexContentType">
+    <complexContent>
+      <restriction base="ns1:DateAbstractType">
+        <sequence>
+          <element name="year" type="integer"/>
+          <element name="month" type="integer"/>
+        </sequence>
+      </restriction>
+    </complexContent>
+  </complexType>
+
+  <element name="date-abstract" type="ns1:DateAbstractType"/>
+  <element name="date-sc" type="ns1:DateSimpleContentType"/>
+  <element name="date-cc" type="ns1:DateComplexContentType"/>
+
+</schema>
+ 
+<!-- 
+  Local Variables:
+  mode: sgml
+  indent-tabs-mode: nil
+  fill-column: 9999
+  End:
+-->

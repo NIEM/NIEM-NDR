@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/rule-metadata-el-type-is-metadata-type/invalid1.xsd</resource>
+		<rule>rule_${rule-metadata-el-type-is-metadata-type}</rule>
+		<result>
+		<lineNumber>12</lineNumber>
+		<message>Rule ${rule-metadata-el-type-is-metadata-type}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+. "$HOME"/working/tools/lib/script-helper.bash
+
+#HELP:  --help | -h: Print this help
+opt_help () {
+    print_help
+    exit 0
+}
+
+while getopts :h-: OPTION
+do
+    case "$OPTION" in
+        h ) opt_help;;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                * ) fail "Unknown long parameter \"$OPTARG\"";;
+            esac
+            ;;
+        '?') fail "unknown parameter \"$OPTARG\"";;
+        : ) fail "Parameter \"$OPTARG\" missing argument";;
+        * ) fail "Bad state in $0. OPTION=\"$OPTION\". OPTARG=\"$OPTARG\"";;
+    esac
+done
+
+if test $# != 1
+then
+    fail "Must have one file name; got $#."
+fi
+
+while test $# -gt 0
+do
+    "$HOME"/working/tools/bin/check-xml "$1" > /dev/null 2>&1
+    result=$("$HOME"/working/tools/bin/saxon -xsl "$(realpath "$(dirname "$0")"/../xsl/is-ref-schema.xsl)" -in "$1")
+    test "$result" = "true"
+    shift 1
+done
+      
+

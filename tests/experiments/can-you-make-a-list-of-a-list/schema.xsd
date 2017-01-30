@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<schema
+   targetNamespace="http://example.org/ns1/"
+   xmlns="http://www.w3.org/2001/XMLSchema">
+
+  <element name="container">
+    <complexType>
+      <attribute name="id" type="ID"/>
+      <attribute name="refs">
+        <simpleType>
+          <list itemType="IDREFS"/>
+        </simpleType>
+      </attribute>
+    </complexType>
+  </element>
+
+</schema>

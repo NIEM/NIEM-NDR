@@ -1,0 +1,26 @@
+# -*-org-*-
+
+* resolve-ref / idref
+
+** from the interface:
+
+   <function name="nf:resolve-ref" as="element()">
+     <param name="element" as="element()"/>
+     <sequence select="impl:resolve-object($element)"/>
+   </function>
+
+** from the impl
+
+   This is broken. duh.
+
+   <function name="impl:resolve-idref" as="element()">
+     <param name="element" as="element()"/>
+     <variable name="ref" as="xs:IDREF?" select="$element/@structures:ref"/>
+     <sequence select="if (exists($ref))
+                       then //*[@structures:id = $ref]
+                       else $elemen
+     <sequence select="impl:resolve-object($element)"/>
+  </function>
+
+
+

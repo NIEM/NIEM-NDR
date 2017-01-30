@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# The file should be of the form [for a more complete example see
+# http://en.wikipedia.org/wiki/.properties
+#
+#    <immutable id>=<mapped id> # description
+# 
+# The only caveat is those nasty ids which don't have any immutable
+# value (yet).  Those I would just prefix with a pound (ie, a comment)
+# or leave out:
+#
+#    #=<mapped id>
+#
+
+sed -e 's/^\([^\t]*\)\t\([^\t]*\)\t\([^\t]*\)/\1=\2 # \3/' -e 's/^=/#=/'

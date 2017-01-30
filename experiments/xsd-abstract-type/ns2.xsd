@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+   targetNamespace="http://example.org/ns2"
+   xmlns:ns2="http://example.org/ns2"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns="http://www.w3.org/2001/XMLSchema">
+
+  <simpleType name="a">
+    <restriction base="xs:integer"></restriction>
+  </simpleType>
+
+  <simpleType name="b">
+    <restriction base="xs:integer"></restriction>
+  </simpleType>
+
+  <simpleType name="c">
+    <restriction base="xs:integer"></restriction>
+  </simpleType>
+
+  <simpleType name="union_ab">
+    <union memberTypes="ns2:a ns2:b"></union>
+  </simpleType>
+
+  <simpleType name="union_ac">
+    <union memberTypes="ns2:a ns2:c"/>
+  </simpleType>
+
+  <simpleType name="union_abc">
+    <union memberTypes="ns2:a ns2:b ns2:c"/>
+  </simpleType>
+
+  <simpleType name="union_ab_ac">
+    <union memberTypes="ns2:union_ab ns2:union_ac"/>
+  </simpleType>
+
+  <simpleType name="union_a">
+    <union memberTypes="ns2:a"/>
+  </simpleType>
+
+  <element name="a" type="ns2:a" substitutionGroup="ns2:union_ab"/>
+  <element name="b" type="ns2:b"/>
+  <element name="c" type="ns2:c"/>
+  <element name="union_ab" type="ns2:union_ab"/>
+  <element name="union_ac" type="ns2:union_ac"/>
+  <element name="union_a" type="ns2:union_a"/>
+  <element name="union_ab_ac" type="ns2:union_ab_ac"/>
+  <element name="union_abc" type="ns2:union_abc"/>
+
+</schema>
+ 
+<!-- 
+  Local Variables:
+  mode: sgml
+  indent-tabs-mode: nil
+  fill-column: 9999
+  End:
+-->

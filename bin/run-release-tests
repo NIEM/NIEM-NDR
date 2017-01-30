@@ -1,0 +1,26 @@
+#!/bin/bash
+
+dir=$(dirname "$0")
+cd "$dir"/..
+
+failed () {
+  printf 'FAILED\n' >&2
+  exit 1
+}
+
+trap failed 0
+
+set -o errexit
+
+bin/make all
+make update
+release_test_dir=tools/ndr-tools.git/tests/niem-release
+make -C $release_test_dir clean
+make -j 12 -C $release_test_dir omit
+emacsclient tools/ndr-tools.git/tests/niem-release/report-omit.txt < /dev/null >& /dev/null &
+disown %1
+
+trap 0
+printf 'OK\n' >&2
+
+

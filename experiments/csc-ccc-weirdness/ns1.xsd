@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<schema
+   targetNamespace="http://example.org/ns1"
+   xmlns:ns1="http://example.org/ns1"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns="http://www.w3.org/2001/XMLSchema">
+
+<complexType name="base-csc">
+  <simpleContent>
+    <extension base="xs:integer">
+      <attribute name="a1"/>
+    </extension>
+  </simpleContent>
+</complexType>
+
+<complexType name="derived-ccc">
+  <complexContent>
+    <extension base="ns1:base-csc">
+      <attribute name="a2"/>
+    </extension>
+  </complexContent>
+</complexType>
+
+  <element name="e1" type="ns1:base-csc"/>
+  <element name="e2" type="ns1:derived-ccc"/>
+
+</schema>

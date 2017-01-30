@@ -1,0 +1,1 @@
+../../dest/ndr-rules-conformance-target-set.sch

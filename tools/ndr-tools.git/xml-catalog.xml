@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+  <public publicId="-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN" 
+          uri="pkg/oasis/catalog.dtd"/>
+
+</catalog>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+    targetNamespace='http://niem.gtri.gatech.edu/instance/1.0'
+    xmlns='http://www.w3.org/2001/XMLSchema'>
+<!-- 
+
+use:
+
+<?xml version="1.0" encoding="us-ascii">
+<instance:instance
+   xmlns:instance="http://niem.gtri.gatech.edu/instance/1.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+      http://niem.gtri.gatech.edu/instance/1.0 ../xsd/instance-1.0.xsd">
+</instance:instance>
+
+    or
+
+<instance 
+    xmlns='http://niem.gtri.gatech.edu/instance/1.0'>
+</instance>
+
+-->
+  <element name="instance">
+    <complexType>
+      <sequence>
+        <any 
+            minOccurs="0" 
+            maxOccurs="unbounded" 
+            processContents='strict' 
+            namespace='##any'/>
+      </sequence>
+      <anyAttribute namespace='##any' processContents="strict"/>
+    </complexType>
+  </element>
+</schema>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/enum-has-dd/invalid1.xsd</resource>
+		<rule>rule_${enum-has-dd}</rule>
+		<result>
+		<lineNumber>55</lineNumber>
+		<message>Rule ${enum-has-dd}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

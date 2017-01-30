@@ -1,0 +1,67 @@
+digraph G {
+  edge [fontname = "Helvetica", fontsize = 7, dir = forward];
+  node [fontname = "Helvetica", fontsize = 7, width = 0, height = 0];
+
+  node [shape=record];
+
+  URI -> {scheme "hier-part" query fragment};
+  "hier-part" -> { authority "path-abempty" "path-absolute" "path-rootless" "path-empty" };
+
+   "URI-reference" -> { URI "relative-ref" };
+
+   "absolute-URI" -> { scheme "hier-part" query };
+
+   "relative-ref" -> { "relative-part" query fragment };
+
+   "relative-part" -> { authority "path-abempty"
+   		   "path-absolute"
+                 "path-noscheme"
+                 "path-empty" };
+
+   scheme -> { ALPHA DIGIT };
+
+   authority -> { userinfo host port };
+   userinfo -> { unreserved "pct-encoded" "sub-delims" };
+   host -> { "IP-literal" IPv4address "reg-name" };
+   port -> DIGIT;
+
+   "IP-literal" -> { IPv6address IPvFuture };
+
+   IPvFuture -> { HEXDIG unreserved "sub-delims" };
+
+   IPv6address -> { h16 ls32 };
+
+   h16 -> HEXDIG;
+   ls32 -> { h16 IPv4address };
+   IPv4address -> { "dec-octet" };
+
+   "dec-octet" -> { DIGIT };
+
+   "reg-name" -> { unreserved "pct-encoded" "sub-delims" }
+
+   path -> { "path-abempty" "path-absolute" "path-noscheme" "path-rootless" "path-empty" };
+
+   "path-abempty" -> { segment };
+   "path-absolute" -> { "segment-nz" "segment" };
+   "path-noscheme" -> { "segment-nz-nc" segment };
+   "path-rootless" -> { "segment-nz" segment };
+   "path-empty" -> pchar;
+
+   segment -> pchar;
+   "segment-nz" -> pchar;
+   "segment-nz-nc" -> { unreserved "pct-encoded" "sub-delims" };
+
+   pchar -> { "unreserved" "pct-encoded" "sub-delims" };
+
+   query -> pchar;
+
+   fragment -> pchar;
+
+   "pct-encoded" -> HEXDIG;
+
+   unreserved -> { ALPHA DIGIT }
+   reserved -> { "gen-delims" "sub-delims" };
+   "gen-delims";
+   "sub-delims";
+
+}

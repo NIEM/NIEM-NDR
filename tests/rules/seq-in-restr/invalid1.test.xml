@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/seq-in-restr/invalid1.xsd</resource>
+		<rule>rule_${seq-in-restr}</rule>
+		<result>
+		<lineNumber>23</lineNumber>
+		<message>Rule ${seq-in-restr}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

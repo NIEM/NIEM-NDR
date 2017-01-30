@@ -1,0 +1,20 @@
+#!/bin/bash
+# Checks whether a rule directory is empty
+# If empty, then it requires more tests
+
+# Begin configuration
+echo "The following rules needs more tests:"
+
+# Setup the test root for local pathing
+TESTS_ROOT=$(realpath "$(dirname "$0")"/..)
+
+# Global variables
+DIRECTORY_RULES="$TESTS_ROOT/rules"
+
+# For each rule in the property file
+for RULE in `ls $DIRECTORY_RULES`; do
+	# Check if rule directory is empty
+	if [ ! "$(ls -A $DIRECTORY_RULES/$RULE)" ]; then
+		echo "--- $RULE"
+	fi
+done

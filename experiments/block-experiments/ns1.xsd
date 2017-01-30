@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+   targetNamespace="http://example.org/ns1"
+   xmlns:ns1="http://example.org/ns1"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns="http://www.w3.org/2001/XMLSchema">
+
+  <simpleType name="base">
+    <restriction base="integer"/>
+  </simpleType>
+
+  <simpleType name="derived">
+    <restriction base="ns1:base">
+      <pattern value="314"/>
+    </restriction>
+  </simpleType>
+
+  <element block="#all" name="e1" type="ns1:base"/>
+  <element name="e2" type="ns1:base" substitutionGroup="ns1:e1"/>
+
+</schema>
+ 
+<!-- 
+  Local Variables:
+  mode: sgml
+  indent-tabs-mode: nil
+  fill-column: 9999
+  End:
+-->

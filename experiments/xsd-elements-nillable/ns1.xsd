@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<xs:schema
+    targetNamespace="http://example.org/ns1/"
+    xmlns:ns1="http://example.org/ns1/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="e1" type="xs:integer" nillable="true"/>
+  <xs:element name="e2" type="xs:integer"/>
+  <xs:element name="e3">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ns1:e1"/>
+        <xs:element ref="ns1:e2"/>
+        <xs:element ref="ns1:e4" maxOccurs="2"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="e4" type="xs:integer"/>
+
+  <xs:element name="e5" nillable="true" type="xs:integer" substitutionGroup="ns1:e4"/>
+  <xs:element name="e6"                 type="xs:integer" substitutionGroup="ns1:e4"/>
+
+</xs:schema>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="US-ASCII" standalone="yes"?>
+<e3
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns="http://example.org/ns1/">
+  <e1 xsi:nil="1"/>
+  <e2>2882</e2>
+  <e5 xsi:nil="true"/>
+  <e6>2823982</e6>
+</e3>

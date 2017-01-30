@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# leave out l because it's confusing
+chars=(a b c d e f g h i j k m n o p q r s t u v w x y z)
+
+# numbers : 1 and 0 can be hard to distinguish
+numbers=(2 3 4 5 6 7 8 9)
+
+printf '%c%c%c\n' \
+       ${chars[ $(( $RANDOM % ${#chars[@]} )) ]} \
+       ${numbers[ $(( $RANDOM % ${#numbers[@]} )) ]} \
+       ${numbers[ $(( $RANDOM % ${#numbers[@]} )) ]}
+

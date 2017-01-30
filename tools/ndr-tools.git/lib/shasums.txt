@@ -1,0 +1,6 @@
+d8a24b556bdb222c50e8b8134e67e0b3e97ebefb *var/cache/iso-schematron-xslt2.zip
+10910a1ced9c1a485a6084d4a6f1a6793645a798 *var/cache/SaxonHE9-5-1-4J.zip
+681f04e180de88264bd3df68946001efb0bc2ff1 *var/cache/xalan-j_2_7_1-bin.zip
+40bc4deb5ff3b02d9a55cc577979e87e76b5a2e9 *var/cache/niem-3.0.rel.zip
+facee2e04458bebefbdad267234e54dedad29684 *var/cache/www.oasis-open.org/committees/entity/release/1.0/catalog.dtd
+2295c68182e812b4d33403b1e2d4a04ee088b790 *var/cache/xml-commons-resolver-1.2.zip

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<xs:schema
+	ct:conformanceTargets="http://reference.niem.gov/niem/specification/naming-and-design-rules/3.0/#ReferenceSchemaDocument"
+	targetNamespace="http://example.org/test1" xmlns:ct="http://release.niem.gov/niem/conformanceTargets/3.0/"
+	xmlns:structures="http://release.niem.gov/niem/structures/3.0/"
+	xmlns:appinfo="http://release.niem.gov/niem/appinfo/3.0/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:test1="http://example.org/test1" version="1">
+
+	<xs:annotation>
+		<xs:documentation>This is a schema.</xs:documentation>
+	</xs:annotation>
+
+	<xs:import namespace="http://release.niem.gov/niem/structures/3.0/" />
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+	<xs:import namespace="http://www.w3.org/2001/XMLSchema" />
+
+	<xs:element name="Object" type="xs:anySimpleType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>This is an object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+</xs:schema>

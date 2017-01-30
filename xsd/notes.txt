@@ -1,0 +1,26 @@
+
+naive make: 
+
+real	4m13.714s
+user	6m27.155s
+sys	0m19.233s
+
+make -j 100
+
+real	1m35.652s
+user	10m29.257s
+sys	0m36.212s
+
+System has 1 processor with 4 cores.
+
+make -j 4
+
+real	1m41.983s
+user	9m39.603s
+sys	0m28.089s
+
+make -j 8
+
+real	1m39.430s
+user	10m36.188s
+sys	0m36.208s

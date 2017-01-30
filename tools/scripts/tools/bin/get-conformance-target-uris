@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+#HELP:COMMAND_NAME: Get a list of conformance target URIs for an XML file
+
+#HELP:Options:
+#HELP:Usage: COMMAND_NAME option* $file.xml
+#HELP:  --help | -h: print this help
+#HELP:  --verbose | -v: print debugging and status output
+
+NDR_ROOT_DIR=$(cd "$(dirname "$0")"/../..; pwd)
+. "$NDR_ROOT_DIR"/tools/lib/fn_opt_help.bash
+. "$NDR_ROOT_DIR"/tools/lib/fn_opt_verbose.bash
+. "$NDR_ROOT_DIR"/tools/lib/fn_fail.bash
+. "$NDR_ROOT_DIR"/tools/lib/fn_ensure.bash
+
+OPTIND=1
+while getopts :hi:v-: OPTION
+do
+    case "$OPTION" in
+        h ) opt_help;;
+        v ) opt_verbose;;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                verbose ) opt_verbose;;
+                help=* | verbose=* ) fail "No argument expected for long option \"${OPTARG%%=*}\"";;
+                *=* ) fail "Unexpected long option (with argument) \"${OPTARG%%=*}\"";;
+                * ) fail "Unexpected long option \"$OPTARG\"";;
+            esac;;
+        '?' ) fail "Unknown short option \"$OPTARG\"";;
+        : ) fail "Short option \"$OPTARG\" missing argument";;
+        * ) fail "bad state OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND-1))
+
+ensure "Need one argument" test $# = 1
+ensure_file_exists "$1"
+
+GET_CONFORMANCE_TARGET_URIS_XSL=$NDR_ROOT_DIR/tools/lib/get-conformance-target-uris.xsl
+ensure_file_exists "$GET_CONFORMANCE_TARGET_URIS_XSL"
+
+"$NDR_ROOT_DIR/tools/bin/xalan" -- -XSL "$GET_CONFORMANCE_TARGET_URIS_XSL" -IN "$1"
+
+

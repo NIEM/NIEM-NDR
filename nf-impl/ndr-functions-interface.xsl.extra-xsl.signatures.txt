@@ -1,0 +1,6 @@
+nf:get-document-element($context as element()) as element()
+nf:get-target-namespace($element as element()) as xs:anyURI?
+nf:resolve-namespace($context as element(), $namespace-uri as xs:anyURI) as element(xs:schema)?
+nf:resolve-type($context as element(), $qname as xs:QName) as element()?
+nf:resolve-element($context as element(), $qname as xs:QName) as element(xs:element)?
+nf:has-effective-conformance-target-identifier($context as element(), $match as xs:anyURI) as xs:boolean

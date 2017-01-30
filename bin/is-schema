@@ -1,0 +1,60 @@
+#!/bin/bash
+
+. "$HOME"/working/tools/lib/script-helper.bash
+
+#HELP:  --help | -h: Print this help
+opt_help () {
+    print_help
+    exit 0
+}
+
+while getopts :h-: OPTION
+do
+    case "$OPTION" in
+        h ) opt_help;;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                * ) fail "Unknown long parameter \"$OPTARG\"";;
+            esac
+            ;;
+        '?') fail "unknown parameter \"$OPTARG\"";;
+        : ) fail "Parameter \"$OPTARG\" missing argument";;
+        * ) fail "Bad state in $0. OPTION=\"$OPTION\". OPTARG=\"$OPTARG\"";;
+    esac
+done
+
+if ! OUT=$(mktemp)
+then
+    fail mktemp failed
+fi
+
+cleanup () {
+    rm -f "$OUT"
+}
+trap cleanup 0
+
+RETURN_VALUE=0
+while test $# -gt 0
+do
+    if ! test -f "$1"
+    then printf '%s\n' "Not an XML Schema document: $1: not a file" >&2
+        RETURN_VALUE=1
+    elif ! xsltproc "$(realpath "$(dirname "$0")"/../xsl/get-root-element-qname.xsl)" "$1" > "$OUT"
+    then RETURN_VALUE=1
+        printf '%s\n' "Not an XML Schema document: $1: xsltproc failed" >&2
+        cat "$OUT" >&2
+    else
+        RESULT="$(cat "$OUT")"
+        if test "$RESULT" != "{http://www.w3.org/2001/XMLSchema}schema"
+        then 
+            printf '%s\n' "Not an XML Schema document: $1: root element is $RESULT" >&2
+            RETURN_VALUE=1
+        fi
+    fi
+    shift
+done
+exit "$RETURN_VALUE"
+
+      
+

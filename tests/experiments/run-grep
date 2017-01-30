@@ -1,0 +1,14 @@
+#!/bin/bash
+
+exec 3>&1
+
+THISDIR=$(realpath .)
+
+make "$@" \
+     2>&1 \
+     | tee /dev/fd/3 \
+     | sed -e "s!$THISDIR!!" \
+     | emacsclient-grep
+
+
+     

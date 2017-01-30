@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+#HELP:COMMAND_NAME: Convert an SVRL file into a readable text report
+#HELP:Usage: COMMAND_NAME option* -- xalan-option* 
+#HELP:Options:
+#HELP:  --help | -h: print this help
+#HELP:  --verbose | -v: print debugging and status output
+
+NDR_ROOT_DIR=$(cd "$(dirname "$0")"/../..; pwd)
+. "$NDR_ROOT_DIR"/tools/lib/fn_opt_help.bash
+. "$NDR_ROOT_DIR"/tools/lib/fn_opt_verbose.bash
+. "$NDR_ROOT_DIR"/tools/lib/fn_fail.bash
+
+#HELP:  --xalan-help: print Xalan Java's help
+opt_xalan_help () {
+    run_xalan_java
+}
+
+build_path () {
+    if test $# -gt 0
+    then printf '%s' "$1"
+        if test $# -gt 1
+        then printf ':%s' "${@:2}"
+        fi
+    fi
+}
+
+run_xalan_java () {
+    vrun java -classpath "$(build_path "$NDR_ROOT_DIR"/tools/xalan/*.jar)" org.apache.xalan.xslt.Process "$@"
+}
+
+OPTIND=1
+while getopts :hv-: OPTION
+do
+    case "$OPTION" in
+        h ) opt_help;;
+        v ) opt_verbose;;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                verbose ) opt_verbose;;
+                xalan-help ) opt_xalan_help;;
+                help=* | verbose=* ) fail "No argument expected for long option \"${OPTARG%%=*}\"";;
+                *=* ) fail "Unexpected long option (with argument) \"${OPTARG%%=*}\"";;
+                * ) fail "Unexpected long option \"$OPTARG\"";;
+            esac;;
+        '?' ) fail "Unknown short option \"$OPTARG\"";;
+        : ) fail "Short option \"$OPTARG\" missing argument";;
+        * ) fail "bad state OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND-1))
+
+run_xalan_java "$@"

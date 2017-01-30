@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cat "$@" | {
+    cat << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<words xmlns="http://example.org/words">
+EOF
+
+    sed -e 's:^:<word>:' -e 's:$:</word>:'
+
+    cat << EOF
+</words>
+EOF
+}

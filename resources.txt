@@ -1,0 +1,328 @@
+# -*-org-*-
+
+      >A simple type definition schema component MUST have a name that ends in "SimpleType".</sch:assert>
+
+
+* xpath functions under development
+
+  <!--
+    nf:complex-type-has-base-complex-type(
+      $type as element(xs:complexType),
+      $qname as xs:QName
+    ) as xs:boolean
+  -->
+  <function name="nf:has-base-complex-type" as="xs:boolean">
+    <param name="context" as="element()"/>
+    <param name="type-qname" as="xs:QName"/>
+    <param name="match-qname" as="xs:QName"/>
+    <choose>
+      <when test="$type-qname = $match-qname">
+        <sequence select="true()"/>
+      </when>
+      <otherwise>
+        <variable name="resolved" as="element()" select="nf:resolve-type($context, $type-qname)"/>
+      </otherwise>
+      <when test="exists($type/@name) 
+                  and $qname = QName(nf:get-target-namespace($type), $type/@name)">
+        <sequence select="true()"/>
+      </when>
+      <otherwise>
+        <variable name="base-type" as="xs:QName*">
+          <apply-templates select="$type" mode="l:get-base-type"/>
+        </variable>
+        
+      </otherwise>
+    </choose>
+  </function>
+
+  <function name="nf:has-base-complex-type" as="xs:QName">
+    <param name="context" as="element()"/>
+    <param name="match" as="xs:QName"/>
+    <choose>
+      <when test="xs:anyURI('MACRO_NS_XS') = namespace-uri-from-QName($match)">
+        <sequence select="false()"/>
+      </when>
+      <otherwise>
+        <variable name="resolved" as="element()" select="nf:resolve-type(></variable>
+      </otherwise>
+        <variable name="item" as="element(l:item)?" select="l:xs-types//l:item(@name = local-name-from-QName($type))"/>
+        <choose>
+          <when test="empty($item)">
+            <message terminate="yes">XML Schema type <value-of select="nf:get-clark-name($type)"/> is unknown.</message>
+          </when>
+          <otherwise>
+            <variable name="parent" as="element(l:item)?" select="$item/parent::l:item"/>
+            <if test="exists($parent)"></if>
+          </otherwise>
+        </choose>
+      </when>
+    </choose>
+  </function>
+
+  <function name="nf:complex-type-with-qname-has-base-complex-type" as="xs:boolean">
+    <param name="context" as="element()"/>
+    <param name="complex-type-qname" as="xs:QName"/>
+    <param name="match-qname" as="xs:QName"/>
+    <choose>
+      <when test="$complex-type-qname = $match-qname">
+        <sequence select="true()"/>
+      </when>
+      <otherwise>
+        <sequence select="some $complex-type
+                          in nf:resolve-type($context, $complex-type-qname)/self::xs:complexType
+                          satisfies l:checked-complex-type-has-base-complex-type($complex-type, $match-qname)"/>
+      </otherwise>
+    </choose>
+  </function>
+
+  <!-- (optimization) ignores the complex type passed in, since it's already been checked. -->
+  <function name="l:checked-complex-type-has-base-complex-type" as="xs:boolean">
+    <param name="complex-type" as="element(xs:complexType)"/>
+    <param name="match-qname" as="xs:QName"/>
+    <variable name="base-type-qname" as="xs:QName?" select="nf:complex-type-get-immediate-base-type($complex-type)"/>
+    <sequence select="nf:complex-type-with-qname-has-base-complex-type($complex-type, $base-type-qname, $match-qname)"/>
+  </function>
+
+  <!--
+    nf:is-proxy-type(
+      $context as element(),
+    ) as xs:boolean
+  -->
+  <function name="nf:is-proxy-type" as="xs:boolean">
+    <param name="context" as="element()"/>
+    <sequence select="
+      exists($context/self::xs:complexType[
+               for $name in @name return 
+                 exists(@name) 
+                 and xs:simpleContent[
+                 xs:extension[
+                   for $base-qname in resolve-QName(@base, .) return
+                     namespace-uri-from-QName($base-qname) = 'MACRO_XS_NS'
+                     and local-name-from-QName($base-qname) = $name
+                     and count(*[not(self::xs:annotation)]) = 1
+                     and xs:attributeGroup[
+                       resolve-QName(@ref, .) = QName(xs:anyURI('MACRO_NS_STRUCTURES'),
+                                                     'SimpleObjectAttributeGroup')]]]])"/>
+  </function>
+
+  <function name="nf:complex-type-get-immediate-base-type" as="xs:QName?">
+    <param name="context" as="element(xs:complexType)"/>
+    <apply-templates select="$context/xs:simpleContent | $context/xs:complexContent" mode="l:ct-get-base-type"/>
+  </function>
+
+  <template match="xs:simpleContent | xs:complexContent" as="xs:QName?" mode="l:ct-get-base-type">
+    <apply-templates select="xs:extension | xs:restriction" mode="l:ct-get-base-type"/>
+  </template>
+
+  <template match="@*|node()" priority="-1" as="xs:QName?" mode="l:ct-get-base-type">
+    <message terminate="yes"><value-of select="l:put-location(.)"/>:error:Unexpected node in mode l:ct-get-base-type().</message>
+  </template>
+
+  <template match="xs:restriction | xs:extension" as="xs:QName?" mode="l:ct-get-base-type">
+    <if test="exists(@base)">
+      <sequence select="resolve-QName(@base, .)"/>
+    </if>
+  </template>
+
+  <function name="nf:complex-type-has-base-complex-type" as="xs:boolean">
+    <param name="complex-type" as="element(xs:complexType)"/>
+    <param name="match-qname" as="xs:QName"/>
+
+    <sequence select="l:component-get-qname($complex-type) = $match-qname
+                      or l:checked-complex-type-has-base-complex-type($complex-type, $match-qname)"/>
+  </function>
+  
+  <!-- ################################################################## -->
+  <!-- Each external standards function MUST return true ONLY when it completely implements the indicated check -->
+  <!-- ################################################################## -->
+
+  <function name="nf:is-CTAS-conformant-document" as="xs:boolean">
+    <param name="document-element" as="element()"/>
+    <sequence select="false()"/>
+  </function>
+
+  <function name="nf:matches-RFC-3986-absolute-URI" as="xs:boolean">
+    <param name="input" as="xs:string"/>
+    <sequence select="false()"/>
+  </function>
+
+  
+
+* missing documentation
+
+      <xs:enumeration value="Duplicate">
+        <xs:annotation>
+          <xs:documentation>DOCUMENTATION NOT PROVIDED</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+
+* walking through schemas
+
+    <if test="base-uri(.) != $previous">
+      <apply-templates>
+        <with-param name="previous" select="$previous, base-uri(.)"/>
+      </apply-templates>
+    </if>
+
+
+* Macros for XSLT
+
+
+m4_dnl # MACRO_CHECK($condition,$where)
+m4_define([[[MACRO_CHECK]]],[[[
+<if test="not($1)">
+  <message>$2
+    <text>: warning: $condition</text>
+  </message>
+</if>
+]]])m4_dnl
+m4_dnl # MACRO_ASSERT($condition,$where)
+m4_define([[[MACRO_ASSERT]]],[[[
+<if test="not($1)">
+  <message terminate="yes">$2
+    <text>: assert failed: $1</text>
+  </message>
+</if>
+]]])m4_dnl
+m4_define([[[MACRO_LOCATION]]],[[[
+  <text>l:get-type-classification(</text>
+  <value-of select="l:put-location($context)"/>
+  <text>, </text>
+  <value-of select="l:get-clark-name($type-qname)"/>
+  <text>): count($types) = 0.</text>
+]]])m4_dnl
+
+* XSLT functions to classify types
+
+In short, this stuff got way too complicated, when mostly what we SEEM
+to need is a simple top-level breakdown.
+
+  <function name="l:get-type-classification" as="xs:string*">
+    <param name="context" as="element()"/>
+    <param name="type-qname" as="xs:QName"/>
+    <choose>
+      <when test="$type-namespace-uri = xs:anyURI('MACRO_NS_XS')">simple</when>
+      <when test="$type-qname = QName('MACRO_NS_STRUCTURES','ObjectType')">object</when>
+      <when test="$type-qname = QName('MACRO_NS_STRUCTURES','AssociationType')">association</when>
+      <when test="$type-qname = QName('MACRO_NS_STRUCTURES','MetadataType')">metadata</when>
+      <when test="$type-qname = QName('MACRO_NS_STRUCTURES','AugmentationType')">augmentation</when>
+      <otherwise>
+        <variable name="type-namespace-uri" as="xs:anyURI" select="namespace-uri-from-QName($type-qname)"/>
+        <when test="$type-namespace-uri = nf:get-target-namespace($context)
+                  or exists(l:get-document-element($context)/xs:import[empty(@appinfo:externalImportIndicator)])">
+      </otherwise>
+        <sequence select="l:type-qname-get-classification-conformant($context, $type-qname)"/>
+      </when>
+      <when test="exists(l:get-document-element($context)/xs:import[xs:boolean(@appinfo:externalImportIndicator) = true()])">
+        <sequence select="('external')"/>
+      </when>
+    </choose>
+  </function>
+
+  <function name="l:type-qname-get-classification-conformant" as="xs:string*">
+    <param name="context" as="element()"/>
+    <param name="type-qname" as="xs:QName"/>
+    <variable name="local-name" as="xs:NCName" select="local-name-from-QName($type-qname)"/>
+    <choose>
+      <when test="ends-with($local-name, 'AssociationType')">association</when>
+      <when test="ends-with($local-name, 'MetadataType')">metadata</when>
+      <when test="ends-with($local-name, 'AugmentationType')">augmentation</when>
+      <otherwise>
+        <sequence select="for $type in l:resolve-type($context, $type-qname)[1]
+                          return l:type-get-classification($type)"/>
+      </otherwise>
+    </choose>
+  </function>
+
+  <function name="l:type-get-classification" as="xs:string*">
+    <param name="type" as="element()"/>
+    <choose>
+      <when test="$type/exists(@externalAdapterTypeIndicator)">adapter</when>
+      <when test="$type/self::xs:simpleType">
+        <sequence select="('simple', l:simple-type-get-classification($type))"/>
+      </when>
+      <when test="$type/self::xs:complexType">
+        <sequence select="('object', l:complex-type-get-classification($type))"/>
+      </when>
+    </choose>
+  </function>
+  
+  <function name="l:complex-type-get-classification" as="xs:string*">
+    <param name="complex-type" as="element(xs:complexType)"/>
+    <choose>
+      <when test="$complex-type/xs:complexContent">
+        <choose>
+          <when test="$complex-type/xs:complexContent/xs:*[@base]></when>
+        </choose>
+      </when>
+    </choose>
+
+    
+
+        
+    <variable name="types" as="element()*" select="nf:resolve-type($type-qname)"/>
+    <choose>
+      <when test="count($types) = 0">
+        <message>
+          <text>l:get-type-classification(</text>
+          <value-of select="l:put-location($context)"/>
+          <text>, </text>
+          <value-of select="l:get-clark-name($type-qname)"/>
+          <text>): count($types) = 0.</text>
+        </message>
+        <sequence select="('error', concat('type does not resolve (', l:get-clark-name($type-qname), ')'))"/>
+      </when>
+      <when test="count($types) &gt; 1">
+        <message>
+          <text>l:get-type-classification(</text>
+          <value-of select="l:put-location($context)"/>
+          <text>, </text>
+          <value-of select="l:get-clark-name($type-qname)"/>
+          <text>): count($types) &gt; 1: (</text>
+          <value-of select="count($types)"/>
+          <text>).</text>
+        </message>
+        <sequence select="('error', 
+                           concat('type resolves too much (', l:get-clark-name($type-qname), ')'),
+                           l:type-get-classification($types[1]))"/>
+      </when>
+      <otherwise>
+        <sequence select="exactly-one(l:type-get-classification($types))"/>
+      </otherwise>
+      </otherwise>
+    </choose>
+  </function>
+
+  <function name="l:type-get-classification" as="xs:string*">
+    <param name="type" as="element()"/>
+    <choose>
+      <when test="exists($type/self::xs:complexType)">
+        <sequence select="l:complex-type-get-classification($type)"/>
+      </when>
+      <otherwise>
+        <sequence select="l:simple-type-get-classification($type)"/>
+      </otherwise>
+    </choose>
+  </function>
+
+  <function name="l:complex-type-get-classification" as="xs:string*">
+    <param name="complex-type" as="element(xs:complexType)"/>
+    <choose>
+      <when test="ends-with(@name, 'AssociationType')">
+        <sequence select="('complex', 'association')"/>
+      </when>
+      <when test="ends-with(@name, 'MetadataType')">
+        <sequence select="('complex', 'metadata')"/>
+      </when>
+      <when test="ends-with(@name, 'AugmentationType')">
+        <sequence select="('complex', 'augmentation')"/>
+      </when>
+      <otherwise>
+      </otherwise>
+    </choose>
+  </function>
+
+  <function name="l:simple-type-get-classification" as="xs:string*">
+    <param name="complex-type" as="element(xs:simpleType)"/>
+  </function>
+

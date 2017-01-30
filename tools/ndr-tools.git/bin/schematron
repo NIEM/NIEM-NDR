@@ -1,0 +1,138 @@
+#!/usr/bin/env bash
+
+#HELP:COMMAND_NAME: run a Schematron document against an XML document, producing SVRL output
+#HELP:Usage: COMMAND_NAME option* $file-to-test.xml
+#HELP:Options:
+#HELP:  --help | -h: print this help
+#HELP:  --verbose | -v: print debugging and status output
+
+. "$(dirname "$0")"/../lib/common.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_opt_help.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_opt_verbose.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_fail.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_ensure.bash
+
+#HELP:  --schematron-schema=$schema | -s $schema: validate against Schematron schema
+#HELP:  --rules=$code | -r $code: use NIEM NDR rule set for conformance target $code
+#HELP:      codes: ref, ext, ins, set
+
+unset SCHEMA
+
+opt_schematron_schema () {
+    ensure "You tried to use more than one schema" test is-set != "${SCHEMA:+is-set}"
+    ensure "file not not found: \"$1\"" test -f "$1"
+    vecho "Validating against Schematron schema \"$1\""
+    SCHEMA=$1
+}
+
+opt_rules () {
+    ensure "You tried to use more than one schema" test is-set != "${SCHEMA:+is-set}"
+    case "$1" in 
+        ext | ins | ref | set )
+            SCHEMA=$NDR_TOOLS_ROOT_DIR/ndr-rules-conformance-target-"$1".sch
+            ensure "File not found: $SCHEMA" test -f "$SCHEMA"
+            ;;
+        * )
+            fail "Unknown conformance target code: $1. Expecting ext, ins, ref, or set.";;
+    esac
+    vecho "Validating against Schematron schema \"$1\""
+}
+
+#HELP:  --force-rebuild: Always rebuild XSLTs from Schematrons, even if they have not changed.
+FORCE_REBUILD=false
+opt_force_rebuild () {
+    FORCE_REBUILD=true
+}
+
+#HELP:  --param=$variable=$value: set XSLT parameter, using SAXON syntax
+#HELP:    e.g., --param=+xml-catalog=subset/xml-catalog.xml
+PARAMS=()
+opt_param () {
+    PARAMS+=("$1")
+}
+
+#HELP:  --xml-catalog=$xml-catalog | -c $xml-catalog: Use XML catalog for cross-references
+opt_xml_catalog () {
+    PARAMS+=("+xml-catalog=$1")
+}
+
+OPTIND=1
+while getopts :c:hr:s:v-: OPTION
+do
+    case "$OPTION" in
+        c ) opt_xml_catalog "$OPTARG";;
+        h ) opt_help;;
+        r ) opt_rules "$OPTARG";;
+        s ) opt_schematron_schema "$OPTARG";;
+        v ) opt_verbose;;
+        - )
+            case "$OPTARG" in
+                force-rebuild ) opt_force_rebuild;;
+                help ) opt_help;;
+                param=* ) opt_param "${OPTARG#*=}";;
+                rules=* ) opt_rules "${OPTARG#*=}";;
+                schematron-schema=* ) opt_schematron_schema "${OPTARG#*=}";;
+                verbose ) opt_verbose;;
+                xml-catalog=* ) opt_xml_catalog "${OPTARG#*=}";;
+                rules | schematron-schema | xml-catalog ) 
+                    fail "Missing required argument for long option \"$OPTARG\"";;
+                force-rebuild=* | help=* | verbose=* ) 
+                    fail "No argument expected for long option \"${OPTARG%%=*}\"";;
+                *=* ) fail "Unexpected long option (with argument) \"${OPTARG%%=*}\"";;
+                * ) fail "Unexpected long option \"$OPTARG\"";;
+            esac;;
+        '?' ) fail "Unknown short option \"$OPTARG\"";;
+        : ) fail "Short option \"$OPTARG\" missing argument";;
+        * ) fail "bad state OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND-1))
+
+ensure "No file to validate" test $# -gt 0
+ensure "Only can validate one file" test $# = 1
+ensure "File to test not found: $1" test -f "$1"
+
+SAXON_JAR="$NDR_TOOLS_ROOT_DIR"/pkg/saxon/saxon9he.jar
+ensure "Saxon jar file not found (\"$SAXON_JAR\")" test -f "$SAXON_JAR"
+
+INCLUDE_XSL="$NDR_TOOLS_ROOT_DIR"/pkg/iso-schematron-xslt2/iso_dsdl_include.xsl
+ensure "XSLT file not found (\"$INCLUDE_XSL\")" test -f "$INCLUDE_XSL"
+
+ABSTRACT_XSL="$NDR_TOOLS_ROOT_DIR"/pkg/iso-schematron-xslt2/iso_abstract_expand.xsl
+ensure "XSLT file not found (\"$ABSTRACT_XSL\")" test -f "$ABSTRACT_XSL"
+
+TO_SVRL_XSL="$NDR_TOOLS_ROOT_DIR"/pkg/iso-schematron-xslt2/iso_svrl_for_xslt2.xsl
+ensure "XSLT file not found: $TO_SVRL_XSL" test -f "$TO_SVRL_XSL"
+
+ensure "Required option --schematron-schema not used" test is-set = "${SCHEMA:+is-set}"
+ensure "Schematron schema not found: $SCHEMA" test -f "$SCHEMA"
+
+SCHEMA_DIR=$(dirname "$SCHEMA")
+SCHEMA_BASE=$(basename "$SCHEMA")
+INCLUDE=$SCHEMA_DIR/tmp.$SCHEMA_BASE.include.xml
+ABSTRACT=$SCHEMA_DIR/tmp.$SCHEMA_BASE.abstract.xml
+XSL=$SCHEMA_DIR/tmp.$SCHEMA_BASE.xsl
+
+if [[ "$FORCE_REBUILD" = true || "$INCLUDE" -ot "$SCHEMA" ]]
+then vrun "$NDR_TOOLS_ROOT_DIR"/bin/saxon -- -o:"$INCLUDE" -xsl:"$INCLUDE_XSL" "$SCHEMA"
+else vecho "No need to rebuild \"$INCLUDE\""
+fi
+
+if [[ "$FORCE_REBUILD" = true || "$ABSTRACT" -ot "$INCLUDE" ]]
+then vrun "$NDR_TOOLS_ROOT_DIR"/bin/saxon -- -o:"$ABSTRACT" -xsl:"$ABSTRACT_XSL" "$INCLUDE"
+else vecho "No need to rebuild \"$ABSTRACT\""
+fi
+
+if [[ "$FORCE_REBUILD" = true || "$XSL" -ot "$ABSTRACT" ]]
+then vrun "$NDR_TOOLS_ROOT_DIR"/bin/saxon -- -o:"$XSL" -xsl:"$TO_SVRL_XSL" "$ABSTRACT" allow-foreign=true full-path-notation=4
+else vecho "No need to rebuild \"$XSL\""
+fi
+
+vecho "Validating file \"$1\" against schema \"$SCHEMA\"" 
+COMMAND=("$NDR_TOOLS_ROOT_DIR"/bin/saxon --catalog="$NDR_TOOLS_ROOT_DIR/xml-catalog.xml" -- -l:on -xsl:"$XSL" "$1")
+if (( ${#PARAMS[@]} > 0 ))
+then COMMAND+=("${PARAMS[@]}")
+fi
+"${COMMAND[@]}"
+
+

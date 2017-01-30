@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# format the output of a schematron doc so that it only says what needs to be said.
+
+grep -e -v ':report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.$'
+
+

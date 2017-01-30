@@ -1,0 +1,16 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+  <uri name="http://www.w3.org/2001/XMLSchema" uri="../../xsd/xmlschema-strict.xsd"/>
+
+<!-- or ../../xsd/w3/XMLSchema.xsd"/> -->
+
+  <uri name="http://www.w3.org/XML/1998/namespace" uri="../../xsd/w3/xml.xsd"/>
+
+  <uri name="http://www.w3.org/2001/xml.xsd" uri="../../xsd/w3/xml.xsd"/>
+
+  <uri name="http://release.niem.gov/niem/conformanceTargets/3.0/" 
+       uri="../../xsd/niem-3/release.niem.gov/niem/conformanceTargets/3.0/conformanceTargets.xsd"/>
+
+  <public publicId="-//W3C//DTD XMLSCHEMA 200102//EN" uri="../../xsd/w3/XMLSchema.dtd"/>
+
+</catalog>

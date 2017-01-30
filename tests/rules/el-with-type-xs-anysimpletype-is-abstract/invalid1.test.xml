@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/el-with-type-xs-anysimpletype-is-abstract/invalid1.xsd</resource>
+		<rule>rule_${el-with-type-xs-anysimpletype-is-abstract}</rule>
+		<result>
+		<lineNumber>17</lineNumber>
+		<message>Rule ${el-with-type-xs-anysimpletype-is-abstract}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

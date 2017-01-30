@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+#HELP:COMMAND_NAME: run the Xalan XSLT processor
+#HELP:Usage: COMMAND_NAME $file.svrl > $results.txt
+#HELP:Options:
+#HELP:  --help | -h: print this help
+#HELP:  --verbose | -v: print debugging and status output
+
+NDR_ROOT_DIR=$(cd "$(dirname "$0")"/../..; pwd)
+. "$NDR_ROOT_DIR"/tools/lib/fn_opt_help.bash
+. "$NDR_ROOT_DIR"/tools/lib/fn_opt_verbose.bash
+. "$NDR_ROOT_DIR"/tools/lib/fn_fail.bash
+. "$NDR_ROOT_DIR"/tools/lib/fn_ensure.bash
+
+OPTIND=1
+while getopts :hi:v-: OPTION
+do
+    case "$OPTION" in
+        h ) opt_help;;
+        v ) opt_verbose;;
+        i ) opt_in_svrl "$OPTARG";;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                in-svrl ) opt_in_svrl "${OPTARG#*=}";;
+                verbose ) opt_verbose;;
+                help=* | verbose=* ) fail "No argument expected for long option \"${OPTARG%%=*}\"";;
+                *=* ) fail "Unexpected long option (with argument) \"${OPTARG%%=*}\"";;
+                * ) fail "Unexpected long option \"$OPTARG\"";;
+            esac;;
+        '?' ) fail "Unknown short option \"$OPTARG\"";;
+        : ) fail "Short option \"$OPTARG\" missing argument";;
+        * ) fail "bad state OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND-1))
+
+ensure "One argument required: filename of an SVRL file" test $# = 0
+ensure_file_exists "$1"
+
+NDR_ID_MAP="$NDR_ROOT_DIR"/tools/lib/ndr-id-map.xml
+ensure_file_exists "$NDR_ID_MAP"
+
+SVRL_TO_REPORT_XSL="$NDR_ROOT_DIR"/tools/lib/svrl-to-report.xsl
+ensure_file_exists "$SVRL_TO_REPORT_XSL"
+
+RESULTS_TO_TEXT_XSL="$NDR_ROOT_DIR"/tools/lib/results-to-text.xsl
+ensure_file_exists "$RESULTS_TO_TEXT_XSL"
+
+"$NDR_ROOT_DIR"/tools/bin/xalan -- -L -XSL "$SVRL_TO_REPORT_XSL"  -IN "$1" -PARAM ndr-id-map "$NDR_ID_MAP" | "$NDR_ROOT_DIR"/tools/bin/xalan -- -XSL "$RESULTS_TO_TEXT_XSL" -IN <(cat)
+
+

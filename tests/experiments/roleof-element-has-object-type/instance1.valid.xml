@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<instance 
+   xmlns:nc="http://release.niem.gov/niem/niem-core/3.0/"
+   xmlns="http://niem.gtri.gatech.edu/instance/1.0">
+  <nc:Activity/>
+</instance>

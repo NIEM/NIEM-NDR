@@ -1,0 +1,10 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+  <!-- use this catalog along with the default catalog -->
+  <!-- for strict validation of xs:any and xs:anyAttributes in schemas -->
+
+  <uri 
+     name="http://www.w3.org/2001/XMLSchema"
+     uri="xmlschema-strict.xsd"/>
+
+</catalog>

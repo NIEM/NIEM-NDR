@@ -1,0 +1,9 @@
+# -*-org-*-
+
+This shows that you can:
+
+  1. build a base element of type xs:anySimpleType
+  2. Build a CSC type
+  3. Build a derived element of the CSC type, substitutable for the
+     base type.
+

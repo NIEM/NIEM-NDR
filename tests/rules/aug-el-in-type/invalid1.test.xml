@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/aug-el-in-type/invalid1.xsd</resource>
+		<rule>rule_${aug-el-in-type}</rule>
+		<result>
+		<lineNumber>15</lineNumber>
+		<message>Rule ${aug-el-in-type}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

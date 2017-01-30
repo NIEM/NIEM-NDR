@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+#HELP:COMMAND_NAME: Build a string composed of the passed arguments separated by the separator character
+#HELP:Usage: COMMAND_NAME --separator=$separator (--)? string1 string2 ...
+
+. "$(dirname "$0")"/../lib/common.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_opt_help.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_fail.bash
+. "$NDR_TOOLS_ROOT_DIR"/lib/fn_ensure.bash
+
+#HELP:Options:
+#HELP:  --help | -h: print this help
+#HELP:  --separator=$separator | -s $separator: put separator between strings
+
+unset SEPARATOR
+opt_separator () {
+    SEPARATOR=$1
+}
+
+OPTIND=1
+while getopts :hs:-: OPTION
+do
+    case "$OPTION" in
+        h ) opt_help;;
+        s ) opt_separator "$OPTARG";;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                separator=* ) opt_separator "${OPTARG#*=}";;
+                help=* ) fail "No argument expected for long option \"${OPTARG%%=*}\"";;
+                separator ) fail "Argument expected for long option \"${OPTARG}\"";;
+                *=* ) fail "Unexpected long option (with argument) \"${OPTARG%%=*}\"";;
+                * ) fail "Unexpected long option \"$OPTARG\"";;
+            esac;;
+        '?' ) fail "Unknown short option \"$OPTARG\"";;
+        : ) fail "Short option \"$OPTARG\" missing argument";;
+        * ) fail "bad state OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND-1))
+
+ensure "Option --separator=\$separator is required" test is-set = "${SEPARATOR:+is-set}"
+
+if (( $# > 0 ))
+then 
+     printf '%s' "$1"
+fi
+
+for ARG in "${@:2}"
+do
+    printf '%s%s' "$SEPARATOR" "$ARG"
+done
+

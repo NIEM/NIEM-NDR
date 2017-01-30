@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/el-type-not-st/invalid1.xsd</resource>
+		<rule>rule_${el-type-not-st}</rule>
+		<result>
+		<lineNumber>23</lineNumber>
+		<message>Rule ${el-type-not-st}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

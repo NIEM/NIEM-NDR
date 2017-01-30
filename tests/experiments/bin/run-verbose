@@ -1,0 +1,13 @@
+#!/bin/bash
+
+exec 2>&1
+
+printf '##################################################################\n'
+printf '# running'
+printf ' %q' "$@"
+printf '\n'
+
+"$@"
+
+printf '# exit status %d\n' "$?"
+

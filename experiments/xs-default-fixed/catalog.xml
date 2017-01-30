@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+  <uri 
+     name="http://example.org/ns1"
+     uri="ns1.xsd"/>
+
+</catalog>

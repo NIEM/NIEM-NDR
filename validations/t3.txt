@@ -1,0 +1,40 @@
+# -*-grep-*-
+make -C .. dest/ndr-rules-conformance-target-set.sch
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem/external': No such file or directory
+m4 --prefix-builtins src/ndr-macros.m4 src/ndr-doc.xml.m4 > tmp/ndr-doc.xml
+make -f dependent.mk tmp/blurbSet/set.xml
+/Users/webbroberts/working/tools/bin/process-doc -makedepend dest/ndr-doc.html -in tmp/ndr-doc.xml -out tmp/dependencies.mk
+tmp/ndr-doc.xml:1: {https://iead.ittl.gtri.org/wr24/doc/2011-09-30-2258}document
+TEMPFILE=/var/folders/h4/rb0xnggd09x_lm98xdk3phwm0000gn/T/tmp.UYAy37GAMr; \
+		/Users/webbroberts/working/tools/bin/saxon -xsl /Users/webbroberts/working/tools/share/doc-processing/extract-xml-blurbs.xsl -in tmp/ndr-doc.xml -out $TEMPFILE; \
+		rm -f $TEMPFILE
+/Users/webbroberts/working/tools/bin/saxon -xsl src/blurb-to-schematron.xsl -in tmp/blurbSet/set.xml -out dest/ndr-rules-conformance-target-set.sch - title='Rules for XML Schema document sets'
+mkdir -p tmp/sandbox/v6-niem-distro-set-meets-ndr-set-rules.d/
+install --no-target-directory ../dest/ndr-rules-conformance-target-set.sch tmp/sandbox/v6-niem-distro-set-meets-ndr-set-rules.d/ndr-rules-conformance-target-set.sch
+make -C .. dest/ndr-functions.xsl
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem/external': No such file or directory
+make[1]: `dest/ndr-functions.xsl' is up to date.
+mkdir -p tmp/sandbox/v6-niem-distro-set-meets-ndr-set-rules.d/
+install --no-target-directory ../dest/ndr-functions.xsl tmp/sandbox/v6-niem-distro-set-meets-ndr-set-rules.d/ndr-functions.xsl
+/Users/webbroberts/working/tools/bin/schematron -ee -schema tmp/sandbox/v6-niem-distro-set-meets-ndr-set-rules.d/ndr-rules-conformance-target-set.sch tmp/xsd-consolidated.xml
+tmp/xsd-consolidated.xml:7:assert:A namespace imported as conformant from a reference schema document MUST identify a reference schema document.
+tmp/xsd-consolidated.xml:39:assert:A namespace imported as conformant from a reference schema document MUST identify a reference schema document.
+tmp/xsd-consolidated.xml:71:assert:A namespace imported as conformant from a reference schema document MUST identify a reference schema document.
+tmp/xsd-consolidated.xml:104:assert:A namespace imported as conformant from a reference schema document MUST identify a reference schema document.
+tmp/xsd-consolidated.xml:109:assert:A namespace imported as conformant from a reference schema document MUST identify a reference schema document.
+tmp/xsd-consolidated.xml:364211:assert:Every item in @appinfo:appliesToTypes must resolve to a type. Found ("structures:Object":0, "structures:Association":0).
+tmp/xsd-consolidated.xml:364776:assert:Every item in @appinfo:appliesToTypes must resolve to a type. Found ("structures:Object":0, "structures:Association":0).
+tmp/xsd-consolidated.xml:375699:assert:Every item in @appinfo:appliesToTypes must resolve to a type. Found ("structures:Object":0, "structures:Association":0).
+tmp/xsd-consolidated.xml:419934:assert:Every item in @appinfo:appliesToTypes must resolve to a type. Found ("structures:Object":0, "structures:Association":0).
+tmp/xsd-consolidated.xml:475391:assert:Every item in @appinfo:appliesToTypes must resolve to a type. Found ("structures:Object":0, "structures:Association":0).
+make: *** [tmp/valid-tokens/v6-niem-distro-set-meets-ndr-set-rules] Error 1

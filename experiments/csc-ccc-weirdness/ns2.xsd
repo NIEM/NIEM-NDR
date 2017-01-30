@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<schema
+   targetNamespace="http://example.org/ns2"
+   xmlns:ns2="http://example.org/ns2"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns="http://www.w3.org/2001/XMLSchema">
+
+<complexType name="base-ccc" mixed="true">
+  <sequence>
+    <element ref="ns2:e1" minOccurs="0"/>
+  </sequence>
+</complexType>
+
+<element name="e1"/>
+<element name="e2" type="ns2:base-ccc"/>
+
+<complexType name="derived-ccc">
+  <simpleContent>
+    <restriction base="ns2:base-ccc">
+      <simpleType>
+        <restriction base="string"></restriction>
+      </simpleType>
+    </restriction>
+  </simpleContent>
+</complexType>
+
+<element name="e3" type="ns2:derived-ccc"/>
+
+</schema>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<instance:instance
+   xmlns:instance="http://niem.gtri.gatech.edu/instance/1.0"
+   xmlns:ns2="http://example.org/ns2"
+   xmlns:structures="http://release.niem.gov/niem/structures/3.0/"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+      http://example.org/ns2 ns2.xsd
+      http://niem.gtri.gatech.edu/instance/1.0 ../../xsd/instance-1.0.xsd"
+   >
+  <ns2:ConcreteElement attr1="true" structures:id="alkdfka">2012-02-03</ns2:ConcreteElement>
+</instance:instance>

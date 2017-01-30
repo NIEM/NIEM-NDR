@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+#HELP:COMMAND_NAME: run NDR Schematron rules against an XML document, producing a report
+#HELP:Usage: COMMAND_NAME option* $file-to-test.xml
+#HELP:Options:
+#HELP:  --help | -h: print this help
+#HELP:  --verbose | -v: print debugging and status output
+
+NDR_ROOT_DIR=$(cd "$(dirname "$0")"/../..; pwd)
+. "$NDR_ROOT_DIR"/tools/lib/fn_opt_help.bash
+. "$NDR_ROOT_DIR"/tools/lib/fn_opt_verbose.bash
+. "$NDR_ROOT_DIR"/tools/lib/fn_fail.bash
+. "$NDR_ROOT_DIR"/tools/lib/fn_ensure.bash
+
+#HELP:  --rules=$code | -r $code: use NIEM NDR rule set for conformance target $code
+#HELP:      codes: ref, ext, ins, set
+
+unset SCHEMA
+
+opt_rules () {
+    ensure "You tried to use more than one schema" test is-set != "${SCHEMA:+is-set}"
+    case "$1" in 
+        ext | ins | ref | set )
+            SCHEMA=$NDR_ROOT_DIR/ndr-rules-conformance-target-"$1".sch
+            ensure "File not found: $SCHEMA" test -f "$SCHEMA"
+            ;;
+        * )
+            fail "Unknown conformance target code: $1. Expecting ext, ins, ref, or set.";;
+    esac
+    vecho "Validating against Schematron schema \"$1\""
+}
+
+#HELP:  --xml-catalog=$xml-catalog | -c $xml-catalog: Use XML catalog for cross-references
+unset XML_CATALOG
+opt_xml_catalog () {
+    XML_CATALOG=$1
+}
+
+OPTIND=1
+while getopts :c:hvr:s:-: OPTION
+do
+    case "$OPTION" in
+        c ) opt_xml_catalog "$OPTARG";;
+        h ) opt_help;;
+        r ) opt_rules "$OPTARG";;
+        v ) opt_verbose;;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                rules=* ) opt_rules "${OPTARG#*=}";;
+                verbose ) opt_verbose;;
+                xml-catalog=* ) opt_xml_catalog "${OPTARG#*=}";;
+                rules | xml-catalog ) fail "Missing required argument for long option \"$OPTARG\"";;
+                help=* | verbose=* ) fail "No argument expected for long option \"${OPTARG%%=*}\"";;
+                *=* ) fail "Unexpected long option (with argument) \"${OPTARG%%=*}\"";;
+                * ) fail "Unexpected long option \"$OPTARG\"";;
+            esac;;
+        '?' ) fail "Unknown short option \"$OPTARG\"";;
+        : ) fail "Short option \"$OPTARG\" missing argument";;
+        * ) fail "bad state OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND-1))
+
+ensure "Required option --rules not used" test is-set = "${SCHEMA:+is-set}"
+ensure_file_exists "$SCHEMA"
+
+ensure "Required option --xml-catalog not used" test is-set = "${XML_CATALOG:+is-set}"
+ensure_file_exists "$XML_CATALOG"
+
+ensure "No file to validate" test $# -gt 0
+ensure "Only can validate one file" test $# = 1
+ensure_file_exists "$1"
+
+SVRL_RESULTS=$(mktemp)
+
+vrun "$NDR_ROOT_DIR"/tools/bin/schematron --param=+xml-catalog="$XML_CATALOG" --schematron-schema="$SCHEMA" "$1" > "$SVRL_RESULTS"
+
+vrun "$NDR_ROOT_DIR"/tools/bin/svrl-to-report "$SVRL_RESULTS"
+
+rm "$SVRL_RESULTS"
+
+

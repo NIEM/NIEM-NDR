@@ -1,0 +1,9 @@
+#!/bin/bash
+
+printf '%s,%s,%s,%s\n' file line word name
+cat "$@" \
+    | tail -n +2 \
+    | sed -e 's@/Users/webbroberts/working/ndr3/experiments/break-up-camel-case/../../../niem-3.0beta1/niem/@@' \
+        -e 's/:/,/g' \
+        -e 's/word "\([^"]*\)" in "\([^"]*\)"/\1,\2/'
+

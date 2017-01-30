@@ -1,0 +1,45 @@
+#!/bin/bash
+
+remove_first () {
+    ed "$1" <<EOF > /dev/null
+1d
+w
+q
+EOF
+}
+
+browse_word () {
+    open "http://www.oed.com/search?searchType=dictionary&q=${*}&_searchBtn=Search"
+    grep "\"${*}\"" report-not-oed-terms.txt 
+}
+
+while :
+do
+    first=$(head -n 1 tmp/unknown-terms.txt)
+    browse_word $first
+    printf 'term: "%s"\n' "$first"
+    read RESULT
+    case "$RESULT" in
+        oed )
+            printf '%s\n' $first >> oed-terms.txt
+            remove_first tmp/unknown-terms.txt
+            ;;
+        not ) 
+            printf '%s\n' $first >> not-oed-terms.txt
+            remove_first tmp/unknown-terms.txt
+            ;;
+        red )
+            printf '%s\n' $first >> oed-terms.txt
+            printf '%s\n' $first >> red-flag-terms.txt
+            remove_first tmp/unknown-terms.txt
+            ;;
+        special )
+            printf '%s\n' $first >> special-terms.txt
+            remove_first tmp/unknown-terms.txt
+            ;;
+        * )
+            printf 'ERROR: unknown input: "%s"\n' "$RESULT" >&2
+            exit 1
+            ;;
+    esac
+done

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/xs-import-consistent-with-schema/invalid1.xsd</resource>
+		<rule>rule_${xs-import-consistent-with-schema}</rule>
+		<result>
+		<lineNumber>389</lineNumber>
+		<message>Rule ${xs-import-consistent-with-schema}: A namespace imported as conformant from a reference schema document MUST identify a reference schema document.
+</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

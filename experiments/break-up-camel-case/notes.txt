@@ -1,0 +1,24 @@
+# -*-org-*-
+
+Need to determine how to deal with hyphenated terms:
+
+  center-line
+  co-defendant
+  co-worker
+  log-on
+  non-empty
+  watch-list
+
+How to deal with multi-word terms
+
+  main line (not mainline)
+  pass code (not passcode)
+  web site (not website)
+
+The word used is not the predominant spelling:
+
+  dependent (dependant is predominant when it is a noun)
+
+
+
+ 

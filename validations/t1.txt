@@ -1,0 +1,41 @@
+# -*-grep-*-
+make -C .. dest/ndr-rules-conformance-target-ref.sch
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem/external': No such file or directory
+make[1]: `dest/ndr-rules-conformance-target-ref.sch' is up to date.
+mkdir -p tmp/sandbox/v5-schemas-meet-ref-rules.d/
+install --no-target-directory ../dest/ndr-rules-conformance-target-ref.sch tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch
+make -C .. dest/ndr-functions.xsl
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem': No such file or directory
+find: `xsd/niem3alpha2pre1/niem/external': No such file or directory
+make[1]: `dest/ndr-functions.xsl' is up to date.
+mkdir -p tmp/sandbox/v5-schemas-meet-ref-rules.d/
+install --no-target-directory ../dest/ndr-functions.xsl tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-functions.xsl
+/Users/webbroberts/working/tools/bin/schematron -ee -schema tmp/sandbox/v5-schemas-meet-ref-rules.d/ndr-rules-conformance-target-ref.sch distro/niem/niem-core/3.0/niem-core.xsd
+distro/niem/niem-core/3.0/niem-core.xsd:2:report:The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.
+distro/niem/niem-core/3.0/niem-core.xsd:2:report:The document MUST be a well-formed XML document, as defined by Extensible Markup Language.
+distro/niem/niem-core/3.0/niem-core.xsd:2:report:The document MUST be namespace-well-formed.
+distro/niem/niem-core/3.0/niem-core.xsd:2:report:The document MUST be namespace-valid.
+distro/niem/niem-core/3.0/niem-core.xsd:2:report:The document MUST be a schema document.
+distro/niem/niem-core/3.0/niem-core.xsd:2:report:The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.
+distro/niem/niem-core/3.0/niem-core.xsd:2553:assert:An enumeration MUST have a data definition.
+distro/niem/niem-core/3.0/niem-core.xsd:2554:assert:An enumeration MUST have a data definition.
+distro/niem/niem-core/3.0/niem-core.xsd:2560:assert:An enumeration MUST have a data definition.
+distro/niem/niem-core/3.0/niem-core.xsd:2561:assert:An enumeration MUST have a data definition.
+distro/niem/niem-core/3.0/niem-core.xsd:2604:assert:An enumeration MUST have a data definition.
+distro/niem/niem-core/3.0/niem-core.xsd:2605:assert:An enumeration MUST have a data definition.
+distro/niem/niem-core/3.0/niem-core.xsd:2606:assert:An enumeration MUST have a data definition.
+distro/niem/niem-core/3.0/niem-core.xsd:2607:assert:An enumeration MUST have a data definition.
+distro/niem/niem-core/3.0/niem-core.xsd:1091:assert:A schema document defining augmentable type {http://release.niem.gov/niem/niem-core/3.0/}FacilityPersonAssociationType MUST define an augmentation point element {http://release.niem.gov/niem/niem-core/3.0/}FacilityPersonAssociationAugmentationPoint.
+distro/niem/niem-core/3.0/niem-core.xsd:1091:assert:An augmentable type {http://release.niem.gov/niem/niem-core/3.0/}FacilityPersonAssociationType MUST contain exactly one reference its augmentation point element {http://release.niem.gov/niem/niem-core/3.0/}FacilityPersonAssociationAugmentationPoint.
+distro/niem/niem-core/3.0/niem-core.xsd:1100:assert:An augmentation element with a local name FaciliAugmentationPointrsonAssociationAugmentationPoint MUST only be referenced by a complex type with a local name FaciliAugmentationPointrsonAssociationType.
+distro/niem/niem-core/3.0/niem-core.xsd:5634:assert:A schema document defining an augmentation point element must also define a corresponding augmentable type.
+make: *** [tmp/valid-tokens/v5-schemas-meet-ref-rules.d/niem/niem-core/3.0/niem-core.xsd] Error 1

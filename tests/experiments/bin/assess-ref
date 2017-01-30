@@ -1,0 +1,5 @@
+#!/bin/bash
+
+make -C ~/working/ndr3 -f dependent.mk dest/ndr-rules-conformance-target-ref.sch
+
+~/working/tools/bin/schematron -ee -schema ~/working/ndr3/dest/ndr-rules-conformance-target-ref.sch "$@"

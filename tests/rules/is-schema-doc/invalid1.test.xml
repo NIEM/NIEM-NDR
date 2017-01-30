@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/is-schema-doc/invalid1.xsd</resource>
+		<rule>rule_${is-schema-doc}</rule>
+		<result>
+		<lineNumber>9</lineNumber>
+		<message>Rule ${is-schema-doc}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

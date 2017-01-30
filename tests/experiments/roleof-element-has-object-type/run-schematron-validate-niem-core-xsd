@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NDR_DIR=$(realpath ../../..)
+
+REF_RULES="$NDR_DIR/dest/ndr-rules-conformance-target-ref.sch"
+
+make -C ../../.. -f dependent.mk dest/ndr-rules-conformance-target-ref.sch
+~/working/tools/bin/schematron -ee -schema "$REF_RULES" niem/niem-core/3.0/niem-core.xsd

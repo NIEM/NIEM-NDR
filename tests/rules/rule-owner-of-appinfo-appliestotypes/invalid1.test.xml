@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-case xmlns:ns2="http://contesa.ittl.gtri.org/test-case">
+	<resource>classpath:/rules/rule-owner-of-appinfo-appliestotypes/invalid1.xsd</resource>
+		<rule>rule_${rule-owner-of-appinfo-appliestotypes}</rule>
+		<result>
+		<lineNumber>17</lineNumber>
+		<message>Rule ${rule-owner-of-appinfo-appliestotypes}: .*</message>
+		<status>FAILURE</status>
+	</result>
+</ns2:test-case>

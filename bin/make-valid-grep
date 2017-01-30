@@ -1,0 +1,5 @@
+#!/bin/bash
+
+exec 3>&1
+
+"$(dirname "$0")"/make-grep valid

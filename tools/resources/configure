@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+#HELP:: set up the tools
+#HELP:Options:
+
+COMMAND_REL="$0"
+COMMAND_NAME="$(basename "$0")"
+
+fail () {
+    printf "%s: Error: %s\n" "$COMMAND_NAME" "$*"
+    exit 1
+}
+
+#HELP:  --help | -h: print this help
+opt_help () {
+    printf '%s' "$COMMAND_NAME"
+    sed -e "s/.*#""HELP://p;d" "$COMMAND_REL"
+}
+
+OPTIND=1
+while getopts :h-: OPTION
+do
+    case "$OPTION" in
+        h ) opt_help;;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                help=* ) fail "No argument expected for long option \"${OPTARG%%=*}\"";;
+                *=* ) fail "Unexpected long option with argument \"${OPTARG%%=*}\"";;
+                * ) fail "Unexpected long option \"$OPTARG\"";;
+            esac;;
+        '?' ) fail "Unknown short option \"$OPTARG\"";;
+        : ) fail "Short option \"$OPTARG\" missing argument";;
+        * ) fail "bad state OPTARG=\"$OPTARG\"";;
+    esac
+done
+shift $((OPTIND-1))
+
+
+

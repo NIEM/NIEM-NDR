@@ -1,0 +1,29 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+<!--
+  <uri 
+     name="http://www.w3.org/2001/XMLSchema"
+     uri="xmlschema-strict.xsd"/>
+-->
+
+  <uri name="http://www.w3.org/2001/XMLSchema" uri="w3/XMLSchema.xsd"/>
+
+  <uri 
+     name="http://www.w3.org/XML/1998/namespace"
+     uri="w3/xml.xsd"/>
+
+  <uri
+     name="http://www.w3.org/2001/xml.xsd"
+     uri="w3/xml.xsd"/>
+
+  <public 
+     publicId="-//W3C//DTD XMLSCHEMA 200102//EN"
+     uri="w3/XMLSchema.dtd"/>
+
+  <uri
+     name="http://niem.gtri.gatech.edu/instance/1.0"
+     uri="instance-1.0.xsd"/>
+
+  <uri name="urn:oasis:names:tc:entity:xmlns:xml:catalog" uri="xml-catalog-1.1.xsd"/>
+
+</catalog>
