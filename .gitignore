@@ -1,2 +1,6 @@
 /.svn
 /Makefile
+/config-decls.m4
+/dependent.mk
+/postinstall
+/reconfigure
