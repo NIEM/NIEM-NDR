@@ -64,7 +64,7 @@
     <xs:complexType>
       <xs:sequence>
 	<xs:element name="SourceText" type="appinfo:NonemptyStringSimpleType" 
-                    minOccurs="0" maxOccurs="unbounded"/>
+                    minOccurs="0" maxOccurs="unbounded" form="qualified"/>
       </xs:sequence>
       <xs:attribute name="term" type="appinfo:NonemptyStringSimpleType" use="required"/>
       <xs:attribute name="literal" type="appinfo:NonemptyStringSimpleType"/>

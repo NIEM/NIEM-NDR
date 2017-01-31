@@ -7,10 +7,10 @@
   <uri name="http://release.niem.gov/niem/conformanceTargets/3.0/" uri="niem/conformanceTargets/3.0/conformanceTargets.xsd"/>
   <uri name="http://release.niem.gov/niem/domains/cbrn/3.0/" uri="niem/domains/cbrn/3.0/cbrn.xsd"/>
   <uri name="http://release.niem.gov/niem/domains/intelligence/3.0/" uri="niem/domains/intelligence/3.0/intelligence.xsd"/>
-  <uri name="http://release.niem.gov/niem/domains/jxdm/5.0/" uri="niem/domains/jxdm/5.0/jxdm.xsd"/>
-  <uri name="http://release.niem.gov/niem/domains/screening/3.0/" uri="niem/domains/screening/3.0/screening.xsd"/>
+  <uri name="http://release.niem.gov/niem/domains/jxdm/6.0/" uri="niem/domains/jxdm/5.0/jxdm.xsd"/>
+  <uri name="http://release.niem.gov/niem/domains/screening/4.0/" uri="niem/domains/screening/3.0/screening.xsd"/>
   <uri name="http://release.niem.gov/niem/localTerminology/3.0/" uri="niem/localTerminology/3.0/localTerminology.xsd"/>
-  <uri name="http://release.niem.gov/niem/niem-core/3.0/" uri="niem/niem-core/3.0/niem-core.xsd"/>
+  <uri name="http://release.niem.gov/niem/niem-core/4.0/" uri="niem/niem-core/3.0/niem-core.xsd"/>
   <uri name="http://release.niem.gov/niem/proxy/xsd/3.0/" uri="niem/proxy/xsd/3.0/xs.xsd"/>
-  <uri name="http://release.niem.gov/niem/structures/3.0/" uri="niem/structures/3.0/structures.xsd"/>
+  <uri name="http://release.niem.gov/niem/structures/4.0/" uri="niem/structures/3.0/structures.xsd"/>
 </catalog>

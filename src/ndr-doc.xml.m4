@@ -14,10 +14,9 @@
    xmlns:sch="MACRO_SCH_NS"
    xmlns:scr="MACRO_NS_NIEM_DOMAIN_SCR"
    xmlns:structures="MACRO_NS_STRUCTURES"
-   xmlns:term="MACRO_NS_LOCAL_TERM"
    xmlns:xs="MACRO_NS_XS"
    xmlns:xsi="MACRO_NS_XSI"
-   xmlns:niem-xs="http://release.niem.gov/niem/proxy/xsd/3.0/"
+   xmlns:niem-xs="http://release.niem.gov/niem/proxy/xsd/4.0/"
    xmlns="https://iead.ittl.gtri.org/wr24/doc/2011-09-30-2258"
    >
   <title>National Information Exchange Model Naming and Design Rules</title>
@@ -46,7 +45,7 @@
   </subsection>
   <subsection>
     <title>Abstract</title>
-    <p>This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version 3.0.</p>
+    <p>This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version 4.0.</p>
   </subsection>
   <subsection><title>Status</title>
     <p>This document is an early draft of the specification for XML Schema documents, components, and instances
@@ -206,9 +205,6 @@
 
         <li><p><code>structures</code>: The namespace for the <termRef>structures
               namespace</termRef>, <q><namespace-uri-for-prefix>structures</namespace-uri-for-prefix></q>.</p></li>
-
-        <li><p><code>term</code>: The namespace for the <termRef>local terminology appinfo
-              namespace</termRef>, <q><namespace-uri-for-prefix>term</namespace-uri-for-prefix></q>.</p></li>
 
     </ul>
 
@@ -6181,28 +6177,22 @@ rather than their full meanings.</p>
             <li><p>It is not a term defined in the <ref idref="OED"/>, or it has a non-OED definition, or its
                 word sense may not be clear.</p></li>
 
-            <li><p>It is introduced into the schema document via an appinfo element with a [namespace name] of
-                the <termRef>local terminology appinfo namespace</termRef>.</p></li>
+            <li><p>It is introduced into the schema document via an appinfo
+                element <qName>appinfo:LocalTerm</qName>.</p></li>
 
             <li><p>It is used in the local name of a schema component within the schema document.</p></li>
           </ol>
         </definition>
 
-        <definition term="local terminology appinfo namespace">
-          <p>The local terminology appinfo namespace is the XML Schema namespace represented by the
-            URI <namespace-uri-for-prefix>term</namespace-uri-for-prefix>.</p>
-        </definition>
+        <p>Local terminology is introduced into a schema document by the use of <qName>appinfo:LocalTerm</qName>
+          within the schema.</p>
 
-        <p>Local terminology is introduced into a schema document by the application of local terminology appinfo
-        within the schema.</p>
-
-        <p>See additional rules constraining the use of the <termRef>local terminology appinfo
-          namespace</termRef> in <ref idref="sec-local-term"/>.</p>
+        <p>See additional rules constraining the use of local terminology in <ref idref="sec-local-term"/>.</p>
 
         <ruleSection>
           <title>Local term declaration is local to its schema document</title>
           <rule applicability="REF EXT" id="rule-lt-single-doc" class="Interpretation">
-            <p>An element <qName>term:LocalTerm</qName> MUST establish the meaning of a <termRef>local
+            <p>An element <qName>appinfo:LocalTerm</qName> MUST establish the meaning of a <termRef>local
               term</termRef> only within the XML Schema document in which it occurs. There MUST NOT be any
               transitive inheritance of local terminology within schema documents that import the containing
               schema document.</p>
@@ -6212,7 +6202,7 @@ rather than their full meanings.</p>
         <ruleSection>
           <title>Local terminology interpretation</title>
         <rule applicability="REF EXT" id="rule-lt-meaning" class="Interpretation">
-          <p>An element information item <qName>term:LocalTerm</qName> MUST establish a term as follows:</p>
+          <p>An element information item <qName>appinfo:LocalTerm</qName> MUST establish a term as follows:</p>
 
           <ol>
 
@@ -6231,7 +6221,7 @@ rather than their full meanings.</p>
                 of which is an identifier or locator for an originating or authoritative document defining the
                 term.</p></li>
 
-            <li><p>Each child element information item <qName>term:SourceText</qName> is a plain text citation
+            <li><p>Each child element information item <qName>appinfo:SourceText</qName> is a plain text citation
                 of, reference to, or bibliographic entry for an originating or authoritative document defining
                 the term.</p></li>
 
@@ -6756,16 +6746,16 @@ not be given the same name.</p></li>
 
       </section>
     </section>
-    <section id="sec-local-term"><title>The NIEM local terminology namespace</title>
+    <section id="sec-local-term"><title>Local terminology</title>
 
       <ruleSection>
-        <title><qName>term:LocalTerm</qName> annotates schema</title>
+        <title><qName>appinfo:LocalTerm</qName> annotates schema</title>
         <rule applicability="REF EXT" id="lt-schema" class="Constraint">
           <pre><xmlBlurb id="xb-lt-schema" memberOf="ref ext">
 <sch:pattern>
-  <sch:rule context="term:LocalTerm">
+  <sch:rule context="appinfo:LocalTerm">
     <sch:assert test="parent::xs:appinfo[parent::xs:annotation[parent::xs:schema]]"
-      >The element term:LocalTerm MUST be application information on an element xs:schema.</sch:assert>
+      >The element appinfo:LocalTerm MUST be application information on an element xs:schema.</sch:assert>
   </sch:rule>
 </sch:pattern>
           </xmlBlurb></pre>
@@ -6774,11 +6764,11 @@ not be given the same name.</p></li>
       </ruleSection>
 
       <ruleSection>
-        <title><qName>term:LocalTerm</qName> has literal or definition</title>
+        <title><qName>appinfo:LocalTerm</qName> has literal or definition</title>
         <rule applicability="REF EXT" id="lt-has-defn" class="Constraint">
           <pre><xmlBlurb id="xb-lt-has-defn" memberOf="ref ext">
 <sch:pattern>
-  <sch:rule context="term:LocalTerm">
+  <sch:rule context="appinfo:LocalTerm">
     <sch:assert test="exists(@literal) or exists(@definition)"
             >The element {MACRO_NS_LOCAL_TERM}LocalTerm MUST have a literal or definition.</sch:assert>
   </sch:rule>
@@ -8294,13 +8284,10 @@ not be given the same name.</p></li>
     </reference>
   </section>
   <section id="section-include-structures-xsd"><title>Structures namespace</title>
-    <pre><include-text href="xsd/niem/structures/3.0/structures.xsd"/></pre>
+    <pre><include-text href="xsd/niem/structures/4.0/structures.xsd"/></pre>
   </section>
   <section id="section-appinfo-xsd"><title>Appinfo namespace</title>
-    <pre><include-text href="xsd/niem/appinfo/3.0/appinfo.xsd"/></pre>
-  </section>
-  <section><title>Local terminology namespace</title>
-    <pre><include-text href="xsd/niem/localTerminology/3.0/localTerminology.xsd"/></pre>
+    <pre><include-text href="xsd/niem/appinfo/4.0/appinfo.xsd"/></pre>
   </section>
   <section id="index-of-defns"><title>Index of definitions</title>
     <indexOfDefinitions/>
