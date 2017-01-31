@@ -28,17 +28,17 @@ m4_define([[[MACRO_CONFORMANCE_TARGETS_NS]]],[[[http://release.niem.gov/niem/con
 m4_define([[[MACRO_NS_CT]]],[[[MACRO_CONFORMANCE_TARGETS_NS]]])m4_dnl
 m4_define([[[MACRO_NDR_FUNCTIONS_NS]]],[[[MACRO_DOCUMENT_URI[[[]]]#NDRFunctions]]])m4_dnl
 m4_define([[[MACRO_NS_NDR_FUNCTIONS]]],[[[MACRO_DOCUMENT_URI[[[]]]#NDRFunctions]]])m4_dnl
-m4_define([[[MACRO_NS_LOCAL_TERM]]],[[[http://release.niem.gov/niem/localTerminology/3.0/]]])m4_dnl
+m4_define([[[MACRO_NS_LOCAL_TERM]]],[[[http://release.niem.gov/niem/appinfo/4.0/]]])m4_dnl
 m4_define([[[MACRO_SCH_NS]]],[[[http://purl.oclc.org/dsdl/schematron]]])m4_dnl
 m4_define([[[MACRO_NS_SCH]]],[[[http://purl.oclc.org/dsdl/schematron]]])m4_dnl
 m4_define([[[MACRO_XS_NS]]],[[[http://www.w3.org/2001/XMLSchema]]])m4_dnl
-m4_define([[[MACRO_NS_APPINFO]]],[[[http://release.niem.gov/niem/appinfo/3.0/]]])m4_dnl
-m4_define([[[MACRO_NS_STRUCTURES]]],[[[http://release.niem.gov/niem/structures/3.0/]]])m4_dnl
-m4_define([[[MACRO_NS_NIEM_CORE]]],[[[http://release.niem.gov/niem/niem-core/3.0/]]])m4_dnl
-m4_define([[[MACRO_NS_NIEM_DOMAIN_J]]],[[[http://release.niem.gov/niem/domains/jxdm/5.0/]]])m4_dnl
-m4_define([[[MACRO_NS_NIEM_DOMAIN_SCR]]],[[[http://release.niem.gov/niem/domains/screening/3.0/]]])m4_dnl
-m4_define([[[MACRO_NS_NIEM_DOMAIN_IM]]],[[[http://release.niem.gov/niem/domains/immigration/3.0/]]])m4_dnl
-m4_define([[[MACRO_NS_NIEM_DOMAIN_CYFS]]],[[[http://release.niem.gov/niem/domains/cyfs/3.0/]]])m4_dnl
+m4_define([[[MACRO_NS_APPINFO]]],[[[http://release.niem.gov/niem/appinfo/4.0/]]])m4_dnl
+m4_define([[[MACRO_NS_STRUCTURES]]],[[[http://release.niem.gov/niem/structures/4.0/]]])m4_dnl
+m4_define([[[MACRO_NS_NIEM_CORE]]],[[[http://release.niem.gov/niem/niem-core/4.0/]]])m4_dnl
+m4_define([[[MACRO_NS_NIEM_DOMAIN_J]]],[[[http://release.niem.gov/niem/domains/jxdm/6.0/]]])m4_dnl
+m4_define([[[MACRO_NS_NIEM_DOMAIN_SCR]]],[[[http://release.niem.gov/niem/domains/screening/4.0/]]])m4_dnl
+m4_define([[[MACRO_NS_NIEM_DOMAIN_IM]]],[[[http://release.niem.gov/niem/domains/immigration/4.0/]]])m4_dnl
+m4_define([[[MACRO_NS_NIEM_DOMAIN_CYFS]]],[[[http://release.niem.gov/niem/domains/cyfs/4.0/]]])m4_dnl
 m4_define([[[MACRO_IS_UPPER_CAMEL_CASE]]],[[[matches($1, '^([A-Z][A-Za-z0-9\-]*)+$')]]])m4_dnl
 m4_define([[[MACRO_NS_RDFS]]],[[[http://www.w3.org/2000/01/rdf-schema#]]])m4_dnl
 m4_define([[[MACRO_NS_RDF]]],[[[http://www.w3.org/1999/02/22-rdf-syntax-ns#]]])m4_dnl
