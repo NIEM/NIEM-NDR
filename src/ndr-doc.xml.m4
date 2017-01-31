@@ -7868,20 +7868,6 @@ not be given the same name.</p></li>
       </definition>
 
       <ruleSection>
-        <title>Element with <qName>structures:ref</qName> does not have content</title>
-        <rule applicability="INS" class="Constraint" id="rule-ref-has-no-content">
-          <pre><xmlBlurb id="xb-rule-ref-has-no-content" memberOf="ins">
-<sch:pattern>
-  <sch:rule context="*[@structures:ref]">
-    <sch:assert test="empty(element() | text())"
-      >An element that has attribute structures:ref MUST NOT have element or text content.</sch:assert>
-  </sch:rule>
-</sch:pattern>
-          </xmlBlurb></pre>
-        </rule>
-      </ruleSection>
-
-      <ruleSection>
         <title>Attribute <qName>structures:ref</qName> must reference <qName>structures:id</qName></title>
         <rule applicability="INS" class="Constraint" id="rule-ref-refs-id">
           <pre><xmlBlurb id="xb-rule-ref-refs-id" memberOf="ins">
