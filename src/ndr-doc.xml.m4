@@ -1175,7 +1175,7 @@
 
     </section>
 
-    <section> <!-- todo: @uri -->
+    <section>
       <title>Unique identification of data objects</title>
 
       <p>A NIEM data exchange may be ephemeral and ad hoc. That is, a message may be transmitted without any
@@ -1213,7 +1213,7 @@
         <li><p>Attribute <strong><qName>structures:ref</qName></strong> (of type <qName>xs:IDREF</qName>)
             provides a reference to another element within a document, by providing a value of
             a <qName>structures:id</qName> attribute within the
-            document. Semantically, <q><code>structures:id="abe92"</code></q> is equivalent
+            document. Semantically, <q><code>structures:ref="abe92"</code></q> is equivalent
             to <q><code>structures:uri="#abe92"</code></q></p></li>
       </ul>
       
@@ -1251,7 +1251,6 @@
 
     <section><title>Mapping of NIEM concepts to RDF concepts</title>
 
-      <!-- todo: @uri -->
       <p><strong>This section has not yet been updated to accommodate attribute <qName>structures:uri</qName>,
           and the updated mappings for <qName>structures:id</qName>
           and <qName>structures:ref</qName>.</strong></p>
