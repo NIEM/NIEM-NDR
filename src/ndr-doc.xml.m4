@@ -49,10 +49,10 @@
     <p>This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version 3.0.</p>
   </subsection>
   <subsection><title>Status</title>
-    <p>This document is a draft of the specification for XML Schema documents, components, and instances for use
-      with NIEM. It represents the design that has evolved from the collaborative work of the NIEM Business
-      Architecture Committee (NBAC), the NIEM Technical Architecture Committee (NTAC), and their
-      predecessors.</p>
+    <p>This document is an early draft of the specification for XML Schema documents, components, and instances
+      for use with NIEM 4. It presents a technical architecture that has evolved through the collaborative work
+      of the NIEM Business Architecture Committee (NBAC), the NIEM Technical Architecture Committee (NTAC), and
+      their predecessors.</p>
     <p>This specification is a product of the NIEM Program Management Office (PMO).</p>
     <p>Send comments on this specification via email
       to <link href="mailto:niem-comments%40lists.gatech.edu?subject=NIEM%20NDR%20Rules%20Version%20[[[]]]MACRO_NDR_VERSION">niem-comments@lists.gatech.edu</link>.</p>
@@ -1175,26 +1175,64 @@
 
     </section>
 
-    <section>
+    <section> <!-- todo: @uri -->
       <title>Unique identification of data objects</title>
-      <p>In NIEM, an exchange is generally adhoc. That is, a message may be generated without any persistence. It
-        exists only to exchange data and may not have any universal meaning beyond that specific exchange. As
-        such, a message may or may not have a URI as an identifier. NIEM was designed with the assumption that a
-        given exchange need not have any unique identifier; NIEM does not require a unique identifier. NIEM also
-        does not require any object (data instance) to be identified by a URI. This differs from RDF, in which
-        all entities (other than literal values) are identified by globally meaningful URIs.</p>
 
-      <p>A NIEM-conformant instance XML document may use XML IDs to identify objects within it; The NIEM XML ID
-        is an attribute <qName>structures:id</qName> of type <qName>xs:ID</qName>. These IDs are not assumed by
-        NIEM to have any universal significance; they need only be unique within the XML document. The use of an
-        ID is required only when an object must be referenced within the document. NIEM recognizes no correlation
-        between these local IDs and any URI.</p>
+      <p>A NIEM data exchange may be ephemeral and ad hoc. That is, a message may be transmitted without any
+        expectation of persistence. Such a message exists only to exchange data and may not have any universal
+        meaning beyond that specific exchange. As such, a message may or may not have a URI as an
+        identifier. NIEM was designed with the assumption that a given exchange need not have any unique
+        identifier; NIEM does not require a unique identifier. NIEM also does not require any object carried by a
+        message to be identified by a URI.</p>
 
-      <p>As a result, the basic mapping of NIEM data to RDF involves the use of blank nodes, not
-      universally-meaningful resource IRIS.</p>
+      <p>A NIEM-conformant instance XML document may carry any of these attributes to identify objects within
+        messages:</p>
 
-      <p>Any given implementation, message, or MPD may be defined to apply a URI or other universally meaningful
-        identifier to an object or message. However, NIEM has no such requirement.</p>
+      <ul>
+        <li>
+          <p>Attribute <strong><qName>xml:base</qName></strong> (of type <qName>xs:anyURI</qName>) is defined by
+            MACRO_REF_EXTERNAL(XMLBase,MACRO_HREF_XML_BASE#syntax,3,<code>xml:base</code> Attribute), which
+            states:</p>
+          <blockquote><p>The attribute <code>xml:base</code> may be inserted in XML documents to specify a base
+              URI other than the base URI of the document or external entity.</p></blockquote>
+          <p>An XML document has an implicit base URI, the identifier of the document itself. This attribute
+            allows the base URI to be made explicit within a NIEM XML document.</p>
+        </li>
+        <li>
+          <p>Attribute <strong><qName>structures:uri</qName></strong> (of type <qName>xs:anyURI</qName>) may
+            appear within an XML element to define a URI for that element. This may be an absolute URI
+            (e.g., <code>http://example.org/incident182#person12</code>), or may be a relative URI
+            (e.g., <code>#person12</code>). Relative URIs are resolved against a URI determined by
+            the <qName>xml:base</qName> attributes in scope, falling back to the base URI of the containing
+            document.</p>
+        </li>
+        <li><p>Attribute <strong><qName>structures:id</qName></strong> (of type <qName>xs:ID</qName>) provides a
+            document-relative identifier for an element. Semantically, <q><code>structures:id="abe92"</code></q>
+            is equivalent to
+            <q><code>structures:uri="#abe92"</code></q>.</p></li>
+        <li><p>Attribute <strong><qName>structures:ref</qName></strong> (of type <qName>xs:IDREF</qName>)
+            provides a reference to another element within a document, by providing a value of
+            a <qName>structures:id</qName> attribute within the
+            document. Semantically, <q><code>structures:id="abe92"</code></q> is equivalent
+            to <q><code>structures:uri="#abe92"</code></q></p></li>
+      </ul>
+      
+      <p>The values of URIs and IDs within NIEM XML documents are not presumed to have any particular
+        significance. XML requires every ID to be unique within its XML document, and for every IDREF to refer to
+        an ID within the same document. The mapping of IDs and IDREFs to URIs does not mean that the identifiers
+        are persistent or significant.</p>
+
+      <p>These attributes provide the identifiers of objects. The properties of an object may be spread across
+        several XML elements that have the same identifer. These properties must be merged together to provide
+        all the properties of a single object, as described by
+        MACRO_REF_EXTERNAL(JSONLD,MACRO_HREF_JSON_LD#node-objects,8.2,Node Objects):</p>
+      
+      <blockquote><p>The properties of a node in a graph may be spread among different node objects within a
+          document. When that happens, the keys of the different node objects need to be merged to create the
+          properties of the resulting node.</p></blockquote>
+      
+      <p>Mapping of NIEM data to RDF frequently involves the use of blank nodes, not universally-meaningful
+        resource IRIS.</p>
 
     </section>
     <section>
@@ -1212,6 +1250,11 @@
       </section>
 
     <section><title>Mapping of NIEM concepts to RDF concepts</title>
+
+      <!-- todo: @uri -->
+      <p><strong>This section has not yet been updated to accommodate attribute <qName>structures:uri</qName>,
+          and the updated mappings for <qName>structures:id</qName>
+          and <qName>structures:ref</qName>.</strong></p>
 
       <p>This section provides RDF implementations for many aspects of NIEM-conformant schemas and instance
       documents.</p>
@@ -8205,6 +8248,9 @@ not be given the same name.</p></li>
     <reference id="ISO11179-5" label="ISO 11179-5">
       <p><q>ISO/IEC 11179-5:2005, Information technology <char name="mdash"/> Metadata registries (MDR) <char name="mdash"/> Part 5: Naming and identification principles</q>. Available from <link>http://standards.iso.org/ittf/PubliclyAvailableStandards/c035347_ISO_IEC_11179-5_2005(E).zip</link>.</p>
     </reference>
+    <reference id="JSONLD" label="JSON LD">
+      <p>Manu Sporny, Dave Longley, Gregg Kellogg, Markus Lanthaler, and Niklas Lindstrom. <q>JSON-LD 1.0, A JSON-Based Serialization for Linked Data, W3C Recommendation.</q> Edited by Manu Sporny, Gregg Kellogg, and Markus Lanthaler. W3C, January 16, 2014. <link></link>MACRO_HREF_JSON_LD.</p>
+    </reference>
     <reference id="JLS">
       <p>James Gosling, Bill Joy, Guy Steele, Gilad Bracha, and Alex Buckley. <q>The Java Language Specification, Java SE 8 Edition.</q> Oracle Corp, March 3, 2014. <link>http://docs.oracle.com/javase/specs/jls/se8/html/</link>.</p>
     </reference>
@@ -8236,6 +8282,9 @@ not be given the same name.</p></li>
     </reference>
     <reference id="XML">
       <p><q>Extensible Markup Language (XML) 1.0 (Fourth Edition)</q>, W3C Recommendation, 16 August 2006. Available from <link>MACRO_HREF_XML</link>.</p>
+    </reference>
+    <reference id="XMLBase" label="XML Base">
+      <p>Jonathan Marsh, and Richard Tobin, eds. <q>XML Base (Second Edition), W3C Recommendation.</q> W3C, January 28, 2009. Available from <link>MACRO_HREF_XML_BASE</link>.</p>
     </reference>
     <reference id="XMLInfoset" label="XML Infoset">
       <p>Cowan, John, and Richard Tobin. <q>XML Information Set (Second Edition)</q>, 4 February 2004. <link>MACRO_HREF_XML_INFOSET</link>.</p>

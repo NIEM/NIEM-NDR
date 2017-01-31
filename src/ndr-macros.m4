@@ -3,11 +3,14 @@ m4_define([[[MACRO_DOCUMENT_URI]]],[[[http://reference.niem.gov/niem/specificati
 m4_dnl
 m4_dnl HREFs...
 m4_dnl
+m4_define([[[MACRO_HREF_JSON_LD]]],[[[https://www.w3.org/TR/2014/REC-json-ld-20140116/]]])m4_dnl
+m4_dnl
 m4_define([[[MACRO_HREF_RDF_SEMANTICS]]],[[[http://www.w3.org/TR/2014/REC-rdf11-mt-20140225/]]])m4_dnl
 m4_define([[[MACRO_HREF_RDF_SCHEMA]]],[[[http://www.w3.org/TR/2014/REC-rdf-schema-20140225/]]])m4_dnl
 m4_define([[[MACRO_HREF_RDF_CONCEPTS]]],[[[http://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/]]])m4_dnl
 m4_define([[[MACRO_HREF_RDF_PRIMER]]],[[[http://www.w3.org/TR/2014/NOTE-rdf11-primer-20140225/]]])m4_dnl
 m4_dnl
+m4_define([[[MACRO_HREF_XML_BASE]]],[[[http://www.w3.org/TR/2009/REC-xmlbase-20090128/]]])m4_dnl
 m4_define([[[MACRO_HREF_XML_SCHEMA_1]]],[[[http://www.w3.org/TR/2004/REC-xmlschema-1-20041028/]]])m4_dnl
 m4_define([[[MACRO_HREF_XML_SCHEMA_2]]],[[[http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/]]])m4_dnl
 m4_define([[[MACRO_HREF_XML]]],[[[http://www.w3.org/TR/2008/REC-xml-20081126/]]])m4_dnl

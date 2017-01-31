@@ -7,5 +7,5 @@ m4_dnl m4_define([[[MACRO_LAST_SVN_ID_OF_NDR_TEXT]]],[[[42130]]])m4_dnl 3.0beta1
 m4_dnl m4_define([[[MACRO_LAST_SVN_ID_OF_NDR_TEXT]]],[[[42526]]])m4_dnl 3.0beta2
 m4_dnl m4_define([[[MACRO_LAST_SVN_ID_OF_NDR_TEXT]]],[[[42800]]])m4_dnl 3.0rc1
 m4_define([[[MACRO_LAST_SVN_ID_OF_NDR_TEXT]]],[[[42801]]])m4_dnl 3.0
-m4_define([[[MACRO_NDR_VERSION]]],[[[3.0r3]]])m4_dnl
+m4_define([[[MACRO_NDR_VERSION]]],[[[4.0alpha1]]])m4_dnl
 m4_define([[[MACRO_NDR_DATE]]],[[[2017-01-31]]])m4_dnl
