@@ -3,7 +3,7 @@ SHELL = /bin/bash
 
 RELEASES_DIR = tmp/release
 
-DISTRO_ID = NIEM-NDR-4.0alpha1-2017-01-31
+DISTRO_ID = NIEM-NDR-4.0beta1-2017-03-31
 
 DISTRO_NO_TOOLS_DIR_NAME = $(DISTRO_ID)
 DISTRO_NO_TOOLS_DIR = $(RELEASES_DIR)/$(DISTRO_NO_TOOLS_DIR_NAME)
@@ -35,7 +35,7 @@ help:
 packages:
 	for d in $(wildcard distro/stow/*); \
 	do if test -f $$d/Makefile; \
-	   then $(MAKE) VERSION=4.0alpha1 DATE=2017-01-31 -C $$d; \
+	   then $(MAKE) VERSION=4.0beta1 DATE=2017-03-31 -C $$d; \
 	   fi; \
 	done
 
@@ -43,7 +43,7 @@ packages:
 packages-clean:
 	for d in distro/stow/*; \
 	do if test -f $$d/Makefile; \
-	   then $(MAKE) VERSION=4.0alpha1 DATE=2017-01-31 -C $$d clean; \
+	   then $(MAKE) VERSION=4.0beta1 DATE=2017-03-31 -C $$d clean; \
 	   fi; \
 	done
 

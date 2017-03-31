@@ -138,9 +138,9 @@ m4_dnl # MACRO_MATCH_PROXY_TYPE( $whitespace-for-indenting )
 m4_dnl #     This is an unconstrained match expression
 m4_dnl
 m4_define([[[MACRO_MATCH_PROXY_TYPE]]],[[[xs:complexType[some $name in @name,
-$1[[[]]]                    $extension in xs:simpleContent/xs:extension,
-$1[[[]]]                    $base-qname in resolve-QName($extension/@base, $extension) satisfies
-$1[[[]]]                 $base-qname = QName('MACRO_NS_XS', @name)]]]])m4_dnl
+$1[[[]]]               $extension in xs:simpleContent/xs:extension,
+$1[[[]]]               $base-qname in resolve-QName($extension/@base, $extension) satisfies
+$1[[[]]]               $base-qname = QName('MACRO_NS_XS', $name)]]]])m4_dnl
 m4_dnl
 m4_dnl # MACRO_ELEMENT_LOCAL_NAME_IS_METADATA_ELEMENT_NAME( $local-name )
 m4_define([[[MACRO_ELEMENT_LOCAL_NAME_IS_METADATA_ELEMENT_NAME]]],[[[ends-with($1, 'Metadata')]]])m4_dnl

@@ -39,6 +39,8 @@ NDR_DOC_HTML := $(DEST_DIR)/ndr-doc.html
 
 # The NDR document rendered in Text
 NDR_DOC_TEXT := $(DEST_DIR)/ndr-doc.txt
+STRUCTURES_XSD := $(DEST_DIR)/structures.xsd
+APPINFO_XSD := $(DEST_DIR)/appinfo.xsd
 
 # The HTML diff of the Text NDR against the last version
 NDR_DIFF_HTML := $(DEST_DIR)/ndr-diff.html
@@ -116,7 +118,7 @@ $(DEPENDENCIES_MK): $(NDR_DOC_XML) $(NDR_DOC_XML_VALID_T)
 
 .PHONY: docs
 # put HTML first so it builds first
-DOCS_LOCAL := $(NDR_DOC_HTML) $(NDR_RULES_SCH) $(LIST_OF_RULES_TXT) $(CTAS_RULES_SCH) $(NDR_DOC_TEXT) $(LIST_OF_RULES_AS_JAVA_PROPERTIES) $(NDR_ID_MAP_XML) $(RULES_ABOUT_XML_CATALOG_SCH)
+DOCS_LOCAL := $(NDR_DOC_HTML) $(NDR_RULES_SCH) $(LIST_OF_RULES_TXT) $(CTAS_RULES_SCH) $(NDR_DOC_TEXT) $(LIST_OF_RULES_AS_JAVA_PROPERTIES) $(NDR_ID_MAP_XML) $(RULES_ABOUT_XML_CATALOG_SCH) $(STRUCTURES_XSD) $(APPINFO_XSD)
 # Diff file requires SVN access to build
 DOCS_HAS_NETWORK := $(NDR_DIFF_HTML)
 docs: $(DOCS_LOCAL) $(DOCS_HAS_NETWORK)
@@ -201,6 +203,16 @@ $(RULES_ABOUT_XML_CATALOG_SCH): CONFIG_DECLS_M4 CONFIG_COMMON_DECLS_M4 $(NDR_MAC
 	if test -f $@; then chmod 644 $@; fi
 	m4 --prefix-builtins $^ > $@
 	chmod 444 $@
+
+$(APPINFO_XSD): src/xsd/niem/appinfo/4.0/appinfo.xsd
+	rm -f $@
+	mkdir -p ${dir $@}
+	install -m 444 -T $< $@
+
+$(STRUCTURES_XSD): src/xsd/niem/structures/4.0/structures.xsd
+	rm -f $@
+	mkdir -p ${dir $@}
+	install -m 444 -T $< $@
 
 #############################################################################
 # NDR ID Map: map of IDs in the NDR; useful for transforming into stable formats
