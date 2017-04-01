@@ -6478,10 +6478,16 @@ not be given the same name.</p></li>
               <td></td>
               <td>MACRO_REPRESENTATION_TERM_NAME</td>
               <td>A word or phrase that constitutes the distinctive designation of a person, place, thing, or concept.</td>
-            </tr>            <tr>
-              <td></td>
+            </tr>
+            <tr>
               <td>MACRO_REPRESENTATION_TERM_LIST</td>
+              <td></td>
               <td>A sequence of values. This representation term is used in tandem with another of the listed representation terms.</td>
+            </tr>
+            <tr>
+              <td>MACRO_REPRESENTATION_TERM_ABSTRACT</td>
+              <td></td>
+              <td>An element that may represent a concept, rather than a concrete property. This representation term may be used in tandem with another of the listed representation terms.</td>
             </tr>
           </table>
 

@@ -174,6 +174,7 @@ m4_define([[[MACRO_REPRESENTATION_TERM_QUANTITY]]],[[[Quantity]]])m4_dnl
 m4_define([[[MACRO_REPRESENTATION_TERM_TEXT]]],[[[Text]]])m4_dnl
 m4_define([[[MACRO_REPRESENTATION_TERM_NAME]]],[[[Name]]])m4_dnl
 m4_define([[[MACRO_REPRESENTATION_TERM_LIST]]],[[[List]]])m4_dnl
+m4_define([[[MACRO_REPRESENTATION_TERM_ABSTRACT]]],[[[Abstract]]])m4_dnl
 m4_dnl
 m4_dnl # MACRO_LIST_OF_REPRESENTATION_TERMS()
 m4_dnl

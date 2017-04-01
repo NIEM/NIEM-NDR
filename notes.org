@@ -2,3 +2,7 @@
 * building
 - functions
   - functions are built in doc/nf-impl
+
+* todo
+- [ ] add rule: thing with representation term "Abstract" must be @abstract=true
+
