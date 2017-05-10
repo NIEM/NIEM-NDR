@@ -6,3 +6,5 @@
 * todo
 - [ ] add rule: thing with representation term "Abstract" must be @abstract=true
 
+  
+
