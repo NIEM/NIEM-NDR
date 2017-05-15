@@ -1,4 +1,8 @@
 
+SERIOUSLY need to rebuild the make system. It's a freaking mess.
+
+Replace the delegated makefile with a single makefile that blocks off unwanted operations in ifneq/endif blocks.
+
 * building
 - functions
   - functions are built in doc/nf-impl
