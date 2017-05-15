@@ -1,98 +1,92 @@
+this_makefile = ${lastword ${MAKEFILE_LIST}} # for help 
 
+#############################################################################
+# things to set / override
+#############################################################################
+
+# set 'true' to enable rebuilding of dependencies
+depend = false 
+ndr_version = 4.0beta2pre1
+ndr_date = 2017-05-10
+
+# command paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+m4 = m4
+m4_flags = --prefix-builtins ${m4_macros} lib/m4-setup.m4
+mkdir_p = mkdir -p
+sed = sed
+
+# source paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+ndr_macros_m4 = src/ndr-macros.m4
+
+#############################################################################
+# other variables
+
+# things that are derived & products
+dest_dir = dest
+# things that are derived & intermediate
+tmp_dir = tmp
+tokens_dir = ${tmp_dir}/tokens
+
+# the NDR document with macros expanded
+ndr_doc_xml := ${tmp_dir}/ndr-doc.xml 
+
+m4_macros = \
+  --define=MACRO_NDR_VERSION=${ndr_version} \
+  --define=MACRO_NDR_DATE=${ndr_date} \
+
+#############################################################################
+# targets
+#############################################################################
+
+# convenience targets # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+#HELP:There is no default target
 .PHONY: default
 default:
 	@printf 'Bravely doing nothing. Use target "help" for more info.\n'
 
-.PHONY: help
-help:
-	@printf 'Targets:\n'
-	@printf '  rules: build the rules schematron files\n'
-	@printf '  html: build HTML rendering of the NDR doc\n'
-	@printf '  text: build text rendering of the NDR doc\n'
-	@printf '  clean: remove lots of automatically-built stuff\n'
-	@printf '  distclean: remove all automatically-built stuff\n'
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# depend
 
-
-.PHONY: all
-all:
-	$(MAKE) -f dependent.mk all
-
-.PHONY: archive
-archive:
-	$(MAKE) -f dependent.mk archive
-
+ifneq (${depend},false)
 .PHONY: depend
-depend:
-	$(MAKE) -f dependent.mk depend
+depend: ${dependencies_mk}
 
-.PHONY: diff
-diff:
-	$(MAKE) -f dependent.mk diff
+-include ${dependencies_mk}
 
-.PHONY: docs
-docs:
-	$(MAKE) -f dependent.mk docs
+${dependencies_mk}: $(NDR_DOC_XML) $(NDR_DOC_XML_VALID_T)
+	process-doc $(PROCESS_DOC_COMMAND_FLAGS) -makedepend -in $< -out $@
+else
+include ${dependencies_mk}
+endif
 
-.PHONY: html
-html:
-	$(MAKE) -f dependent.mk html
-
-.PHONY: list
-list:
-	$(MAKE) -f dependent.mk list
-
-.PHONY: map
-map:
-	$(MAKE) -f dependent.mk map
-
-.PHONY: rules
-rules:
-	$(MAKE) -f dependent.mk rules
-
-.PHONY: text
-text:
-	$(MAKE) -f dependent.mk text
-
-.PHONY: valid
-valid:
-	$(MAKE) -f dependent.mk valid
-
-.PHONY: ref
-ref:
-	$(MAKE) -f dependent.mk ref
-
-.PHONY: ext
-ext:
-	$(MAKE) -f dependent.mk ext
-
-.PHONY: ins
-ins:
-	$(MAKE) -f dependent.mk ins
-
-.PHONY: set
-set:
-	$(MAKE) -f dependent.mk set
-
-.PHONY: docs-local
-docs-local:
-	$(MAKE) -f dependent.mk docs-local
-
-.PHONY: v1
-v1:
-	$(MAKE) -f dependent.mk v1
-
-
-.PHONY: clean
+.PHONY: clean #  Remove generated artifacts
 clean:
-	'/opt/local/bin/grm' -rf tmp tests/common/tmp
-	find . -type d -name '.DS_Store' -print0 | xargs -0 '/opt/local/bin/grm' -rf
-	find . -name '*~' -print0 | xargs -0 '/opt/local/bin/grm' -f
+	${RM} -r tmp dest
 
-.PHONY: distclean
-distclean: clean
-	'/opt/local/bin/grm' -f Makefile dependent.mk reconfigure config-decls.m4 postinstall
+#############################################################################
+# products
 
-update:
-	$(MAKE) all
-	$(MAKE) -C tools put-current-ndr
+# order of sources matters here, since it's fed directly to M4
+lkj: prelkj ${ndr_doc_xml}
 
+.PHONY: prelkj
+prelkj:
+	@echo building "${ndr_doc_xml}"
+
+${ndr_doc_xml}: ${ndr_macros_m4} src/ndr-doc.xml.m4 
+	${RM} $@
+	@ ${mkdir_p} ${dir $@}
+	${m4} ${m4_flags} ${ndr_macros_m4} src/ndr-doc.xml.m4 > $@
+	@ chmod -w $@
+	@ if grep -n 'MACRO' $@; then printf 'ERROR: unresolved M4 macro.\n' >&2; exit 1; else exit 0; fi
+
+# make this the last target
+
+.PHONY: help #  Print this help
+help:
+	@ ${sed} -e '/^\.PHONY:/s/^\.PHONY: *\([^ #]*\) *\#\( *\)\([^ ].*\)/\2\1: \3/p;/^[^#]*#HELP:/s/[^#]*#HELP:\(.*\)/\1/p;d' ${this_makefile}
+
+# don't put anything after this
