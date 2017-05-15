@@ -1,7 +1,2 @@
 /.svn
-/config-decls.m4
-/dependent.mk
-/postinstall
-/reconfigure
 /tmp
-/dest

@@ -1,0 +1,238 @@
+	Rule 4-1	Conformance targets defined
+	Rule 4-2	Conformance targets defined
+is-ctas-conformant-document	Rule 4-3	Conformance target identifiers
+req-ct	Rule 4-4	Conformance target identifiers
+req-ct-ref	Rule 4-5	Conformance target identifiers
+req-ct-ext	Rule 4-6	Conformance target identifiers
+well-formed-xml	Rule 7-1	Conformance to XML
+ns-valid	Rule 7-2	Conformance to XML Namespaces
+is-schema-doc	Rule 7-3	Conformance to XML Schema
+rule-doc-element-is-xs-schema	Rule 7-4	Conformance to XML Schema
+	Rule 7-5	ISO 11179 Part 5
+rule-base-type-not-xml-ns	Rule 9-1	Types prohibited as base types
+no-base-xs-id	Rule 9-2	Types prohibited as base types
+no-base-xs-idref	Rule 9-3	Types prohibited as base types
+no-base-xs-idrefs	Rule 9-4	Types prohibited as base types
+no-base-xs-anyType	Rule 9-5	Types prohibited as base types
+no-base-xs-anySimpleType	Rule 9-6	Types prohibited as base types
+no-base-xs-NOTATION	Rule 9-7	Types prohibited as base types
+no-base-xs-ENTITY	Rule 9-8	Types prohibited as base types
+no-base-xs-ENTITIES	Rule 9-9	Types prohibited as base types
+st-top-level	Rule 9-10	Simple type definition
+no-st-final	Rule 9-11	Simple type definition
+st-has-dd	Rule 9-12	Simple type definition
+no-itemType-xs-id	Rule 9-13	Simple types prohibited as list item types
+no-itemType-xs-idref	Rule 9-14	Simple types prohibited as list item types
+no-itemType-xs-anySimpleType	Rule 9-15	Simple types prohibited as list item types
+no-itemType-xs-entity	Rule 9-16	Simple types prohibited as list item types
+no-memberTypes-xs-id	Rule 9-17	Simple types prohibited as union member types
+no-memberTypes-xs-idref	Rule 9-18	Simple types prohibited as union member types
+no-memberTypes-xs-idrefs	Rule 9-19	Simple types prohibited as union member types
+no-memberTypes-xs-anySimpleType	Rule 9-20	Simple types prohibited as union member types
+no-memberTypes-xs-entity	Rule 9-21	Simple types prohibited as union member types
+no-memberTypes-xs-entities	Rule 9-22	Simple types prohibited as union member types
+enum-has-dd	Rule 9-23	Simple type definition
+ct-top-level	Rule 9-24	Complex type definition
+ct-has-dd	Rule 9-25	Complex type definition
+ct-not-mixed	Rule 9-26	No mixed content
+cc-not-mixed	Rule 9-27	No mixed content
+ct-has-content-type	Rule 9-28	Complex type definition
+ct-cc-is-extension	Rule 9-29	Complex content
+rule-ref-ccc-base-has-cc	Rule 9-30	Base type of complex type with complex content has complex content
+rule-set-ccc-base-has-cc	Rule 9-31	Base type of complex type with complex content has complex content
+ct-sc-has-extension	Rule 9-32	Simple content
+no-ct-block	Rule 9-33	Complex type definition
+no-ct-final	Rule 9-34	Complex type definition
+el-top-level	Rule 9-35	Element declaration
+el-has-dd	Rule 9-36	Element declaration
+el-with-no-type-is-abstract	Rule 9-37	Element declaration
+el-with-type-xs-anysimpletype-is-abstract	Rule 9-38	Element declaration
+el-type-not-xs	Rule 9-39	Element declaration
+el-type-ns-not-special	Rule 9-40	Element declaration
+el-type-not-st	Rule 9-41	Element declaration
+no-el-block	Rule 9-42	Element declaration
+no-el-final	Rule 9-43	Element declaration
+no-el-default	Rule 9-44	No element value constraints
+no-el-fixed	Rule 9-45	No element value constraints
+el-is-nillable	Rule 9-46	Element declaration
+att-top-level	Rule 9-47	Attribute declaration
+at-has-dd	Rule 9-48	Attribute declaration
+attr-has-type	Rule 9-49	Attribute declaration
+no-type-xs-id	Rule 9-50	Prohibited attribute types
+no-type-xs-idref	Rule 9-51	Prohibited attribute types
+no-type-xs-idrefs	Rule 9-52	Prohibited attribute types
+no-type-xs-entity	Rule 9-53	Prohibited attribute types
+no-type-xs-entities	Rule 9-54	Prohibited attribute types
+no-type-xs-anySimpleType	Rule 9-55	Prohibited attribute types
+no-at-default	Rule 9-56	No attribute value constraints
+no-at-fixed	Rule 9-57	No attribute value constraints
+no-el-notation	Rule 9-58	Notation declaration
+	Rule 9-59	Model group
+no-all	Rule 9-60	Model group
+seq-in-ext	Rule 9-61	Sequence
+seq-in-restr	Rule 9-62	Sequence
+no-choice	Rule 9-63	Choice
+req-seq-choice	Rule 9-64	Choice
+seq-minOccurs	Rule 9-65	Sequence cardinality
+seq-maxOccurs	Rule 9-66	Sequence cardinality
+choice-minOccurs	Rule 9-67	Choice cardinality
+choice-maxOccurs	Rule 9-68	Choice cardinality
+no-xs-any	Rule 9-69	Wildcard
+no-anyattribute	Rule 9-70	Wildcard
+no-xs-unique	Rule 9-71	Identity-constraint definition components
+no-xs-key	Rule 9-72	Identity-constraint definition components
+no-xs-keyref	Rule 9-73	Identity-constraint definition components
+no-xs-group	Rule 9-74	Model group definition
+no-def-attr-grp	Rule 9-75	Attribute group definition
+no-comments	Rule 9-76	Annotation components
+doc-has-no-els	Rule 9-77	Annotation components
+appinfo-has-els	Rule 9-78	Application information annotation
+appinfo-el-has-ns	Rule 9-79	Application information annotation
+no-xs-in-appinfo	Rule 9-80	Application information annotation
+rule-schema-has-dd	Rule 9-81	Schema as a whole
+req-target-ns	Rule 9-82	Schema as a whole
+target-ns-is-rfc3986	Rule 9-83	Schema as a whole
+has-version	Rule 9-84	Schema as a whole
+no-blockdefault	Rule 9-85	Schema as a whole
+no-finalDefault	Rule 9-86	Schema as a whole
+no-redefine	Rule 9-87	Schema assembly
+no-include	Rule 9-88	Schema assembly
+xs-import-has-ns	Rule 9-89	Schema assembly
+rule-set-is-closed	Rule 9-90	Schema assembly
+xs-import-referenced-namespaces-type	Rule 9-91	Namespaces for referenced components are imported
+xs-import-referenced-namespaces-base	Rule 9-92	Namespaces for referenced components are imported
+xs-import-referenced-namespaces-itemType	Rule 9-93	Namespaces for referenced components are imported
+xs-import-referenced-namespaces-memberTypes	Rule 9-94	Namespaces for referenced components are imported
+xs-import-referenced-namespaces-ref	Rule 9-95	Namespaces for referenced components are imported
+xs-import-referenced-namespaces-sg	Rule 9-96	Namespaces for referenced components are imported
+code-classes	Rule 10-1	Categories of NIEM type definitions
+object-with-cc-derived-from-object	Rule 10-2	Object types with complex content
+rule-roleOf-is-object-type	Rule 10-3	Role types and roles
+rule-ct-has-roleOf-is-object-type	Rule 10-4	Role types and roles
+	Rule 10-5	Role types and roles
+	Rule 10-6	Role types and roles
+rule-external-import-has-dd	Rule 10-7	Import of external namespace
+	Rule 10-8	External adapter types
+rule-adapter-type-structure	Rule 10-9	External adapter types
+el-ref-from-external	Rule 10-10	External adapter types
+rule-ref-extadapt-not-base	Rule 10-11	External adapter types
+rule-set-extadapt-not-base	Rule 10-12	External adapter types
+rule-ext-attr-use-in-eat	Rule 10-13	External attribute use
+ext-attr-use-has-dd	Rule 10-14	External attribute use
+ext-attr-not-id	Rule 10-15	External attribute use
+rule-ext-element-use-has-dd	Rule 10-16	External element use
+rule-code-type-name-suffix	Rule 10-17	Code types
+proxy-type-structure	Rule 10-18	Proxy types
+rule-association-type-derived-from-association-type	Rule 10-19	Association types
+rule-association-el-type-is-association-type	Rule 10-20	Association element declarations
+augmentable-type-has-aug-point	Rule 10-21	Augmentable types
+augmentable-type-has-at-most-one-aug-point	Rule 10-22	Augmentable types
+aug-el-matches-aug-type	Rule 10-23	Augmentation point element declarations
+aug-pt-untyped	Rule 10-24	Augmentation point element declarations
+aug-pt-no-subst-grp	Rule 10-25	Augmentation point element declarations
+aug-el-in-type	Rule 10-26	Augmentation point element use
+aug-el-is-optional	Rule 10-27	Augmentation point element use
+aug-el-is-unbounded	Rule 10-28	Augmentation point element use
+aug-ref-is-last	Rule 10-29	Augmentation point element use
+	Rule 10-30	Augmentation types
+aug-type-name	Rule 10-31	Augmentation types
+rule-augmentation-type-structure	Rule 10-32	Augmentation types
+rule-type-derived-from-augmentation-type	Rule 10-33	Augmentation types
+rule-augmentation-el-type-is-augmentation-type	Rule 10-34	Augmentation element declarations
+rule-aug-el-not-used	Rule 10-35	Augmentation element declarations
+	Rule 10-36	Metadata types
+	Rule 10-37	Metadata types
+rule-metadata-type-derived-from-metadata-type	Rule 10-38	Metadata types
+rule-metadata-el-type-is-metadata-type	Rule 10-39	Metadata element declarations
+rule-metadata-applicable-elements	Rule 10-40	Metadata element declarations
+el-representation-is-abstract	Rule 10-41	The Representation pattern
+	Rule 10-42	Rules for NIEM modeling, by NIEM concept
+	Rule 10-43	Naming rules
+	Rule 10-44	Naming rules
+	Rule 10-45	Naming rules
+	Rule 10-46	Character case
+	Rule 10-47	Character case
+	Rule 10-48	Character case
+	Rule 10-49	Use of acronyms and abbreviations
+rule-lt-single-doc	Rule 10-50	Use of Acronyms, Initialisms, Abbreviations, and Jargon
+rule-lt-meaning	Rule 10-51	Use of Acronyms, Initialisms, Abbreviations, and Jargon
+	Rule 10-52	Word forms
+	Rule 10-53	Word forms
+	Rule 10-54	Word forms
+	Rule 10-55	Naming rules
+	Rule 10-56	Object-class term
+	Rule 10-57	Property term
+	Rule 10-58	Qualifier terms
+	Rule 10-59	Qualifier terms
+	Rule 10-60	Qualifier terms
+	Rule 10-61	Representation terms
+rule-csc-has-rep-term	Rule 10-62	Representation terms
+	Rule 10-63	Representation terms
+	Rule 10-64	Representation terms
+	Rule 10-65	Machine-readable annotations
+	Rule 10-66	Deprecation
+rule-use-of-deprecated	Rule 10-67	Deprecation
+rule-owner-of-appinfo-conformantindicator	Rule 10-68	The NIEM appinfo namespace
+rule-owner-of-appinfo-externaladaptertypeindicator	Rule 10-69	The NIEM appinfo namespace
+rule-owner-of-appinfo-appliestotypes	Rule 10-70	appinfo:appliesToTypes annotation
+appliestotypes-refs-types	Rule 10-71	appinfo:appliesToTypes annotation
+rule-owner-of-appinfo-appliestoelements	Rule 10-72	appinfo:appliesToElements annotation
+appliestoelements-refs-elements	Rule 10-73	appinfo:appliesToElements annotation
+lt-schema	Rule 10-74	Local terminology
+lt-has-defn	Rule 10-75	Local terminology
+	Rule 10-76	NIEM structural facilities
+type-name-suffix	Rule 11-1	Type definition components
+type-name-upper-camel-case	Rule 11-2	Type definition components
+type-base-from-ns	Rule 11-3	Type definition hierarchy
+st-name-ends-in-simpletype	Rule 11-4	Simple type definition
+st-name-upper-camel-case	Rule 11-5	Simple type definition
+	Rule 11-6	Derivation by list
+list-item-type-ns	Rule 11-7	Derivation by list
+union-member-type-ns	Rule 11-8	Derivation by union
+code-st-name	Rule 11-9	Code simple types
+code-st-has-enum	Rule 11-10	Code simple types
+rule-ct-sc-has-soag	Rule 11-11	Complex type definition
+rule-el-upper-camel-case	Rule 11-12	Element declaration
+el-type-name-not-simple-type	Rule 11-13	Element declaration
+el-type-conformant-ns	Rule 11-14	Element declaration
+el-abstract-is-abstract	Rule 11-15	Element declaration
+rule-ref-el-csc-uses-rep-term	Rule 11-16	Object element declarations
+rule-set-el-csc-uses-rep-term	Rule 11-17	Object element declarations
+el-sg-from-ns	Rule 11-18	Element substitution group
+att-type-from-ns	Rule 11-19	Attribute declaration
+att-name-uses-rep-term	Rule 11-20	Attribute declaration
+rule-decl-introduced-once	Rule 11-21	Element use
+el-ref-from-ns	Rule 11-22	Element use
+att-ref-from-ns	Rule 11-23	Attribute use
+rule-known-att-grp-refs	Rule 11-24	Attribute group use
+	Rule 11-25	Human-readable documentation
+	Rule 11-26	Human-readable documentation
+	Rule 11-27	Human-readable documentation
+	Rule 11-28	Human-readable documentation
+def-11179-4-req	Rule 11-29	Human-readable documentation
+def-11179-4-rec	Rule 11-30	Human-readable documentation
+rule-sop-element	Rule 11-31	Data definition opening phrases
+rule-sop-complex-type	Rule 11-32	Data definition opening phrases
+rule-sop-simple-type	Rule 11-33	Data definition opening phrases
+	Rule 11-34	xs:schema document element restrictions
+	Rule 11-35	xs:schema document element restrictions
+xs-import-consistent-with-schema	Rule 11-36	Schema assembly
+rule-ext-imports-ext	Rule 11-37	Schema assembly
+structures-imported-conformant	Rule 11-38	Supporting namespaces are imported as conformant
+schema-for-xml-imported-conformant	Rule 11-39	Supporting namespaces are imported as conformant
+namespace-appears-once	Rule 11-40	Schema assembly
+rule-import-is-consistent	Rule 11-41	Schema assembly
+	Rule 12-1	XML instance document rules
+rule-ref-refs-id	Rule 12-2	Reference elements
+rule-ref-and-id-have-same-validation-root	Rule 12-3	Reference elements
+	Rule 12-4	Reference elements
+	Rule 12-5	Reference and content elements have same meaning
+	Rule 12-6	XML instance document rules
+	Rule 12-7	Instance metadata
+	Rule 12-8	Instance metadata
+	Rule 12-9	Instance metadata
+	Rule 12-10	Instance metadata
+	Rule 12-11	Instance metadata
+rule-attr-metadata-refs-metadata	Rule 12-12	Instance metadata
+rule-attr-rel-metadata-refs-metadata	Rule 12-13	Instance metadata
+	Rule 12-14	Instance metadata
