@@ -1,4 +1,3 @@
-this_makefile = ${lastword ${MAKEFILE_LIST}} # for help 
 
 #############################################################################
 # things to set / override
@@ -18,8 +17,14 @@ ndr_date = 2017-05-10
 MKDIR_P = mkdir -p
 
 # # others
+base64 = base64
 check_doc = check-doc
 check_doc_flags = --catalog=xsd/ndr-examples/xml-catalog.xml
+chmod = chmod
+cp = cp
+grep = grep
+head = head
+identify = identify
 m4 = m4
 m4_flags = --prefix-builtins ${m4_macros} lib/m4-setup.m4
 process_doc = process-doc
@@ -37,14 +42,17 @@ ndr_macros_m4 = src/ndr-macros.m4
 
 # things that are derived & products
 dest_dir = dest
+# The NDR document rendered in HTML
+ndr_doc_html := $(dest_dir)/ndr-doc.html
+
 # things that are derived & intermediate
 tmp_dir = tmp
 tokens_dir = ${tmp_dir}/tokens
 # generated dependencies for things derived from the NDR doc
-dependencies_mk := ${tmp_dir}/dependencies.mk
+dependencies_mk = ${tmp_dir}/dependencies.mk
 
 # the NDR document with macros expanded
-ndr_doc_xml := ${tmp_dir}/ndr-doc.xml 
+ndr_doc_xml = ${tmp_dir}/ndr-doc.xml 
 
 m4_macros = \
   --define=MACRO_NDR_VERSION=${ndr_version} \
@@ -60,6 +68,9 @@ m4_macros = \
 .PHONY: default
 default:
 	@printf 'Bravely doing nothing. Use target "help" for more info.\n'
+
+.PHONY: html #  Build HTML version
+html: ${ndr_doc_html}
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # depend
@@ -83,19 +94,31 @@ clean:
 #############################################################################
 # products
 
+${ndr_doc_html}: ${ndr_doc_xml} ${doc_html_required_files}
+	@ ${MKDIR_P} ${dir $@}
+	${process_doc} ${process_doc_flags} --in=$< --out=$@
+
 ${ndr_doc_xml}: ${ndr_macros_m4} src/ndr-doc.xml.m4 
-	${RM} $@
+	@ ${RM} $@
 	@ ${MKDIR_P} ${dir $@}
 	${m4} ${m4_flags} ${ndr_macros_m4} src/ndr-doc.xml.m4 > $@
-	@ chmod -w $@
-	@ if grep -n 'MACRO' $@; then printf 'ERROR: unresolved M4 macro.\n' >&2; exit 1; else exit 0; fi
+	@ ${chmod} -w $@
+	@ if ${grep} -n 'MACRO' $@; then printf 'ERROR: unresolved M4 macro.\n' >&2; exit 1; else exit 0; fi
+
+${tmp_dir}/%: src/%
+	@ ${MKDIR_P} ${dir $@}
+	${cp} $< $@
+
+${tmp_dir}/img/%.png.width.txt: ${tmp_dir}/img/%.png
+	@ ${MKDIR_P} ${dir $@}
+	${identify} -format '%w' $< > $@
 
 ${tokens_dir}/valid/doc/%: %
 	${check_doc} ${check_doc_flags} $<
 	${MKDIR_P} ${dir $@} && ${touch} $@
 
 #############################################################################
-# put convenience things here
+# put temporary things here
 
 check :
 	${RM} tmp/tokens/valid/doc/tmp/ndr-doc.xml
@@ -105,6 +128,6 @@ check :
 
 .PHONY: help #  Print this help
 help:
-	@ ${sed} -e '/^\.PHONY:/s/^\.PHONY: *\([^ #]*\) *\#\( *\)\([^ ].*\)/\2\1: \3/p;/^[^#]*#HELP:/s/[^#]*#HELP:\(.*\)/\1/p;d' ${this_makefile}
+	@ ${sed} -e '/^\.PHONY:/s/^\.PHONY: *\([^ #]*\) *\#\( *\)\([^ ].*\)/\2\1: \3/p;/^[^#]*#HELP:/s/[^#]*#HELP:\(.*\)/\1/p;d' Makefile
 
 # don't put anything after this
