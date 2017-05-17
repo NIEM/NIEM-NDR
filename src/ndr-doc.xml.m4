@@ -168,7 +168,7 @@
         <p>Each Clark notation value usually consists of a namespace URI surrounded by curly braces, concatenated
           with a local name. The exception to this is when Clark notation is used to represent the qualified name
           for an attribute with no namespace, which is ambiguous when represented using QName notation. For
-          example, the element <doc:qName xmlns="" >targetNamespace</doc:qName >, which has no [namespace name]
+          example, the element <local-name>targetNamespace</local-name>, which has no [namespace name]
           property, is represented in Clark notation as <code>{}targetNamespace</code>.</p>
 
       </section>
@@ -197,7 +197,7 @@
             functions, <q><namespace-uri-for-prefix>nf</namespace-uri-for-prefix></q>.</p></li>
 
         <li><p><code>ct</code>: The namespace defined by <ref idref="CTAS" /> for
-            the <doc:qName xmlns="MACRO_NS_CT" >conformanceTargets</doc:qName >
+            the <code>conformanceTargets</code>
             attribute, <q><namespace-uri-for-prefix >ct</namespace-uri-for-prefix ></q>.</p></li>
 
         <li><p><code>appinfo</code>: The namespace for the <termRef>appinfo
@@ -625,7 +625,7 @@
     <p>Schema assembly is a tricky topic that is not resolved by this document. Other specifications may express
       specifics about the process of turning a set of <termRef term="schema document">schema documents</termRef>
       into an <termRef>XML Schema</termRef>. Methods used may include use of tool-specific schema caches and
-      mappings, use of XML catalogs and entity resolvers, use of <doc:qName xmlns="">schemaLocation</doc:qName>
+      mappings, use of XML catalogs and entity resolvers, use of <local-name>schemaLocation</local-name>
       attributes on <qName>xs:import</qName> elements, and <qName>xsi:schemaLocation</qName> attributes in XML
       documents, among others. The topic of schema assembly is discussed in
       <ref idref="section-principle-schema-locations-are-hints"/>. This specification abstracts away details of
@@ -2233,12 +2233,12 @@
         <ul>
           <li>
             <p>A <termRef>reference schema document</termRef> or <termRef>extension schema document</termRef> may
-                not use <doc:qName xmlns="">blockDefault</doc:qName> (per <ref idref="no-blockdefault"/>)
-                or <doc:qName xmlns="">finalDefault</doc:qName> (per <ref idref="no-finalDefault"/>).</p>
+              not use <local-name>blockDefault</local-name> (per <ref idref="no-blockdefault"/>)
+              or <local-name>finalDefault</local-name> (per <ref idref="no-finalDefault"/>).</p>
           </li>
           <li>
             <p>Element declarations and type definitions in a <termRef>reference schema document</termRef> may not
-              use <doc:qName xmlns="">block</doc:qName> or <doc:qName xmlns="">final</doc:qName>, per the rules:</p>
+              use <local-name>block</local-name> or <local-name>final</local-name>, per the rules:</p>
             <ul>
               <li><p><ref idref="no-ct-block"/></p></li>
               <li><p><ref idref="no-ct-final"/></p></li>
@@ -2265,7 +2265,7 @@
 
         <p>XML Schema provides the capability for element and attribute declarations to provide default values
           when XML instances using those components do not provide values. This is done through the use of the
-          attributes <doc:qName xmlns="">default</doc:qName> and <doc:qName xmlns="">fixed</doc:qName>, both of
+          attributes <local-name>default</local-name> and <local-name>fixed</local-name>, both of
           which provide default values to attributes and element content.</p>
 
         <p>The use of default values means that the act of validating a schema will insert a value into an XML
@@ -2274,7 +2274,7 @@
           <ref idref="section-principle-disallow-content-modification"/>.</p>
 
         <p>The transparency of validation to data content is ensured through a prohibition on the use
-          of <doc:qName xmlns="">default</doc:qName> and <doc:qName xmlns="">fixed</doc:qName> attributes in
+          of <local-name>default</local-name> and <local-name>fixed</local-name> attributes in
           NIEM-conformant schema documents.</p>
 
       </section>
@@ -2796,7 +2796,7 @@
             </xmlBlurb></pre>
           </rule>
           <p>Note that this implies that every <qName>xs:complexType</qName>
-            element has a <doc:qName xmlns="">name</doc:qName> attribute.</p>
+            element has a <local-name>name</local-name> attribute.</p>
         </ruleSection>
 
         MACRO_HAS_DATA_DEFINITION(Complex type, ct, xs:complexType, A complex type)
@@ -3017,9 +3017,9 @@
           specified by <ref idref="el-with-no-type-is-abstract"/>.</p>
 
         <p>Within an element declaration, the
-          attributes <doc:qName xmlns="">fixed</doc:qName>, <doc:qName xmlns="">nillable</doc:qName>,
-          and <doc:qName xmlns="">substitutionGroup</doc:qName> may be used as per the XML Schema
-          specification. The attribute <doc:qName xmlns="">form</doc:qName> is irrelevant to NIEM, as
+          attributes <local-name>fixed</local-name>, <local-name>nillable</local-name>,
+          and <local-name>substitutionGroup</local-name> may be used as per the XML Schema
+          specification. The attribute <local-name>form</local-name> is irrelevant to NIEM, as
           NIEM-conformant schemas may not contain local element declarations, as specified by
           <ref idref="el-top-level"/>.</p>
 
@@ -3240,7 +3240,7 @@
         <title>Attribute declaration</title>
 
         <p>Within an attribute declaration, the
-        attribute <doc:qName xmlns="">form</doc:qName> is irrelevant to NIEM, as NIEM-conformant schemas may not
+          attribute <local-name>form</local-name> is irrelevant to NIEM, as NIEM-conformant schemas may not
         contain local attribute declarations.</p>
 
         <ruleSection>
@@ -3650,7 +3650,7 @@
 
         <p>An attribute use has an {attribute declaration} property that is a top-level, named attribute
         declaration. NIEM-conformant schemas do not define local named attributes within type definitions. Within
-        an attribute use, the attribute <doc:qName xmlns="">use</doc:qName> may be used as per the XML Schema
+          an attribute use, the attribute <local-name>use</local-name> may be used as per the XML Schema
         specification.</p>
 
       </section>
@@ -3904,10 +3904,10 @@
       <title>Schema as a whole</title>
 
       <p>The XML Schema language defines that the document element <qName>xs:schema</qName> may contain the
-      optional attributes <doc:qName xmlns="">attributeFormDefault</doc:qName>
-      and <doc:qName xmlns="">elementFormDefault</doc:qName>. The values of these attributes are not material to
-      a conformant schema, as each attribute and element defined by a conformant schema is defined as a top-level
-      component, and so each is qualified by its target namespace.</p>
+        optional attributes <local-name>attributeFormDefault</local-name>
+        and <local-name>elementFormDefault</local-name>. The values of these attributes are not material to a
+        conformant schema, as each attribute and element defined by a conformant schema is defined as a top-level
+        component, and so each is qualified by its target namespace.</p>
 
 m4_dnl copied in from the production of the M4 macro, before I tweaked the macro:
 m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document element)
@@ -3982,12 +3982,12 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         <li><p>Contact information updates</p></li>
       </ul>
 
-      <p>In such cases, a different value for the <doc:qName xmlns="">version</doc:qName> attribute
+      <p>In such cases, a different value for the <local-name>version</local-name> attribute
         implies a different version of the schema. No specific meaning is
         assigned to specific version identifiers.</p>
 
-      <p>An author of an application schema or exchange may use the <doc:qName xmlns="">version</doc:qName>
-        attribute for these purposes within their schemas.</p>
+      <p>An author of an application schema or exchange may use the <local-name>version</local-name> attribute
+        for these purposes within their schemas.</p>
 
         <rule applicability="REF EXT" id="has-version" class="Constraint">
           <pre><xmlBlurb memberOf="ref ext" id="xb-has-version">
@@ -4130,7 +4130,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
             an explicit rule for NIEM-conformant schemas.</p>
 
         <ruleSection>
-          <title>Namespace referenced by attribute <doc:qName xmlns="">type</doc:qName> is imported</title>
+          <title>Namespace referenced by attribute <local-name>type</local-name> is imported</title>
           <rule applicability="REF EXT" id="xs-import-referenced-namespaces-type" class="Constraint" >
             <pre><xmlBlurb memberOf="ref ext" id="xb-xs-import-referenced-namespaces-type">
 <sch:pattern>
@@ -4148,7 +4148,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 
 
         <ruleSection>
-          <title>Namespace referenced by attribute <doc:qName xmlns="">base</doc:qName> is imported</title>
+          <title>Namespace referenced by attribute <local-name>base</local-name> is imported</title>
           <rule applicability="REF EXT" id="xs-import-referenced-namespaces-base" class="Constraint" >
             <pre><xmlBlurb memberOf="ref ext" id="xb-xs-import-referenced-namespaces-base">
 <sch:pattern>
@@ -4165,7 +4165,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         </ruleSection>
 
         <ruleSection>
-          <title>Namespace referenced by attribute <doc:qName xmlns="">itemType</doc:qName> is imported</title>
+          <title>Namespace referenced by attribute <local-name>itemType</local-name> is imported</title>
           <rule applicability="REF EXT" id="xs-import-referenced-namespaces-itemType" class="Constraint" >
             <pre><xmlBlurb memberOf="ref ext" id="xb-xs-import-referenced-namespaces-itemType">
 <sch:pattern>
@@ -4182,7 +4182,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         </ruleSection>
 
         <ruleSection>
-          <title>Namespaces referenced by attribute <doc:qName xmlns="">memberTypes</doc:qName> is imported</title>
+          <title>Namespaces referenced by attribute <local-name>memberTypes</local-name> is imported</title>
           <rule applicability="REF EXT" id="xs-import-referenced-namespaces-memberTypes" class="Constraint" >
             <pre><xmlBlurb memberOf="ref ext" id="xb-xs-import-referenced-namespaces-memberTypes">
 <sch:pattern>
@@ -4200,7 +4200,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         </ruleSection>
 
         <ruleSection>
-          <title>Namespace referenced by attribute <doc:qName xmlns="">ref</doc:qName> is imported</title>
+          <title>Namespace referenced by attribute <local-name>ref</local-name> is imported</title>
           <rule applicability="REF EXT" id="xs-import-referenced-namespaces-ref" class="Constraint" >
             <pre><xmlBlurb memberOf="ref ext" id="xb-xs-import-referenced-namespaces-ref">
 <sch:pattern>
@@ -4216,7 +4216,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         </ruleSection>
 
         <ruleSection>
-          <title>Namespace referenced by attribute <doc:qName xmlns="">substitutionGroup</doc:qName> is imported</title>
+          <title>Namespace referenced by attribute <local-name>substitutionGroup</local-name> is imported</title>
           <rule applicability="REF EXT" id="xs-import-referenced-namespaces-sg" class="Constraint" >
             <pre><xmlBlurb memberOf="ref ext" id="xb-xs-import-referenced-namespaces-sg">
 <sch:pattern>
@@ -5971,19 +5971,18 @@ rather than their full meanings.</p>
 
           <ol>
 
-            <li><p>The value of the attribute <doc:qName xmlns="">term</doc:qName> is the <termRef>local
-                term</termRef>; it may occur as a term within the name of a schema component within the schema
-                document.</p></li>
+            <li><p>The value of the attribute <local-name>term</local-name>is the <termRef>local term</termRef>;
+                it may occur as a term within the name of a schema component within the schema document.</p></li>
 
-            <li><p>The value of the attribute <doc:qName xmlns="">literal</doc:qName> is the meaning of the local
-                term, provided as a full, plain-text form of the term. This may be useful when a local term is an
+            <li><p>The value of the attribute <local-name>literal</local-name> is the meaning of the local term,
+                provided as a full, plain-text form of the term. This may be useful when a local term is an
                 abbreviation, acronym, or diminutive form of a longer term.</p></li>
 
-            <li><p>The value of the attribute <doc:qName xmlns="">definition</doc:qName> is a dictionary-style
+            <li><p>The value of the attribute <local-name>definition</local-name> is a dictionary-style
                 description of the meaning of the local term.</p></li>
 
-            <li><p>The value of the attribute <doc:qName xmlns="">sourceURIs</doc:qName> is a list of URIs, each
-                of which is an identifier or locator for an originating or authoritative document defining the
+            <li><p>The value of the attribute <local-name>sourceURIs</local-name> is a list of URIs, each of
+                which is an identifier or locator for an originating or authoritative document defining the
                 term.</p></li>
 
             <li><p>Each child element information item <qName>appinfo:SourceText</qName> is a plain text citation
@@ -7352,13 +7351,19 @@ not be given the same name.</p></li>
 
         <ruleSection><title>Same namespace means same components</title>
         <rule applicability="REF EXT" class="Interpretation">
-          <p>Two XML Schema documents MUST have the same value for attribute <doc:qName xmlns="">targetNamespace</doc:qName> carried by the element <qName>xs:schema</qName>, if and only if they represent the same set of components.</p>
+          <p>Two XML Schema documents MUST have the same value for
+            attribute <local-name>targetNamespace</local-name> carried by the element <qName>xs:schema</qName>,
+            if and only if they represent the same set of components.</p>
         </rule>
         </ruleSection>
 
         <ruleSection><title>Different version means different view</title>
         <rule applicability="REF EXT" class="Interpretation">
-          <p>Two XML Schema documents MUST have the same value for attribute <doc:qName xmlns="">targetNamespace</doc:qName> carried by the element <qName>xs:schema</qName>, and different values for attribute <doc:qName xmlns="">version</doc:qName> carried by the element <qName>xs:schema</qName> if and only if they are different views of the same set of components.</p>
+          <p>Two XML Schema documents MUST have the same value for
+            attribute <local-name>targetNamespace</local-name> carried by the element <qName>xs:schema</qName>,
+            and different values for attribute <local-name>version</local-name> carried by the
+            element <qName>xs:schema</qName> if and only if they are different views of the same set of
+            components.</p>
         </rule>
         </ruleSection>
 

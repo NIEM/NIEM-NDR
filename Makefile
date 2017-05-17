@@ -4,17 +4,29 @@ this_makefile = ${lastword ${MAKEFILE_LIST}} # for help
 # things to set / override
 #############################################################################
 
-# set 'true' to enable rebuilding of dependencies
-depend = false 
+#HELP:set variable 'depend' to 'true' to enable rebuilding of dependencies
+depend = false
 ndr_version = 4.0beta2pre1
 ndr_date = 2017-05-10
 
 # command paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+# # command variable defined by Make
+# RM = rm -f
+
+# # command variable defined by automake
+MKDIR_P = mkdir -p
+
+# # others
+check_doc = check-doc
+check_doc_flags = --catalog=xsd/ndr-examples/xml-catalog.xml
 m4 = m4
 m4_flags = --prefix-builtins ${m4_macros} lib/m4-setup.m4
-mkdir_p = mkdir -p
+process_doc = process-doc
+process_doc_flags = --catalog=xsd/ndr-examples/xml-catalog.xml
+schematron = schematron
 sed = sed
+touch = touch
 
 # source paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -28,6 +40,8 @@ dest_dir = dest
 # things that are derived & intermediate
 tmp_dir = tmp
 tokens_dir = ${tmp_dir}/tokens
+# generated dependencies for things derived from the NDR doc
+dependencies_mk := ${tmp_dir}/dependencies.mk
 
 # the NDR document with macros expanded
 ndr_doc_xml := ${tmp_dir}/ndr-doc.xml 
@@ -37,12 +51,12 @@ m4_macros = \
   --define=MACRO_NDR_DATE=${ndr_date} \
 
 #############################################################################
-# targets
+#HELP:Targets:
 #############################################################################
 
 # convenience targets # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-#HELP:There is no default target
+#HELP:  (There is no default target)
 .PHONY: default
 default:
 	@printf 'Bravely doing nothing. Use target "help" for more info.\n'
@@ -56,8 +70,8 @@ depend: ${dependencies_mk}
 
 -include ${dependencies_mk}
 
-${dependencies_mk}: $(NDR_DOC_XML) $(NDR_DOC_XML_VALID_T)
-	process-doc $(PROCESS_DOC_COMMAND_FLAGS) -makedepend -in $< -out $@
+${dependencies_mk}: ${ndr_doc_xml}
+	${process_doc} ${process_doc_flags} --format=makedepend --in=$< --out=$@
 else
 include ${dependencies_mk}
 endif
@@ -69,19 +83,23 @@ clean:
 #############################################################################
 # products
 
-# order of sources matters here, since it's fed directly to M4
-lkj: prelkj ${ndr_doc_xml}
-
-.PHONY: prelkj
-prelkj:
-	@echo building "${ndr_doc_xml}"
-
 ${ndr_doc_xml}: ${ndr_macros_m4} src/ndr-doc.xml.m4 
 	${RM} $@
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${m4} ${m4_flags} ${ndr_macros_m4} src/ndr-doc.xml.m4 > $@
 	@ chmod -w $@
 	@ if grep -n 'MACRO' $@; then printf 'ERROR: unresolved M4 macro.\n' >&2; exit 1; else exit 0; fi
+
+${tokens_dir}/valid/doc/%: %
+	${check_doc} ${check_doc_flags} $<
+	${MKDIR_P} ${dir $@} && ${touch} $@
+
+#############################################################################
+# put convenience things here
+
+check :
+	${RM} tmp/tokens/valid/doc/tmp/ndr-doc.xml
+	${MAKE} tmp/tokens/valid/doc/tmp/ndr-doc.xml
 
 # make this the last target
 

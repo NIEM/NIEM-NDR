@@ -1,9 +1,6 @@
 
 CHECK_DOC_COMMAND_FLAGS += --catalog=xsd/ndr-examples/xml-catalog.xml
-PROCESS_DOC_COMMAND_FLAGS += --catalog=xsd/ndr-examples/xml-catalog.xml
 
-# generated dependencies for things derived from the NDR doc
-dependencies_mk := ${tmp_dir}/dependencies.mk
 
 # valid token
 NDR_DOC_XML_VALID_T := ${tokens_dir}/ndr-doc-xml-valid
