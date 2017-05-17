@@ -1,10 +1,16 @@
 
+this_makefile := ${lastword ${MAKEFILE_LIST}}
+SHELL = /bin/bash 
+
 #############################################################################
 # things to set / override
 #############################################################################
 
-#HELP:set variable 'depend' to 'true' to enable rebuilding of dependencies
-depend = false
+#HELP:variable 'depend': (default value is 'include')
+#HELP:  'include': include existing dependencies file
+#HELP:  'build': build new dependencies file
+#HELP:  'no': don't build or include dependencies file
+depend = include
 ndr_version = 4.0beta2pre1
 ndr_date = 2017-05-10
 
@@ -32,22 +38,34 @@ process_doc_flags = --catalog=xsd/ndr-examples/xml-catalog.xml
 schematron = schematron
 sed = sed
 touch = touch
+zip = zip
 
 # source paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 ndr_macros_m4 = src/ndr-macros.m4
 
 #############################################################################
+# products
+
+# local names of products
+products = \
+	niem-ndr-${ndr_version}.html \
+	niem-ndr-doc.txt
+
+archive_name = niem-ndr-${ndr_version}-${ndr_date}
+archive = ${tmp_dir}/${archive_name}.zip
+
+#############################################################################
 # other variables
 
-# things that are derived & products
-dest_dir = dest
-# The NDR document rendered in HTML
-ndr_doc_html := $(dest_dir)/ndr-doc.html
 
 # things that are derived & intermediate
 tmp_dir = tmp
 tokens_dir = ${tmp_dir}/tokens
+# The NDR document rendered in HTML
+ndr_doc_html := ${tmp_dir}/ndr-doc.html
+# The NDR document rendered in text
+ndr_doc_text := ${tmp_dir}/ndr-doc.txt
 # generated dependencies for things derived from the NDR doc
 dependencies_mk = ${tmp_dir}/dependencies.mk
 
@@ -72,10 +90,16 @@ default:
 .PHONY: html #  Build HTML version
 html: ${ndr_doc_html}
 
+.PHONY: text #  Build text version
+text: ${ndr_doc_text}
+
+.PHONY: archive #  Build archive with everything in it
+archive: ${archive}
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # depend
 
-ifneq (${depend},false)
+ifeq (${depend},build)
 .PHONY: depend
 depend: ${dependencies_mk}
 
@@ -83,13 +107,13 @@ depend: ${dependencies_mk}
 
 ${dependencies_mk}: ${ndr_doc_xml}
 	${process_doc} ${process_doc_flags} --format=makedepend --in=$< --out=$@
-else
+else ifeq (${depend},include)
 include ${dependencies_mk}
 endif
 
 .PHONY: clean #  Remove generated artifacts
 clean:
-	${RM} -r tmp dest
+	${RM} -r ${tmp_dir}
 
 #############################################################################
 # products
@@ -97,6 +121,10 @@ clean:
 ${ndr_doc_html}: ${ndr_doc_xml} ${doc_html_required_files}
 	@ ${MKDIR_P} ${dir $@}
 	${process_doc} ${process_doc_flags} --in=$< --out=$@
+
+${ndr_doc_text}: ${ndr_doc_xml} ${doc_text_required_files}
+	@ ${MKDIR_P} ${dir $@}
+	${process_doc} ${process_doc_flags} --format=text --in=$< --out=$@
 
 ${ndr_doc_xml}: ${ndr_macros_m4} src/ndr-doc.xml.m4 
 	@ ${RM} $@
@@ -118,6 +146,24 @@ ${tokens_dir}/valid/doc/%: %
 	${MKDIR_P} ${dir $@} && ${touch} $@
 
 #############################################################################
+# archive
+
+${archive}: ${products:%=${tmp_dir}/${archive_name}/%}
+	@ ${RM} ${archive}
+	cd ${tmp_dir} && ${zip} -9 -r ${archive_name}.zip ${archive_name}
+
+tmp/${archive_name}/niem-ndr-${ndr_version}.html: ${tmp_dir}/ndr-doc.html
+	@ ${MKDIR_P} ${dir $@}
+	${cp} $< $@
+
+tmp/${archive_name}/niem-ndr-doc.txt: ${tmp_dir}/ndr-doc.txt
+	@ ${MKDIR_P} ${dir $@}
+	${cp} $< $@
+
+# archive - end
+#############################################################################
+
+#############################################################################
 # put temporary things here
 
 check :
@@ -128,6 +174,6 @@ check :
 
 .PHONY: help #  Print this help
 help:
-	@ ${sed} -e '/^\.PHONY:/s/^\.PHONY: *\([^ #]*\) *\#\( *\)\([^ ].*\)/\2\1: \3/p;/^[^#]*#HELP:/s/[^#]*#HELP:\(.*\)/\1/p;d' Makefile
+	@ ${sed} -e '/^\.PHONY:/s/^\.PHONY: *\([^ #]*\) *\#\( *\)\([^ ].*\)/\2\1: \3/p;/^[^#]*#HELP:/s/[^#]*#HELP:\(.*\)/\1/p;d' ${this_makefile}
 
 # don't put anything after this
