@@ -22,10 +22,15 @@ ndr_date = 2017-05-10
 # # command variable defined by automake
 MKDIR_P = mkdir -p
 
-# # others
-base64 = base64
+# # doc-processing
 check_doc = check-doc
 check_doc_flags = --catalog=xsd/ndr-examples/xml-catalog.xml
+process_doc = process-doc
+process_doc_flags = --catalog=xsd/ndr-examples/xml-catalog.xml
+doc_to_schematron = doc-to-schematron
+
+# # others
+base64 = base64
 chmod = chmod
 cp = cp
 grep = grep
@@ -33,8 +38,6 @@ head = head
 identify = identify
 m4 = m4
 m4_flags = --prefix-builtins ${m4_macros} lib/m4-setup.m4
-process_doc = process-doc
-process_doc_flags = --catalog=xsd/ndr-examples/xml-catalog.xml
 schematron = schematron
 sed = sed
 touch = touch
@@ -50,9 +53,15 @@ ndr_macros_m4 = src/ndr-macros.m4
 # local names of products
 products = \
 	niem-ndr-${ndr_version}.html \
-	niem-ndr-doc.txt
+	niem-ndr-doc.txt \
+	ndr-rules-conformance-target-ref.sch \
+	ndr-rules-conformance-target-ext.sch \
+	ndr-rules-conformance-target-ins.sch \
+	ndr-rules-conformance-target-set.sch \
+	ndr-functions.xsl \
 
 archive_name = niem-ndr-${ndr_version}-${ndr_date}
+archive_dir = ${tmp_dir}/${archive_name}
 archive = ${tmp_dir}/${archive_name}.zip
 
 #############################################################################
@@ -145,18 +154,27 @@ ${tokens_dir}/valid/doc/%: %
 	${check_doc} ${check_doc_flags} $<
 	${MKDIR_P} ${dir $@} && ${touch} $@
 
+# end products
+#############################################################################
+# rules
+
+${archive_dir}/ndr-rules-conformance-target-%.sch: ${ndr_doc_xml}
+	@ ${MKDIR_P} ${dir $@}
+	${doc_to_schematron} --blurb-set=$* --out=$@ $<
+
+# end rules
 #############################################################################
 # archive
 
-${archive}: ${products:%=${tmp_dir}/${archive_name}/%}
+${archive}: ${products:%=${archive_dir}/%}
 	@ ${RM} ${archive}
 	cd ${tmp_dir} && ${zip} -9 -r ${archive_name}.zip ${archive_name}
 
-tmp/${archive_name}/niem-ndr-${ndr_version}.html: ${tmp_dir}/ndr-doc.html
+${archive_dir}/niem-ndr-${ndr_version}.html: ${ndr_doc_html}
 	@ ${MKDIR_P} ${dir $@}
 	${cp} $< $@
 
-tmp/${archive_name}/niem-ndr-doc.txt: ${tmp_dir}/ndr-doc.txt
+${archive_dir}/niem-ndr-doc.txt: ${ndr_doc_text}
 	@ ${MKDIR_P} ${dir $@}
 	${cp} $< $@
 
@@ -169,6 +187,10 @@ tmp/${archive_name}/niem-ndr-doc.txt: ${tmp_dir}/ndr-doc.txt
 check :
 	${RM} tmp/tokens/valid/doc/tmp/ndr-doc.xml
 	${MAKE} tmp/tokens/valid/doc/tmp/ndr-doc.xml
+
+again:
+	${RM} ${archive_dir}/ndr-rules-conformance-target-ref.sch
+	${MAKE} ${archive_dir}/ndr-rules-conformance-target-ref.sch
 
 # make this the last target
 

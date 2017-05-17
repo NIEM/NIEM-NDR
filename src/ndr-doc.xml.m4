@@ -9,24 +9,45 @@
    xmlns:j="MACRO_NS_NIEM_DOMAIN_J"
    xmlns:nc="MACRO_NS_NIEM_CORE"
    xmlns:nf="MACRO_NS_NDR_FUNCTIONS"
-   xmlns:rdfs="MACRO_NS_RDFS"
+   xmlns:niem-xs="http://release.niem.gov/niem/proxy/xsd/4.0/"
    xmlns:rdf="MACRO_NS_RDF"
+   xmlns:rdfs="MACRO_NS_RDFS"
    xmlns:sch="MACRO_SCH_NS"
    xmlns:scr="MACRO_NS_NIEM_DOMAIN_SCR"
    xmlns:structures="MACRO_NS_STRUCTURES"
    xmlns:xs="MACRO_NS_XS"
    xmlns:xsi="MACRO_NS_XSI"
-   xmlns:niem-xs="http://release.niem.gov/niem/proxy/xsd/4.0/"
+   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
    xmlns="https://iead.ittl.gtri.org/wr24/doc/2011-09-30-2258"
    >
   <title>National Information Exchange Model Naming and Design Rules</title>
   <version>MACRO_NDR_VERSION</version>
   <date>MACRO_NDR_DATE</date>
   <author>NIEM Technical Architecture Committee (NTAC)</author>
+
   <blurbSet id="ref"/>
   <blurbSet id="ext"/>
   <blurbSet id="set"/>
   <blurbSet id="ins"/>
+
+  <comment>
+    <xmlBlurb id="schematron-title-ref" memberOf="ref">
+      <sch:title>Rules for reference XML Schema documents</sch:title>
+    </xmlBlurb>
+    <xmlBlurb id="schematron-title-ext" memberOf="ext">
+      <sch:title>Rules for extension XML Schema documents</sch:title>
+    </xmlBlurb>
+    <xmlBlurb id="schematron-title-set" memberOf="set">
+      <sch:title>Rules XML Schema document sets</sch:title>
+    </xmlBlurb>
+    <xmlBlurb id="schematron-title-ins" memberOf="ins">
+      <sch:title>Rules for instance XML documents</sch:title>
+    </xmlBlurb>
+    <xmlBlurb id="schematron-include" memberOf="ref ext set ins">
+      <xsl:include href="ndr-functions.xsl"/>
+    </xmlBlurb>
+  </comment>
+  
   <subsection id="toc">
     <title>Contents</title>
     <tableOfContents/>
