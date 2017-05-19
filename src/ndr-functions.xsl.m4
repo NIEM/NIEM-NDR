@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <stylesheet
+  version="2.0"
   xmlns:catalog="urn:oasis:names:tc:entity:xmlns:xml:catalog"
-  xmlns:ct="http://release.niem.gov/niem/conformanceTargets/3.0/"
-  xmlns:nf="http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#NDRFunctions"
-  xmlns:impl="http://example.org/naming-and-design-rules-3.0-functions-impl"
+  xmlns:ct="MACRO_CONFORMANCE_TARGETS_NS"
+  xmlns:impl="http://example.org/impl"
+  xmlns:nf="MACRO_NS_NDR_FUNCTIONS"
   xmlns:saxon="http://saxon.sf.net/"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns="http://www.w3.org/1999/XSL/Transform"
-  version="2.0">
+  xmlns="http://www.w3.org/1999/XSL/Transform">
 
   <param name="xml-catalog" as="document-node()?"/>
 
