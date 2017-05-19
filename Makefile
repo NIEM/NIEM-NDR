@@ -1,18 +1,24 @@
+#############################################################################
+# Don't touch these...
+#############################################################################
 
 this_makefile := ${lastword ${MAKEFILE_LIST}}
 SHELL = /bin/bash 
+# generated dependencies for things derived from the NDR doc
+dependencies_mk := dependencies.mk
+.SECONDARY:
 
 #############################################################################
 # things to set / override
 #############################################################################
 
 #HELP:variable 'depend': (default value is 'include')
-#HELP:  'include': include existing dependencies file
 #HELP:  'build': build new dependencies file
-#HELP:  'no': don't build or include dependencies file
+#HELP:  anything else: if dependencies file exists, include it
 depend = include
 ndr_version = 4.0beta2pre1
 ndr_date = 2017-05-10
+repo_dir = repo
 
 # command paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -33,6 +39,7 @@ doc_to_schematron = doc-to-schematron
 base64 = base64
 chmod = chmod
 cp = cp
+find = find
 grep = grep
 head = head
 identify = identify
@@ -75,8 +82,6 @@ tokens_dir = ${tmp_dir}/tokens
 ndr_doc_html := ${tmp_dir}/ndr-doc.html
 # The NDR document rendered in text
 ndr_doc_text := ${tmp_dir}/ndr-doc.txt
-# generated dependencies for things derived from the NDR doc
-dependencies_mk = ${tmp_dir}/dependencies.mk
 
 # the NDR document with macros expanded
 ndr_doc_xml = ${tmp_dir}/ndr-doc.xml 
@@ -116,8 +121,10 @@ depend: ${dependencies_mk}
 
 ${dependencies_mk}: ${ndr_doc_xml}
 	${process_doc} ${process_doc_flags} --format=makedepend --in=$< --out=$@
-else ifeq (${depend},include)
+else
+ifeq (${wildcard ${dependencies_mk}},${dependencies_mk})
 include ${dependencies_mk}
+endif
 endif
 
 .PHONY: clean #  Remove generated artifacts
@@ -150,19 +157,37 @@ ${tmp_dir}/img/%.png.width.txt: ${tmp_dir}/img/%.png
 	@ ${MKDIR_P} ${dir $@}
 	${identify} -format '%w' $< > $@
 
+${tmp_dir}/%: src/%.m4 src/ndr-macros.m4 
+	@ ${MKDIR_P} ${dir $@}
+	${m4} ${m4_flags} src/ndr-macros.m4 $< > $@
+
+# rules schematron # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+${tmp_dir}/ndr-rules-conformance-target-ref.sch: ${ndr_doc_xml}
+	@ ${MKDIR_P} ${dir $@}
+	${doc_to_schematron} --blurb-set=ref --out=$@ $<
+
+${tmp_dir}/ndr-rules-conformance-target-ext.sch: ${ndr_doc_xml}
+	@ ${MKDIR_P} ${dir $@}
+	${doc_to_schematron} --blurb-set=ext --out=$@ $<
+
+${tmp_dir}/ndr-rules-conformance-target-set.sch: ${ndr_doc_xml}
+	@ ${MKDIR_P} ${dir $@}
+	${doc_to_schematron} --blurb-set=set --out=$@ $<
+
+${tmp_dir}/ndr-rules-conformance-target-ins.sch: ${ndr_doc_xml}
+	@ ${MKDIR_P} ${dir $@}
+	${doc_to_schematron} --blurb-set=ins --out=$@ $<
+
+# end products
+#############################################################################
+# valid 
+
 ${tokens_dir}/valid/doc/%: %
 	${check_doc} ${check_doc_flags} $<
 	${MKDIR_P} ${dir $@} && ${touch} $@
 
-# end products
-#############################################################################
-# rules
-
-${archive_dir}/ndr-rules-conformance-target-%.sch: ${ndr_doc_xml}
-	@ ${MKDIR_P} ${dir $@}
-	${doc_to_schematron} --blurb-set=$* --out=$@ $<
-
-# end rules
+# end valid
 #############################################################################
 # archive
 
@@ -178,7 +203,38 @@ ${archive_dir}/niem-ndr-doc.txt: ${ndr_doc_text}
 	@ ${MKDIR_P} ${dir $@}
 	${cp} $< $@
 
+${archive_dir}/%: ${tmp_dir}/%
+	@ ${MKDIR_P} ${dir $@}
+	${cp} $< $@
+
 # archive - end
+#############################################################################
+# repo
+
+.PHONY: repo #  install current version into the repository
+repo: before-install-into-repo install-into-repo
+
+.PHONY: before-install-into-repo
+before-install-into-repo:
+	@ if [[ ! -d ${repo_dir} ]]; then echo Git repository '${repo_dir}' does not exist; exit 1; fi
+	${find} ${repo_dir} -mindepth 1 ! -path '${repo_dir}/.git' ! -path '${repo_dir}/.git/*' ! -path '${repo_dir}/LICENSE' ! -path '${repo_dir}/README.md' -print0 | xargs -0 ${RM}
+
+.PHONY: install-into-repo
+install-into-repo: ${products:%=${repo_dir}/%}
+
+${repo_dir}/niem-ndr-${ndr_version}.html: ${ndr_doc_html}
+	${cp} $< $@
+
+${repo_dir}/niem-ndr-doc.txt: ${ndr_doc_text}
+	${cp} $< $@
+
+${repo_dir}/ndr-rules-conformance-target-%.sch: ${tmp_dir}/ndr-rules-conformance-target-%.sch
+	${cp} $< $@
+
+${repo_dir}/%: ${tmp_dir}/%
+	${cp} $< $@
+
+# repo - end
 #############################################################################
 
 #############################################################################

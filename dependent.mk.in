@@ -85,9 +85,6 @@ IMAGES_TMP = $(patsubst $(SRC_DIR)/%,$(TMP_DIR)/%,$(IMAGES_SRC))
 default:
 	@echo "You probably should not be doing whatever you are doing."
 
-.PHONY: html
-html: $(NDR_DOC_HTML)
-
 .PHONY: text
 text: $(NDR_DOC_TEXT)
 
@@ -126,21 +123,6 @@ docs-local: $(DOCS_LOCAL)
 
 .PHONY: all
 all: docs valid 
-
-#############################################################################
-# HTML doc
-
-$(NDR_DOC_HTML): $(NDR_DOC_XML) $(NDR_DOC_XML_VALID_T) $(IMAGES_TMP) $(DOC_HTML_REQUIRED_FILES)
-	@ mkdir -p $(dir $@)
-	'CONFIG_PROCESS_DOC_COMMAND' $(PROCESS_DOC_COMMAND_FLAGS) -html -in $< -out $@
-
-$(TMP_DIR)/img/%: $(SRC_DIR)/img/%
-	'CONFIG_RM_COMMAND' -f $@
-	mkdir -p $(dir $@)
-	cp $< $@
-
-$(TMP_DIR)/img/%.png.width.txt: $(TMP_DIR)/img/%.png
-	identify -format '%w' $< > $@
 
 ##################################################################
 # TEXT doc
