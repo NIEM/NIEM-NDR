@@ -17,8 +17,6 @@
     <sequence select="root($context)/*"/>
   </function>
 
-  </function>
-
   <!-- Yields:
        if element is within a schema
          if there is a target namespace -> xs:anyURI( $namespace )

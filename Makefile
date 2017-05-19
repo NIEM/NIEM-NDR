@@ -37,6 +37,7 @@ doc_to_schematron = doc-to-schematron
 
 # # others
 base64 = base64
+check_xml = check-xml
 chmod = chmod
 cp = cp
 find = find
@@ -46,6 +47,8 @@ identify = identify
 m4 = m4
 m4_flags = --prefix-builtins ${m4_macros} lib/m4-setup.m4
 schematron = schematron
+schematron_compile = schematron-compile
+schematron_execute = schematron-execute
 sed = sed
 touch = touch
 zip = zip
@@ -75,10 +78,10 @@ archive = ${tmp_dir}/${archive_name}.zip
 #############################################################################
 # other variables
 
-
 # things that are derived & intermediate
 tmp_dir = tmp
 tokens_dir = ${tmp_dir}/tokens
+valid_dir = ${tokens_dir}/valid
 # The NDR document rendered in HTML
 ndr_doc_html := ${tmp_dir}/ndr-doc.html
 # The NDR document rendered in text
@@ -182,11 +185,33 @@ ${tmp_dir}/ndr-rules-conformance-target-ins.sch: ${ndr_doc_xml}
 
 # end products
 #############################################################################
-# valid 
+# valid
 
-${tokens_dir}/valid/doc/%: %
+.PHONY: valid #  validate what can be validated
+valid: \
+  ${valid_dir}/xml/${ndr_doc_xml} \
+  ${valid_dir}/doc/${ndr_doc_xml} \
+  ${valid_dir}/ndr-rules/${ndr_doc_xml} \
+  ${valid_dir}/xml/tmp/ndr-rules-conformance-target-ref.sch \
+  ${valid_dir}/xml/tmp/ndr-rules-conformance-target-ext.sch \
+  ${valid_dir}/xml/tmp/ndr-rules-conformance-target-set.sch \
+  ${valid_dir}/xml/tmp/ndr-rules-conformance-target-ins.sch \
+  ${valid_dir}/xml/tmp/ndr-functions.xsl \
+
+${valid_dir}/xml/%: %
+	${check_xml} $<
+	@ ${MKDIR_P} ${dir $@} && touch $@
+
+${valid_dir}/doc/%: %
 	${check_doc} ${check_doc_flags} $<
-	${MKDIR_P} ${dir $@} && ${touch} $@
+	@ ${MKDIR_P} ${dir $@} && ${touch} $@
+
+${valid_dir}/ndr-rules/%: % tmp/ndr-rules.sch.xsl
+	${schematron_execute} --xslt-file=tmp/ndr-rules.sch.xsl --format=text $<
+	@ ${MKDIR_P} ${dir $@} && ${touch} $@
+
+tmp/ndr-rules.sch.xsl: src/ndr-rules.sch
+	${schematron_compile} --output-file=$@ $<
 
 # end valid
 #############################################################################

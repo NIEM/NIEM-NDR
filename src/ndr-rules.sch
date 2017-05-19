@@ -5,7 +5,7 @@
    xmlns:local="http://example.org/2012-10-01-1632/local-functions/"
    xmlns="http://purl.oclc.org/dsdl/schematron">
 
-  <title>Assertions about NIEM NDR rules</title>
+  <title>Assertions about NIEM NDR document XML</title>
 
   <ns prefix="xs" uri="http://www.w3.org/2001/XMLSchema"/>
   <ns prefix="xsl" uri="http://www.w3.org/1999/XSL/Transform"/>
