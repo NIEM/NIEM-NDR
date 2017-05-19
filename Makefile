@@ -59,13 +59,14 @@ ndr_macros_m4 = src/ndr-macros.m4
 
 # local names of products
 products = \
-	niem-ndr-${ndr_version}.html \
-	niem-ndr-doc.txt \
-	ndr-rules-conformance-target-ref.sch \
-	ndr-rules-conformance-target-ext.sch \
-	ndr-rules-conformance-target-ins.sch \
-	ndr-rules-conformance-target-set.sch \
-	ndr-functions.xsl \
+  niem-ndr-${ndr_version}.html \
+  niem-ndr-doc.txt \
+  ndr-rules-conformance-target-ref.sch \
+  ndr-rules-conformance-target-ext.sch \
+  ndr-rules-conformance-target-ins.sch \
+  ndr-rules-conformance-target-set.sch \
+  ndr-functions.xsl \
+  ctas-conformant-document.sch \
 
 archive_name = niem-ndr-${ndr_version}-${ndr_date}
 archive_dir = ${tmp_dir}/${archive_name}
