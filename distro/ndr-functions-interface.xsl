@@ -1,1 +1,0 @@
-stow/local/ndr-functions-interface.xsl

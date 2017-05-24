@@ -1,1 +1,0 @@
-../../stow/iso-schematron-xslt2/lib/schematron-xslt/iso_abstract_expand.xsl
