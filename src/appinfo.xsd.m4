@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <xs:schema
-    targetNamespace="http://release.niem.gov/niem/appinfo/4.0/"
-    version="4.0beta2pre1"
-    xmlns:appinfo="http://release.niem.gov/niem/appinfo/4.0/"
+    targetNamespace="MACRO_NS_APPINFO"
+    version="MACRO_NDR_VERSION"
+    xmlns:appinfo="MACRO_NS_APPINFO"
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:annotation>

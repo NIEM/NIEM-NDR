@@ -60,16 +60,19 @@ ndr_macros_m4 = src/ndr-macros.m4
 #############################################################################
 # products
 
+conformance_targets = ref ext ins set
+
 # local names of products
 products = \
   niem-ndr-${ndr_version}.html \
   niem-ndr-doc.txt \
-  ndr-rules-conformance-target-ref.sch \
-  ndr-rules-conformance-target-ext.sch \
-  ndr-rules-conformance-target-ins.sch \
-  ndr-rules-conformance-target-set.sch \
+  ${conformance_targets:%=ndr-rules-conformance-target-%.sch} \
+  ${conformance_targets:%=ndr-rules-conformance-target-%.sch.xsl} \
   ndr-functions.xsl \
   ctas-conformant-document.sch \
+  ctas-conformant-document.sch.xsl \
+  appinfo.xsd \
+  structures.xsd \
 
 archive_name = niem-ndr-${ndr_version}-${ndr_date}
 archive_dir = ${tmp_dir}/${archive_name}
@@ -135,6 +138,13 @@ endif
 clean:
 	${RM} -r ${tmp_dir}
 
+.PHONY: distclean #  Remove all artifacts
+distclean: clean
+	${RM} -r ${dependencies_mk}
+
+.PHONY: all #  Generate everything
+all: archive repo 
+
 #############################################################################
 # products
 
@@ -183,12 +193,20 @@ ${tmp_dir}/ndr-rules-conformance-target-ins.sch: ${ndr_doc_xml}
 	@ ${MKDIR_P} ${dir $@}
 	${doc_to_schematron} --blurb-set=ins --out=$@ $<
 
+${tmp_dir}/%.sch.xsl: ${tmp_dir}/%.sch
+	${schematron_compile} --output-file=$@ $<
+
 # end products
 #############################################################################
 # valid
 
 .PHONY: valid #  validate what can be validated
 valid: \
+  ${valid_dir}/macros-eliminated/tmp/ndr-doc.xml \
+  ${valid_dir}/macros-eliminated/tmp/appinfo.xsd \
+  ${valid_dir}/macros-eliminated/tmp/structures.xsd \
+  ${valid_dir}/same/src/appinfo.xsd \
+  ${valid_dir}/same/src/structures.xsd \
   ${valid_dir}/xml/${ndr_doc_xml} \
   ${valid_dir}/doc/${ndr_doc_xml} \
   ${valid_dir}/ndr-rules/${ndr_doc_xml} \
@@ -197,6 +215,10 @@ valid: \
   ${valid_dir}/xml/tmp/ndr-rules-conformance-target-set.sch \
   ${valid_dir}/xml/tmp/ndr-rules-conformance-target-ins.sch \
   ${valid_dir}/xml/tmp/ndr-functions.xsl \
+
+${valid_dir}/macros-eliminated/%: %
+	! grep 'MACRO_' $< > /dev/null
+	@ ${MKDIR_P} ${dir $@} && touch $@
 
 ${valid_dir}/xml/%: %
 	${check_xml} $<
@@ -210,8 +232,28 @@ ${valid_dir}/ndr-rules/%: % tmp/ndr-rules.sch.xsl
 	${schematron_execute} --xslt-file=tmp/ndr-rules.sch.xsl --format=text $<
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
-tmp/ndr-rules.sch.xsl: src/ndr-rules.sch
+${tmp_dir}/ndr-rules.sch.xsl: src/ndr-rules.sch
 	${schematron_compile} --output-file=$@ $<
+
+${valid_dir}/same/src/appinfo.xsd: ${tmp_dir}/appinfo.xsd src/xsd/niem/appinfo/4.0/appinfo.xsd
+	diff -q $^ > /dev/null || ( echo make target \"update-appinfo\" to update. && exit 1 )
+	@ ${MKDIR_P} ${dir $@} && ${touch} $@
+
+.PHONY: update-appinfo
+update-appinfo: ${tmp_dir}/appinfo.xsd
+	${MKDIR_P} src/xsd/niem/appinfo/4.0
+	cp $< src/xsd/niem/appinfo/4.0/appinfo.xsd
+
+${valid_dir}/same/src/structures.xsd: ${tmp_dir}/structures.xsd src/xsd/niem/structures/4.0/structures.xsd
+	diff -q $^ > /dev/null || ( echo make target \"update-structures\" to update. && exit 1 )
+	@ ${MKDIR_P} ${dir $@} && ${touch} $@
+
+.PHONY: update-structures
+update-structures: ${tmp_dir}/structures.xsd
+	${MKDIR_P} src/xsd/niem/structures/4.0
+	cp $< src/xsd/niem/structures/4.0/structures.xsd
+
+
 
 # end valid
 #############################################################################
@@ -239,11 +281,12 @@ ${archive_dir}/%: ${tmp_dir}/%
 
 .PHONY: repo #  install current version into the repository
 repo: before-install-into-repo install-into-repo
+	@ echo Recommended: git tag niem-ndr-${ndr_version}
 
 .PHONY: before-install-into-repo
 before-install-into-repo:
 	@ if [[ ! -d ${repo_dir} ]]; then echo Git repository '${repo_dir}' does not exist; exit 1; fi
-	${find} ${repo_dir} -mindepth 1 ! -path '${repo_dir}/.git' ! -path '${repo_dir}/.git/*' ! -path '${repo_dir}/LICENSE' ! -path '${repo_dir}/README.md' -print0 | xargs -0 ${RM}
+	${find} ${repo_dir} -mindepth 1 ! -path '${repo_dir}/.git' ! -path '${repo_dir}/.git/*' ! -path '${repo_dir}/README.md' -print0 | xargs -0 ${RM}
 
 .PHONY: install-into-repo
 install-into-repo: ${products:%=${repo_dir}/%}
