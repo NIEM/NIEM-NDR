@@ -30,6 +30,8 @@
 
 * Building
 For RC releases, just n
+* document folder layout
+
 * functions used
 
 Functions 

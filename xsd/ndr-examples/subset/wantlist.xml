@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<w:WantList w:release="3.0" w:product="NIEM" w:nillableDefault="true"
+<w:WantList w:release="4.0" w:product="NIEM" w:nillableDefault="true"
   xmlns:w="http://niem.gov/niem/wantlist/2.2"
-  xmlns:ncic="http://release.niem.gov/niem/codes/fbi_ncic/3.0/"
-  xmlns:j="http://release.niem.gov/niem/domains/jxdm/5.0/"
-  xmlns:intel="http://release.niem.gov/niem/domains/intelligence/3.0/"
-  xmlns:nc="http://release.niem.gov/niem/niem-core/3.0/"
-  xmlns:ansi_d20="http://release.niem.gov/niem/codes/ansi_d20/3.0/"
-  xmlns:cbrn="http://release.niem.gov/niem/domains/cbrn/3.0/" xmlns:scr="http://release.niem.gov/niem/domains/screening/3.0/">
+  xmlns:ncic="http://release.niem.gov/niem/codes/fbi_ncic/4.0/"
+  xmlns:j="http://release.niem.gov/niem/domains/jxdm/6.0/"
+  xmlns:intel="http://release.niem.gov/niem/domains/intelligence/4.0/"
+  xmlns:nc="http://release.niem.gov/niem/niem-core/4.0/"
+  xmlns:ansi_d20="http://release.niem.gov/niem/codes/ansi_d20/4.0/"
+  xmlns:cbrn="http://release.niem.gov/niem/domains/cbrn/4.0/" xmlns:scr="http://release.niem.gov/niem/domains/screening/4.0/">
   <w:Element w:name="cbrn:OperatingSchedule" w:isReference="false" w:nillable="false"/>
   <w:Element w:name="intel:DayDate" w:isReference="false" w:nillable="false"/>
   <w:Element w:name="intel:MonthDate" w:isReference="false" w:nillable="false"/>
