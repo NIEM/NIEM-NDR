@@ -30,7 +30,7 @@
       <when test="empty($schema)">
         <message>
           <value-of select="impl:get-location($element)"/>
-          <text>: impl:get-target-namespace(): document element is not xs:schema.</text>
+          <text>: nf:get-target-namespace(): document element is not xs:schema.</text>
         </message>
         <sequence select="()"/>
       </when>
@@ -123,7 +123,7 @@
     <param name="context" as="element()"/>
     <param name="qname" as="xs:QName"/>
     <variable name="namespace-uri" as="xs:anyURI" select="namespace-uri-from-QName($qname)"/>
-    <variable name="schema" as="element(xs:schema)?" select="impl:resolve-namespace($context, $namespace-uri)"/>
+    <variable name="schema" as="element(xs:schema)?" select="nf:resolve-namespace($context, $namespace-uri)"/>
     <choose>
       <when test="empty($schema)">
         <!-- error message has already been dispatched by the catalog resolver -->

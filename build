@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd "$(dirname "$0")"
+
+make distclean
+
+time make all ndr_version=4.0beta2 ndr_date=2017-05-25 depend=build
+
+make distclean
+
+time make -j 8 all ndr_version=4.0beta2 ndr_date=2017-05-25 depend=build
+

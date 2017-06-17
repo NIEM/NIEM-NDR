@@ -16,7 +16,9 @@ dependencies_mk := dependencies.mk
 #HELP:  'build': build new dependencies file
 #HELP:  anything else: if dependencies file exists, include it
 depend = include
-ndr_version = 4.0beta2pre1
+
+# ndr_version is the document & package version; the namespaces are defined within ndr-macros.m4.
+ndr_version = 4.0
 ndr_date = 2017-05-10
 repo_dir = repo
 
@@ -26,7 +28,7 @@ repo_dir = repo
 # RM = rm -f
 
 # # command variable defined by automake
-MKDIR_P = mkdir -p
+mkdir_p = mkdir -p
 
 # # doc-processing
 check_doc = check-doc
@@ -91,7 +93,11 @@ ndr_doc_html := ${tmp_dir}/ndr-doc.html
 ndr_doc_text := ${tmp_dir}/ndr-doc.txt
 
 # the NDR document with macros expanded
-ndr_doc_xml = ${tmp_dir}/ndr-doc.xml 
+ndr_doc_xml = ${tmp_dir}/ndr-doc.xml
+
+# a copy of the niem release, for validation and comparison purposes
+niem_release_checkout_dir = ${tmp_dir}/niem-release
+niem_release_checked_out_token = ${tokens_dir}/niem-release-checked-out
 
 m4_macros = \
   --define=MACRO_NDR_VERSION=${ndr_version} \
@@ -149,48 +155,48 @@ all: archive repo
 # products
 
 ${ndr_doc_html}: ${ndr_doc_xml} ${doc_html_required_files}
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${process_doc} ${process_doc_flags} --in=$< --out=$@
 
 ${ndr_doc_text}: ${ndr_doc_xml} ${doc_text_required_files}
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${process_doc} ${process_doc_flags} --format=text --in=$< --out=$@
 
 ${ndr_doc_xml}: ${ndr_macros_m4} src/ndr-doc.xml.m4 
 	@ ${RM} $@
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${m4} ${m4_flags} ${ndr_macros_m4} src/ndr-doc.xml.m4 > $@
 	@ ${chmod} -w $@
 	@ if ${grep} -n 'MACRO' $@; then printf 'ERROR: unresolved M4 macro.\n' >&2; exit 1; else exit 0; fi
 
 ${tmp_dir}/%: src/%
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${cp} $< $@
 
 ${tmp_dir}/img/%.png.width.txt: ${tmp_dir}/img/%.png
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${identify} -format '%w' $< > $@
 
 ${tmp_dir}/%: src/%.m4 src/ndr-macros.m4 
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${m4} ${m4_flags} src/ndr-macros.m4 $< > $@
 
 # rules schematron # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 ${tmp_dir}/ndr-rules-conformance-target-ref.sch: ${ndr_doc_xml}
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${doc_to_schematron} --blurb-set=ref --out=$@ $<
 
 ${tmp_dir}/ndr-rules-conformance-target-ext.sch: ${ndr_doc_xml}
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${doc_to_schematron} --blurb-set=ext --out=$@ $<
 
 ${tmp_dir}/ndr-rules-conformance-target-set.sch: ${ndr_doc_xml}
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${doc_to_schematron} --blurb-set=set --out=$@ $<
 
 ${tmp_dir}/ndr-rules-conformance-target-ins.sch: ${ndr_doc_xml}
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${doc_to_schematron} --blurb-set=ins --out=$@ $<
 
 ${tmp_dir}/%.sch.xsl: ${tmp_dir}/%.sch
@@ -218,42 +224,30 @@ valid: \
 
 ${valid_dir}/macros-eliminated/%: %
 	! grep 'MACRO_' $< > /dev/null
-	@ ${MKDIR_P} ${dir $@} && touch $@
+	@ ${mkdir_p} ${dir $@} && touch $@
 
 ${valid_dir}/xml/%: %
 	${check_xml} $<
-	@ ${MKDIR_P} ${dir $@} && touch $@
+	@ ${mkdir_p} ${dir $@} && touch $@
 
 ${valid_dir}/doc/%: %
 	${check_doc} ${check_doc_flags} $<
-	@ ${MKDIR_P} ${dir $@} && ${touch} $@
+	@ ${mkdir_p} ${dir $@} && ${touch} $@
 
 ${valid_dir}/ndr-rules/%: % tmp/ndr-rules.sch.xsl
 	${schematron_execute} --xslt-file=tmp/ndr-rules.sch.xsl --format=text $<
-	@ ${MKDIR_P} ${dir $@} && ${touch} $@
+	@ ${mkdir_p} ${dir $@} && ${touch} $@
 
 ${tmp_dir}/ndr-rules.sch.xsl: src/ndr-rules.sch
 	${schematron_compile} --output-file=$@ $<
 
-${valid_dir}/same/src/appinfo.xsd: ${tmp_dir}/appinfo.xsd src/xsd/niem/appinfo/4.0/appinfo.xsd
-	diff -q $^ > /dev/null || ( echo make target \"update-appinfo\" to update. && exit 1 )
-	@ ${MKDIR_P} ${dir $@} && ${touch} $@
+${valid_dir}/same/src/appinfo.xsd: ${tmp_dir}/appinfo.xsd ${niem_release_checked_out_token}
+	diff $< ${niem_release_checkout_dir}/niem/utility/appinfo/4.0/appinfo.xsd
+	@ ${mkdir_p} ${dir $@} && ${touch} $@
 
-.PHONY: update-appinfo
-update-appinfo: ${tmp_dir}/appinfo.xsd
-	${MKDIR_P} src/xsd/niem/appinfo/4.0
-	cp $< src/xsd/niem/appinfo/4.0/appinfo.xsd
-
-${valid_dir}/same/src/structures.xsd: ${tmp_dir}/structures.xsd src/xsd/niem/structures/4.0/structures.xsd
-	diff -q $^ > /dev/null || ( echo make target \"update-structures\" to update. && exit 1 )
-	@ ${MKDIR_P} ${dir $@} && ${touch} $@
-
-.PHONY: update-structures
-update-structures: ${tmp_dir}/structures.xsd
-	${MKDIR_P} src/xsd/niem/structures/4.0
-	cp $< src/xsd/niem/structures/4.0/structures.xsd
-
-
+${valid_dir}/same/src/structures.xsd: ${tmp_dir}/structures.xsd ${niem_release_checked_out_token}
+	diff $< ${niem_release_checkout_dir}/niem/utility/structures/4.0/structures.xsd
+	@ ${mkdir_p} ${dir $@} && ${touch} $@
 
 # end valid
 #############################################################################
@@ -264,20 +258,20 @@ ${archive}: ${products:%=${archive_dir}/%}
 	cd ${tmp_dir} && ${zip} -9 -r ${archive_name}.zip ${archive_name}
 
 ${archive_dir}/niem-ndr-${ndr_version}.html: ${ndr_doc_html}
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${cp} $< $@
 
 ${archive_dir}/niem-ndr-doc.txt: ${ndr_doc_text}
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${cp} $< $@
 
 ${archive_dir}/%: ${tmp_dir}/%
-	@ ${MKDIR_P} ${dir $@}
+	@ ${mkdir_p} ${dir $@}
 	${cp} $< $@
 
 # archive - end
 #############################################################################
-# repo
+# repo : put the NDR into a git repo for publication
 
 .PHONY: repo #  install current version into the repository
 repo: before-install-into-repo install-into-repo
@@ -305,6 +299,19 @@ ${repo_dir}/%: ${tmp_dir}/%
 
 # repo - end
 #############################################################################
+# check out niem release
+
+.PHONY: conr #  check out niem release
+conr ${niem_release_checked_out_token}:
+	${RM} -r ${niem_release_checkout_dir}
+	${RM} ${niem_release_checked_out_token}
+	${mkdir_p} ${niem_release_checkout_dir}
+	git archive \
+	  --remote=${HOME}/r/niem/release/niem-releases \
+	  --prefix=${niem_release_checkout_dir}/ \
+	  niem-4.0rc1 | tar xvf -
+	${mkdir_p} ${dir ${niem_release_checked_out_token}}
+	${touch} ${niem_release_checked_out_token}
 
 #############################################################################
 # put temporary things here

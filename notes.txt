@@ -1,5 +1,25 @@
 # -*-org-*-
 
+* stack: add to top
+* Tasks & issues: sort first to top
+- [X] set up doc version for rc release
+- [ ] sync doc with NIEM 4 release
+  - [ ] checkout niem release to NDR place
+  - [ ] ensure files are same as NIEM release
+    - [ ] structures
+    - [ ] conformance targets
+    - [ ] appinfo
+  - [ ] update schema examples to release
+  - [ ] update instances to validate vs release
+   
+- [ ] add REF rule: thing with representation term "Abstract" must be @abstract=true
+- [ ] Lighten naming rules from MUST to SHOULD
+- [ ] Lighten EXT structural rules
+  - [ ] Stand up testing
+** completed tasks
+- [X] rebuild the make system
+  - [X] Replace the delegated makefile with a single makefile that blocks off unwanted operations in ifneq/endif blocks.
+
 * Document conventions:
 
 1. The user/developer is a "she" / "her", unless there are multiples,
@@ -8,6 +28,8 @@
 2. Only put rules in as "SET" rules if it adds something above &
    beyond the REF/EXT checks. Like add'l cross-schema validations. 
 
+* Building
+For RC releases, just n
 * functions used
 
 Functions 
