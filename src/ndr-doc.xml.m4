@@ -6046,7 +6046,7 @@ rather than their full meanings.</p>
     <ruleSection><title>Component name follows pattern</title>
       <p>Elements in NIEM-conformant schemas are given names that follow a specific pattern. This pattern comes from <ref idref="ISO11179-5"/>.</p>
       <rule applicability="REF EXT" class="Constraint">
-        <p>Except as specified elsewhere in this document, any element or attribute defined within the schema MUST have a name that takes the form:</p>
+        <p>Except as specified elsewhere in this document, any element or attribute defined within the schema SHOULD have a name that takes the form:</p>
         <ul>
           <li><p>Object-class qualifier terms (0 or more).</p></li>
           <li><p>An object class term (1).</p></li>
