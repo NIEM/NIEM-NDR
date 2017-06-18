@@ -2,16 +2,6 @@
 
 * stack: add to top
 * Tasks & issues: sort first to top
-- [X] set up doc version for rc release
-- [X] sync doc with NIEM 4 release
-  - [X] checkout niem release to NDR place
-  - [X] ensure files are same as NIEM release
-    - [X] structures
-    - [X] appinfo
-  - [X] update instances to validate vs release
-  - [X] update schema examples to release
-   
-- [ ] add REF rule: thing with representation term "Abstract" must be @abstract=true
 - [ ] Lighten naming rules from MUST to SHOULD
 - [ ] Lighten EXT structural rules
   - [ ] Stand up testing
@@ -20,6 +10,16 @@
 ** completed tasks
 - [X] rebuild the make system
   - [X] Replace the delegated makefile with a single makefile that blocks off unwanted operations in ifneq/endif blocks.
+- [X] set up doc version for rc release
+- [X] sync doc with NIEM 4 release
+  - [X] checkout niem release to NDR place
+  - [X] ensure files are same as NIEM release
+    - [X] structures
+    - [X] appinfo
+  - [X] update instances to validate vs release
+  - [X] update schema examples to release
+- [X] add REF rule: thing with representation term "Abstract" must be @abstract=true
+
 
 * Document conventions:
 
