@@ -2146,7 +2146,7 @@
       <ruleSection><title>Component name follows ISO 11179 Part 5 Annex A</title>
 
         <rule applicability="REF EXT" class="Constraint">
-          <p>A NIEM component name MUST be formed by applying the informative guidelines and examples detailed
+          <p>A NIEM component name SHOULD be formed by applying the informative guidelines and examples detailed
             in Annex A of <ref idref="ISO11179-5"/>, with exceptions as specified in this document.</p>
         </rule>
 
