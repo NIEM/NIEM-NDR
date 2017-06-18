@@ -28,7 +28,7 @@ repo_dir = repo
 # RM = rm -f
 
 # # command variable defined by automake
-mkdir_p = mkdir -p
+MKDIR_P = mkdir -p
 
 # # doc-processing
 check_doc = check-doc
@@ -64,12 +64,15 @@ ndr_macros_m4 = src/ndr-macros.m4
 
 conformance_targets = ref ext ins set
 
+rules_products = \
+  ${conformance_targets:%=ndr-rules-conformance-target-%.sch} \
+  ${conformance_targets:%=ndr-rules-conformance-target-%.sch.xsl} \
+
 # local names of products
 products = \
   niem-ndr-${ndr_version}.html \
   niem-ndr-doc.txt \
-  ${conformance_targets:%=ndr-rules-conformance-target-%.sch} \
-  ${conformance_targets:%=ndr-rules-conformance-target-%.sch.xsl} \
+  ${rules_products} \
   ndr-functions.xsl \
   ctas-conformant-document.sch \
   ctas-conformant-document.sch.xsl \
@@ -132,7 +135,7 @@ depend: ${dependencies_mk}
 
 -include ${dependencies_mk}
 
-${dependencies_mk}: ${ndr_doc_xml}
+${dependencies_mk}: ${ndr_doc_xml} ${niem_release_checked_out_token}
 	${process_doc} ${process_doc_flags} --format=makedepend --in=$< --out=$@
 else
 ifeq (${wildcard ${dependencies_mk}},${dependencies_mk})
@@ -149,54 +152,57 @@ distclean: clean
 	${RM} -r ${dependencies_mk}
 
 .PHONY: all #  Generate everything
-all: archive repo 
+all: archive repo
+
+.PHONY: rules #  Generate rules
+rules: ${rules_products:%=tmp/%}
 
 #############################################################################
 # products
 
-${ndr_doc_html}: ${ndr_doc_xml} ${doc_html_required_files}
-	@ ${mkdir_p} ${dir $@}
+${ndr_doc_html}: ${ndr_doc_xml} ${doc_html_required_files} ${niem_release_checked_out_token}
+	@ ${MKDIR_P} ${dir $@}
 	${process_doc} ${process_doc_flags} --in=$< --out=$@
 
-${ndr_doc_text}: ${ndr_doc_xml} ${doc_text_required_files}
-	@ ${mkdir_p} ${dir $@}
+${ndr_doc_text}: ${ndr_doc_xml} ${doc_text_required_files} ${niem_release_checked_out_token}
+	@ ${MKDIR_P} ${dir $@}
 	${process_doc} ${process_doc_flags} --format=text --in=$< --out=$@
 
 ${ndr_doc_xml}: ${ndr_macros_m4} src/ndr-doc.xml.m4 
 	@ ${RM} $@
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${m4} ${m4_flags} ${ndr_macros_m4} src/ndr-doc.xml.m4 > $@
 	@ ${chmod} -w $@
 	@ if ${grep} -n 'MACRO' $@; then printf 'ERROR: unresolved M4 macro.\n' >&2; exit 1; else exit 0; fi
 
 ${tmp_dir}/%: src/%
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${cp} $< $@
 
 ${tmp_dir}/img/%.png.width.txt: ${tmp_dir}/img/%.png
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${identify} -format '%w' $< > $@
 
 ${tmp_dir}/%: src/%.m4 src/ndr-macros.m4 
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${m4} ${m4_flags} src/ndr-macros.m4 $< > $@
 
 # rules schematron # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 ${tmp_dir}/ndr-rules-conformance-target-ref.sch: ${ndr_doc_xml}
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${doc_to_schematron} --blurb-set=ref --out=$@ $<
 
 ${tmp_dir}/ndr-rules-conformance-target-ext.sch: ${ndr_doc_xml}
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${doc_to_schematron} --blurb-set=ext --out=$@ $<
 
 ${tmp_dir}/ndr-rules-conformance-target-set.sch: ${ndr_doc_xml}
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${doc_to_schematron} --blurb-set=set --out=$@ $<
 
 ${tmp_dir}/ndr-rules-conformance-target-ins.sch: ${ndr_doc_xml}
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${doc_to_schematron} --blurb-set=ins --out=$@ $<
 
 ${tmp_dir}/%.sch.xsl: ${tmp_dir}/%.sch
@@ -224,30 +230,30 @@ valid: \
 
 ${valid_dir}/macros-eliminated/%: %
 	! grep 'MACRO_' $< > /dev/null
-	@ ${mkdir_p} ${dir $@} && touch $@
+	@ ${MKDIR_P} ${dir $@} && touch $@
 
 ${valid_dir}/xml/%: %
 	${check_xml} $<
-	@ ${mkdir_p} ${dir $@} && touch $@
+	@ ${MKDIR_P} ${dir $@} && touch $@
 
 ${valid_dir}/doc/%: %
 	${check_doc} ${check_doc_flags} $<
-	@ ${mkdir_p} ${dir $@} && ${touch} $@
+	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
 ${valid_dir}/ndr-rules/%: % tmp/ndr-rules.sch.xsl
 	${schematron_execute} --xslt-file=tmp/ndr-rules.sch.xsl --format=text $<
-	@ ${mkdir_p} ${dir $@} && ${touch} $@
+	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
 ${tmp_dir}/ndr-rules.sch.xsl: src/ndr-rules.sch
 	${schematron_compile} --output-file=$@ $<
 
 ${valid_dir}/same/src/appinfo.xsd: ${tmp_dir}/appinfo.xsd ${niem_release_checked_out_token}
 	diff $< ${niem_release_checkout_dir}/niem/utility/appinfo/4.0/appinfo.xsd
-	@ ${mkdir_p} ${dir $@} && ${touch} $@
+	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
 ${valid_dir}/same/src/structures.xsd: ${tmp_dir}/structures.xsd ${niem_release_checked_out_token}
 	diff $< ${niem_release_checkout_dir}/niem/utility/structures/4.0/structures.xsd
-	@ ${mkdir_p} ${dir $@} && ${touch} $@
+	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
 # end valid
 #############################################################################
@@ -258,15 +264,15 @@ ${archive}: ${products:%=${archive_dir}/%}
 	cd ${tmp_dir} && ${zip} -9 -r ${archive_name}.zip ${archive_name}
 
 ${archive_dir}/niem-ndr-${ndr_version}.html: ${ndr_doc_html}
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${cp} $< $@
 
 ${archive_dir}/niem-ndr-doc.txt: ${ndr_doc_text}
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${cp} $< $@
 
 ${archive_dir}/%: ${tmp_dir}/%
-	@ ${mkdir_p} ${dir $@}
+	@ ${MKDIR_P} ${dir $@}
 	${cp} $< $@
 
 # archive - end
@@ -305,12 +311,12 @@ ${repo_dir}/%: ${tmp_dir}/%
 conr ${niem_release_checked_out_token}:
 	${RM} -r ${niem_release_checkout_dir}
 	${RM} ${niem_release_checked_out_token}
-	${mkdir_p} ${niem_release_checkout_dir}
+	${MKDIR_P} ${niem_release_checkout_dir}
 	git archive \
 	  --remote=${HOME}/r/niem/release/niem-releases \
 	  --prefix=${niem_release_checkout_dir}/ \
-	  niem-4.0rc1 | tar xvf -
-	${mkdir_p} ${dir ${niem_release_checked_out_token}}
+	  support-ndr | tar xvf -
+	${MKDIR_P} ${dir ${niem_release_checked_out_token}}
 	${touch} ${niem_release_checked_out_token}
 
 #############################################################################

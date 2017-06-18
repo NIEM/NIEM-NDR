@@ -6960,9 +6960,11 @@ not be given the same name.</p></li>
 	  <rule applicability="REF EXT" id="el-abstract-is-abstract" class="Constraint">
 	    <pre><xmlBlurb memberOf="ref ext" id="xb-el-abstract-is-abstract">
 <sch:pattern>
-  <sch:rule context="xs:element[@name[ends-with(., 'Abstract')]]">
-    <sch:assert test="exists(@abstract) and xs:boolean(@abstract) = true()"
-      >An element declaration with a name that ends in 'Abstract' MUST have the {abstract} property with a value of "true".</sch:assert>
+  <sch:rule context="xs:element[@name]">
+    <sch:report test="not(exists(@abstract[xs:boolean(.) = true()]) 
+                          eq (ends-with(@name, 'Abstract') 
+                              or ends-with(@name, 'AugmentationPoint')
+                              or ends-with(@name, 'Representation')))">An element declaration SHOULD have a name that ends in 'Abstract', 'AugmentationPoint', or 'Representation' if and only if it has the {abstract} property with a value of "true".</sch:report>
   </sch:rule>
 </sch:pattern>
 	    </xmlBlurb></pre>
