@@ -989,15 +989,11 @@
 
       <ruleSection><title>Schema is CTAS-conformant</title>
         <rule applicability="REF EXT" id="is-ctas-conformant-document" class="Constraint">
-          <pre><xmlBlurb id="xb-is-ctas-conformant-document" memberOf="ref ext">
-<sch:pattern>
-  <sch:rule context="*[. is nf:get-document-element(.)]">
-    <sch:report test="true()">The document MUST be a conformant document as defined by the NIEM Conformance Targets Attribute Specification.</sch:report>
-  </sch:rule>
-</sch:pattern>
-          </xmlBlurb></pre>
+          <p>The schema document MUST be a conformant document as defined by the NIEM Conformance Targets
+            Attribute Specification.</p>
         </rule>
-        <p>The term <q>conformant document</q> is defined by MACRO_REF_EXTERNAL(CTAS,MACRO_HREF_CTAS#section_3.2,3.2,Conformance to this Specification). Note that this rule uses <qName>sch:report</qName> to provide a location that must be checked for conformance to an external standard, and does not itself provide any enforcement or checking of the actual rule.</p>
+        <p>The term <q>conformant document</q> is defined by
+          MACRO_REF_EXTERNAL(CTAS,MACRO_HREF_CTAS#section_3.2,3.2,Conformance to this Specification).</p>
       </ruleSection>
 
       <ruleSection><title>Document element has attribute <qName>ct:conformanceTargets</qName></title>
@@ -1976,13 +1972,7 @@
       <ruleSection><title>Document is an XML document</title>
 
       <rule applicability="REF EXT INS" id="well-formed-xml" class="Constraint">
-        <pre><xmlBlurb memberOf="ref ext ins" id="xb-well-formed-xml">
-<sch:pattern>
-  <sch:rule context="*[. is nf:get-document-element(.)]">
-    <sch:report test="true()">The document MUST be an XML document.</sch:report>
-  </sch:rule>
-</sch:pattern>
-        </xmlBlurb></pre>
+        <p>The document MUST be an XML document.</p>
       </rule>
 
       <p>The term <termRef>XML document</termRef> is defined by this document.</p>
@@ -1995,13 +1985,7 @@
       <ruleSection><title>Document uses XML namespaces properly</title>
 
       <rule applicability="REF EXT INS" id="ns-valid" class="Constraint">
-        <pre><xmlBlurb memberOf="ref ext ins" id="xb-ns-valid">
-<sch:pattern>
-  <sch:rule context="*[. is nf:get-document-element(.)]">
-    <sch:report test="true()">The document MUST be namespace-well-formed and namespace-valid.</sch:report>
-  </sch:rule>
-</sch:pattern>
-        </xmlBlurb></pre>
+        <p>The document MUST be namespace-well-formed and namespace-valid.</p>
       </rule>
 
       <p>The terms <em>namespace-well-formed</em> and <em>namespace-valid</em> are normatively defined by
@@ -2014,13 +1998,7 @@
       <title>Conformance to XML Schema</title>
       <ruleSection><title>Document is a schema document</title>
         <rule applicability="REF EXT" id="is-schema-doc" class="Constraint">
-          <pre><xmlBlurb memberOf="ref ext" id="xb-xml-schema-doc">
-<sch:pattern>
-  <sch:rule context="*[. is nf:get-document-element(.)]">
-    <sch:report test="true()">The document MUST be a schema document.</sch:report>
-  </sch:rule>
-</sch:pattern>
-          </xmlBlurb></pre>
+          <p>The document MUST be a schema document.</p>
         </rule>
         <p>This document defines the term <termRef>schema document</termRef>.</p>
 
@@ -3970,14 +3948,8 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         <title>Target namespace is absolute URI</title>
 
         <rule applicability="REF EXT" id="target-ns-is-rfc3986" class="Constraint">
-          <pre><xmlBlurb memberOf="ref ext" id="xb-target-ns-is-rfc3986">
-<sch:pattern>
-  <sch:rule context="xs:schema[exists(@targetNamespace)]">
-    <sch:report test="true()"
-                ><![CDATA[The value of the attribute targetNamespace MUST match the production <absolute-URI> as defined by RFC 3986.]]></sch:report>
-  </sch:rule>
-</sch:pattern>
-          </xmlBlurb></pre>
+          <p><![CDATA[The value of the attribute targetNamespace MUST match the production <absolute-URI> as
+               defined by RFC 3986.]]></p>
         </rule>
 
         <p>Absolute URIs are the only universally meaningful URIs. URIs include
@@ -4869,9 +4841,8 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         <section><title>Code types</title>
 
             <definition term="code type">
-              <p>A <strong>code type</strong> is a NIEM object type with a
-                content model that is constrained by one or more enumeration
-                facets.</p>
+              <p>A <strong>code type</strong> is a NIEM object type for which each simple value carried by the
+              type corresponds to an entry in a list of distinct conceptual entities.</p>
             </definition>
 
             <p>These types represent lists of values, each of which has a known
@@ -4883,30 +4854,36 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
               <rule applicability="REF EXT" id="rule-code-type-name-suffix" class="Constraint">
                 <pre><xmlBlurb id="xb-rule-code-type-name-suffix" memberOf="ref ext">
 <sch:pattern>
-  <sch:rule context="xs:complexType">
-    <sch:let name="has-code-type-name" value="ends-with(@name, 'CodeType')"/>
-    <sch:let name="has-code-type-base" value="
-        exists(xs:simpleContent[
-          exists(xs:*[local-name() = ('extension', 'restriction')
-                      and (ends-with(@base, 'CodeSimpleType')
-                           or ends-with(@base, 'CodeType'))])])"/>
-    <sch:assert test="$has-code-type-name = $has-code-type-base"
-      >A complex type definition MUST have a {name} that ends in 'CodeType' if and only if it has a {base type definition} of a code type or code simple type.</sch:assert>
+  <sch:rule context="xs:complexType[exists(xs:simpleContent[
+                       exists(xs:*[local-name() = ('extension', 'restriction')
+                                   and (ends-with(@base, 'CodeSimpleType')
+                                   or ends-with(@base, 'CodeType'))])])]">
+    <sch:report test="not(ends-with(@name, 'CodeType'))"
+                >A complex type definition a {base type definition} of a code type or code simple type SHOULD have a {name} that ends in 'CodeType'.</sch:report>
   </sch:rule>
 </sch:pattern>
                 </xmlBlurb></pre>
               </rule>
+            </ruleSection>
+
+            <ruleSection>
+              <title>Code type corresponds to a code list</title>
+
+              <rule applicability="REF EXT" id="code-type-has-list" class="Constraint">
+                <p>A complex type SHOULD have a name ending in <q>CodeType</q> if and only if it has a
+                  correspondence to a list of distinct conceptual entities.</p>
+              </rule>
+            </ruleSection>
 
             <p>Using the qualifier <code>Code</code>
               (e.g. <code>CodeType</code>, <code>CodeSimpleType</code>)
-              immediately identifies a type as representing a fixed list of
+              immediately identifies that a data component may carry values from a fixed list of
               codes. These types may be handled in specific ways, as lists of
               codes are expected to have their own lifecycles, including
               versions and periodic updates. Codes may also have responsible
               authorities behind them who provide concrete semantic bindings for
               the code values.</p>
 
-            </ruleSection>
         </section>
         <section><title>Proxy types</title>
 
@@ -6780,9 +6757,8 @@ not be given the same name.</p></li>
           <title>Code simple types</title>
 
           <definition term="code simple type">
-            <p>A <strong>code simple type</strong> is a simple type definition
-              schema component that is constrained by one or more enumeration
-              facets.</p>
+            <p>A <strong>code simple type</strong> is a simple type definition schema component for which each
+              value carried by the type corresponds to an entry in a list of distinct conceptual entities.</p>
         </definition>
 
           <p>These types represent lists of values, each of which has a known
@@ -6799,8 +6775,8 @@ not be given the same name.</p></li>
   <sch:rule context="xs:simpleType[exists(@name)
       and (xs:restriction/xs:enumeration
            or xs:restriction[ends-with(local-name-from-QName(resolve-QName(@base, .)), 'CodeSimpleType')])]">
-    <sch:assert test="ends-with(@name, 'CodeSimpleType')"
-      >A simple type definition schema component that has an enumeration facet or that is derived from a code type MUST have a name that ends in "CodeSimpleType".</sch:assert>
+    <sch:report test="not(ends-with(@name, 'CodeSimpleType'))"
+      >A simple type definition schema component that has an enumeration facet or that is derived from a code simple type SHOULD have a name that ends in "CodeSimpleType".</sch:report>
   </sch:rule>
 </sch:pattern>
               </xmlBlurb></pre>
@@ -6808,28 +6784,17 @@ not be given the same name.</p></li>
           </ruleSection>
 
           <ruleSection>
-            <title>Code simple type has enumerations</title>
+            <title>Code simple type corresponds to a code list</title>
 
-            <rule applicability="REF EXT" id="code-st-has-enum" class="Constraint">
-              <pre><xmlBlurb memberOf="ref ext" id="xb-code-st-has-enum">
-<sch:pattern>
-  <sch:rule context="xs:simpleType[exists(@name) and ends-with(@name, 'CodeSimpleType')]">
-    <sch:assert test="xs:restriction[ends-with(local-name-from-QName(resolve-QName(@base, .)), 'CodeSimpleType')]
-                      or xs:restriction/xs:enumeration
-                      or (for $union in xs:union,
-                             $member-types in $union/@memberTypes return
-                           some $member-type in tokenize(normalize-space($member-types), ' ') satisfies
-                             ends-with(local-name-from-QName(resolve-QName($member-type, $union)), 'CodeSimpleType'))"
-      >A code simple type MUST be derived from a code simple type or have an enumeration facet.</sch:assert>
-  </sch:rule>
-</sch:pattern>
-              </xmlBlurb></pre>
+            <rule applicability="REF EXT" id="code-st-has-list" class="Constraint">
+              <p>A simple type SHOULD have a name ending in <q>CodeSimpleType</q> if and only if it has a
+              correspondence to a list of distinct conceptual entities.</p>
             </rule>
           </ruleSection>
 
           <p>Using the qualifier <code>Code</code>
           (e.g. <code>CodeType</code>, <code>CodeSimpleType</code>) immediately
-          identifies a type as representing a fixed list of codes. These types
+          identifies that a data component may carry values from a fixed list of codes. Such a component
           may be handled in specific ways, as lists of codes are expected to
           have their own lifecycles, including versions and periodic
           updates. Codes may also have responsible authorities behind them who

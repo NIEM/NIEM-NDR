@@ -3,7 +3,7 @@
 * stack: add to top
 * Tasks & issues: sort first to top
 
-- [-] Lighten naming rules from MUST to SHOULD
+- [X] Lighten naming rules from MUST to SHOULD
 
   - [X] Rule 7-5. Component name follows ISO 11179 Part 5 Annex A
   - [X] Rule 10-55. Component name follows pattern
@@ -13,11 +13,13 @@
   - [X] Rule 11-16. Name of element declaration with simple content has representation term
   - [X] Rule 11-17. Name of element declaration with simple content has representation term
   - [X] Rule 11-20. Attribute name uses representation term
-  - [ ] Rule 10-17. Name of code type ends in CodeType
-  - [ ] Rule 11-9 Name of a code simple type has standard suffix
-- [ ] Lighten EXT structural rules
-
+  - [X] Additional name lightening changes:
+    - [X] rule 11-9 Name of a code simple type has standard suffix lightened to SHOULD
+    - [X] rule 11-10 "code simple type has enumerations" lightened
+  - [X] Rule 10-17. Name of code type ends in CodeType
+  - [X] Rule 11-9 Name of a code simple type has standard suffix
 - [ ] Turn off always-firing warning rules
+- [ ] Lighten EXT structural rules
 - [ ] use MACRO_REPRESENTATION_TERM_QUANTITY, and the other like macros, universally across the document. They're only used in some places.
 ** completed tasks: put new at bottom
 - [X] rebuild the make system
@@ -33,6 +35,32 @@
 - [X] add REF rule: thing with representation term "Abstract" must be @abstract=true
 - [X] Stand up testing
 
+* Discuss with NTAC
+** code updates:
+*** complex: 
+- updated definition of "code type"
+  - to: A code type is a NIEM object type for which each simple value carried by the type corresponds to an entry in a list of distinct conceptual entities.
+  - from: A code type is a NIEM object type with a content model that is constrained by one or more enumeration facets.
+- rule 10-17: Name of code type ends in CodeType
+  - from: bidirectional: A complex type definition MUST have a {name} that ends in 'CodeType' if and only if it has a {base type definition} of a code type or code simple type.
+  - to: one-directional: A complex type definition a {base type definition} of a code type or code simple type SHOULD have a {name} that ends in 'CodeType'.
+- new: Rule 10-18. Code type corresponds to a code list
+  - [Rule 10-18] (REF, EXT) (Constraint)
+    - A complex type SHOULD have a name ending in CodeType if and only if it has a correspondence to a list of distinct conceptual entities.
+***  simple 
+    - new definition of "code simple type":
+      - to: A code simple type is a simple type definition schema component for which each value carried by the type corresponds to an entry in a list of distinct conceptual entities.
+      - from: A code simple type is a simple type definition schema component that is constrained by one or more enumeration facets.
+  - new rule (currently 11-10):
+    - Rule 11-10. (REF, EXT) (Constraint) Code simple type corresponds to a code list
+      - A simple type SHOULD have a name ending in CodeSimpleType if and only if it has a correspondence to a list of distinct conceptual entities.
+    - stands down old rule 11-10: Code simple type has enumerations
+** removed always-firing schematron rules
+- Schema is CTAS-conformant
+- Document is a schema document
+- Document uses XML namespaces properly
+- Target namespace is absolute URI
+- Document is an XML document
 * Document conventions:
 
 1. The user/developer is a "she" / "her", unless there are multiples,
