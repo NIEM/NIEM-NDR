@@ -2,23 +2,10 @@
 
 * stack: add to top
 * Tasks & issues: sort first to top
-
-- [X] Lighten naming rules from MUST to SHOULD
-
-  - [X] Rule 7-5. Component name follows ISO 11179 Part 5 Annex A
-  - [X] Rule 10-55. Component name follows pattern
-  - [X] Rule 10-62. Element with simple content has representation term
-  - [X] Rule 10-63. Name has representation term when appropriate
-  - [X] Rule 10-64. Name has representation term only when appropriate
-  - [X] Rule 11-16. Name of element declaration with simple content has representation term
-  - [X] Rule 11-17. Name of element declaration with simple content has representation term
-  - [X] Rule 11-20. Attribute name uses representation term
-  - [X] Additional name lightening changes:
-    - [X] rule 11-9 Name of a code simple type has standard suffix lightened to SHOULD
-    - [X] rule 11-10 "code simple type has enumerations" lightened
-  - [X] Rule 10-17. Name of code type ends in CodeType
-  - [X] Rule 11-9 Name of a code simple type has standard suffix
-- [ ] Turn off always-firing warning rules
+- [ ] investigate if *Code elements have rules that need modification
+  - [ ] *Code could be of any type, since we have new code list spec
+  - [ ] *CodeType for element of *Code would be SHOULD
+  - [ ] are there corresponding rules for attributes?
 - [ ] Lighten EXT structural rules
 - [ ] use MACRO_REPRESENTATION_TERM_QUANTITY, and the other like macros, universally across the document. They're only used in some places.
 ** completed tasks: put new at bottom
@@ -34,6 +21,21 @@
   - [X] update schema examples to release
 - [X] add REF rule: thing with representation term "Abstract" must be @abstract=true
 - [X] Stand up testing
+- [X] Lighten naming rules from MUST to SHOULD
+  - [X] Rule 7-5. Component name follows ISO 11179 Part 5 Annex A
+  - [X] Rule 10-55. Component name follows pattern
+  - [X] Rule 10-62. Element with simple content has representation term
+  - [X] Rule 10-63. Name has representation term when appropriate
+  - [X] Rule 10-64. Name has representation term only when appropriate
+  - [X] Rule 11-16. Name of element declaration with simple content has representation term
+  - [X] Rule 11-17. Name of element declaration with simple content has representation term
+  - [X] Rule 11-20. Attribute name uses representation term
+  - [X] Additional name lightening changes:
+    - [X] rule 11-9 Name of a code simple type has standard suffix lightened to SHOULD
+    - [X] rule 11-10 "code simple type has enumerations" lightened
+  - [X] Rule 10-17. Name of code type ends in CodeType
+  - [X] Rule 11-9 Name of a code simple type has standard suffix
+- [X] Turn off always-firing warning rules
 
 * Discuss with NTAC
 ** code updates:
