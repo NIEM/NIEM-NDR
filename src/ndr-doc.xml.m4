@@ -6278,7 +6278,7 @@ not be given the same name.</p></li>
 
       <ruleSection><title>Element with simple content has representation term</title>
       <rule applicability="REF EXT" class="Constraint" id="rule-csc-has-rep-term">
-        <p>Within the schema, the name of an element declaration that is of simple content MUST use an appropriate representation term as found in <ref idref="table-representation-terms"/>.</p>
+        <p>Within the schema, the name of an element declaration that is of simple content SHOULD use an appropriate representation term as found in <ref idref="table-representation-terms"/>.</p>
       </rule>
       <p>This rule is also supported by <ref idref="rule-ref-el-csc-uses-rep-term"/> and <ref idref="rule-set-el-csc-uses-rep-term"/>, which provide tests that a top-level declaration has a representation term.</p>
       </ruleSection>

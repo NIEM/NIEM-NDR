@@ -5,8 +5,8 @@
 - [-] Lighten naming rules from MUST to SHOULD
 
   - [X] Rule 7-5. Component name follows ISO 11179 Part 5 Annex A
-  - [ ] Rule 10-55. Component name follows pattern
-  - [ ] Rule 10-62. Element with simple content has representation term
+  - [X] Rule 10-55. Component name follows pattern
+  - [X] Rule 10-62. Element with simple content has representation term
   - [ ] Rule 10-63. Name has representation term when appropriate
   - [ ] Rule 10-64. Name has representation term only when appropriate
   - [ ] Rule 11-16. Name of element declaration with simple content has representation term
@@ -19,6 +19,7 @@
   - [ ] Stand up testing
 
 - [ ] Turn off always-firing warning rules
+- [ ] use MACRO_REPRESENTATION_TERM_QUANTITY, and the other like macros, universally across the document. They're only used in some places.
 ** completed tasks
 - [X] rebuild the make system
   - [X] Replace the delegated makefile with a single makefile that blocks off unwanted operations in ifneq/endif blocks.
