@@ -2,6 +2,7 @@
 
 * stack: add to top
 * Tasks & issues: sort first to top
+
 - [-] Lighten naming rules from MUST to SHOULD
 
   - [X] Rule 7-5. Component name follows ISO 11179 Part 5 Annex A
@@ -9,18 +10,16 @@
   - [X] Rule 10-62. Element with simple content has representation term
   - [X] Rule 10-63. Name has representation term when appropriate
   - [X] Rule 10-64. Name has representation term only when appropriate
-  - [ ] Rule 11-16. Name of element declaration with simple content has representation term
-  - [ ] Rule 11-17. Name of element declaration with simple content has representation term
-  - [ ] Rule 11-20. Attribute name uses representation term
+  - [X] Rule 11-16. Name of element declaration with simple content has representation term
+  - [X] Rule 11-17. Name of element declaration with simple content has representation term
+  - [X] Rule 11-20. Attribute name uses representation term
   - [ ] Rule 10-17. Name of code type ends in CodeType
   - [ ] Rule 11-9 Name of a code simple type has standard suffix
-
 - [ ] Lighten EXT structural rules
-  - [ ] Stand up testing
 
 - [ ] Turn off always-firing warning rules
 - [ ] use MACRO_REPRESENTATION_TERM_QUANTITY, and the other like macros, universally across the document. They're only used in some places.
-** completed tasks
+** completed tasks: put new at bottom
 - [X] rebuild the make system
   - [X] Replace the delegated makefile with a single makefile that blocks off unwanted operations in ifneq/endif blocks.
 - [X] set up doc version for rc release
@@ -32,7 +31,7 @@
   - [X] update instances to validate vs release
   - [X] update schema examples to release
 - [X] add REF rule: thing with representation term "Abstract" must be @abstract=true
-
+- [X] Stand up testing
 
 * Document conventions:
 

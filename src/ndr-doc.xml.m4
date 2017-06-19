@@ -6983,9 +6983,9 @@ not be given the same name.</p></li>
                                 and (some $type-qname in resolve-QName(@type, .) satisfies (
                                        nf:get-target-namespace(.) = namespace-uri-from-QName($type-qname)
                                        and nf:resolve-type(., $type-qname)/xs:simpleContent))]">
-    <sch:assert test="some $representation-term in (MACRO_LIST_OF_REPRESENTATION_TERMS, 'MACRO_REPRESENTATION_TERM_LIST') satisfies
-                        ends-with(@name, $representation-term)"
-      >The name of an element declaration that is of simple content MUST use a representation term.</sch:assert>
+    <sch:report test="every $representation-term in (MACRO_LIST_OF_REPRESENTATION_TERMS, 'MACRO_REPRESENTATION_TERM_LIST') satisfies
+                            not(ends-with(@name, $representation-term))"
+      >The name of an element declaration that is of simple content SHOULD use a representation term.</sch:report>
   </sch:rule>
 </sch:pattern>
               </xmlBlurb></pre>
@@ -7008,9 +7008,9 @@ not be given the same name.</p></li>
        and (some $type-qname in resolve-QName(@type, .) satisfies (
               nf:get-target-namespace(.) != namespace-uri-from-QName($type-qname)
               and nf:resolve-type(., $type-qname)/xs:simpleContent))]">
-    <sch:assert test="some $representation-term in (MACRO_LIST_OF_REPRESENTATION_TERMS, 'MACRO_REPRESENTATION_TERM_LIST') satisfies
-                        ends-with(@name, $representation-term)"
-      >the name of an element declaration that is of simple content MUST use a representation term.</sch:assert>
+    <sch:report test="every $representation-term in (MACRO_LIST_OF_REPRESENTATION_TERMS, 'MACRO_REPRESENTATION_TERM_LIST') satisfies
+                            not(ends-with(@name, $representation-term))"
+      >the name of an element declaration that is of simple content SHOULD use a representation term.</sch:report>
   </sch:rule>
 </sch:pattern>
               </xmlBlurb></pre>
@@ -7018,8 +7018,6 @@ not be given the same name.</p></li>
 
             <p>Representation terms are defined by <ref idref="table-representation-terms"/>. This rule supports <ref idref="rule-csc-has-rep-term"/>.</p>
           </ruleSection>
-
-
 
         </section>
       </section>
@@ -7066,9 +7064,9 @@ not be given the same name.</p></li>
             <pre><xmlBlurb memberOf="ref ext" id="xb-att-name-uses-rep-term">
 <sch:pattern>
   <sch:rule context="xs:attribute[exists(@name)]">
-    <sch:assert test="some $representation-term in (MACRO_LIST_OF_REPRESENTATION_TERMS, 'MACRO_REPRESENTATION_TERM_LIST') satisfies
-                        ends-with(@name, $representation-term)"
-                >An attribute name MUST end with a representation term.</sch:assert>
+    <sch:report test="every $representation-term in (MACRO_LIST_OF_REPRESENTATION_TERMS, 'MACRO_REPRESENTATION_TERM_LIST') satisfies
+                            not(ends-with(@name, $representation-term))"
+                >An attribute name SHOULD end with a representation term.</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7274,8 +7272,8 @@ not be given the same name.</p></li>
       >The data definition for an augmentation point element SHOULD begin with standard opening phrase "an augmentation point...".</sch:report>
   </sch:rule>
   <sch:rule context="xs:element[ends-with(@name, 'Augmentation')]/xs:annotation/xs:documentation[1]">
-    <sch:report test="not(some $phrase in ('supplements ', 'additional information about ')
-                            satisfies starts-with(lower-case(normalize-space(.)), $phrase))"
+    <sch:report test="every $phrase in ('supplements ', 'additional information about ')
+                      satisfies not(starts-with(lower-case(normalize-space(.)), $phrase))"
       >The data definition for an augmentation element SHOULD begin with the standard opening phrase "supplements..." or "additional information about...".</sch:report>
   </sch:rule>
   <sch:rule context="xs:element[ends-with(@name, 'Metadata')]/xs:annotation/xs:documentation[1]">
