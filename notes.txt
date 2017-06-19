@@ -2,6 +2,7 @@
 
 * stack: add to top
 * Tasks & issues: sort first to top
+- [ ] stand up NIEM 4 subset schema for validation
 - [ ] investigate if *Code elements have rules that need modification
   - [ ] *Code could be of any type, since we have new code list spec
   - [ ] *CodeType for element of *Code would be SHOULD
