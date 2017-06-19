@@ -6285,7 +6285,7 @@ not be given the same name.</p></li>
 
       <ruleSection><title>Name has representation term when appropriate</title>
       <rule applicability="REF EXT" class="Constraint">
-        <p>Within the schema, the name of an element declaration that is of complex content, and that corresponds to a concept listed in <ref idref="table-representation-terms"/>, MUST use a representation term from that table.</p>
+        <p>Within the schema, the name of an element declaration that is of complex content, and that corresponds to a concept listed in <ref idref="table-representation-terms"/>, SHOULD use a representation term from that table.</p>
       </rule>
 
       <p>An element that represents a value listed in the table should have a representation term. It should do
@@ -6297,7 +6297,7 @@ not be given the same name.</p></li>
 
       <ruleSection><title>Name has representation term only when appropriate</title>
       <rule applicability="REF EXT" class="Constraint">
-        <p>Within the schema, the name of an element declaration that is of complex content and that does not correspond to a concept listed in <ref idref="table-representation-terms"/> MUST NOT use a representation term.</p>
+        <p>Within the schema, the name of an element declaration that is of complex content and that does not correspond to a concept listed in <ref idref="table-representation-terms"/> SHOULD NOT use a representation term.</p>
       </rule>
       </ruleSection>
 

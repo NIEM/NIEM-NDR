@@ -7,8 +7,8 @@
   - [X] Rule 7-5. Component name follows ISO 11179 Part 5 Annex A
   - [X] Rule 10-55. Component name follows pattern
   - [X] Rule 10-62. Element with simple content has representation term
-  - [ ] Rule 10-63. Name has representation term when appropriate
-  - [ ] Rule 10-64. Name has representation term only when appropriate
+  - [X] Rule 10-63. Name has representation term when appropriate
+  - [X] Rule 10-64. Name has representation term only when appropriate
   - [ ] Rule 11-16. Name of element declaration with simple content has representation term
   - [ ] Rule 11-17. Name of element declaration with simple content has representation term
   - [ ] Rule 11-20. Attribute name uses representation term
