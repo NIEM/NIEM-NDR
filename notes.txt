@@ -2,9 +2,11 @@
 
 * stack: add to top
 * Tasks & issues: sort first to top
-- [X] Add rule for *Code elements and attributes
-  - [X] add rule that element of CodeType should be *Code
-  - [X] add rule that attribute of CodeSimpleType should be *Code
+- [ ] allow @fixed
+- [ ] add Schematron for rules without Schematron
+- [ ] eliminate use of the root() function, since it breaks contesa
+- [ ] add check: any component in the target namespace MUST be declared within the schema
+- [ ] break up huge opening phrases rule
 - [ ] id / ref / @uri resolution & unification
 - [ ] Lighten EXT structural rules
 - [ ] use MACRO_REPRESENTATION_TERM_QUANTITY, and the other like macros, universally across the document. They're only used in some places.
@@ -37,6 +39,9 @@
   - [X] Rule 11-9 Name of a code simple type has standard suffix
 - [X] Turn off always-firing warning rules
 - [X] stand up NIEM 4 subset schema for validation
+- [X] Add rule for *Code elements and attributes
+  - [X] add rule that element of CodeType should be *Code
+  - [X] add rule that attribute of CodeSimpleType should be *Code
 
 * Agendas: discuss with:
 ** NTAC
