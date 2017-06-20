@@ -2,9 +2,9 @@
 
 * stack: add to top
 * Tasks & issues: sort first to top
-- [ ] Add rule for *Code elements and attributes
-  - [ ] add rule that element of CodeType should be *Code
-  - [ ] add rule that attribute of CodeSimpleType should be *Code
+- [X] Add rule for *Code elements and attributes
+  - [X] add rule that element of CodeType should be *Code
+  - [X] add rule that attribute of CodeSimpleType should be *Code
 - [ ] id / ref / @uri resolution & unification
 - [ ] Lighten EXT structural rules
 - [ ] use MACRO_REPRESENTATION_TERM_QUANTITY, and the other like macros, universally across the document. They're only used in some places.
