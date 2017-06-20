@@ -54,6 +54,7 @@ schematron_execute = schematron-execute
 sed = sed
 touch = touch
 zip = zip
+get_newest = get-newest
 
 # source paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -318,6 +319,23 @@ conr ${niem_release_checked_out_token}:
 	  support-ndr | tar xvf -
 	${MKDIR_P} ${dir ${niem_release_checked_out_token}}
 	${touch} ${niem_release_checked_out_token}
+
+#############################################################################
+# udpate NIEM subset schemas from ~/Downloads/Subset...
+
+uss=false
+ifneq (${uss},false)
+latest_subset = ${shell ${get_newest} ${wildcard ~/Downloads/Subset_??-??-????_????.zip}}
+
+.PHONY: uss #  Update Schema Subset
+uss: ${tokens_dir}/update-schema-subset
+
+${tokens_dir}/update-schema-subset: ${latest_subset}
+	${RM} -r xsd/ndr-examples/subset
+	${MKDIR_P} xsd/ndr-examples/subset
+	unzip -d xsd/ndr-examples/subset ${latest_subset}
+
+endif
 
 #############################################################################
 # put temporary things here

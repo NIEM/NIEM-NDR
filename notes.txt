@@ -2,11 +2,15 @@
 
 * stack: add to top
 * Tasks & issues: sort first to top
-- [ ] stand up NIEM 4 subset schema for validation
+- [X] stand up NIEM 4 subset schema for validation
+
+- [ ] Did Representations get screwed up? Now they're "RepresentationAbstract"?
+
 - [ ] investigate if *Code elements have rules that need modification
   - [ ] *Code could be of any type, since we have new code list spec
   - [ ] *CodeType for element of *Code would be SHOULD
   - [ ] are there corresponding rules for attributes?
+- [ ] id / ref / @uri resolution & unification
 - [ ] Lighten EXT structural rules
 - [ ] use MACRO_REPRESENTATION_TERM_QUANTITY, and the other like macros, universally across the document. They're only used in some places.
 ** completed tasks: put new at bottom
