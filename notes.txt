@@ -2,10 +2,6 @@
 
 * stack: add to top
 * Tasks & issues: sort first to top
-- [X] stand up NIEM 4 subset schema for validation
-
-- [ ] Did Representations get screwed up? Now they're "RepresentationAbstract"?
-
 - [ ] investigate if *Code elements have rules that need modification
   - [ ] *Code could be of any type, since we have new code list spec
   - [ ] *CodeType for element of *Code would be SHOULD
@@ -41,10 +37,12 @@
   - [X] Rule 10-17. Name of code type ends in CodeType
   - [X] Rule 11-9 Name of a code simple type has standard suffix
 - [X] Turn off always-firing warning rules
+- [X] stand up NIEM 4 subset schema for validation
 
-* Discuss with NTAC
-** code updates:
-*** complex: 
+* Agendas: discuss with:
+** NTAC
+*** code updates:
+**** complex: 
 - updated definition of "code type"
   - to: A code type is a NIEM object type for which each simple value carried by the type corresponds to an entry in a list of distinct conceptual entities.
   - from: A code type is a NIEM object type with a content model that is constrained by one or more enumeration facets.
@@ -54,7 +52,7 @@
 - new: Rule 10-18. Code type corresponds to a code list
   - [Rule 10-18] (REF, EXT) (Constraint)
     - A complex type SHOULD have a name ending in CodeType if and only if it has a correspondence to a list of distinct conceptual entities.
-***  simple 
+****  simple 
     - new definition of "code simple type":
       - to: A code simple type is a simple type definition schema component for which each value carried by the type corresponds to an entry in a list of distinct conceptual entities.
       - from: A code simple type is a simple type definition schema component that is constrained by one or more enumeration facets.
@@ -62,12 +60,15 @@
     - Rule 11-10. (REF, EXT) (Constraint) Code simple type corresponds to a code list
       - A simple type SHOULD have a name ending in CodeSimpleType if and only if it has a correspondence to a list of distinct conceptual entities.
     - stands down old rule 11-10: Code simple type has enumerations
-** removed always-firing schematron rules
+*** removed always-firing schematron rules
 - Schema is CTAS-conformant
 - Document is a schema document
 - Document uses XML namespaces properly
 - Target namespace is absolute URI
 - Document is an XML document
+** CDM
+- [ ] Did Representations get screwed up? Now they're "RepresentationAbstract"?
+
 * Document conventions:
 
 1. The user/developer is a "she" / "her", unless there are multiples,
