@@ -4875,6 +4875,20 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
               </rule>
             </ruleSection>
 
+            <ruleSection>
+              <title>Element of code type has code representation term</title>
+              <rule applicability="REF EXT" id="rule-element-of-code-type-has-code-rep-term" class="Constraint">
+                <pre><xmlBlurb id="xb-rule-element-of-code-type-has-code-rep-term" memberOf="ref ext">
+<sch:pattern>
+  <sch:rule context="xs:element[exists(@name) and exists(@type) and ends-with(@type, 'CodeType')]">
+    <sch:report test="not(ends-with(@name, 'Code'))"
+      >An element with a type that is a code type SHOULD have a name with representation term "Code"</sch:report>
+  </sch:rule>
+</sch:pattern>
+                </xmlBlurb></pre>
+              </rule>
+            </ruleSection>
+
             <p>Using the qualifier <code>Code</code>
               (e.g. <code>CodeType</code>, <code>CodeSimpleType</code>)
               immediately identifies that a data component may carry values from a fixed list of
@@ -6789,6 +6803,20 @@ not be given the same name.</p></li>
             <rule applicability="REF EXT" id="code-st-has-list" class="Constraint">
               <p>A simple type SHOULD have a name ending in <q>CodeSimpleType</q> if and only if it has a
               correspondence to a list of distinct conceptual entities.</p>
+            </rule>
+          </ruleSection>
+
+          <ruleSection>
+            <title>Attribute of code simple type has code representation term</title>
+            <rule applicability="REF EXT" id="rule-attribute-of-code-simple-type-has-code-rep-term" class="Constraint">
+              <pre><xmlBlurb id="xb-rule-attribute-of-code-simple-type-has-code-rep-term" memberOf="ref ext">
+<sch:pattern>
+  <sch:rule context="xs:attribute[exists(@name) and exists(@type) and ends-with(@type, 'CodeSimpleType')]">
+    <sch:report test="not(ends-with(@name, 'Code'))"
+      >An attribute with a type that is a code simple type SHOULD have a name with representation term "Code"</sch:report>
+  </sch:rule>
+</sch:pattern>
+              </xmlBlurb></pre>
             </rule>
           </ruleSection>
 
