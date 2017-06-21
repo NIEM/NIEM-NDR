@@ -2,6 +2,7 @@
 
 * stack: add to top
 * Tasks & issues: sort first to top
+- [ ] Handwave to code lists specification @ code type, code simple type, to explain to someone how she might specify that code types have codes.
 - [ ] allow @fixed
 - [ ] add Schematron for rules without Schematron
 - [ ] eliminate use of the root() function, since it breaks contesa

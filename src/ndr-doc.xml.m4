@@ -4859,7 +4859,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
                                    and (ends-with(@base, 'CodeSimpleType')
                                    or ends-with(@base, 'CodeType'))])])]">
     <sch:report test="not(ends-with(@name, 'CodeType'))"
-                >A complex type definition a {base type definition} of a code type or code simple type SHOULD have a {name} that ends in 'CodeType'.</sch:report>
+                >A complex type definition with a {base type definition} of a code type or code simple type SHOULD have a {name} that ends in 'CodeType'.</sch:report>
   </sch:rule>
 </sch:pattern>
                 </xmlBlurb></pre>
