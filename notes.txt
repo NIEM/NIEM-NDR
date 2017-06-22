@@ -76,11 +76,12 @@
 
 * Document conventions:
 
-1. The user/developer is a "she" / "her", unless there are multiples,
-   in which cases the 2nd may be a "he".
+1. The user/developer is a "she" / "her", unless there are multiples, in which cases the 2nd may be a "he".
+2. Only put rules in as "SET" rules if it adds something above & beyond the REF/EXT checks. Like add'l cross-schema validations. Or if it needs to be checked on files that aren't REF/EXT, like external schemas.
+3. Keep document references in Zotero
+   1. Enter niem specs as type 'document'
+   2. Generate citations as "Chicago Manual of Style 16th edition (full note)"
 
-2. Only put rules in as "SET" rules if it adds something above &
-   beyond the REF/EXT checks. Like add'l cross-schema validations. 
 
 * Building
 For RC releases, just n
@@ -140,7 +141,7 @@ complex types by name, in conformant schema:
       - xs:
     - xs:element
 
-* References
+* XML Schema References
 
   xs:simpleType/xs:restriction/@base = simpleType
   xs:complextype/xs:{restriction,extension}/@base = type

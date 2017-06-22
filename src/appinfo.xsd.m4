@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <xs:schema
     targetNamespace="MACRO_NS_APPINFO"
-    version="MACRO_NDR_VERSION"
+    version="4.0"
     xmlns:appinfo="MACRO_NS_APPINFO"
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
 

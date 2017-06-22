@@ -18,8 +18,9 @@ dependencies_mk := dependencies.mk
 depend = include
 
 # ndr_version is the document & package version; the namespaces are defined within ndr-macros.m4.
-ndr_version = 4.0
-ndr_date = 2017-05-10
+ndr_version = 4.0beta3
+ndr_date_value := ${shell date --reference=src/ndr-doc.xml.m4 +%Y-%m-%d}
+ndr_date = ${ndr_date_value}
 repo_dir = repo
 
 # command paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

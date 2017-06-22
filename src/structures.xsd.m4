@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <xs:schema
     targetNamespace="MACRO_NS_STRUCTURES"
-    version="MACRO_NDR_VERSION"
+    version="4.0"
     xmlns:structures="MACRO_NS_STRUCTURES"
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
 

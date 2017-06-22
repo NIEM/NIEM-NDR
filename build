@@ -2,7 +2,5 @@
 
 cd "$(dirname "$0")"
 
-date=$(date --reference=src/ndr-doc.xml.m4 +%Y-%m-%d)
-
-time make -j 8 valid all depend=build ndr_version=4.0 ndr_date=${date}
+time make -j 8 valid all depend=build
 
