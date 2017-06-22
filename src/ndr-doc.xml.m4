@@ -4850,6 +4850,11 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
               meaningful text or may be a string of alphanumeric identifiers
               that represent abbreviations for literals.</p>
 
+            <p>Many code types have simple content composed of <qName>xs:enumeration</qName> values. Code types
+              may also be constructed using the <em><a href="MACRO_HREF_CODE_LISTS">NIEM Code Lists
+              Specification</a></em> <ref idref="code-lists-spec"/>, which supports code lists defined using a
+              variety of methods, including CSV spreadsheets.</p>
+
             <ruleSection><title>Name of code type ends in <q>CodeType</q></title>
               <rule applicability="REF EXT" id="rule-code-type-name-suffix" class="Constraint">
                 <pre><xmlBlurb id="xb-rule-code-type-name-suffix" memberOf="ref ext">
@@ -4864,6 +4869,10 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 </sch:pattern>
                 </xmlBlurb></pre>
               </rule>
+
+              <p>See <ref idref="section-code-simple-type"/> for the definition of <termRef>code simple
+              type</termRef>.</p>
+
             </ruleSection>
 
             <ruleSection>
@@ -6767,7 +6776,7 @@ not be given the same name.</p></li>
             </rule>
           </ruleSection>
         </section>
-        <section>
+        <section id="section-code-simple-type">
           <title>Code simple types</title>
 
           <definition term="code simple type">
@@ -6779,6 +6788,11 @@ not be given the same name.</p></li>
             meaning beyond the text representation. These values may be
             meaningful text or may be a string of alphanumeric identifiers that
             represent abbreviations for literals.</p>
+
+          <p>Many code simple types are composed of <qName>xs:enumeration</qName> values. Code simple types may
+            also be constructed using the <em><a href="MACRO_HREF_CODE_LISTS">NIEM Code Lists
+            Specification</a></em> <ref idref="code-lists-spec"/>, which supports code lists defined using a
+            variety of methods, including CSV spreadsheets.</p>
 
           <ruleSection>
             <title>Name of a code simple type has standard suffix</title>
@@ -8021,6 +8035,11 @@ not be given the same name.</p></li>
     </reference>
     <reference id="N-ary">
       <p><q>Defining N-ary Relations on the Semantic Web</q>, W3C Working Group Note, 12 April 2006. Available from <link>MACRO_HREF_NARY/</link>.</p>
+    </reference>
+    <reference id="code-lists-spec" label="Code Lists">
+      <p>Webb Roberts. <q>NIEM Code Lists Specification.</q> NIEM Technical Architecture Committee (NTAC), June
+      20, 2016. Available from <link>MACRO_HREF_CODE_LISTS</link>.
+</p>
     </reference>
     <reference id="OED">
       <p><q>Oxford English Dictionary, Third Edition</q>, Oxford University Press, November 2010. <link>http://dictionary.oed.com/</link>.</p>

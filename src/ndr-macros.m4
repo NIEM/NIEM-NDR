@@ -16,7 +16,8 @@ m4_define([[[MACRO_HREF_XML_SCHEMA_2]]],[[[http://www.w3.org/TR/2004/REC-xmlsche
 m4_define([[[MACRO_HREF_XML]]],[[[http://www.w3.org/TR/2008/REC-xml-20081126/]]])m4_dnl
 m4_define([[[MACRO_HREF_XML_INFOSET]]],[[[http://www.w3.org/TR/2004/REC-xml-infoset-20040204/]]])m4_dnl
 m4_define([[[MACRO_HREF_XML_NAMESPACES]]],[[[http://www.w3.org/TR/2009/REC-xml-names-20091208/]]])m4_dnl	
-m4_define([[[MACRO_HREF_CTAS]]],[[[http://reference.niem.gov/niem/specification/conformance-targets-attribute/3.0/NIEM-CTAS-3.0-2014-07-31.html]]])m4_dnl	
+m4_define([[[MACRO_HREF_CTAS]]],[[[http://reference.niem.gov/niem/specification/conformance-targets-attribute/3.0/NIEM-CTAS-3.0-2014-07-31.html]]])m4_dnl
+m4_define([[[MACRO_HREF_CODE_LISTS]]],[[[https://reference.niem.gov/niem/specification/code-lists/1.0/niem-code-lists-1.0-2016-06-20.html]]])m4_dnl
 m4_define([[[MACRO_HREF_NARY]]],[[[http://www.w3.org/TR/2006/NOTE-swbp-n-aryRelations-20060412/]]])m4_dnl
 m4_define([[[MACRO_HREF_RFC_3986]]],[[[http://tools.ietf.org/html/rfc3986]]])m4_dnl
 m4_dnl

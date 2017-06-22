@@ -2,7 +2,6 @@
 
 * stack: add to top
 * Tasks & issues: sort first to top
-- [ ] Handwave to code lists specification @ code type, code simple type, to explain to someone how she might specify that code types have codes.
 - [ ] allow @fixed
 - [ ] add Schematron for rules without Schematron
 - [ ] eliminate use of the root() function, since it breaks contesa
@@ -43,6 +42,7 @@
 - [X] Add rule for *Code elements and attributes
   - [X] add rule that element of CodeType should be *Code
   - [X] add rule that attribute of CodeSimpleType should be *Code
+- [X] Handwave to code lists specification @ code type, code simple type, to explain to someone how she might specify that code types have codes.
 
 * Agendas: discuss with:
 ** NTAC
@@ -81,7 +81,6 @@
 3. Keep document references in Zotero
    1. Enter niem specs as type 'document'
    2. Generate citations as "Chicago Manual of Style 16th edition (full note)"
-
 
 * Building
 For RC releases, just n
