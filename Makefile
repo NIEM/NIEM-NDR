@@ -44,6 +44,7 @@ check_xml = check-xml
 chmod = chmod
 cp = cp
 find = find
+get_newest = get-newest
 grep = grep
 head = head
 identify = identify
@@ -55,7 +56,6 @@ schematron_execute = schematron-execute
 sed = sed
 touch = touch
 zip = zip
-get_newest = get-newest
 
 # source paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -69,6 +69,7 @@ conformance_targets = ref ext ins set
 rules_products = \
   ${conformance_targets:%=ndr-rules-conformance-target-%.sch} \
   ${conformance_targets:%=ndr-rules-conformance-target-%.sch.xsl} \
+  ndr-id-map.xml \
 
 # local names of products
 products = \
@@ -209,6 +210,10 @@ ${tmp_dir}/ndr-rules-conformance-target-ins.sch: ${ndr_doc_xml}
 
 ${tmp_dir}/%.sch.xsl: ${tmp_dir}/%.sch
 	${schematron_compile} --output-file=$@ $<
+
+${tmp_dir}/ndr-id-map.xml: ${ndr_doc_xml} ${tmp_dir}/get-ndr-id-map.xsl
+	@ ${MKDIR_P} ${dir $@}
+	${process_doc} ${process_doc_flags} --format=rules-id-map --in=$< --out=$@
 
 # end products
 #############################################################################
