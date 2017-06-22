@@ -2,7 +2,10 @@
 
 * stack: add to top
 * Tasks & issues: sort first to top
-- [ ] allow @fixed
+- [-] allow @fixed
+  - [X] investigate valid / invalid use cases
+  - [ ] get tests running
+  - [ ] check rules
 - [ ] add Schematron for rules without Schematron
 - [ ] eliminate use of the root() function, since it breaks contesa
 - [ ] add check: any component in the target namespace MUST be declared within the schema
