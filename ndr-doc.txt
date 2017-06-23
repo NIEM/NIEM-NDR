@@ -1,8 +1,8 @@
 National Information Exchange Model Naming and Design Rules
 
-Version 4.0alpha1
+Version 4.0beta1
 
-January 31, 2017
+March 31, 2017
 
 NIEM Technical Architecture Committee (NTAC)
 
@@ -3694,9 +3694,9 @@ Rule 10-18. Proxy type has designated structure
 
       <sch:pattern>
         <sch:rule context="xs:complexType[some $name in @name,
-                                               $extension in xs:simpleContent/xs:extension,
-                                               $base-qname in resolve-QName($extension/@base, $extension) satisfies
-                                            $base-qname = QName('http://www.w3.org/2001/XMLSchema', @name)]">
+                                          $extension in xs:simpleContent/xs:extension,
+                                          $base-qname in resolve-QName($extension/@base, $extension) satisfies
+                                          $base-qname = QName('http://www.w3.org/2001/XMLSchema', $name)]">
           <sch:assert test="xs:simpleContent[
                               xs:extension[
                                 empty(xs:attribute)
@@ -4689,7 +4689,9 @@ Rule 10-61. Redundant term in name is omitted
 
       |Name|A word or phrase that constitutes the distinctive designation of a person, place, thing, or concept.
 
-      |List|A sequence of values. This representation term is used in tandem with another of the listed representation terms.
+      List||A sequence of values. This representation term is used in tandem with another of the listed representation terms.
+
+      Abstract||An element that may represent a concept, rather than a concrete property. This representation term may be used in tandem with another of the listed representation terms.
 
 Rule 10-62. Element with simple content has representation term
 
@@ -4925,9 +4927,9 @@ Rule 11-1. Name of type ends in "Type"
 
       <sch:pattern>
         <sch:rule context="xs:complexType[some $name in @name,
-                                               $extension in xs:simpleContent/xs:extension,
-                                               $base-qname in resolve-QName($extension/@base, $extension) satisfies
-                                            $base-qname = QName('http://www.w3.org/2001/XMLSchema', @name)]">
+                                          $extension in xs:simpleContent/xs:extension,
+                                          $base-qname in resolve-QName($extension/@base, $extension) satisfies
+                                          $base-qname = QName('http://www.w3.org/2001/XMLSchema', $name)]">
           <sch:report test="false()">The name of a proxy type does not end in "Type".</sch:report>
         </sch:rule>
         <sch:rule context="xs:*[(self::xs:simpleType or self::xs:complexType) and exists(@name)]">
@@ -4946,9 +4948,9 @@ Rule 11-2. Name of type other than proxy type is in upper camel case
 
       <sch:pattern>
         <sch:rule context="xs:complexType[some $name in @name,
-                                               $extension in xs:simpleContent/xs:extension,
-                                               $base-qname in resolve-QName($extension/@base, $extension) satisfies
-                                            $base-qname = QName('http://www.w3.org/2001/XMLSchema', @name)]">
+                                          $extension in xs:simpleContent/xs:extension,
+                                          $base-qname in resolve-QName($extension/@base, $extension) satisfies
+                                          $base-qname = QName('http://www.w3.org/2001/XMLSchema', $name)]">
           <sch:report test="false()">The name of a proxy type is not upper camel case.</sch:report>
         </sch:rule>
         <sch:rule context="xs:*[(self::xs:simpleType or self::xs:complexType) and exists(@name)]">

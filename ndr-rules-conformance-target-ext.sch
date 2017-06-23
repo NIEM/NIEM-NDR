@@ -587,7 +587,7 @@
 </sch:pattern>
                 
 <sch:pattern id="rule_10-18"><sch:title>Proxy type has designated structure</sch:title>
-  <sch:rule context="xs:complexType[some $name in @name,                                          $extension in xs:simpleContent/xs:extension,                                          $base-qname in resolve-QName($extension/@base, $extension) satisfies                                       $base-qname = QName('http://www.w3.org/2001/XMLSchema', @name)]">
+  <sch:rule context="xs:complexType[some $name in @name,                                     $extension in xs:simpleContent/xs:extension,                                     $base-qname in resolve-QName($extension/@base, $extension) satisfies                                     $base-qname = QName('http://www.w3.org/2001/XMLSchema', $name)]">
     <sch:assert test="xs:simpleContent[                         xs:extension[                           empty(xs:attribute)                           and count(xs:attributeGroup) = 1                           and xs:attributeGroup[                                 resolve-QName(@ref, .) = xs:QName('structures:SimpleObjectAttributeGroup')]]]">Rule 10-18: A proxy type MUST have the designated structure. It MUST use xs:extension. It MUST NOT use xs:attribute. It MUST include exactly one xs:attributeGroup reference, which must be to structures:SimpleObjectAttributeGroup.</sch:assert>
   </sch:rule>
 </sch:pattern>
@@ -720,7 +720,7 @@
 </sch:pattern>
           
 <sch:pattern id="rule_11-1"><sch:title>Name of type ends in "Type"</sch:title>
-  <sch:rule context="xs:complexType[some $name in @name,                                          $extension in xs:simpleContent/xs:extension,                                          $base-qname in resolve-QName($extension/@base, $extension) satisfies                                       $base-qname = QName('http://www.w3.org/2001/XMLSchema', @name)]">
+  <sch:rule context="xs:complexType[some $name in @name,                                     $extension in xs:simpleContent/xs:extension,                                     $base-qname in resolve-QName($extension/@base, $extension) satisfies                                     $base-qname = QName('http://www.w3.org/2001/XMLSchema', $name)]">
     <sch:report test="false()">Rule 11-1: The name of a proxy type does not end in "Type".</sch:report>
   </sch:rule>
   <sch:rule context="xs:*[(self::xs:simpleType or self::xs:complexType) and exists(@name)]">
@@ -729,7 +729,7 @@
 </sch:pattern>
           
 <sch:pattern id="rule_11-2"><sch:title>Name of type other than proxy type is in upper camel case</sch:title>
-  <sch:rule context="xs:complexType[some $name in @name,                                          $extension in xs:simpleContent/xs:extension,                                          $base-qname in resolve-QName($extension/@base, $extension) satisfies                                       $base-qname = QName('http://www.w3.org/2001/XMLSchema', @name)]">
+  <sch:rule context="xs:complexType[some $name in @name,                                     $extension in xs:simpleContent/xs:extension,                                     $base-qname in resolve-QName($extension/@base, $extension) satisfies                                     $base-qname = QName('http://www.w3.org/2001/XMLSchema', $name)]">
     <sch:report test="false()">Rule 11-2: The name of a proxy type is not upper camel case.</sch:report>
   </sch:rule>
   <sch:rule context="xs:*[(self::xs:simpleType or self::xs:complexType) and exists(@name)]">

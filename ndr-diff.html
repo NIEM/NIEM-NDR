@@ -34,9 +34,9 @@ National Information Exchange Model Naming and Design Rules
 
 Version <a name="delta1"/><a href="#delta2"><span class="old">3</span></a> <a name="delta2"/><a href="#delta3"><span class="new">4</span></a>.<a name="delta3"/><a href="#delta4"><span class="old">0</span></a>
 <a name="delta4"/><a href="#delta5"><span class="old"/></a>
-<a name="delta5"/><a href="#delta6"><span class="old">July</span></a><a name="delta6"/><a href="#delta7"><span class="new">0alpha1</span></a>
+<a name="delta5"/><a href="#delta6"><span class="old">July</span></a><a name="delta6"/><a href="#delta7"><span class="new">0beta1</span></a>
 <a name="delta7"/><a href="#delta8"><span class="new"/></a>
-<a name="delta8"/><a href="#delta9"><span class="new">January</span></a> 31, <a name="delta9"/><a href="#delta10"><span class="old">2014</span></a> <a name="delta10"/><a href="#delta11"><span class="new">2017</span></a>
+<a name="delta8"/><a href="#delta9"><span class="new">March</span></a> 31, <a name="delta9"/><a href="#delta10"><span class="old">2014</span></a> <a name="delta10"/><a href="#delta11"><span class="new">2017</span></a>
 
 NIEM Technical Architecture Committee (NTAC)
 
@@ -3740,9 +3740,9 @@ Rule 10-18. Proxy type has designated structure
 
       &lt;sch:pattern&gt;
         &lt;sch:rule context="xs:complexType[some $name in @name,
-                                               $extension in xs:simpleContent/xs:extension,
-                                               $base-qname in resolve-QName($extension/@base, $extension) satisfies
-                                            $base-qname = QName('http://www.w3.org/2001/XMLSchema', @name)]"&gt;
+                                          $extension in xs:simpleContent/xs:extension,
+                                          $base-qname in resolve-QName($extension/@base, $extension) satisfies
+                                          $base-qname = QName('http://www.w3.org/2001/XMLSchema', <a name="delta242"/><a href="#delta243"><span class="old">@name)</span></a> <a name="delta243"/><a href="#delta244"><span class="new">$name)</span></a>]"&gt;
           &lt;sch:assert test="xs:simpleContent[
                               xs:extension[
                                 empty(xs:attribute)
@@ -3813,7 +3813,7 @@ Rule 10-18. Proxy type has designated structure
 
 10.3.1. Association types
 
-Rule 10-19. Association <a name="delta242"/><a href="#delta243"><span class="old">types</span></a> <a name="delta243"/><a href="#delta244"><span class="new">type</span></a> is derived from association type
+Rule 10-19. Association <a name="delta244"/><a href="#delta245"><span class="old">types</span></a> <a name="delta245"/><a href="#delta246"><span class="new">type</span></a> is derived from association type
 
    [Rule 10-19] (REF, EXT)
 
@@ -3825,7 +3825,7 @@ Rule 10-19. Association <a name="delta242"/><a href="#delta243"><span class="old
               exists(xs:*[local-name() = ('extension', 'restriction')
                           and exists(@base[ends-with(., 'AssociationType')])])])"/&gt;
           &lt;sch:assert test="$is-association-type = $has-association-base-type"
-            &gt;A type MUST have <a name="delta244"/><a href="#delta245"><span class="old">a</span></a> <a name="delta245"/><a href="#delta246"><span class="new">an</span></a> association type name if and only if it is derived from an association type.&lt;/sch:assert&gt;
+            &gt;A type MUST have <a name="delta246"/><a href="#delta247"><span class="old">a</span></a> <a name="delta247"/><a href="#delta248"><span class="new">an</span></a> association type name if and only if it is derived from an association type.&lt;/sch:assert&gt;
         &lt;/sch:rule&gt;
       &lt;/sch:pattern&gt;
 
@@ -3992,7 +3992,7 @@ Rule 10-20. Association element type is an association type
 
    This method can be used by an information exchange developer to define individual attributes that can be applied to any augmentable type.
 
-   Note that the augmentation method can introduce an additional element into every [object type] or [association type] in an exchange, which provides opportunity for some <a name="delta246"/><a href="#delta247"><span class="old">rrors</span></a> <a name="delta247"/><a href="#delta248"><span class="new">errors</span></a> in schema development. It is important that developers of exchanges not introduce elements substitutable for an augmentation point into complex types multiple ways, as it can introduce XML Schema's Unique Particle Attribution errors. A single complex type should not introduce an element via both element <a name="delta248"/><a href="#delta249"><span class="old">substition</span></a> <a name="delta249"/><a href="#delta250"><span class="new">substitution</span></a> and element reference. This constraint is also supported by Rule 11-21, Element or attribute declaration introduced only once into a type.
+   Note that the augmentation method can introduce an additional element into every [object type] or [association type] in an exchange, which provides opportunity for some <a name="delta248"/><a href="#delta249"><span class="old">rrors</span></a> <a name="delta249"/><a href="#delta250"><span class="new">errors</span></a> in schema development. It is important that developers of exchanges not introduce elements substitutable for an augmentation point into complex types multiple ways, as it can introduce XML Schema's Unique Particle Attribution errors. A single complex type should not introduce an element via both element <a name="delta250"/><a href="#delta251"><span class="old">substition</span></a> <a name="delta251"/><a href="#delta252"><span class="new">substitution</span></a> and element reference. This constraint is also supported by Rule 11-21, Element or attribute declaration introduced only once into a type.
 
 10.4.1. Augmentable types
 
@@ -4019,7 +4019,7 @@ Rule 10-21. Augmentable type has augmentation point element
                              and empty(@appinfo:externalAdapterTypeIndicator)
                              and xs:complexContent]"&gt;
           &lt;sch:let name="augmentation-point-qname"
-                   value="<a name="delta250"/><a href="#delta251"><span class="old">QName(nf</span></a><a name="delta251"/><a href="#delta252"><span class="new">QName(string(nf</span></a>:get-target-namespace(.<a name="delta252"/><a href="#delta253"><span class="old">)</span></a><a name="delta253"/><a href="#delta254"><span class="new">))</span></a>,
+                   value="<a name="delta252"/><a href="#delta253"><span class="old">QName(nf</span></a><a name="delta253"/><a href="#delta254"><span class="new">QName(string(nf</span></a>:get-target-namespace(.<a name="delta254"/><a href="#delta255"><span class="old">)</span></a><a name="delta255"/><a href="#delta256"><span class="new">))</span></a>,
                                 replace(./@name, 'Type$', 'AugmentationPoint'))"/&gt;
           &lt;sch:assert test="xs:complexContent/xs:extension/xs:sequence/xs:element[
                               @ref[resolve-QName(., ..) = $augmentation-point-qname]]"
@@ -4038,7 +4038,7 @@ Rule 10-22. Augmentable type has at most one augmentation point element
                              and empty(@appinfo:externalAdapterTypeIndicator)
                              and xs:complexContent]"&gt;
           &lt;sch:let name="augmentation-point-qname"
-                   value="<a name="delta254"/><a href="#delta255"><span class="old">QName(nf</span></a><a name="delta255"/><a href="#delta256"><span class="new">QName(string(nf</span></a>:get-target-namespace(.<a name="delta256"/><a href="#delta257"><span class="old">)</span></a><a name="delta257"/><a href="#delta258"><span class="new">))</span></a>,
+                   value="<a name="delta256"/><a href="#delta257"><span class="old">QName(nf</span></a><a name="delta257"/><a href="#delta258"><span class="new">QName(string(nf</span></a>:get-target-namespace(.<a name="delta258"/><a href="#delta259"><span class="old">)</span></a><a name="delta259"/><a href="#delta260"><span class="new">))</span></a>,
                                 replace(./@name, 'Type$', 'AugmentationPoint'))"/&gt;
           &lt;sch:assert test="count(xs:complexContent/xs:extension/xs:sequence/xs:element[
                                     @ref[resolve-QName(., ..) = $augmentation-point-qname]]) &amp;lt;= 1"
@@ -4106,8 +4106,8 @@ Rule 10-26. Augmentation point element may only be referenced by its type
         &lt;sch:rule context="xs:complexType//xs:element[exists(@ref[
                              matches(local-name-from-QName(resolve-QName(., ..)), 'AugmentationPoint$')]) ]"&gt;
       
-          &lt;sch:assert test="<a name="delta258"/><a href="#delta259"><span class="old">QName(nf</span></a><a name="delta259"/><a href="#delta260"><span class="new">QName(string(nf</span></a>:get-target-namespace(ancestor::xs:complexType[1]<a name="delta260"/><a href="#delta261"><span class="old">)</span></a><a name="delta261"/><a href="#delta262"><span class="new">))</span></a>, ancestor::xs:complexType[1]/@name)
-                            = <a name="delta262"/><a href="#delta263"><span class="old">QName(namespace</span></a> <a name="delta263"/><a href="#delta264"><span class="new">QName(string(namespace</span></a>-uri-from-QName(resolve-QName(@ref, .<a name="delta264"/><a href="#delta265"><span class="old">))</span></a><a name="delta265"/><a href="#delta266"><span class="new">)))</span></a>, 
+          &lt;sch:assert test="<a name="delta260"/><a href="#delta261"><span class="old">QName(nf</span></a><a name="delta261"/><a href="#delta262"><span class="new">QName(string(nf</span></a>:get-target-namespace(ancestor::xs:complexType[1]<a name="delta262"/><a href="#delta263"><span class="old">)</span></a><a name="delta263"/><a href="#delta264"><span class="new">))</span></a>, ancestor::xs:complexType[1]/@name)
+                            = <a name="delta264"/><a href="#delta265"><span class="old">QName(namespace</span></a> <a name="delta265"/><a href="#delta266"><span class="new">QName(string(namespace</span></a>-uri-from-QName(resolve-QName(@ref, .<a name="delta266"/><a href="#delta267"><span class="old">))</span></a><a name="delta267"/><a href="#delta268"><span class="new">)))</span></a>, 
                      replace(local-name-from-QName(resolve-QName(@ref, .)), 'AugmentationPoint$', 'Type'))"
             &gt;An augmentation point element MUST only be referenced by its corresponding type.&lt;/sch:assert&gt;
         &lt;/sch:rule&gt;
@@ -4248,11 +4248,11 @@ Rule 10-35. Augmentation elements are not used directly
 
          *  an [augmentation element declaration], or
 
-         *  an element <a name="delta266"/><a href="#delta267"><span class="old">declration</span></a> <a name="delta267"/><a href="#delta268"><span class="new">declaration</span></a> that is in the substitution group of an augmentation point element declaration.
+         *  an element <a name="delta268"/><a href="#delta269"><span class="old">declration</span></a> <a name="delta269"/><a href="#delta270"><span class="new">declaration</span></a> that is in the substitution group of an augmentation point element declaration.
 
 10.5. Metadata
 
-   There are rules for use of <a name="delta268"/><a href="#delta269"><span class="old">metdata</span></a> <a name="delta269"/><a href="#delta270"><span class="new">metadata</span></a> in instance in Section 12.3, Instance metadata, below.
+   There are rules for use of <a name="delta270"/><a href="#delta271"><span class="old">metdata</span></a> <a name="delta271"/><a href="#delta272"><span class="new">metadata</span></a> in instance in Section 12.3, Instance metadata, below.
 
 10.5.1. Metadata types
 
@@ -4274,7 +4274,7 @@ Rule 10-37. Metadata type derived from structures:MetadataType
 
       Within the schema, a metadata type and only a metadata type MUST be derived directly from structures:MetadataType.
 
-   A metadata type establishes a specific, named aggregation of data about data. Any type derived from structures:MetadataType is a metadata type. Metadata types should not be derived from other metadata types. Such metadata types should be used <a name="delta270"/><a href="#delta271"><span class="old">asis</span></a> <a name="delta271"/><a href="#delta272"><span class="new">as is</span></a> and additional metadata types defined for additional content.
+   A metadata type establishes a specific, named aggregation of data about data. Any type derived from structures:MetadataType is a metadata type. Metadata types should not be derived from other metadata types. Such metadata types should be used <a name="delta272"/><a href="#delta273"><span class="old">asis</span></a> <a name="delta273"/><a href="#delta274"><span class="new">as is</span></a> and additional metadata types defined for additional content.
 
 Rule 10-38. Metadata types are derived from metadata types
 
@@ -4358,7 +4358,7 @@ Rule 10-40. Metadata element has applicable elements
 
    Note that this need is a bit different than specialization of relationships (e.g., rdfs:subPropertyOf), in that it specifically is to be used to describe and carry the variety of representations for a particular concept. The need is to be able to represent an abstract point in time using a single type, and then to add a set of specific representations for that basic concept.
 
-   There are a variety of methods that could be used to satisfy this need. A method could be devised that uses an abstract type, along with a set of concrete extensions of that abstract type. However, there would still be a need for a set of concrete elements to carry the types, as type substitution (distinct from element <a name="delta272"/><a href="#delta273"><span class="old">substition)</span></a> <a name="delta273"/><a href="#delta274"><span class="new">substitution)</span></a> is not widely adopted across the NIEM community. As well, it is difficult to create a network of complex types with complex content and complex types with simple content that all substitute for a base type; the XML Schema syntax is complicated. Other alternatives each have their pros and cons.
+   There are a variety of methods that could be used to satisfy this need. A method could be devised that uses an abstract type, along with a set of concrete extensions of that abstract type. However, there would still be a need for a set of concrete elements to carry the types, as type substitution (distinct from element <a name="delta274"/><a href="#delta275"><span class="old">substition)</span></a> <a name="delta275"/><a href="#delta276"><span class="new">substitution)</span></a> is not widely adopted across the NIEM community. As well, it is difficult to create a network of complex types with complex content and complex types with simple content that all substitute for a base type; the XML Schema syntax is complicated. Other alternatives each have their pros and cons.
 
    To handle this need, NIEM has adopted the "Representation" pattern, in which a type has contains a representation element, and the various representations for that type are in the substitution group for that representation element.
 
@@ -4445,7 +4445,7 @@ Rule 10-42. A substitution for a representation element declaration is a value f
 
    [Rule 10-42] (REF, EXT)
 
-      Any element declaration that is substitutable for a <a name="delta274"/><a href="#delta275"><span class="old">a</span></a> representation element declaration represents an optional representation of a value of a type that carries the representation element.
+      Any element declaration that is substitutable for a <a name="delta276"/><a href="#delta277"><span class="old">a</span></a> representation element declaration represents an optional representation of a value of a type that carries the representation element.
 
 10.8. Naming rules
 
@@ -4539,29 +4539,29 @@ Rule 10-49. Names use common abbreviations
 
          1. It is not a term defined in the [OED], or it has a non-OED definition, or its word sense may not be clear.
 
-         2. It is introduced into the schema document via an appinfo element <a name="delta275"/><a href="#delta276"><span class="old">with a [namespace name] of the [local terminology</span></a> appinfo <a name="delta276"/><a href="#delta277"><span class="old">namespace]</span></a><a name="delta277"/><a href="#delta278"><span class="new">:LocalTerm</span></a>.
+         2. It is introduced into the schema document via an appinfo element <a name="delta277"/><a href="#delta278"><span class="old">with a [namespace name] of the [local terminology</span></a> appinfo <a name="delta278"/><a href="#delta279"><span class="old">namespace]</span></a><a name="delta279"/><a href="#delta280"><span class="new">:LocalTerm</span></a>.
 
          3. It is used in the local name of a schema component within the schema document.
 
-   <a name="delta278"/><a href="#delta279"><span class="old">[Definition: local terminology appinfo namespace]</span></a>
-<a name="delta279"/><a href="#delta280"><span class="old"/></a>
-<a name="delta280"/><a href="#delta281"><span class="old">      The local terminology appinfo namespace is the XML Schema namespace represented by the URI http://release.niem.gov/niem/localTerminology/3.0/.</span></a>
+   <a name="delta280"/><a href="#delta281"><span class="old">[Definition: local terminology appinfo namespace]</span></a>
+<a name="delta281"/><a href="#delta282"><span class="old"/></a>
+<a name="delta282"/><a href="#delta283"><span class="old">      The local terminology appinfo namespace is the XML Schema namespace represented by the URI http://release.niem.gov/niem/localTerminology/3.0/.</span></a>
 
-   Local terminology is introduced into a schema document by the <a name="delta281"/><a href="#delta282"><span class="old">application</span></a> <a name="delta282"/><a href="#delta283"><span class="new">use</span></a> of <a name="delta283"/><a href="#delta284"><span class="old">local terminology</span></a> appinfo<a name="delta284"/><a href="#delta285"><span class="new">:LocalTerm</span></a> within the schema.
+   Local terminology is introduced into a schema document by the <a name="delta283"/><a href="#delta284"><span class="old">application</span></a> <a name="delta284"/><a href="#delta285"><span class="new">use</span></a> of <a name="delta285"/><a href="#delta286"><span class="old">local terminology</span></a> appinfo<a name="delta286"/><a href="#delta287"><span class="new">:LocalTerm</span></a> within the schema.
 
-   See additional rules constraining the use of <a name="delta285"/><a href="#delta286"><span class="old">the [</span></a>local terminology <a name="delta286"/><a href="#delta287"><span class="old">appinfo namespace]</span></a> in Section 10.9.2, <a name="delta287"/><a href="#delta288"><span class="old">The NIEM local</span></a> <a name="delta288"/><a href="#delta289"><span class="new">Local</span></a> terminology <a name="delta289"/><a href="#delta290"><span class="old">namespace</span></a>, below.
+   See additional rules constraining the use of <a name="delta287"/><a href="#delta288"><span class="old">the [</span></a>local terminology <a name="delta288"/><a href="#delta289"><span class="old">appinfo namespace]</span></a> in Section 10.9.2, <a name="delta289"/><a href="#delta290"><span class="old">The NIEM local</span></a> <a name="delta290"/><a href="#delta291"><span class="new">Local</span></a> terminology <a name="delta291"/><a href="#delta292"><span class="old">namespace</span></a>, below.
 
 Rule 10-50. Local term declaration is local to its schema document
 
    [Rule 10-50] (REF, EXT)
 
-      An element <a name="delta290"/><a href="#delta291"><span class="old">term</span></a> <a name="delta291"/><a href="#delta292"><span class="new">appinfo</span></a>:LocalTerm MUST establish the meaning of a [local term] only within the XML Schema document in which it occurs. There MUST NOT be any transitive inheritance of local terminology within schema documents that import the containing schema document.
+      An element <a name="delta292"/><a href="#delta293"><span class="old">term</span></a> <a name="delta293"/><a href="#delta294"><span class="new">appinfo</span></a>:LocalTerm MUST establish the meaning of a [local term] only within the XML Schema document in which it occurs. There MUST NOT be any transitive inheritance of local terminology within schema documents that import the containing schema document.
 
 Rule 10-51. Local terminology interpretation
 
    [Rule 10-51] (REF, EXT)
 
-      An element information item <a name="delta292"/><a href="#delta293"><span class="old">term</span></a> <a name="delta293"/><a href="#delta294"><span class="new">appinfo</span></a>:LocalTerm MUST establish a term as follows:
+      An element information item <a name="delta294"/><a href="#delta295"><span class="old">term</span></a> <a name="delta295"/><a href="#delta296"><span class="new">appinfo</span></a>:LocalTerm MUST establish a term as follows:
 
          1. The value of the attribute term is the [local term]; it may occur as a term within the name of a schema component within the schema document.
 
@@ -4571,7 +4571,7 @@ Rule 10-51. Local terminology interpretation
 
          4. The value of the attribute sourceURIs is a list of URIs, each of which is an identifier or locator for an originating or authoritative document defining the term.
 
-         5. Each child element information item <a name="delta294"/><a href="#delta295"><span class="old">term</span></a> <a name="delta295"/><a href="#delta296"><span class="new">appinfo</span></a>:SourceText is a plain text citation of, reference to, or bibliographic entry for an originating or authoritative document defining the term.
+         5. Each child element information item <a name="delta296"/><a href="#delta297"><span class="old">term</span></a> <a name="delta297"/><a href="#delta298"><span class="new">appinfo</span></a>:SourceText is a plain text citation of, reference to, or bibliographic entry for an originating or authoritative document defining the term.
 
 10.8.3. Word forms
 
@@ -4637,7 +4637,7 @@ Rule 10-56. Object-class term identifies concrete category
 
 10.8.5. Property term
 
-   Objects or concepts are usually described in terms of their characteristic properties, data attributes, or constituent subparts. Most objects can be described by several characteristics. Therefore, a property term in the name of a data component represents a characteristic or <a name="delta296"/><a href="#delta297"><span class="old">subpartof</span></a> <a name="delta297"/><a href="#delta298"><span class="new">subpart of</span></a> an object class and generally describes the essence of that data component.
+   Objects or concepts are usually described in terms of their characteristic properties, data attributes, or constituent subparts. Most objects can be described by several characteristics. Therefore, a property term in the name of a data component represents a characteristic or <a name="delta298"/><a href="#delta299"><span class="old">subpartof</span></a> <a name="delta299"/><a href="#delta300"><span class="new">subpart of</span></a> an object class and generally describes the essence of that data component.
 
 Rule 10-57. Property term describes characteristic or subpart
 
@@ -4739,7 +4739,9 @@ Rule 10-61. Redundant term in name is omitted
 
       |Name|A word or phrase that constitutes the distinctive designation of a person, place, thing, or concept.
 
-      |List|A sequence of values. This representation term is used in tandem with another of the listed representation terms.
+      <a name="delta300"/><a href="#delta301"><span class="old">|List|A</span></a> <a name="delta301"/><a href="#delta302"><span class="new">List||A</span></a> sequence of values. This representation term is used in tandem with another of the listed representation terms.
+
+      <a name="delta302"/><a href="#delta303"><span class="new">Abstract||An element that may represent a concept, rather than a concrete property. This representation term may be used in tandem with another of the listed representation terms.</span></a>
 
 Rule 10-62. Element with simple content has representation term
 
@@ -4811,7 +4813,7 @@ Rule 10-65. Machine-readable annotations are valid
 
    [Definition: appinfo namespace]
 
-      The appinfo namespace is the namespace represented by the URI "http://release.niem.gov/niem/appinfo/<a name="delta298"/><a href="#delta299"><span class="old">3</span></a><a name="delta299"/><a href="#delta300"><span class="new">4</span></a>.0/".
+      The appinfo namespace is the namespace represented by the URI "http://release.niem.gov/niem/appinfo/<a name="delta303"/><a href="#delta304"><span class="old">3</span></a><a name="delta304"/><a href="#delta305"><span class="new">4</span></a>.0/".
 
    The [appinfo namespace] defines attributes which provide additional semantics for components built by NIEM-conformant schemas. The XML Schema document for the appinfo namespace appears in Appendix C, Appinfo namespace, below.
 
@@ -4851,7 +4853,7 @@ Rule 10-68. External import indicator annotates import
       &lt;sch:pattern&gt;
         &lt;sch:rule context="*[exists(@appinfo:externalImportIndicator)]"&gt;
           &lt;sch:assert test="exists(self::xs:import)"
-              &gt;The attribute {http://release.niem.gov/niem/appinfo/<a name="delta300"/><a href="#delta301"><span class="old">3</span></a><a name="delta301"/><a href="#delta302"><span class="new">4</span></a>.0/}externalImportIndicator MUST be owned by an element xs:import.&lt;/sch:assert&gt;
+              &gt;The attribute {http://release.niem.gov/niem/appinfo/<a name="delta305"/><a href="#delta306"><span class="old">3</span></a><a name="delta306"/><a href="#delta307"><span class="new">4</span></a>.0/}externalImportIndicator MUST be owned by an element xs:import.&lt;/sch:assert&gt;
         &lt;/sch:rule&gt;
       &lt;/sch:pattern&gt;
 
@@ -4919,29 +4921,29 @@ Rule 10-73. appinfo:appliesToElements references elements
         &lt;/sch:rule&gt;
       &lt;/sch:pattern&gt;
 
-10.9.2. <a name="delta302"/><a href="#delta303"><span class="old">The NIEM local</span></a> <a name="delta303"/><a href="#delta304"><span class="new">Local</span></a> terminology <a name="delta304"/><a href="#delta305"><span class="old">namespace</span></a>
+10.9.2. <a name="delta307"/><a href="#delta308"><span class="old">The NIEM local</span></a> <a name="delta308"/><a href="#delta309"><span class="new">Local</span></a> terminology <a name="delta309"/><a href="#delta310"><span class="old">namespace</span></a>
 
-Rule 10-74. <a name="delta305"/><a href="#delta306"><span class="old">term</span></a> <a name="delta306"/><a href="#delta307"><span class="new">appinfo</span></a>:LocalTerm annotates schema
+Rule 10-74. <a name="delta310"/><a href="#delta311"><span class="old">term</span></a> <a name="delta311"/><a href="#delta312"><span class="new">appinfo</span></a>:LocalTerm annotates schema
 
    [Rule 10-74] (REF, EXT)
 
       &lt;sch:pattern&gt;
-        &lt;sch:rule context="<a name="delta307"/><a href="#delta308"><span class="old">term</span></a><a name="delta308"/><a href="#delta309"><span class="new">appinfo</span></a>:LocalTerm"&gt;
+        &lt;sch:rule context="<a name="delta312"/><a href="#delta313"><span class="old">term</span></a><a name="delta313"/><a href="#delta314"><span class="new">appinfo</span></a>:LocalTerm"&gt;
           &lt;sch:assert test="parent::xs:appinfo[parent::xs:annotation[parent::xs:schema]]"
-            &gt;The element <a name="delta309"/><a href="#delta310"><span class="old">term</span></a> <a name="delta310"/><a href="#delta311"><span class="new">appinfo</span></a>:LocalTerm MUST be application information <a name="delta311"/><a href="#delta312"><span class="old">an</span></a> <a name="delta312"/><a href="#delta313"><span class="new">on</span></a> an element xs:schema.&lt;/sch:assert&gt;
+            &gt;The element <a name="delta314"/><a href="#delta315"><span class="old">term</span></a> <a name="delta315"/><a href="#delta316"><span class="new">appinfo</span></a>:LocalTerm MUST be application information <a name="delta316"/><a href="#delta317"><span class="old">an</span></a> <a name="delta317"/><a href="#delta318"><span class="new">on</span></a> an element xs:schema.&lt;/sch:assert&gt;
         &lt;/sch:rule&gt;
       &lt;/sch:pattern&gt;
 
    This document defines the term [application information].
 
-Rule 10-75. <a name="delta313"/><a href="#delta314"><span class="old">term</span></a> <a name="delta314"/><a href="#delta315"><span class="new">appinfo</span></a>:LocalTerm has literal or definition
+Rule 10-75. <a name="delta318"/><a href="#delta319"><span class="old">term</span></a> <a name="delta319"/><a href="#delta320"><span class="new">appinfo</span></a>:LocalTerm has literal or definition
 
    [Rule 10-75] (REF, EXT)
 
       &lt;sch:pattern&gt;
-        &lt;sch:rule context="<a name="delta315"/><a href="#delta316"><span class="old">term</span></a><a name="delta316"/><a href="#delta317"><span class="new">appinfo</span></a>:LocalTerm"&gt;
+        &lt;sch:rule context="<a name="delta320"/><a href="#delta321"><span class="old">term</span></a><a name="delta321"/><a href="#delta322"><span class="new">appinfo</span></a>:LocalTerm"&gt;
           &lt;sch:assert test="exists(@literal) or exists(@definition)"
-                  &gt;The element {http://release.niem.gov/niem/<a name="delta317"/><a href="#delta318"><span class="old">localTerminology</span></a><a name="delta318"/><a href="#delta319"><span class="new">appinfo</span></a>/<a name="delta319"/><a href="#delta320"><span class="old">3</span></a><a name="delta320"/><a href="#delta321"><span class="new">4</span></a>.0/}LocalTerm MUST have a literal or definition.&lt;/sch:assert&gt;
+                  &gt;The element {http://release.niem.gov/niem/<a name="delta322"/><a href="#delta323"><span class="old">localTerminology</span></a><a name="delta323"/><a href="#delta324"><span class="new">appinfo</span></a>/<a name="delta324"/><a href="#delta325"><span class="old">3</span></a><a name="delta325"/><a href="#delta326"><span class="new">4</span></a>.0/}LocalTerm MUST have a literal or definition.&lt;/sch:assert&gt;
         &lt;/sch:rule&gt;
       &lt;/sch:pattern&gt;
 
@@ -4951,7 +4953,7 @@ Rule 10-75. <a name="delta313"/><a href="#delta314"><span class="old">term</span
 
    [Definition: structures namespace]
 
-      The structures namespace is the namespace represented by the URI "http://release.niem.gov/niem/structures/<a name="delta321"/><a href="#delta322"><span class="old">3</span></a><a name="delta322"/><a href="#delta323"><span class="new">4</span></a>.0/".
+      The structures namespace is the namespace represented by the URI "http://release.niem.gov/niem/structures/<a name="delta326"/><a href="#delta327"><span class="old">3</span></a><a name="delta327"/><a href="#delta328"><span class="new">4</span></a>.0/".
 
    The structures namespace is a single namespace, separate from namespaces that define NIEM-conformant data. This document refers to this content via the prefix structures.
 
@@ -4975,9 +4977,9 @@ Rule 11-1. Name of type ends in "Type"
 
       &lt;sch:pattern&gt;
         &lt;sch:rule context="xs:complexType[some $name in @name,
-                                               $extension in xs:simpleContent/xs:extension,
-                                               $base-qname in resolve-QName($extension/@base, $extension) satisfies
-                                            $base-qname = QName('http://www.w3.org/2001/XMLSchema', @name)]"&gt;
+                                          $extension in xs:simpleContent/xs:extension,
+                                          $base-qname in resolve-QName($extension/@base, $extension) satisfies
+                                          $base-qname = QName('http://www.w3.org/2001/XMLSchema', <a name="delta328"/><a href="#delta329"><span class="old">@name)</span></a> <a name="delta329"/><a href="#delta330"><span class="new">$name)</span></a>]"&gt;
           &lt;sch:report test="false()"&gt;The name of a proxy type does not end in "Type".&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:*[(self::xs:simpleType or self::xs:complexType) and exists(@name)]"&gt;
@@ -4996,9 +4998,9 @@ Rule 11-2. Name of type other than proxy type is in upper camel case
 
       &lt;sch:pattern&gt;
         &lt;sch:rule context="xs:complexType[some $name in @name,
-                                               $extension in xs:simpleContent/xs:extension,
-                                               $base-qname in resolve-QName($extension/@base, $extension) satisfies
-                                            $base-qname = QName('http://www.w3.org/2001/XMLSchema', @name)]"&gt;
+                                          $extension in xs:simpleContent/xs:extension,
+                                          $base-qname in resolve-QName($extension/@base, $extension) satisfies
+                                          $base-qname = QName('http://www.w3.org/2001/XMLSchema', <a name="delta330"/><a href="#delta331"><span class="old">@name)</span></a> <a name="delta331"/><a href="#delta332"><span class="new">$name)</span></a>]"&gt;
           &lt;sch:report test="false()"&gt;The name of a proxy type is not upper camel case.&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:*[(self::xs:simpleType or self::xs:complexType) and exists(@name)]"&gt;
@@ -5157,7 +5159,7 @@ Rule 11-11. Complex type with simple content has structures:SimpleObjectAttribut
               or ends-with(local-name-from-QName($base-qname), 'SimpleType')]"&gt;
           &lt;sch:assert test="xs:attributeGroup[
                               resolve-QName(@ref, .) = xs:QName('structures:SimpleObjectAttributeGroup')]"
-            &gt;A complex type definition with simple content schema component with a derivation method of extension that has a base type definition that is a simple type MUST incorporate the attribute group {http://release.niem.gov/niem/structures/<a name="delta323"/><a href="#delta324"><span class="old">3</span></a><a name="delta324"/><a href="#delta325"><span class="new">4</span></a>.0/}SimpleObjectAttributeGroup.&lt;/sch:assert&gt;
+            &gt;A complex type definition with simple content schema component with a derivation method of extension that has a base type definition that is a simple type MUST incorporate the attribute group {http://release.niem.gov/niem/structures/<a name="delta332"/><a href="#delta333"><span class="old">3</span></a><a name="delta333"/><a href="#delta334"><span class="new">4</span></a>.0/}SimpleObjectAttributeGroup.&lt;/sch:assert&gt;
         &lt;/sch:rule&gt;
       &lt;/sch:pattern&gt;
 
@@ -5206,7 +5208,7 @@ Rule 11-13. Element type does not have a simple type name
         &lt;/sch:rule&gt;
       &lt;/sch:pattern&gt;
 
-   This document <a name="delta325"/><a href="#delta326"><span class="old">defins</span></a> <a name="delta326"/><a href="#delta327"><span class="new">defines</span></a> the term [element declaration].
+   This document <a name="delta334"/><a href="#delta335"><span class="old">defins</span></a> <a name="delta335"/><a href="#delta336"><span class="new">defines</span></a> the term [element declaration].
 
 Rule 11-14. Element type is from conformant namespace
 
@@ -5268,8 +5270,8 @@ Rule 11-17. Name of element declaration with simple content has representation t
 
       &lt;sch:pattern&gt;
         &lt;sch:rule context="xs:element[@name and @type
-             and (nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta327"/><a href="#delta328"><span class="old">3</span></a><a name="delta328"/><a href="#delta329"><span class="new">4</span></a>.0/#ReferenceSchemaDocument'))
-                  or nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta329"/><a href="#delta330"><span class="old">3</span></a><a name="delta330"/><a href="#delta331"><span class="new">4</span></a>.0/#ExtensionSchemaDocument')))
+             and (nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta336"/><a href="#delta337"><span class="old">3</span></a><a name="delta337"/><a href="#delta338"><span class="new">4</span></a>.0/#ReferenceSchemaDocument'))
+                  or nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta338"/><a href="#delta339"><span class="old">3</span></a><a name="delta339"/><a href="#delta340"><span class="new">4</span></a>.0/#ExtensionSchemaDocument')))
              and (some $type-qname in resolve-QName(@type, .) satisfies (
                     nf:get-target-namespace(.) != namespace-uri-from-QName($type-qname)
                     and nf:resolve-type(., $type-qname)/xs:simpleContent))]"&gt;
@@ -5341,7 +5343,7 @@ Rule 11-21. Element or attribute declaration introduced only once into a type
 
    [Rule 11-21] (REF, EXT)
 
-      Within the schema, an element declaration or attribute <a name="delta331"/><a href="#delta332"><span class="old">decaration</span></a> <a name="delta332"/><a href="#delta333"><span class="new">declaration</span></a> MUST NOT be introduced more than once into a type definition. This applies to content acquired by a type by any means, including from a base type definition, via element substitution groups, or through the use of attribute groups.
+      Within the schema, an element declaration or attribute <a name="delta340"/><a href="#delta341"><span class="old">decaration</span></a> <a name="delta341"/><a href="#delta342"><span class="new">declaration</span></a> MUST NOT be introduced more than once into a type definition. This applies to content acquired by a type by any means, including from a base type definition, via element substitution groups, or through the use of attribute groups.
 
    This rule ensures that a type definition does not incorporate a component multiple times. As information exchange specifications often contain multiple versions of schemas, including reference schemas as well as subset and constraint schemas, it may be easy to omit an element or attribute in one version of the schema, only to reincorporate it via an extension. This can cause difficulties in integrating such schemas, as it may be impossible to use a reference schema if an attribute is added twice, in both a base type and an extension type, since that would make it an invalid schema.
 
@@ -5493,40 +5495,40 @@ Rule 11-31. Standard opening phrase for element
                              ]/xs:annotation/xs:documentation[1]"&gt;
           &lt;sch:report test="not(matches(lower-case(normalize-space(.)),
                                         '^an?( .*)? (relationship|association)'))"
-            &gt;The data <a name="delta333"/><a href="#delta334"><span class="old">defintion</span></a> <a name="delta334"/><a href="#delta335"><span class="new">definition</span></a> for an association element that is not abstract SHOULD begin with the standard opening phrase "an (optional adjectives) (relationship|association)...".&lt;/sch:report&gt;
+            &gt;The data <a name="delta342"/><a href="#delta343"><span class="old">defintion</span></a> <a name="delta343"/><a href="#delta344"><span class="new">definition</span></a> for an association element that is not abstract SHOULD begin with the standard opening phrase "an (optional adjectives) (relationship|association)...".&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:element[xs:boolean(@abstract) = true()
                              ]/xs:annotation/xs:documentation[1]"&gt;
           &lt;sch:report test="not(starts-with(lower-case(normalize-space(.)), 'a data concept'))"
-            &gt;The data <a name="delta335"/><a href="#delta336"><span class="old">defintion</span></a> <a name="delta336"/><a href="#delta337"><span class="new">definition</span></a> for an abstract element SHOULD begin with the standard opening phrase "a data concept...".&lt;/sch:report&gt;
+            &gt;The data <a name="delta344"/><a href="#delta345"><span class="old">defintion</span></a> <a name="delta345"/><a href="#delta346"><span class="new">definition</span></a> for an abstract element SHOULD begin with the standard opening phrase "a data concept...".&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:element[ends-with(@name, 'Date')]/xs:annotation/xs:documentation[1]"&gt;
           &lt;sch:report test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (date|month|year)'))"
-            &gt;The data <a name="delta337"/><a href="#delta338"><span class="old">defintion</span></a> <a name="delta338"/><a href="#delta339"><span class="new">definition</span></a> for an element with a date representation term SHOULD begin with the standard opening phrase "a(n?) (optional adjectives) (date|month|year)...".&lt;/sch:report&gt;
+            &gt;The data <a name="delta346"/><a href="#delta347"><span class="old">defintion</span></a> <a name="delta347"/><a href="#delta348"><span class="new">definition</span></a> for an element with a date representation term SHOULD begin with the standard opening phrase "a(n?) (optional adjectives) (date|month|year)...".&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:element[ends-with(@name, 'Quantity')]/xs:annotation/xs:documentation[1]"&gt;
           &lt;sch:report test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (count|number)'))"
-            &gt;The data <a name="delta339"/><a href="#delta340"><span class="old">defintion</span></a> <a name="delta340"/><a href="#delta341"><span class="new">definition</span></a> for an element with a quantity representation term SHOULD begin with the standard opening phrase "an (optional adjectives) (count|number)...".&lt;/sch:report&gt;
+            &gt;The data <a name="delta348"/><a href="#delta349"><span class="old">defintion</span></a> <a name="delta349"/><a href="#delta350"><span class="new">definition</span></a> for an element with a quantity representation term SHOULD begin with the standard opening phrase "an (optional adjectives) (count|number)...".&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:element[ends-with(@name, 'Picture')]/xs:annotation/xs:documentation[1]"&gt;
           &lt;sch:report test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (image|picture|photograph)'))"
-            &gt;The data <a name="delta341"/><a href="#delta342"><span class="old">defintion</span></a> <a name="delta342"/><a href="#delta343"><span class="new">definition</span></a> for an element with a picture representation term SHOULD begin with the standard opening phrase "an (optional adjectives) (image|picture|photograph)".&lt;/sch:report&gt;
+            &gt;The data <a name="delta350"/><a href="#delta351"><span class="old">defintion</span></a> <a name="delta351"/><a href="#delta352"><span class="new">definition</span></a> for an element with a picture representation term SHOULD begin with the standard opening phrase "an (optional adjectives) (image|picture|photograph)".&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:element[ends-with(@name, 'Indicator')]/xs:annotation/xs:documentation[1]"&gt;
           &lt;sch:report test="not(matches(lower-case(normalize-space(.)), '^true if .*; false (otherwise|if)'))"
-            &gt;The data <a name="delta343"/><a href="#delta344"><span class="old">defintion</span></a> <a name="delta344"/><a href="#delta345"><span class="new">definition</span></a> for an element with an indicator representation term SHOULD begin with the standard opening phrase "true if ...; false (otherwise|if)...".&lt;/sch:report&gt;
+            &gt;The data <a name="delta352"/><a href="#delta353"><span class="old">defintion</span></a> <a name="delta353"/><a href="#delta354"><span class="new">definition</span></a> for an element with an indicator representation term SHOULD begin with the standard opening phrase "true if ...; false (otherwise|if)...".&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:element[ends-with(@name, 'Identification')]/xs:annotation/xs:documentation[1]"&gt;
           &lt;sch:report test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? identification'))"
-            &gt;The data <a name="delta345"/><a href="#delta346"><span class="old">defintion</span></a> <a name="delta346"/><a href="#delta347"><span class="new">definition</span></a> for an element with an identification representation term SHOULD begin with the standard opening phrase "(a|an) (optional adjectives) identification...".&lt;/sch:report&gt;
+            &gt;The data <a name="delta354"/><a href="#delta355"><span class="old">defintion</span></a> <a name="delta355"/><a href="#delta356"><span class="new">definition</span></a> for an element with an identification representation term SHOULD begin with the standard opening phrase "(a|an) (optional adjectives) identification...".&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:element[ends-with(@name, 'Name')]/xs:annotation/xs:documentation[1]"&gt;
           &lt;sch:report test="not(matches(lower-case(normalize-space(.)), '^(a|an)( .*)? name'))"
-            &gt;The data <a name="delta347"/><a href="#delta348"><span class="old">defintion</span></a> <a name="delta348"/><a href="#delta349"><span class="new">definition</span></a> for an element with a name representation term SHOULD begin with the standard opening phrase "(a|an) (optional adjectives) name...".&lt;/sch:report&gt;
+            &gt;The data <a name="delta356"/><a href="#delta357"><span class="old">defintion</span></a> <a name="delta357"/><a href="#delta358"><span class="new">definition</span></a> for an element with a name representation term SHOULD begin with the standard opening phrase "(a|an) (optional adjectives) name...".&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:element[@name]/xs:annotation/xs:documentation[1]"&gt;
           &lt;sch:report test="not(matches(lower-case(normalize-space(.)), '^an? '))"
-            &gt;The data <a name="delta349"/><a href="#delta350"><span class="old">defintion</span></a> <a name="delta350"/><a href="#delta351"><span class="new">definition</span></a> for an element declaration with a name SHOULD begin with the standard opening phrase "(a|an)".&lt;/sch:report&gt;
+            &gt;The data <a name="delta358"/><a href="#delta359"><span class="old">defintion</span></a> <a name="delta359"/><a href="#delta360"><span class="new">definition</span></a> for an element declaration with a name SHOULD begin with the standard opening phrase "(a|an)".&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
       &lt;/sch:pattern&gt;
 
@@ -5545,7 +5547,7 @@ Rule 11-32. Standard opening phrase for complex type
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:complexType[ends-with(@name, 'MetadataType')]/xs:annotation/xs:documentation[1]"&gt;
           &lt;sch:report test="not(matches(lower-case(normalize-space(.)), '^a data type for (metadata about|information that further qualifies)'))"
-            &gt;The data definition for a metadata type SHOULD begin with the standard opening phrase "a data type for <a name="delta351"/><a href="#delta352"><span class="old">(metdata</span></a> <a name="delta352"/><a href="#delta353"><span class="new">(metadata</span></a> about|information that further qualifies)...".&lt;/sch:report&gt;
+            &gt;The data definition for a metadata type SHOULD begin with the standard opening phrase "a data type for <a name="delta360"/><a href="#delta361"><span class="old">(metdata</span></a> <a name="delta361"/><a href="#delta362"><span class="new">(metadata</span></a> about|information that further qualifies)...".&lt;/sch:report&gt;
         &lt;/sch:rule&gt;
         &lt;sch:rule context="xs:complexType/xs:annotation/xs:documentation[1]"&gt;
           &lt;sch:report test="not(matches(lower-case(normalize-space(.)), '^a data type'))"
@@ -5590,13 +5592,13 @@ Rule 11-36. Reference schema imports reference schema
 
       &lt;sch:pattern&gt;
         &lt;sch:rule context="xs:import[
-                               nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta353"/><a href="#delta354"><span class="old">3</span></a><a name="delta354"/><a href="#delta355"><span class="new">4</span></a>.0/#ReferenceSchemaDocument'))
+                               nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta362"/><a href="#delta363"><span class="old">3</span></a><a name="delta363"/><a href="#delta364"><span class="new">4</span></a>.0/#ReferenceSchemaDocument'))
                                and exists(@namespace)
                                and empty(@appinfo:externalImportIndicator)
-                               and not(xs:anyURI(@namespace) = (xs:anyURI('http://release.niem.gov/niem/structures/<a name="delta355"/><a href="#delta356"><span class="old">3</span></a><a name="delta356"/><a href="#delta357"><span class="new">4</span></a>.0/'),
+                               and not(xs:anyURI(@namespace) = (xs:anyURI('http://release.niem.gov/niem/structures/<a name="delta364"/><a href="#delta365"><span class="old">3</span></a><a name="delta365"/><a href="#delta366"><span class="new">4</span></a>.0/'),
                                                                 xs:anyURI('http://www.w3.org/XML/1998/namespace')))]"&gt;
           &lt;sch:assert test="some $schema in nf:resolve-namespace(., @namespace) satisfies
-                              nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta357"/><a href="#delta358"><span class="old">3</span></a><a name="delta358"/><a href="#delta359"><span class="new">4</span></a>.0/#ReferenceSchemaDocument'))"
+                              nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta366"/><a href="#delta367"><span class="old">3</span></a><a name="delta367"/><a href="#delta368"><span class="new">4</span></a>.0/#ReferenceSchemaDocument'))"
             &gt;A namespace imported as conformant from a reference schema document MUST identify a namespace defined by a reference schema document.&lt;/sch:assert&gt;
         &lt;/sch:rule&gt;
       &lt;/sch:pattern&gt;
@@ -5609,14 +5611,14 @@ Rule 11-37. Extension schema document imports reference or extension schema
 
       &lt;sch:pattern&gt;
         &lt;sch:rule context="xs:import[
-                               nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta359"/><a href="#delta360"><span class="old">3</span></a><a name="delta360"/><a href="#delta361"><span class="new">4</span></a>.0/#ExtensionSchemaDocument'))
+                               nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta368"/><a href="#delta369"><span class="old">3</span></a><a name="delta369"/><a href="#delta370"><span class="new">4</span></a>.0/#ExtensionSchemaDocument'))
                                and exists(@namespace)
                                and empty(@appinfo:externalImportIndicator)
-                               and not(xs:anyURI(@namespace) = (xs:anyURI('http://release.niem.gov/niem/structures/<a name="delta361"/><a href="#delta362"><span class="old">3</span></a><a name="delta362"/><a href="#delta363"><span class="new">4</span></a>.0/'),
+                               and not(xs:anyURI(@namespace) = (xs:anyURI('http://release.niem.gov/niem/structures/<a name="delta370"/><a href="#delta371"><span class="old">3</span></a><a name="delta371"/><a href="#delta372"><span class="new">4</span></a>.0/'),
                                                                 xs:anyURI('http://www.w3.org/XML/1998/namespace')))]"&gt;
           &lt;sch:assert test="some $schema in nf:resolve-namespace(., @namespace) satisfies (
-                              nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta363"/><a href="#delta364"><span class="old">3</span></a><a name="delta364"/><a href="#delta365"><span class="new">4</span></a>.0/#ReferenceSchemaDocument'))
-                              or nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta365"/><a href="#delta366"><span class="old">3</span></a><a name="delta366"/><a href="#delta367"><span class="new">4</span></a>.0/#ExtensionSchemaDocument')))"
+                              nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta372"/><a href="#delta373"><span class="old">3</span></a><a name="delta373"/><a href="#delta374"><span class="new">4</span></a>.0/#ReferenceSchemaDocument'))
+                              or nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/<a name="delta374"/><a href="#delta375"><span class="old">3</span></a><a name="delta375"/><a href="#delta376"><span class="new">4</span></a>.0/#ExtensionSchemaDocument')))"
             &gt;A namespace imported as conformant from an extension schema document MUST identify a namespace defined by a reference schema document or an extension schema document.&lt;/sch:assert&gt;
         &lt;/sch:rule&gt;
       &lt;/sch:pattern&gt;
@@ -5633,7 +5635,7 @@ Rule 11-38. Structures imported as conformant
 
       &lt;sch:pattern&gt;
         &lt;sch:rule context="xs:import[exists(@namespace)
-                                     and xs:anyURI(@namespace) = xs:anyURI('http://release.niem.gov/niem/structures/<a name="delta367"/><a href="#delta368"><span class="old">3</span></a><a name="delta368"/><a href="#delta369"><span class="new">4</span></a>.0/')]"&gt;
+                                     and xs:anyURI(@namespace) = xs:anyURI('http://release.niem.gov/niem/structures/<a name="delta376"/><a href="#delta377"><span class="old">3</span></a><a name="delta377"/><a href="#delta378"><span class="new">4</span></a>.0/')]"&gt;
           &lt;sch:assert test="empty(@appinfo:externalImportIndicator)"
             &gt;An import of the structures namespace MUST NOT be labeled as an external import.&lt;/sch:assert&gt;
         &lt;/sch:rule&gt;
@@ -5647,7 +5649,7 @@ Rule 11-39. XML namespace imported as conformant
         &lt;sch:rule context="xs:import[exists(@namespace)
                                      and xs:anyURI(@namespace) = xs:anyURI('http://www.w3.org/XML/1998/namespace')]"&gt;
           &lt;sch:assert test="empty(@appinfo:externalImportIndicator)"
-            &gt;An import of the XML namespace MUST NOT be <a name="delta369"/><a href="#delta370"><span class="old">labeld</span></a> <a name="delta370"/><a href="#delta371"><span class="new">labeled</span></a> as an external import.&lt;/sch:assert&gt;
+            &gt;An import of the XML namespace MUST NOT be <a name="delta378"/><a href="#delta379"><span class="old">labeld</span></a> <a name="delta379"/><a href="#delta380"><span class="new">labeled</span></a> as an external import.&lt;/sch:assert&gt;
         &lt;/sch:rule&gt;
       &lt;/sch:pattern&gt;
 
@@ -5736,7 +5738,7 @@ Rule 12-1. Instance must be schema-valid
 
          For example, suppose that object 1 has a relationship to object 2 and object 2 has a relationship to object 1. This is not a tree, and so needs some representation other than a simple tree.
 
-      *  Reuse: multiple objects have a <a name="delta371"/><a href="#delta372"><span class="old">relationshp</span></a> <a name="delta372"/><a href="#delta373"><span class="new">relationship</span></a> to a common object.
+      *  Reuse: multiple objects have a <a name="delta380"/><a href="#delta381"><span class="old">relationshp</span></a> <a name="delta381"/><a href="#delta382"><span class="new">relationship</span></a> to a common object.
 
          For example, suppose object 1 has a relationship to object 2 and object 3 has a relationship to object 2. Expressed via containment, this would result in a duplicate of object 2.
 
@@ -5765,20 +5767,20 @@ Rule 12-1. Instance must be schema-valid
 
       A reference element is an element information item that has an attribute structures:ref. A reference element refers to its value by reference, instead of carrying it as content.
 
-Rule 12-2. <a name="delta373"/><a href="#delta374"><span class="old">Element with structures:ref does not have content</span></a>
-<a name="delta374"/><a href="#delta375"><span class="old"/></a>
-<a name="delta375"/><a href="#delta376"><span class="old">   [Rule 12-2] (INS)</span></a>
-<a name="delta376"/><a href="#delta377"><span class="old"/></a>
-<a name="delta377"/><a href="#delta378"><span class="old">      &lt;sch:pattern&gt;</span></a>
-<a name="delta378"/><a href="#delta379"><span class="old">        &lt;sch:rule context="*[@structures:ref]"&gt;</span></a>
-<a name="delta379"/><a href="#delta380"><span class="old">          &lt;sch:assert test="empty(element() | text())"</span></a>
-<a name="delta380"/><a href="#delta381"><span class="old">            &gt;An element that has attribute structures:ref MUST NOT have element or text content.&lt;/sch:assert&gt;</span></a>
-<a name="delta381"/><a href="#delta382"><span class="old">        &lt;/sch:rule&gt;</span></a>
-<a name="delta382"/><a href="#delta383"><span class="old">      &lt;/sch:pattern&gt;</span></a>
+Rule 12-2. <a name="delta382"/><a href="#delta383"><span class="old">Element with structures:ref does not have content</span></a>
 <a name="delta383"/><a href="#delta384"><span class="old"/></a>
-<a name="delta384"/><a href="#delta385"><span class="old">Rule 12-3.</span></a> Attribute structures:ref must reference structures:id
+<a name="delta384"/><a href="#delta385"><span class="old">   [Rule 12-2] (INS)</span></a>
+<a name="delta385"/><a href="#delta386"><span class="old"/></a>
+<a name="delta386"/><a href="#delta387"><span class="old">      &lt;sch:pattern&gt;</span></a>
+<a name="delta387"/><a href="#delta388"><span class="old">        &lt;sch:rule context="*[@structures:ref]"&gt;</span></a>
+<a name="delta388"/><a href="#delta389"><span class="old">          &lt;sch:assert test="empty(element() | text())"</span></a>
+<a name="delta389"/><a href="#delta390"><span class="old">            &gt;An element that has attribute structures:ref MUST NOT have element or text content.&lt;/sch:assert&gt;</span></a>
+<a name="delta390"/><a href="#delta391"><span class="old">        &lt;/sch:rule&gt;</span></a>
+<a name="delta391"/><a href="#delta392"><span class="old">      &lt;/sch:pattern&gt;</span></a>
+<a name="delta392"/><a href="#delta393"><span class="old"/></a>
+<a name="delta393"/><a href="#delta394"><span class="old">Rule 12-3.</span></a> Attribute structures:ref must reference structures:id
 
-   [Rule 12-<a name="delta385"/><a href="#delta386"><span class="old">3</span></a><a name="delta386"/><a href="#delta387"><span class="new">2</span></a>] (INS)
+   [Rule 12-<a name="delta394"/><a href="#delta395"><span class="old">3</span></a><a name="delta395"/><a href="#delta396"><span class="new">2</span></a>] (INS)
 
       &lt;sch:pattern&gt;
         &lt;sch:rule context="*[@structures:ref]"&gt;
@@ -5790,9 +5792,9 @@ Rule 12-2. <a name="delta373"/><a href="#delta374"><span class="old">Element wit
 
    This mirrors the terminology in [XML] subsection Validity constraint: IDREF within Section 3.3.1, Attribute Types, except it requires the target attribute to be structures:id, rather than any attribute of type ID.
 
-Rule 12-<a name="delta387"/><a href="#delta388"><span class="old">4</span></a><a name="delta388"/><a href="#delta389"><span class="new">3</span></a>. Linked elements have same validation root
+Rule 12-<a name="delta396"/><a href="#delta397"><span class="old">4</span></a><a name="delta397"/><a href="#delta398"><span class="new">3</span></a>. Linked elements have same validation root
 
-   [Rule 12-<a name="delta389"/><a href="#delta390"><span class="old">4</span></a><a name="delta390"/><a href="#delta391"><span class="new">3</span></a>] (INS)
+   [Rule 12-<a name="delta398"/><a href="#delta399"><span class="old">4</span></a><a name="delta399"/><a href="#delta400"><span class="new">3</span></a>] (INS)
 
       Given that:
 
@@ -5812,9 +5814,9 @@ Rule 12-<a name="delta387"/><a href="#delta388"><span class="old">4</span></a><a
 
    The term "validation root" is defined by [XML Schema Structures] Section 5.2, Assessing Schema-Validity. It is established as a part of validity assessment of an XML document. It is required because relationships between the types of elements cannot be established if those elements were not assessed together.
 
-Rule 12-<a name="delta391"/><a href="#delta392"><span class="old">5</span></a><a name="delta392"/><a href="#delta393"><span class="new">4</span></a>. Attribute structures:ref references element of correct type
+Rule 12-<a name="delta400"/><a href="#delta401"><span class="old">5</span></a><a name="delta401"/><a href="#delta402"><span class="new">4</span></a>. Attribute structures:ref references element of correct type
 
-   [Rule 12-<a name="delta393"/><a href="#delta394"><span class="old">5</span></a><a name="delta394"/><a href="#delta395"><span class="new">4</span></a>] (INS)
+   [Rule 12-<a name="delta402"/><a href="#delta403"><span class="old">5</span></a><a name="delta403"/><a href="#delta404"><span class="new">4</span></a>] (INS)
 
       Given that:
 
@@ -5822,9 +5824,9 @@ Rule 12-<a name="delta391"/><a href="#delta392"><span class="old">5</span></a><a
 
          *  $element has attribute structures:ref with value $ref
 
-         *  $element has property [<a name="delta395"/><a href="#delta396"><span class="old">element declaration</span></a><a name="delta396"/><a href="#delta397"><span class="new">type definition</span></a>] with value <a name="delta397"/><a href="#delta398"><span class="old">$element-declaration</span></a>
-<a name="delta398"/><a href="#delta399"><span class="old"/></a>
-<a name="delta399"/><a href="#delta400"><span class="old">         *  $element-declaration has property {type definition} with value</span></a> called the referencing element type definition<a name="delta400"/><a href="#delta401"><span class="new">.</span></a>
+         *  $element has property [<a name="delta404"/><a href="#delta405"><span class="old">element declaration</span></a><a name="delta405"/><a href="#delta406"><span class="new">type definition</span></a>] with value <a name="delta406"/><a href="#delta407"><span class="old">$element-declaration</span></a>
+<a name="delta407"/><a href="#delta408"><span class="old"/></a>
+<a name="delta408"/><a href="#delta409"><span class="old">         *  $element-declaration has property {type definition} with value</span></a> called the referencing element type definition<a name="delta409"/><a href="#delta410"><span class="new">.</span></a>
 
          *  $target is an element information item
 
@@ -5832,11 +5834,11 @@ Rule 12-<a name="delta391"/><a href="#delta392"><span class="old">5</span></a><a
 
          *  $target has property [type definition] with value called the referenced element type definition
 
-      Every element that has an attribute structures:ref MUST have a <a name="delta401"/><a href="#delta402"><span class="old">referencing</span></a> <a name="delta402"/><a href="#delta403"><span class="new">referenced</span></a> element type definition that is validly derived from the <a name="delta403"/><a href="#delta404"><span class="old">referenced</span></a> <a name="delta404"/><a href="#delta405"><span class="new">referencing</span></a> element type definition.
+      Every element that has an attribute structures:ref MUST have a <a name="delta410"/><a href="#delta411"><span class="old">referencing</span></a> <a name="delta411"/><a href="#delta412"><span class="new">referenced</span></a> element type definition that is validly derived from the <a name="delta412"/><a href="#delta413"><span class="old">referenced</span></a> <a name="delta413"/><a href="#delta414"><span class="new">referencing</span></a> element type definition.
 
    The term validly derived is as established by [XML Schema Structures] subsection Schema Component Constraint: Type Derivation OK (Complex) within Section 3.4.6, Constraints on Complex Type Definition Schema Components.
 
-   This rule requires that the type of the element <a name="delta405"/><a href="#delta406"><span class="old">information item</span></a> pointed to by a structures:ref attribute must be of (or derived from) the type <a name="delta406"/><a href="#delta407"><span class="old">that is specified by the element declaration</span></a> of the reference element.
+   This rule requires that the type of the element <a name="delta414"/><a href="#delta415"><span class="old">information item</span></a> pointed to by a structures:ref attribute must be of (or derived from) the type <a name="delta415"/><a href="#delta416"><span class="old">that is specified by the element declaration</span></a> of the reference element.
 
 12.2.1. Reference and content elements have same meaning
 
@@ -5844,9 +5846,9 @@ Rule 12-<a name="delta391"/><a href="#delta392"><span class="old">5</span></a><a
 
    Any claim that content elements represent composition while reference elements represent aggregation is incorrect. Any life cycle dependency is not expressed through the use of content and reference elements, and is not an explicit part of the NIEM model.
 
-Rule 12-<a name="delta407"/><a href="#delta408"><span class="old">6</span></a><a name="delta408"/><a href="#delta409"><span class="new">5</span></a>. Reference and content elements have the same meaning
+Rule 12-<a name="delta416"/><a href="#delta417"><span class="old">6</span></a><a name="delta417"/><a href="#delta418"><span class="new">5</span></a>. Reference and content elements have the same meaning
 
-   [Rule 12-<a name="delta409"/><a href="#delta410"><span class="old">6</span></a><a name="delta410"/><a href="#delta411"><span class="new">5</span></a>] (INS)
+   [Rule 12-<a name="delta418"/><a href="#delta419"><span class="old">6</span></a><a name="delta419"/><a href="#delta420"><span class="new">5</span></a>] (INS)
 
       There MUST NOT be any difference in meaning between a relationship established via an element declaration instantiated as a content element and that element declaration instantiated as a reference element.
 
@@ -5882,9 +5884,9 @@ Rule 12-<a name="delta407"/><a href="#delta408"><span class="old">6</span></a><a
 
    Assertions that indicate "included" data is intrinsic, while referenced data is extrinsic, are not valid and are not applicable to NIEM-conformant data instances and data definitions.
 
-Rule 12-<a name="delta411"/><a href="#delta412"><span class="old">7</span></a><a name="delta412"/><a href="#delta413"><span class="new">6</span></a>. Empty content has no meaning
+Rule 12-<a name="delta420"/><a href="#delta421"><span class="old">7</span></a><a name="delta421"/><a href="#delta422"><span class="new">6</span></a>. Empty content has no meaning
 
-   [Rule 12-<a name="delta413"/><a href="#delta414"><span class="old">7</span></a><a name="delta414"/><a href="#delta415"><span class="new">6</span></a>] (INS)
+   [Rule 12-<a name="delta422"/><a href="#delta423"><span class="old">7</span></a><a name="delta423"/><a href="#delta424"><span class="new">6</span></a>] (INS)
 
       Within the instance, the meaning of an element with no content is that additional properties are not asserted. There MUST NOT be additional meaning interpreted for an element with no content.
 
@@ -5938,45 +5940,45 @@ Rule 12-<a name="delta411"/><a href="#delta412"><span class="old">7</span></a><a
 
    Application of metadata to a type or element to which it is not applicable is not NIEM-conformant. A metadata element may be labeled as applicable to multiple elements via attribute appinfo:appliesToElements, or to multiple types via attribute appinfo:appliesToTypes. In either case it may apply to an instance of any of the listed elements or types. A metadata element with neither attribute appinfo:appliesToElements nor attribute appinfo:appliesToTypes may be applied to any element of any type.
 
-Rule 12-<a name="delta415"/><a href="#delta416"><span class="old">8</span></a><a name="delta416"/><a href="#delta417"><span class="new">7</span></a>. Metadata applies to referring entity
+Rule 12-<a name="delta424"/><a href="#delta425"><span class="old">8</span></a><a name="delta425"/><a href="#delta426"><span class="new">7</span></a>. Metadata applies to referring entity
 
-   [Rule 12-<a name="delta417"/><a href="#delta418"><span class="old">8</span></a><a name="delta418"/><a href="#delta419"><span class="new">7</span></a>] (INS)
+   [Rule 12-<a name="delta426"/><a href="#delta427"><span class="old">8</span></a><a name="delta427"/><a href="#delta428"><span class="new">7</span></a>] (INS)
 
       Within an element instance, when an object $O links to a metadata object via an attribute structures:metadata, the information in the metadata object MUST be applied to the object $O.
 
    structures:metadata applies metadata to an object.
 
-Rule 12-<a name="delta419"/><a href="#delta420"><span class="old">9</span></a><a name="delta420"/><a href="#delta421"><span class="new">8</span></a>. Referent of structures:relationshipMetadata annotates relationship
+Rule 12-<a name="delta428"/><a href="#delta429"><span class="old">9</span></a><a name="delta429"/><a href="#delta430"><span class="new">8</span></a>. Referent of structures:relationshipMetadata annotates relationship
 
-   [Rule 12-<a name="delta421"/><a href="#delta422"><span class="old">9</span></a><a name="delta422"/><a href="#delta423"><span class="new">8</span></a>] (INS)
+   [Rule 12-<a name="delta430"/><a href="#delta431"><span class="old">9</span></a><a name="delta431"/><a href="#delta432"><span class="new">8</span></a>] (INS)
 
       Within an element instance, when an object $O1 contains an element $E, with content object $O2 or with a reference to object $O2, and $O2 links to a metadata object via an attribute structures:relationshipMetadata, the information in the metadata object MUST be applied to the relationship $E between $O1 and $O2.
 
    structures:relationshipMetadata applies metadata to a relationship between two objects.
 
-Rule 12-<a name="delta423"/><a href="#delta424"><span class="old">10</span></a><a name="delta424"/><a href="#delta425"><span class="new">9</span></a>. Values of structures:metadata refer to values of structures:id
+Rule 12-<a name="delta432"/><a href="#delta433"><span class="old">10</span></a><a name="delta433"/><a href="#delta434"><span class="new">9</span></a>. Values of structures:metadata refer to values of structures:id
 
-   [Rule 12-<a name="delta425"/><a href="#delta426"><span class="old">10</span></a><a name="delta426"/><a href="#delta427"><span class="new">9</span></a>] (INS)
+   [Rule 12-<a name="delta434"/><a href="#delta435"><span class="old">10</span></a><a name="delta435"/><a href="#delta436"><span class="new">9</span></a>] (INS)
 
       Given that each IDREF in the value of an attribute structures:metadata must match the value of an ID attribute on some element in the XML document, that ID attribute MUST be an occurrence of the attribute structures:id.
 
-Rule 12-<a name="delta427"/><a href="#delta428"><span class="old">11</span></a><a name="delta428"/><a href="#delta429"><span class="new">10</span></a>. Value of structures:relationshipMetadata refers to value of structures:id
+Rule 12-<a name="delta436"/><a href="#delta437"><span class="old">11</span></a><a name="delta437"/><a href="#delta438"><span class="new">10</span></a>. Value of structures:relationshipMetadata refers to value of structures:id
 
-   [Rule 12-<a name="delta429"/><a href="#delta430"><span class="old">11</span></a><a name="delta430"/><a href="#delta431"><span class="new">10</span></a>] (INS)
+   [Rule 12-<a name="delta438"/><a href="#delta439"><span class="old">11</span></a><a name="delta439"/><a href="#delta440"><span class="new">10</span></a>] (INS)
 
       Given that each IDREF in the value of an attribute structures:relationshipMetadata must match the value of an ID attribute on some element in the XML document, that ID attribute MUST be an occurrence of the attribute structures:id.
 
-Rule 12-<a name="delta431"/><a href="#delta432"><span class="old">12</span></a><a name="delta432"/><a href="#delta433"><span class="new">11</span></a>. structures:metadata and structures:relationshipMetadata refer to metadata elements
+Rule 12-<a name="delta440"/><a href="#delta441"><span class="old">12</span></a><a name="delta441"/><a href="#delta442"><span class="new">11</span></a>. structures:metadata and structures:relationshipMetadata refer to metadata elements
 
-   [Rule 12-<a name="delta433"/><a href="#delta434"><span class="old">12</span></a><a name="delta434"/><a href="#delta435"><span class="new">11</span></a>] (INS)
+   [Rule 12-<a name="delta442"/><a href="#delta443"><span class="old">12</span></a><a name="delta443"/><a href="#delta444"><span class="new">11</span></a>] (INS)
 
       Each element referenced by an attribute structures:metadata or an attribute structures:relationshipMetadata MUST have [element declaration] that is a [metadata element declaration].
 
-   Although not implemented in Schematron, this rule covers the cases not covered by Rule 12-<a name="delta435"/><a href="#delta436"><span class="old">13</span></a><a name="delta436"/><a href="#delta437"><span class="new">12</span></a>, Attribute structures:metadata references metadata element.
+   Although not implemented in Schematron, this rule covers the cases not covered by Rule 12-<a name="delta444"/><a href="#delta445"><span class="old">13</span></a><a name="delta445"/><a href="#delta446"><span class="new">12</span></a>, Attribute structures:metadata references metadata element.
 
-Rule 12-<a name="delta437"/><a href="#delta438"><span class="old">13</span></a><a name="delta438"/><a href="#delta439"><span class="new">12</span></a>. Attribute structures:metadata references metadata element
+Rule 12-<a name="delta446"/><a href="#delta447"><span class="old">13</span></a><a name="delta447"/><a href="#delta448"><span class="new">12</span></a>. Attribute structures:metadata references metadata element
 
-   [Rule 12-<a name="delta439"/><a href="#delta440"><span class="old">13</span></a><a name="delta440"/><a href="#delta441"><span class="new">12</span></a>] (INS)
+   [Rule 12-<a name="delta448"/><a href="#delta449"><span class="old">13</span></a><a name="delta449"/><a href="#delta450"><span class="new">12</span></a>] (INS)
 
       &lt;sch:pattern&gt;
         &lt;sch:rule context="*[exists(@structures:metadata)]"&gt;
@@ -5989,9 +5991,9 @@ Rule 12-<a name="delta437"/><a href="#delta438"><span class="old">13</span></a><
 
    Note that this will NOT diagnose a scenario in which the element with a name ending in "Metadata" is an external element; additional tests would be required to catch that.
 
-Rule 12-<a name="delta441"/><a href="#delta442"><span class="old">14</span></a><a name="delta442"/><a href="#delta443"><span class="new">13</span></a>. Attribute structures:relationshipMetadata references metadata element
+Rule 12-<a name="delta450"/><a href="#delta451"><span class="old">14</span></a><a name="delta451"/><a href="#delta452"><span class="new">13</span></a>. Attribute structures:relationshipMetadata references metadata element
 
-   [Rule 12-<a name="delta443"/><a href="#delta444"><span class="old">14</span></a><a name="delta444"/><a href="#delta445"><span class="new">13</span></a>] (INS)
+   [Rule 12-<a name="delta452"/><a href="#delta453"><span class="old">14</span></a><a name="delta453"/><a href="#delta454"><span class="new">13</span></a>] (INS)
 
       &lt;sch:pattern&gt;
         &lt;sch:rule context="*[exists(@structures:relationshipMetadata)]"&gt;
@@ -6004,9 +6006,9 @@ Rule 12-<a name="delta441"/><a href="#delta442"><span class="old">14</span></a><
 
    Note that this will NOT diagnose a scenario in which the element with a name ending in "Metadata" is an external element; additional tests would be required to catch that.
 
-Rule 12-<a name="delta445"/><a href="#delta446"><span class="old">15</span></a><a name="delta446"/><a href="#delta447"><span class="new">14</span></a>. Metadata is applicable to element
+Rule 12-<a name="delta454"/><a href="#delta455"><span class="old">15</span></a><a name="delta455"/><a href="#delta456"><span class="new">14</span></a>. Metadata is applicable to element
 
-   [Rule 12-<a name="delta447"/><a href="#delta448"><span class="old">15</span></a><a name="delta448"/><a href="#delta449"><span class="new">14</span></a>] (INS)
+   [Rule 12-<a name="delta456"/><a href="#delta457"><span class="old">15</span></a><a name="delta457"/><a href="#delta458"><span class="new">14</span></a>] (INS)
 
       Given that an element $SUBJECT-ELEMENT uses a metadata element $METADATA-ELEMENT through a value in either an attribute structures:metadata or an attribute structures:relationshipMetadata, the element $SUBJECT-ELEMENT MUST be an applicable element for $METADATA-ELEMENT.
 
@@ -6024,9 +6026,9 @@ Appendix A. References
 
    [ISO 11179-5]: "ISO/IEC 11179-5:2005, Information technology -- Metadata registries (MDR) -- Part 5: Naming and identification principles". Available from http://standards.iso.org/ittf/PubliclyAvailableStandards/c035347_ISO_IEC_11179-5_2005(E).zip.
 
-   [<a name="delta449"/><a href="#delta450"><span class="new">JSON LD]: Manu Sporny, Dave Longley, Gregg Kellogg, Markus Lanthaler, and Niklas Lindstrom. "JSON-LD 1.0, A JSON-Based Serialization for Linked Data, W3C Recommendation." Edited by Manu Sporny, Gregg Kellogg, and Markus Lanthaler. W3C, January 16, 2014. https://www.w3.org/TR/2014/REC-json-ld-20140116/.</span></a>
-<a name="delta450"/><a href="#delta451"><span class="new"/></a>
-<a name="delta451"/><a href="#delta452"><span class="new">   [</span></a>JLS]: James Gosling, Bill Joy, Guy Steele, Gilad Bracha, and Alex Buckley. "The Java Language Specification, Java SE 8 Edition." Oracle Corp, March 3, 2014. http://docs.oracle.com/javase/specs/jls/se8/html/.
+   [<a name="delta458"/><a href="#delta459"><span class="new">JSON LD]: Manu Sporny, Dave Longley, Gregg Kellogg, Markus Lanthaler, and Niklas Lindstrom. "JSON-LD 1.0, A JSON-Based Serialization for Linked Data, W3C Recommendation." Edited by Manu Sporny, Gregg Kellogg, and Markus Lanthaler. W3C, January 16, 2014. https://www.w3.org/TR/2014/REC-json-ld-20140116/.</span></a>
+<a name="delta459"/><a href="#delta460"><span class="new"/></a>
+<a name="delta460"/><a href="#delta461"><span class="new">   [</span></a>JLS]: James Gosling, Bill Joy, Guy Steele, Gilad Bracha, and Alex Buckley. "The Java Language Specification, Java SE 8 Edition." Oracle Corp, March 3, 2014. http://docs.oracle.com/javase/specs/jls/se8/html/.
 
    [N-ary]: "Defining N-ary Relations on the Semantic Web", W3C Working Group Note, 12 April 2006. Available from http://www.w3.org/TR/2006/NOTE-swbp-n-aryRelations-20060412//.
 
@@ -6040,9 +6042,9 @@ Appendix A. References
 
    [XML]: "Extensible Markup Language (XML) 1.0 (Fourth Edition)", W3C Recommendation, 16 August 2006. Available from http://www.w3.org/TR/2008/REC-xml-20081126/.
 
-   [XML <a name="delta452"/><a href="#delta453"><span class="new">Base]: Jonathan Marsh, and Richard Tobin, eds. "XML Base (Second Edition), W3C Recommendation." W3C, January 28, 2009. Available from http://www.w3.org/TR/2009/REC-xmlbase-20090128/.</span></a>
-<a name="delta453"/><a href="#delta454"><span class="new"/></a>
-<a name="delta454"/><a href="#delta455"><span class="new">   [XML</span></a> Infoset]: Cowan, John, and Richard Tobin. "XML Information Set (Second Edition)", 4 February 2004. http://www.w3.org/TR/2004/REC-xml-infoset-20040204/.
+   [XML <a name="delta461"/><a href="#delta462"><span class="new">Base]: Jonathan Marsh, and Richard Tobin, eds. "XML Base (Second Edition), W3C Recommendation." W3C, January 28, 2009. Available from http://www.w3.org/TR/2009/REC-xmlbase-20090128/.</span></a>
+<a name="delta462"/><a href="#delta463"><span class="new"/></a>
+<a name="delta463"/><a href="#delta464"><span class="new">   [XML</span></a> Infoset]: Cowan, John, and Richard Tobin. "XML Information Set (Second Edition)", 4 February 2004. http://www.w3.org/TR/2004/REC-xml-infoset-20040204/.
 
    [XML Namespaces]: "Namespaces in XML 1.0 (Third Edition)", W3C Recommendation, 8 December 2009. Available from http://www.w3.org/TR/2009/REC-xml-names-20091208/.
 
@@ -6060,15 +6062,15 @@ Appendix B. Structures namespace
 
    &lt;?xml version="1.0" encoding="US-ASCII"?&gt;
    &lt;xs:schema
-       targetNamespace="http://release.niem.gov/niem/structures/<a name="delta455"/><a href="#delta456"><span class="old">3</span></a><a name="delta456"/><a href="#delta457"><span class="new">4</span></a>.0/"
-       version="<a name="delta457"/><a href="#delta458"><span class="old">1</span></a><a name="delta458"/><a href="#delta459"><span class="new">4.0alpha1</span></a>"
-       xmlns:structures="http://release.niem.gov/niem/structures/<a name="delta459"/><a href="#delta460"><span class="old">3</span></a><a name="delta460"/><a href="#delta461"><span class="new">4</span></a>.0/"
+       targetNamespace="http://release.niem.gov/niem/structures/<a name="delta464"/><a href="#delta465"><span class="old">3</span></a><a name="delta465"/><a href="#delta466"><span class="new">4</span></a>.0/"
+       version="<a name="delta466"/><a href="#delta467"><span class="old">1</span></a><a name="delta467"/><a href="#delta468"><span class="new">4.0alpha1</span></a>"
+       xmlns:structures="http://release.niem.gov/niem/structures/<a name="delta468"/><a href="#delta469"><span class="old">3</span></a><a name="delta469"/><a href="#delta470"><span class="new">4</span></a>.0/"
        xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
    
        &lt;xs:attribute name="id" type="xs:ID"/&gt;
        &lt;xs:attribute name="ref" type="xs:IDREF"/&gt;
-       &lt;xs:attribute name="<a name="delta461"/><a href="#delta462"><span class="new">uri" type="xs:anyURI"/&gt;</span></a>
-<a name="delta462"/><a href="#delta463"><span class="new">       &lt;xs:attribute name="</span></a>metadata" type="xs:IDREFS"/&gt;
+       &lt;xs:attribute name="<a name="delta470"/><a href="#delta471"><span class="new">uri" type="xs:anyURI"/&gt;</span></a>
+<a name="delta471"/><a href="#delta472"><span class="new">       &lt;xs:attribute name="</span></a>metadata" type="xs:IDREFS"/&gt;
        &lt;xs:attribute name="relationshipMetadata" type="xs:IDREFS"/&gt;
       
        &lt;xs:attributeGroup name="SimpleObjectAttributeGroup"&gt;
@@ -6133,10 +6135,10 @@ Appendix C. Appinfo namespace
 
    &lt;?xml version="1.0" encoding="US-ASCII"?&gt;
    &lt;xs:schema
-       <a name="delta463"/><a href="#delta464"><span class="old">attributeFormDefault="qualified"</span></a>
-       targetNamespace="http://release.niem.gov/niem/appinfo/<a name="delta464"/><a href="#delta465"><span class="old">3</span></a><a name="delta465"/><a href="#delta466"><span class="new">4</span></a>.0/"
-       version="<a name="delta466"/><a href="#delta467"><span class="old">1</span></a><a name="delta467"/><a href="#delta468"><span class="new">4.0alpha1</span></a>"
-       xmlns:appinfo="http://release.niem.gov/niem/appinfo/<a name="delta468"/><a href="#delta469"><span class="old">3</span></a><a name="delta469"/><a href="#delta470"><span class="new">4</span></a>.0/"
+       <a name="delta472"/><a href="#delta473"><span class="old">attributeFormDefault="qualified"</span></a>
+       targetNamespace="http://release.niem.gov/niem/appinfo/<a name="delta473"/><a href="#delta474"><span class="old">3</span></a><a name="delta474"/><a href="#delta475"><span class="new">4</span></a>.0/"
+       version="<a name="delta475"/><a href="#delta476"><span class="old">1</span></a><a name="delta476"/><a href="#delta477"><span class="new">4.0alpha1</span></a>"
+       xmlns:appinfo="http://release.niem.gov/niem/appinfo/<a name="delta477"/><a href="#delta478"><span class="old">3</span></a><a name="delta478"/><a href="#delta479"><span class="new">4</span></a>.0/"
        xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
    
      &lt;xs:annotation&gt;
@@ -6194,28 +6196,28 @@ Appendix C. Appinfo namespace
        &lt;/xs:simpleType&gt;
      &lt;/xs:attribute&gt;
    
-     &lt;<a name="delta470"/><a href="#delta471"><span class="old">/xs:schema&gt;</span></a>
-<a name="delta471"/><a href="#delta472"><span class="old">   </span></a>
-<a name="delta472"/><a href="#delta473"><span class="old"/></a>
-<a name="delta473"/><a href="#delta474"><span class="old">Appendix D. Local terminology namespace</span></a>
-<a name="delta474"/><a href="#delta475"><span class="old"/></a>
-<a name="delta475"/><a href="#delta476"><span class="old">   &lt;?xml version="1.0" encoding="US-ASCII"?&gt;</span></a>
-<a name="delta476"/><a href="#delta477"><span class="old">   &lt;xs:schema</span></a>
-<a name="delta477"/><a href="#delta478"><span class="old">      elementFormDefault="qualified" </span></a>
-<a name="delta478"/><a href="#delta479"><span class="old">      targetNamespace="http://release.niem.gov/niem/localTerminology/3.0/"</span></a>
-<a name="delta479"/><a href="#delta480"><span class="old">      version="1"</span></a>
-<a name="delta480"/><a href="#delta481"><span class="old">      xmlns:term="http://release.niem.gov/niem/localTerminology/3.0/"</span></a>
-<a name="delta481"/><a href="#delta482"><span class="old">      xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;</span></a>
-<a name="delta482"/><a href="#delta483"><span class="old">   </span></a>
-<a name="delta483"/><a href="#delta484"><span class="old">     &lt;</span></a>xs:element name="LocalTerm"&gt;
+     &lt;<a name="delta479"/><a href="#delta480"><span class="old">/xs:schema&gt;</span></a>
+<a name="delta480"/><a href="#delta481"><span class="old">   </span></a>
+<a name="delta481"/><a href="#delta482"><span class="old"/></a>
+<a name="delta482"/><a href="#delta483"><span class="old">Appendix D. Local terminology namespace</span></a>
+<a name="delta483"/><a href="#delta484"><span class="old"/></a>
+<a name="delta484"/><a href="#delta485"><span class="old">   &lt;?xml version="1.0" encoding="US-ASCII"?&gt;</span></a>
+<a name="delta485"/><a href="#delta486"><span class="old">   &lt;xs:schema</span></a>
+<a name="delta486"/><a href="#delta487"><span class="old">      elementFormDefault="qualified" </span></a>
+<a name="delta487"/><a href="#delta488"><span class="old">      targetNamespace="http://release.niem.gov/niem/localTerminology/3.0/"</span></a>
+<a name="delta488"/><a href="#delta489"><span class="old">      version="1"</span></a>
+<a name="delta489"/><a href="#delta490"><span class="old">      xmlns:term="http://release.niem.gov/niem/localTerminology/3.0/"</span></a>
+<a name="delta490"/><a href="#delta491"><span class="old">      xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;</span></a>
+<a name="delta491"/><a href="#delta492"><span class="old">   </span></a>
+<a name="delta492"/><a href="#delta493"><span class="old">     &lt;</span></a>xs:element name="LocalTerm"&gt;
        &lt;xs:complexType&gt;
          &lt;xs:sequence&gt;
-   	&lt;xs:element name="SourceText" type="<a name="delta484"/><a href="#delta485"><span class="old">term</span></a><a name="delta485"/><a href="#delta486"><span class="new">appinfo</span></a>:NonemptyStringSimpleType" 
-                       minOccurs="0" maxOccurs="unbounded" <a name="delta486"/><a href="#delta487"><span class="new">form="qualified"</span></a>/&gt;
+   	&lt;xs:element name="SourceText" type="<a name="delta493"/><a href="#delta494"><span class="old">term</span></a><a name="delta494"/><a href="#delta495"><span class="new">appinfo</span></a>:NonemptyStringSimpleType" 
+                       minOccurs="0" maxOccurs="unbounded" <a name="delta495"/><a href="#delta496"><span class="new">form="qualified"</span></a>/&gt;
          &lt;/xs:sequence&gt;
-         &lt;xs:attribute name="term" type="<a name="delta487"/><a href="#delta488"><span class="old">term</span></a><a name="delta488"/><a href="#delta489"><span class="new">appinfo</span></a>:NonemptyStringSimpleType" use="required"/&gt;
-         &lt;xs:attribute name="literal" type="<a name="delta489"/><a href="#delta490"><span class="old">term</span></a><a name="delta490"/><a href="#delta491"><span class="new">appinfo</span></a>:NonemptyStringSimpleType"/&gt;
-         &lt;xs:attribute name="definition" type="<a name="delta491"/><a href="#delta492"><span class="old">term</span></a><a name="delta492"/><a href="#delta493"><span class="new">appinfo</span></a>:NonemptyStringSimpleType"/&gt;
+         &lt;xs:attribute name="term" type="<a name="delta496"/><a href="#delta497"><span class="old">term</span></a><a name="delta497"/><a href="#delta498"><span class="new">appinfo</span></a>:NonemptyStringSimpleType" use="required"/&gt;
+         &lt;xs:attribute name="literal" type="<a name="delta498"/><a href="#delta499"><span class="old">term</span></a><a name="delta499"/><a href="#delta500"><span class="new">appinfo</span></a>:NonemptyStringSimpleType"/&gt;
+         &lt;xs:attribute name="definition" type="<a name="delta500"/><a href="#delta501"><span class="old">term</span></a><a name="delta501"/><a href="#delta502"><span class="new">appinfo</span></a>:NonemptyStringSimpleType"/&gt;
          &lt;xs:attribute name="sourceURIs"&gt;
            &lt;xs:simpleType&gt;
              &lt;xs:restriction&gt;
@@ -6238,11 +6240,11 @@ Appendix C. Appinfo namespace
    &lt;/xs:schema&gt;
    
 
-Appendix <a name="delta493"/><a href="#delta494"><span class="old">E</span></a> <a name="delta494"/><a href="#delta495"><span class="new">D</span></a>. Index of definitions
+Appendix <a name="delta502"/><a href="#delta503"><span class="old">E</span></a> <a name="delta503"/><a href="#delta504"><span class="new">D</span></a>. Index of definitions
 
    The index of definitions is omitted from this edition.
 
-Appendix <a name="delta495"/><a href="#delta496"><span class="old">F</span></a> <a name="delta496"/><a href="#delta497"><span class="new">E</span></a>. Index of rules
+Appendix <a name="delta504"/><a href="#delta505"><span class="old">F</span></a> <a name="delta505"/><a href="#delta506"><span class="new">E</span></a>. Index of rules
 
    Rule 4-1, Schema marked as reference schema document must conform: Section 4.1, Conformance targets defined
    Rule 4-2, Schema marked as extension schema document must conform: Section 4.1, Conformance targets defined
@@ -6369,7 +6371,7 @@ Appendix <a name="delta495"/><a href="#delta496"><span class="old">F</span></a> 
    Rule 10-16, External element use has data definition: Section 10.2.3.4, External element use
    Rule 10-17, Name of code type ends in "CodeType": Section 10.2.4, Code types
    Rule 10-18, Proxy type has designated structure: Section 10.2.5, Proxy types
-   Rule 10-19, Association <a name="delta497"/><a href="#delta498"><span class="old">types</span></a> <a name="delta498"/><a href="#delta499"><span class="new">type</span></a> is derived from association type: Section 10.3.1, Association types
+   Rule 10-19, Association <a name="delta506"/><a href="#delta507"><span class="old">types</span></a> <a name="delta507"/><a href="#delta508"><span class="new">type</span></a> is derived from association type: Section 10.3.1, Association types
    Rule 10-20, Association element type is an association type: Section 10.3.2, Association element declarations
    Rule 10-21, Augmentable type has augmentation point element: Section 10.4.1, Augmentable types
    Rule 10-22, Augmentable type has at most one augmentation point element: Section 10.4.1, Augmentable types
@@ -6424,8 +6426,8 @@ Appendix <a name="delta495"/><a href="#delta496"><span class="old">F</span></a> 
    Rule 10-71, appinfo:appliesToTypes references types: Section 10.9.1.2, appinfo:appliesToTypes annotation
    Rule 10-72, appinfo:appliesToElements annotates metadata element: Section 10.9.1.3, appinfo:appliesToElements annotation
    Rule 10-73, appinfo:appliesToElements references elements: Section 10.9.1.3, appinfo:appliesToElements annotation
-   Rule 10-74, <a name="delta499"/><a href="#delta500"><span class="old">term</span></a> <a name="delta500"/><a href="#delta501"><span class="new">appinfo</span></a>:LocalTerm annotates schema: Section 10.9.2, <a name="delta501"/><a href="#delta502"><span class="old">The NIEM local</span></a> <a name="delta502"/><a href="#delta503"><span class="new">Local</span></a> terminology <a name="delta503"/><a href="#delta504"><span class="old">namespace</span></a>
-   Rule 10-75, <a name="delta504"/><a href="#delta505"><span class="old">term</span></a> <a name="delta505"/><a href="#delta506"><span class="new">appinfo</span></a>:LocalTerm has literal or definition: Section 10.9.2, <a name="delta506"/><a href="#delta507"><span class="old">The NIEM local</span></a> <a name="delta507"/><a href="#delta508"><span class="new">Local</span></a> terminology <a name="delta508"/><a href="#delta509"><span class="old">namespace</span></a>
+   Rule 10-74, <a name="delta508"/><a href="#delta509"><span class="old">term</span></a> <a name="delta509"/><a href="#delta510"><span class="new">appinfo</span></a>:LocalTerm annotates schema: Section 10.9.2, <a name="delta510"/><a href="#delta511"><span class="old">The NIEM local</span></a> <a name="delta511"/><a href="#delta512"><span class="new">Local</span></a> terminology <a name="delta512"/><a href="#delta513"><span class="old">namespace</span></a>
+   Rule 10-75, <a name="delta513"/><a href="#delta514"><span class="old">term</span></a> <a name="delta514"/><a href="#delta515"><span class="new">appinfo</span></a>:LocalTerm has literal or definition: Section 10.9.2, <a name="delta515"/><a href="#delta516"><span class="old">The NIEM local</span></a> <a name="delta516"/><a href="#delta517"><span class="new">Local</span></a> terminology <a name="delta517"/><a href="#delta518"><span class="old">namespace</span></a>
    Rule 10-76, Use structures as specified: Section 10.10, NIEM structural facilities
    Rule 11-1, Name of type ends in "Type": Section 11.1, Type definition components
    Rule 11-2, Name of type other than proxy type is in upper camel case: Section 11.1, Type definition components
@@ -6469,26 +6471,26 @@ Appendix <a name="delta495"/><a href="#delta496"><span class="old">F</span></a> 
    Rule 11-40, Each namespace may have only a single root schema in a schema set: Section 11.8, Schema assembly
    Rule 11-41, Consistently marked namespace imports: Section 11.8, Schema assembly
    Rule 12-1, Instance must be schema-valid: Section 12, XML instance document rules
-   Rule 12-2, <a name="delta509"/><a href="#delta510"><span class="old">Element with structures:ref does not have content: Section 12.2, Reference elements</span></a>
-<a name="delta510"/><a href="#delta511"><span class="old">   Rule 12-3,</span></a> Attribute structures:ref must reference structures:id: Section 12.2, Reference elements
-   Rule 12-<a name="delta511"/><a href="#delta512"><span class="old">4</span></a><a name="delta512"/><a href="#delta513"><span class="new">3</span></a>, Linked elements have same validation root: Section 12.2, Reference elements
-   Rule 12-<a name="delta513"/><a href="#delta514"><span class="old">5</span></a><a name="delta514"/><a href="#delta515"><span class="new">4</span></a>, Attribute structures:ref references element of correct type: Section 12.2, Reference elements
-   Rule 12-<a name="delta515"/><a href="#delta516"><span class="old">6</span></a><a name="delta516"/><a href="#delta517"><span class="new">5</span></a>, Reference and content elements have the same meaning: Section 12.2.1, Reference and content elements have same meaning
-   Rule 12-<a name="delta517"/><a href="#delta518"><span class="old">7</span></a><a name="delta518"/><a href="#delta519"><span class="new">6</span></a>, Empty content has no meaning: Section 12, XML instance document rules
-   Rule 12-<a name="delta519"/><a href="#delta520"><span class="old">8</span></a><a name="delta520"/><a href="#delta521"><span class="new">7</span></a>, Metadata applies to referring entity: Section 12.3, Instance metadata
-   Rule 12-<a name="delta521"/><a href="#delta522"><span class="old">9</span></a><a name="delta522"/><a href="#delta523"><span class="new">8</span></a>, Referent of structures:relationshipMetadata annotates relationship: Section 12.3, Instance metadata
-   Rule 12-<a name="delta523"/><a href="#delta524"><span class="old">10</span></a><a name="delta524"/><a href="#delta525"><span class="new">9</span></a>, Values of structures:metadata refer to values of structures:id: Section 12.3, Instance metadata
-   Rule 12-<a name="delta525"/><a href="#delta526"><span class="old">11</span></a><a name="delta526"/><a href="#delta527"><span class="new">10</span></a>, Value of structures:relationshipMetadata refers to value of structures:id: Section 12.3, Instance metadata
-   Rule 12-<a name="delta527"/><a href="#delta528"><span class="old">12</span></a><a name="delta528"/><a href="#delta529"><span class="new">11</span></a>, structures:metadata and structures:relationshipMetadata refer to metadata elements: Section 12.3, Instance metadata
-   Rule 12-<a name="delta529"/><a href="#delta530"><span class="old">13</span></a><a name="delta530"/><a href="#delta531"><span class="new">12</span></a>, Attribute structures:metadata references metadata element: Section 12.3, Instance metadata
-   Rule 12-<a name="delta531"/><a href="#delta532"><span class="old">14</span></a><a name="delta532"/><a href="#delta533"><span class="new">13</span></a>, Attribute structures:relationshipMetadata references metadata element: Section 12.3, Instance metadata
-   Rule 12-<a name="delta533"/><a href="#delta534"><span class="old">15</span></a><a name="delta534"/><a href="#delta535"><span class="new">14</span></a>, Metadata is applicable to element: Section 12.3, Instance metadata
+   Rule 12-2, <a name="delta518"/><a href="#delta519"><span class="old">Element with structures:ref does not have content: Section 12.2, Reference elements</span></a>
+<a name="delta519"/><a href="#delta520"><span class="old">   Rule 12-3,</span></a> Attribute structures:ref must reference structures:id: Section 12.2, Reference elements
+   Rule 12-<a name="delta520"/><a href="#delta521"><span class="old">4</span></a><a name="delta521"/><a href="#delta522"><span class="new">3</span></a>, Linked elements have same validation root: Section 12.2, Reference elements
+   Rule 12-<a name="delta522"/><a href="#delta523"><span class="old">5</span></a><a name="delta523"/><a href="#delta524"><span class="new">4</span></a>, Attribute structures:ref references element of correct type: Section 12.2, Reference elements
+   Rule 12-<a name="delta524"/><a href="#delta525"><span class="old">6</span></a><a name="delta525"/><a href="#delta526"><span class="new">5</span></a>, Reference and content elements have the same meaning: Section 12.2.1, Reference and content elements have same meaning
+   Rule 12-<a name="delta526"/><a href="#delta527"><span class="old">7</span></a><a name="delta527"/><a href="#delta528"><span class="new">6</span></a>, Empty content has no meaning: Section 12, XML instance document rules
+   Rule 12-<a name="delta528"/><a href="#delta529"><span class="old">8</span></a><a name="delta529"/><a href="#delta530"><span class="new">7</span></a>, Metadata applies to referring entity: Section 12.3, Instance metadata
+   Rule 12-<a name="delta530"/><a href="#delta531"><span class="old">9</span></a><a name="delta531"/><a href="#delta532"><span class="new">8</span></a>, Referent of structures:relationshipMetadata annotates relationship: Section 12.3, Instance metadata
+   Rule 12-<a name="delta532"/><a href="#delta533"><span class="old">10</span></a><a name="delta533"/><a href="#delta534"><span class="new">9</span></a>, Values of structures:metadata refer to values of structures:id: Section 12.3, Instance metadata
+   Rule 12-<a name="delta534"/><a href="#delta535"><span class="old">11</span></a><a name="delta535"/><a href="#delta536"><span class="new">10</span></a>, Value of structures:relationshipMetadata refers to value of structures:id: Section 12.3, Instance metadata
+   Rule 12-<a name="delta536"/><a href="#delta537"><span class="old">12</span></a><a name="delta537"/><a href="#delta538"><span class="new">11</span></a>, structures:metadata and structures:relationshipMetadata refer to metadata elements: Section 12.3, Instance metadata
+   Rule 12-<a name="delta538"/><a href="#delta539"><span class="old">13</span></a><a name="delta539"/><a href="#delta540"><span class="new">12</span></a>, Attribute structures:metadata references metadata element: Section 12.3, Instance metadata
+   Rule 12-<a name="delta540"/><a href="#delta541"><span class="old">14</span></a><a name="delta541"/><a href="#delta542"><span class="new">13</span></a>, Attribute structures:relationshipMetadata references metadata element: Section 12.3, Instance metadata
+   Rule 12-<a name="delta542"/><a href="#delta543"><span class="old">15</span></a><a name="delta543"/><a href="#delta544"><span class="new">14</span></a>, Metadata is applicable to element: Section 12.3, Instance metadata
 
-Appendix <a name="delta535"/><a href="#delta536"><span class="old">G</span></a> <a name="delta536"/><a href="#delta537"><span class="new">F</span></a>. General index
+Appendix <a name="delta544"/><a href="#delta545"><span class="old">G</span></a> <a name="delta545"/><a href="#delta546"><span class="new">F</span></a>. General index
 
    The index is omitted from this edition.
 
 </pre>
 </div>
-  <p><a name="delta537"/><a href="#top">Go back to top</a></p></body>
+  <p><a name="delta546"/><a href="#top">Go back to top</a></p></body>
 </html>
