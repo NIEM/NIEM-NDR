@@ -1,3 +1,19 @@
+
+        <rule applicability="REF EXT" id="rule-attribute-names-start-lower-case" class="Constraint">
+        <pre><xmlBlurb id="xb-rule-attribute-names-start-lower-case" memberOf="ref ext">
+<sch:pattern>
+  <sch:rule context="xs:attribute[exists(@name)]">
+    <sch:assert test="matches(@name, '^[a-z0-9\-_\.]*$')"
+      >The name of an XML Schema component defined by the schema must be composed of only the characters uppercase 'A' through 'Z', lowercase 'a' through 'z', numbers '0' through '9', underscore, hyphen, and period.</sch:assert>
+  </sch:rule>
+</sch:pattern>
+        </xmlBlurb></pre>
+        </rule>
+
+          <p>The name of any XML Schema component defined by the schema MUST use the camel case formatting convention.</p>
+
+
+
   <section>
     <title>Unsorted rules</title>
 

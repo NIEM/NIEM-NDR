@@ -40,7 +40,6 @@ m4_define([[[MACRO_NS_NIEM_DOMAIN_J]]],[[[http://release.niem.gov/niem/domains/j
 m4_define([[[MACRO_NS_NIEM_DOMAIN_SCR]]],[[[http://release.niem.gov/niem/domains/screening/4.0/]]])m4_dnl
 m4_define([[[MACRO_NS_NIEM_DOMAIN_IM]]],[[[http://release.niem.gov/niem/domains/immigration/4.0/]]])m4_dnl
 m4_define([[[MACRO_NS_NIEM_DOMAIN_CYFS]]],[[[http://release.niem.gov/niem/domains/cyfs/4.0/]]])m4_dnl
-m4_define([[[MACRO_IS_UPPER_CAMEL_CASE]]],[[[matches($1, '^([A-Z][A-Za-z0-9\-]*)+$')]]])m4_dnl
 m4_define([[[MACRO_NS_RDFS]]],[[[http://www.w3.org/2000/01/rdf-schema#]]])m4_dnl
 m4_define([[[MACRO_NS_RDF]]],[[[http://www.w3.org/1999/02/22-rdf-syntax-ns#]]])m4_dnl
 m4_define([[[MACRO_NS_XS]]],[[[MACRO_XS_NS]]])m4_dnl

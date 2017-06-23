@@ -4908,7 +4908,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
               the code values.</p>
 
         </section>
-        <section><title>Proxy types</title>
+        <section id="section-proxy-types"><title>Proxy types</title>
 
             <p>The NIEM 3.0 release schema <code>niem/proxy/xsd/3.0/xs.xsd</code> provides complex type bases for
               some of the simple types in the XML Schema namespace. The complex types in this schema reuse the
@@ -5859,26 +5859,49 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 
     <ruleSection>
       <title>Schema component names have only specific characters</title>
-      <rule applicability="REF EXT" class="Constraint">
-        <p>The name of any XML Schema component defined by the schema MUST contain only the following characters:</p>
+      <rule applicability="REF EXT" id="rule-names-have-specific-characters" class="Constraint">
+        <pre><xmlBlurb id="xb-rule-names-have-specific-characters" memberOf="ref ext">
+<sch:pattern>
+  <sch:rule context="xs:*[exists(@name)]">
+    <sch:assert test="matches(@name, '^[A-Za-z0-9\-_\.]*$')"
+      >The name of an XML Schema component defined by the schema must be composed of only the characters uppercase 'A' through 'Z', lowercase 'a' through 'z', numbers '0' through '9', underscore, hyphen, and period.</sch:assert>
+  </sch:rule>
+</sch:pattern>
+        </xmlBlurb></pre>
+      </rule>
+
+      <p>Only the following characters are allowed in the name of an XML Schema component defined by the
+        schema:</p>
         <ul>
           <li><p>Upper-case letters (<q><code>A</code></q><char name="ndash"/><q><code>Z</code></q>).</p></li>
           <li><p>Lower-case letters (<q><code>a</code></q><char name="ndash"/><q><code>z</code></q>).</p></li>
           <li><p>Digits (<q><code>0</code></q><char name="ndash"/><q><code>9</code></q>).</p></li>
+          <li><p>Underscore (<q><code>_</code></q>).</p></li>
           <li><p>Hyphen (<q><code>-</code></q>).</p></li>
+          <li><p>Period (<q><code>.</code></q>).</p></li>
         </ul>
-        <p>Other characters, such as the underscore (<q><code>_</code></q>) character and the period (<q><code>.</code></q>) character MUST NOT appear in component names in NIEM-conformant schemas.</p>
-      </rule>
-      </ruleSection>
+
+        <p>Other characters, such as unicode characters outside the ASCII character set, are explictly prohibited
+          from the name of an XML Schema component defined by the schema.</p>
+
+    </ruleSection>
 
     <ruleSection>
-      <title>Hyphen in component name is a separator</title>
+      <title>Punctuation in component name is a separator</title>
       <rule applicability="REF EXT" class="Constraint">
-        <p>The hyphen character (<q><code>-</code></q>) MAY appear in component names only when used as a separator between parts of a single word, phrase, or value, which would otherwise be incomprehensible without the use of a separator.</p>
+        <p>The characters hyphen (<q><code>-</code></q>), underscore (<q><code>_</code></q>) MAY appear in a
+          component name only when used as a separator between parts of a word, phrase, or value, which would
+          otherwise be incomprehensible without the use of a separator. The period character
+          (<q><code>.</code></q>) MAY appear in component names only when appearing as a separator (as above) or
+          as a decimal within a numeric value. A punctuation character MUST NOT be used as a substitute for camel
+          case in component names, or as a method to avoid camel case in component names.</p>
       </rule>
     </ruleSection>
 
-      <p>Names of standards and specifications, in particular, tend to consist of series of discrete numbers. Such names require some explicit separator to keep the values from running together. The separator used within NIEM is the hyphen.</p>
+      <p>Names of standards and specifications, in particular, tend to consist of series of discrete
+        numbers. Such names require some explicit separator to keep the values from running together. The
+        separator used within NIEM is the hyphen.</p>
+      
       <p>Names of NIEM components follow the rules of XML Schema, by <ref idref="is-schema-doc"/>. NIEM
         components also follow the rules specified herein for each type of XML Schema component.</p>
 
@@ -5892,28 +5915,49 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 
       <ruleSection><title>Names use camel case</title>
         <rule applicability="REF EXT" class="Constraint">
-          <p>The name of any XML Schema component defined by the schema MUST use the camel case formatting convention.</p>
+          <p>The name of any XML Schema component defined by the schema MUST use the camel case formatting
+            convention.</p>
         </rule>
       </ruleSection>
 
       <ruleSection>
         <title>Attribute name begins with lower case letter</title>
-        <rule applicability="REF EXT" class="Constraint">
-          <p>Within the schema, any attribute declaration MUST have a name that begins with a lower-case letter
-          (<q><code>a</code></q><char name="ndash"/><q><code>z</code></q>).</p>
+        <rule applicability="REF EXT" id="rule-attribute-names-start-lower-case" class="Constraint">
+          <pre><xmlBlurb id="xb-rule-attribute-names-start-lower-case" memberOf="ref ext">
+<sch:pattern>
+  <sch:rule context="xs:attribute[exists(@name)]">
+    <sch:assert test="matches(@name, '^[a-z]')"
+      >Within the schema, any attribute declaration MUST have a name that begins with a lowercase letter
+      ('a'-'z').</sch:assert>
+  </sch:rule>
+</sch:pattern>
+          </xmlBlurb></pre>
         </rule>
       </ruleSection>
 
       <ruleSection>
-        <title>Name of schema component other than attribute begins with upper case letter</title>
-        <rule applicability="REF EXT" class="Constraint">
-          <p>Within the schema, any XML Schema component other than an attribute declaration MUST have a name
-          that begins with an upper-case letter
-          (<q><code>A</code></q><char name="ndash"/><q><code>Z</code></q>).</p>
+        <title>Name of schema component other than attribute and proxy type begins with upper case letter</title>
+        <rule applicability="REF EXT" id="rule-names-start-upper-case" class="Constraint">
+          <pre><xmlBlurb id="xb-rule-names-start-upper-case" memberOf="ref ext">
+<sch:pattern>
+  <sch:rule context="xs:attribute">
+    <sch:report test="false()">This rule does not apply to an attribute.</sch:report>
+  </sch:rule>
+  <sch:rule context="MACRO_MATCH_PROXY_TYPE([[[                     ]]])">
+    <sch:report test="false()">This rule does not apply to a proxy types.</sch:report>
+  </sch:rule>
+  <sch:rule context="xs:*[exists(@name)]">
+    <sch:assert test="matches(@name, '^[A-Z]')"
+      >Within the schema, an XML Schema component that is not an attribute declaration or proxy type MUST have a name that begins with an upper-case letter ('A'-'Z').</sch:assert>
+  </sch:rule>
+</sch:pattern>
+          </xmlBlurb></pre>
         </rule>
       </ruleSection>
 
-      <p>The foregoing rules establish <em>lowerCamelCase</em> for all NIEM components that are XML attributes and <em>UpperCamelCase</em> for all NIEM components that are types, elements, or groups.</p>
+      <p>The preceding rules establish <em>lowerCamelCase</em> for NIEM attributes, and <em>UpperCamelCase</em>
+      for all other NIEM components, except proxy types, defined by <ref idref="section-proxy-types"/>.</p>
+
     </section>
 
     <section><title>Use of acronyms and abbreviations</title>
@@ -6640,28 +6684,6 @@ not be given the same name.</p></li>
 
       </ruleSection>
 
-      <ruleSection><title>Name of type other than proxy type is in upper camel case</title>
-
-        <rule applicability="REF EXT" id="type-name-upper-camel-case" class="Constraint">
-          <pre><xmlBlurb memberOf="ref ext" id="xb-type-name-upper-camel-case">
-<sch:pattern>
-  <sch:rule context="MACRO_MATCH_PROXY_TYPE([[[                     ]]])">
-    <sch:report test="false()">The name of a proxy type is not upper camel case.</sch:report>
-  </sch:rule>
-  <sch:rule context="xs:*[(self::xs:simpleType or self::xs:complexType) and exists(@name)]">
-    <sch:assert test="MACRO_IS_UPPER_CAMEL_CASE(@name)"
-      >A type definition schema component that does not define a proxy type MUST be in upper camel case.</sch:assert>
-  </sch:rule>
-</sch:pattern>
-          </xmlBlurb></pre>
-        </rule>
-
-        <p>Note that the first <qName>sch:rule</qName> and q subsequent <qName>sch:report</qName>
-          (with <code>@test-="false()"</code>) serve to provide an exception to this rule for proxy types. It
-          does not establish a constraint on the data.</p>
-
-      </ruleSection>
-
       <section><title>Type definition hierarchy</title>
         <ruleSection>
           <title>Base type definition defined by conformant schema</title>
@@ -6705,18 +6727,7 @@ not be given the same name.</p></li>
             in <code>SimpleType</code>.</p>
 
         </ruleSection>
-        <ruleSection><title>Name of simple type is upper camel case</title>
-          <rule applicability="REF EXT" id="st-name-upper-camel-case" class="Constraint">
-            <pre><xmlBlurb id="xb-st-name-upper-camel-case" memberOf="ref ext">
-<sch:pattern>
-  <sch:rule context="xs:simpleType[exists(@name)]">
-    <sch:assert test="MACRO_IS_UPPER_CAMEL_CASE(string(@name))"
-      >The name of a simple type definition schema component MUST be upper camel case.</sch:assert>
-  </sch:rule>
-</sch:pattern>
-            </xmlBlurb></pre>
-          </rule>
-        </ruleSection>
+
         <section><title>Derivation by list</title>
 
           <ruleSection><title>Use lists only when data is uniform</title>
@@ -6908,21 +6919,6 @@ not be given the same name.</p></li>
       </section>
     <section><title>Declaration components</title>
       <section><title>Element declaration</title>
-
-        <ruleSection>
-          <title>Element name is upper camel case</title>
-          <rule applicability="REF EXT" id="rule-el-upper-camel-case" class="Constraint">
-            <pre><xmlBlurb id="xb-rule-el-upper-camel-case" memberOf="ref ext">
-<sch:pattern>
-  <sch:rule context="xs:element[exists(@name)]">
-    <sch:assert test="MACRO_IS_UPPER_CAMEL_CASE(string(@name))"
-                >The name of an element declaration MUST be upper camel case.</sch:assert>
-  </sch:rule>
-</sch:pattern>
-            </xmlBlurb></pre>
-          </rule>
-          <p>This document defines the term <termRef>element declaration</termRef>.</p>
-        </ruleSection>
 
         <ruleSection><title>Element type does not have a simple type name</title>
           <rule applicability="REF EXT" id="el-type-name-not-simple-type" class="Constraint">

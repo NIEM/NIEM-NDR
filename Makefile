@@ -211,7 +211,7 @@ ${tmp_dir}/ndr-rules-conformance-target-ins.sch: ${ndr_doc_xml}
 ${tmp_dir}/%.sch.xsl: ${tmp_dir}/%.sch
 	${schematron_compile} --output-file=$@ $<
 
-${tmp_dir}/ndr-id-map.xml: ${ndr_doc_xml} ${tmp_dir}/get-ndr-id-map.xsl
+${tmp_dir}/ndr-id-map.xml: ${ndr_doc_xml}
 	@ ${MKDIR_P} ${dir $@}
 	${process_doc} ${process_doc_flags} --format=rules-id-map --in=$< --out=$@
 
