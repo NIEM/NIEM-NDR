@@ -147,7 +147,7 @@ endif
 endif
 
 .PHONY: clean #  Remove generated artifacts
-clean:
+clean: clean-repo
 	${RM} -r ${tmp_dir}
 
 .PHONY: distclean #  Remove all artifacts
@@ -287,16 +287,13 @@ ${archive_dir}/%: ${tmp_dir}/%
 # repo : put the NDR into a git repo for publication
 
 .PHONY: repo #  install current version into the repository
-repo: before-install-into-repo install-into-repo
+repo: ${products:%=${repo_dir}/%}
 	@ echo Recommended: git tag niem-ndr-${ndr_version}
 
-.PHONY: before-install-into-repo
-before-install-into-repo:
+.PHONY: clean-repo #  Remove everything from repo/ so install can be clean
+clean-repo:
 	@ if [[ ! -d ${repo_dir} ]]; then echo Git repository '${repo_dir}' does not exist; exit 1; fi
 	${find} ${repo_dir} -mindepth 1 ! -path '${repo_dir}/.git' ! -path '${repo_dir}/.git/*' ! -path '${repo_dir}/README.md' -print0 | xargs -0 ${RM}
-
-.PHONY: install-into-repo
-install-into-repo: ${products:%=${repo_dir}/%}
 
 ${repo_dir}/niem-ndr-${ndr_version}.html: ${ndr_doc_html}
 	${cp} $< $@
