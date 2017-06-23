@@ -46,13 +46,13 @@
   - [X] Rule 10-49. Attribute name begins with lower case letter
   - [X] Rule 10-50. Name of schema component other than attribute begins with upper case letter
   - [X] Rule 10-47. Hyphen in component name is a separator
+- [X] scrub out 3.0 references (still there!)
+  - [X] "The NIEM 3.0 release schema"
+  - [X] ... /3. ...
+  - [X] others
 
 ** pending tasks: in order to be done
 
-- [ ] scrub out 3.0 references (still there!)
-  - [ ] "The NIEM 3.0 release schema"
-  - [ ] ... /3. ...
-  - [ ] others
 - [ ] add reference to location of errata [github repo branch]
 - [-] allow @fixed
   - [X] investigate valid / invalid use cases

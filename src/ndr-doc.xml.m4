@@ -110,7 +110,10 @@
 
     <section id="section-scope">
       <title>Scope</title>
-      <p>This document was developed to specify NIEM 3.0. Later releases of NIEM may be specified by later versions of this document. The document covers the following issues in depth:</p>
+
+      <p>This document was developed to specify NIEM 4.0. Later releases of NIEM may be specified by later
+        versions of this document. The document covers the following issues in depth:</p>
+
       <ul>
         <li>
           <p>The underlying NIEM data model</p>
@@ -4910,7 +4913,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         </section>
         <section id="section-proxy-types"><title>Proxy types</title>
 
-            <p>The NIEM 3.0 release schema <code>niem/proxy/xsd/3.0/xs.xsd</code> provides complex type bases for
+            <p>The NIEM 4.0 release schema <code>niem/proxy/xsd/4.0/xs.xsd</code> provides complex type bases for
               some of the simple types in the XML Schema namespace. The complex types in this schema reuse the
               local names of the XML Schema simple types they extend, even though those names
               don<char name="rsquo"/>t follow the naming structure of most conformant complex types. There is a
@@ -4980,7 +4983,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         <p>An example of an association type defined by an XML Schema document follows, in
           <ref idref="figure-defn-of-assn-type"/>.</p>
 
-        <p>Note that the NIEM Core schema in NIEM 3.0 defines a type <qName>nc:AssociationType</qName>, which
+        <p>Note that the NIEM Core schema in NIEM 4.0 defines a type <qName>nc:AssociationType</qName>, which
           acts as the base type for all of the other association types defined within NIEM Core. This is a
           convention adopted by that version of NIEM Core namespace, but is not a requirement of this
           document. An implementer of a NIEM-conformant schema is not required by this specification to base a
