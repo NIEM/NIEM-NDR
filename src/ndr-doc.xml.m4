@@ -67,11 +67,10 @@
 
     <p>This specification is a product of the NIEM Program Management Office (PMO).</p>
 
-    <p></p>
+    <p>Updates, revisions, and errata for this specification are posted to
+      <link>https://github.com/NIEM/NIEM-NDR</link>. Please submit comments on this specification as issues
+      at <link>https://github.com/NIEM/NIEM-NDR/issues</link>.</p>
     
-    <p>Send comments on this specification via email
-      to <link href="mailto:niem-comments%40lists.gatech.edu?subject=NIEM%20NDR%20Rules%20Version%20[[[]]]MACRO_NDR_VERSION">niem-comments@lists.gatech.edu</link>.</p>
-
   </subsection>
 
   <subsection id="toc">

@@ -2,5 +2,9 @@
 
 cd "$(dirname "$0")"
 
-time make -j 8 valid all depend=build
+if (( $# == 0 ))
+then set valid all
+fi
+
+time make -j 8 "$@" depend=build
 
