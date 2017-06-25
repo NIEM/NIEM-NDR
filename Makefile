@@ -18,9 +18,9 @@ dependencies_mk := dependencies.mk
 depend = include
 
 # ndr_version is the document & package version; the namespaces are defined within ndr-macros.m4.
-ndr_version = 4.0beta3
-ndr_date_value := ${shell date --reference=src/ndr-doc.xml.m4 +%Y-%m-%d}
-ndr_date = ${ndr_date_value}
+ndr_version = 4.0beta2
+#ndr_date_value := ${shell date --reference=src/ndr-doc.xml.m4 +%Y-%m-%d}
+ndr_date = 2017-06-26
 repo_dir = repo
 
 # command paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -319,7 +319,7 @@ conr ${niem_release_checked_out_token}:
 	git archive \
 	  --remote=${HOME}/r/niem/release/niem-releases \
 	  --prefix=${niem_release_checkout_dir}/ \
-	  support-ndr | tar xvf -
+	  dev-niem-4.0 | tar xvf -
 	${MKDIR_P} ${dir ${niem_release_checked_out_token}}
 	${touch} ${niem_release_checked_out_token}
 

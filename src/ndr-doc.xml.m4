@@ -48,35 +48,47 @@
     </xmlBlurb>
   </comment>
   
-  <subsection id="toc">
-    <title>Contents</title>
-    <tableOfContents/>
-  </subsection>
-  <subsection>
-    <title>Table of Figures</title>
-    <tableOfFigures/>
-  </subsection>
-  <subsection>
-    <title>Table of Tables</title>
-    <tableOfTables/>
-  </subsection>
-  <subsection>
-    <title>Authors</title>
-    <p>Webb Roberts, Georgia Tech Research Institute (<link href="mailto:webb.roberts@gtri.gatech.edu">&lt;webb.roberts@gtri.gatech.edu&gt;</link>), Lead Author</p>
-  </subsection>
   <subsection>
     <title>Abstract</title>
     <p>This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version 4.0.</p>
   </subsection>
+
+  <subsection>
+    <title>Authors</title>
+    <p>Webb Roberts, Georgia Tech Research Institute (<link href="mailto:webb.roberts@gtri.gatech.edu">&lt;webb.roberts@gtri.gatech.edu&gt;</link>), Lead Author</p>
+  </subsection>
+
   <subsection><title>Status</title>
-    <p>This document is an early draft of the specification for XML Schema documents, components, and instances
+
+    <p>This document is a draft of the specification for XML Schema documents, components, and instances
       for use with NIEM 4. It presents a technical architecture that has evolved through the collaborative work
       of the NIEM Business Architecture Committee (NBAC), the NIEM Technical Architecture Committee (NTAC), and
       their predecessors.</p>
+
     <p>This specification is a product of the NIEM Program Management Office (PMO).</p>
+
+    <p></p>
+    
     <p>Send comments on this specification via email
       to <link href="mailto:niem-comments%40lists.gatech.edu?subject=NIEM%20NDR%20Rules%20Version%20[[[]]]MACRO_NDR_VERSION">niem-comments@lists.gatech.edu</link>.</p>
+
   </subsection>
+
+  <subsection id="toc">
+    <title>Contents</title>
+    <tableOfContents/>
+  </subsection>
+
+  <subsection>
+    <title>Table of Figures</title>
+    <tableOfFigures/>
+  </subsection>
+
+  <subsection>
+    <title>Table of Tables</title>
+    <tableOfTables/>
+  </subsection>
+
   <section><title>Introduction</title>
 
     <p>This Naming and Design Rules (NDR) document specifies XML Schema documents for use with the National

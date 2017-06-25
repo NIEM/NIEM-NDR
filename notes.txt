@@ -53,7 +53,12 @@
 
 ** pending tasks: in order to be done
 
-- [ ] add reference to location of errata [github repo branch]
+- [ ] set up errata / bug report / canonical repo on github.com/niem
+  - [ ] set up the canonical repo
+  - [ ] add reference to location of errata [github repo branch]
+
+- [ ] a rule says "... with an identification representation term ..." but should probably be identifier or ID.
+- [ ] spelling; like in code lists spec
 - [-] allow @fixed
   - [X] investigate valid / invalid use cases
   - [ ] get tests running
