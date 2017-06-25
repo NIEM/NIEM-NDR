@@ -6,5 +6,7 @@ if (( $# == 0 ))
 then set valid all
 fi
 
-time make -j 8 "$@" depend=build
+make depend depend=build
+
+time make -j 8 "$@"
 

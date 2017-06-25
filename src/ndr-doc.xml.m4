@@ -2,7 +2,6 @@
 <document
    xmlns:appinfo="MACRO_NS_APPINFO"
    xmlns:ct="MACRO_CONFORMANCE_TARGETS_NS"
-   xmlns:cyfs="MACRO_NS_NIEM_DOMAIN_CYFS"
    xmlns:doc="https://iead.ittl.gtri.org/wr24/doc/2011-09-30-2258"
    xmlns:html="http://www.w3.org/1999/xhtml"
    xmlns:im="MACRO_NS_NIEM_DOMAIN_IM"
@@ -351,7 +350,7 @@
 
         <p>An execution of a Schematron pattern that issues a failed assertion (represented
           via <qName>sch:assert</qName>) represents a validation error, and signifies that the assessed artifact
-          violates a requirement of a conformance rule. An example of a constraint rule that uses schematron is
+          violates a requirement of a conformance rule. An example of a constraint rule that uses Schematron is
           <ref idref="st-top-level"/>.</p>
 
         <p>An execution of a Schematron pattern that issues a report (represented via <qName>sch:report</qName>)
@@ -1097,7 +1096,7 @@
       <li ><p >NIEM<char name="rsquo" />s use of the RDF model defines what a set of NIEM data means. The RDF
           specification provides a detailed description of what a statement means. This meaning is leveraged by
           NIEM.</p></li>
-      <li><p>NIEM<char name="rsquo"/>s use of the RDF model provides a basis for inferencing and reasoning about
+      <li><p>NIEM<char name="rsquo"/>s use of the RDF model provides a basis for inferring and reasoning about
           XML data that uses NIEM. That is, using the rules defined for the RDF model, programs can determine
           implications of relationships between NIEM-defined objects.</p></li>
     </ul>
@@ -1250,7 +1249,7 @@
         are persistent or significant.</p>
 
       <p>These attributes provide the identifiers of objects. The properties of an object may be spread across
-        several XML elements that have the same identifer. These properties must be merged together to provide
+        several XML elements that have the same identifier. These properties must be merged together to provide
         all the properties of a single object, as described by
         MACRO_REF_EXTERNAL(JSONLD,MACRO_HREF_JSON_LD#node-objects,8.2,Node Objects):</p>
       
@@ -2204,7 +2203,7 @@
 
         <p>There are many constructs within XML Schema that act as
           wildcards. That is, they introduce buckets that may carry arbitrary or
-          otherwise nonvalidated content. Such constructs violate <ref idref="principle-avoid-wildcards"/>, and as such provide implicit
+          otherwise not-validated content. Such constructs violate <ref idref="principle-avoid-wildcards"/>, and as such provide implicit
           workarounds for the difficult task of agreeing on the content of data
           models. Such workarounds should be made explicitly, outside the core
           data model.</p>
@@ -4101,7 +4100,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
           </xmlBlurb></pre>
         </rule>
         <p>An import that does not specify a namespace is enabling references to
-          non-namespaced components. NIEM requires that all components have a
+          components without namespaces. NIEM requires that all components have a
           defined namespace. It is important that the namespace declared by a
           schema be universally defined and unambiguous.</p>
       </ruleSection>
@@ -5102,19 +5101,21 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         <ul>
           <li><p>It results in numerous, domain-specific specializations of <qName>nc:PersonType</qName>, each
               with common content and extension-specific content.</p></li>
-          <li><p>There is no method for the developer of an information exchange specification (IES) to bring
-              these types back together into a single type that carries the attributes desired for the IES. XML
-              Schema does not support multiple inheritance, so there is no way to join
-              together <qName>j:PersonType</qName>, <qName>im:PersonType</qName>,
-              and <qName>cyfs:PersonType</qName>.</p></li>
+          
+          <li><p>There is no method for the developer of an information exchange package description (IEPD) to bring
+              these types back together into a single type that carries the attributes desired for the IEPD. XML
+              Schema does not support multiple inheritance, so there would be no way to join
+              together <code>nc:PersonType</code>, <code>j:PersonType</code>,
+              and <code>im:PersonType</code>.</p></li>
+          
           <li><p>There is no standard or easy way for the developer to express that the various element instances
               of the various person types represent the same person, or which parts of those instances are
               required to be populated; does each person restate the name and birth-date, or is that handled by
               just one instance?</p></li>
-          <li><p>A domain, having created its own <qName>j:PersonType</qName> that
-              extends <qName>nc:PersonType</qName>, is, of course, going to create elements of that type. These
+          <li><p>A domain, having created its own <code>j:PersonType</code> that
+              extends <code>nc:PersonType</code>, is, of course, going to create elements of that type. These
               elements will not be easily reused by other domains, as the Immigration namespace will want to
-              use <qName>im:PersonType</qName> instead of <qName>j:PersonType</qName>.</p></li>
+              use <code>im:PersonType</code> instead of <code>j:PersonType</code>.</p></li>
         </ul>
 
         <p>This approach turns into a morass that is difficult to use and maintain, and which does
@@ -5345,7 +5346,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
     <sch:let name="augmentation-point-qname"
              value="MACRO_COMPLEX_TYPE_GET_AUGMENTATION_POINT_QNAME(.,[[[                        ]]])"/>
     <sch:assert test="count(xs:complexContent/xs:extension/xs:sequence/xs:element[
-                              @ref[resolve-QName(., ..) = $augmentation-point-qname]]) &lt;= 1"
+                              @ref[resolve-QName(., ..) = $augmentation-point-qname]]) le 1"
       >An augmentable type MUST contain no more than one element use of its augmentation point element.</sch:assert>
   </sch:rule>
 </sch:pattern>
@@ -5895,7 +5896,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
           <li><p>Period (<q><code>.</code></q>).</p></li>
         </ul>
 
-        <p>Other characters, such as unicode characters outside the ASCII character set, are explictly prohibited
+        <p>Other characters, such as unicode characters outside the ASCII character set, are explicitly prohibited
           from the name of an XML Schema component defined by the schema.</p>
 
     </ruleSection>
@@ -6050,7 +6051,7 @@ rather than their full meanings.</p>
 
           <ol>
 
-            <li><p>The value of the attribute <local-name>term</local-name>is the <termRef>local term</termRef>;
+            <li><p>The value of the attribute <local-name>term</local-name> is the <termRef>local term</termRef>;
                 it may occur as a term within the name of a schema component within the schema document.</p></li>
 
             <li><p>The value of the attribute <local-name>literal</local-name> is the meaning of the local term,
@@ -6310,7 +6311,7 @@ not be given the same name.</p></li>
             <tr>
               <td>MACRO_REPRESENTATION_TERM_QUANTITY</td>
               <td></td>
-              <td>A counted number of nonmonetary units possibly including fractions.</td>
+              <td>A counted number of non-monetary units possibly including fractions.</td>
             </tr>
             <tr>
               <td>MACRO_REPRESENTATION_TERM_TEXT</td>
@@ -6754,8 +6755,8 @@ not be given the same name.</p></li>
 
           <p>The use of lists should be reserved for cases where the data is fairly uniform.</p>
 
-          <p>Items in a list are not individually addressable by NIEM metadata techniques. The items are also not
-            individually referencable by elements or attributes; one will have a value of the entire list,
+          <p>Items in a list are not individually addressable by NIEM metadata techniques. The items may not be 
+            individually referenced by elements or attributes; one will have a value of the entire list,
             including all the items in the list. NIEM provides no method for individually addressing an item in a
             list. If an individual item in a list needs to be marked up in a manner different than other items in
             the list, the use of individual elements may be preferred to the definition of a list simple
@@ -7216,7 +7217,7 @@ not be given the same name.</p></li>
             along with certain <termRef>application information</termRef>
             (via <qName>xs:appinfo</qName>).</p></li>
       </ol>
-      <p>When possible, meaning is expressed via XML Schema mechanisms: type derivation, element substitution, specific types and structures, as well as names that are trivially parseable. Beyond that, NIEM-specific syntax must be used, as discussed in this section.</p>
+      <p>When possible, meaning is expressed via XML Schema mechanisms: type derivation, element substitution, specific types and structures, as well as names that may be easily parsed. Beyond that, NIEM-specific syntax must be used, as discussed in this section.</p>
 
       <section id="SectionHumanReadableDocumentation">
 
@@ -7405,7 +7406,7 @@ not be given the same name.</p></li>
         </rule>
         </ruleSection>
 
-        <p>These rules embody the basic philosophy behind NIEM<char name="rsquo"/>s use of namespaced components:
+        <p>These rules embody the basic philosophy behind NIEM<char name="rsquo"/>s use of components with namespaces:
         A component is uniquely identified by its class (e.g. element, attribute, type), its namespace (a URI),
         and its local name (an unqualified string). Any two matching component identifiers refer to the same
         component, even if the versions of the schemas containing each are different.</p>

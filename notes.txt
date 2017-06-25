@@ -56,10 +56,12 @@
   - [X] set up the canonical repo
   - [X] add reference to location of errata [github repo branch]
   - [X] verify it looks OK
+- [X] spelling; like in code lists spec
+  - [X] stand up mechanisms
+  - [X] verify document
 
 ** pending tasks: in order to be done
 
-- [ ] spelling; like in code lists spec
 - [-] allow @fixed
   - [X] investigate valid / invalid use cases
   - [ ] get tests running
