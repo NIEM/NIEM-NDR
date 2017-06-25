@@ -39,6 +39,7 @@ process_doc_flags = --catalog=xsd/ndr-examples/xml-catalog.xml
 doc_to_schematron = doc-to-schematron
 
 # # others
+aspell = aspell
 base64 = base64
 check_xml = check-xml
 chmod = chmod
@@ -158,7 +159,11 @@ distclean: clean
 all: archive repo
 
 .PHONY: rules #  Generate rules
-rules: ${rules_products:%=tmp/%}
+rules: ${rules_products:%=${tmp_dir}/%}
+
+.PHONY: spell # check spelling
+spell: ${ndr_doc_text} aspell-exceptions.txt
+	${aspell} --home-dir=. -p aspell-exceptions.txt list < $< | sort -uf
 
 #############################################################################
 # products
@@ -247,8 +252,8 @@ ${valid_dir}/doc/%: %
 	${check_doc} ${check_doc_flags} $<
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
-${valid_dir}/ndr-rules/%: % tmp/ndr-rules.sch.xsl
-	${schematron_execute} --xslt-file=tmp/ndr-rules.sch.xsl --format=text $<
+${valid_dir}/ndr-rules/%: % ${tmp_dir}/ndr-rules.sch.xsl
+	${schematron_execute} --xslt-file=${tmp_dir}/ndr-rules.sch.xsl --format=text $<
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
 ${tmp_dir}/ndr-rules.sch.xsl: src/ndr-rules.sch
@@ -344,8 +349,8 @@ endif
 # put temporary things here
 
 check :
-	${RM} tmp/tokens/valid/doc/tmp/ndr-doc.xml
-	${MAKE} tmp/tokens/valid/doc/tmp/ndr-doc.xml
+	${RM} ${tmp_dir}tokens/valid/doc/tmp/ndr-doc.xml
+	${MAKE} ${tmp_dir}tokens/valid/doc/tmp/ndr-doc.xml
 
 again:
 	${RM} ${archive_dir}/ndr-rules-conformance-target-ref.sch

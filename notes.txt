@@ -52,13 +52,13 @@
   - [X] others
 - [X] a rule says "... with an identification representation term ..." but should probably be identifier or ID.
   - [X] that's OK
+- [X] set up errata / bug report / canonical repo on github.com/niem
+  - [X] set up the canonical repo
+  - [X] add reference to location of errata [github repo branch]
+  - [X] verify it looks OK
 
 ** pending tasks: in order to be done
 
-- [-] set up errata / bug report / canonical repo on github.com/niem
-  - [X] set up the canonical repo
-  - [X] add reference to location of errata [github repo branch]
-  - [ ] verify it looks OK
 - [ ] spelling; like in code lists spec
 - [-] allow @fixed
   - [X] investigate valid / invalid use cases
