@@ -5109,7 +5109,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
               and <qName>cyfs:PersonType</qName>.</p></li>
           <li><p>There is no standard or easy way for the developer to express that the various element instances
               of the various person types represent the same person, or which parts of those instances are
-              required to be populated; does each person restate the name and birthdate, or is that handled by
+              required to be populated; does each person restate the name and birth-date, or is that handled by
               just one instance?</p></li>
           <li><p>A domain, having created its own <qName>j:PersonType</qName> that
               extends <qName>nc:PersonType</qName>, is, of course, going to create elements of that type. These
