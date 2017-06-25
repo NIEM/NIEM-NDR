@@ -64,7 +64,14 @@
 
 - [-] allow @fixed
   - [X] investigate valid / invalid use cases
-  - [ ] get tests running
+  - [X] update text of section 8.4: Ensure schema processing does not alter processed data
+    - [X] general introduction of PSVI problem
+    - [X] specifically get @fixed right
+  - [ ] update 6.2.2. Disallow content modification with XML processors
+    - [ ] reflect section 8.4 (id=sec-no-infoset-mods)
+    - [ ] link to 8.4
+  - [X] get tests running
+  - [ ] update rules
   - [ ] check rules
 - [ ] add Schematron for rules without Schematron
 - [ ] eliminate use of the root() function, since it breaks contesa

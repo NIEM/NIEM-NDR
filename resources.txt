@@ -1,5 +1,12 @@
 # -*-org-*-
 
+* dealing with a boolean
+
+look like this:
+
+  <sch:report test="empty(@abstract) or xs:boolean(@abstract) = false()"
+
+
 * 2017-05-15
 - [ ] update m4 to use ${m4}
 - [ ] remove common-decls

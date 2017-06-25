@@ -1703,13 +1703,27 @@
           </ol>
         </principle>
       </section>
-      <section id="section-principle-disallow-content-modification">
+      <section id="section-principle-no-infoset-mods">
         <title>Disallow content modification with XML processors</title>
-        <p>XML Schema has constructs that can make the data provided by XML processors different before and after schema processing. An example of this is the use of XML Schema attribute declarations with default values. Before schema validation, there may be no attribute value, but after processing, the attribute value exists.</p>
-        <p>Within NIEM, the purpose of processing instances against schemas is primarily validation: testing that data instances match desired constraints and guidelines. It should not be used to change the content of data instances.</p>
+
+        <p>XML Schema has constructs that can make the data provided by an XML Schema validating parser differ
+          from that provided by a non-validating XML parser. For example, if an XML Schema attribute declaration
+          has a default value, and if an XML document omits the attribute where it might appear, an XML Schema
+          validating parser will <em>synthesize</em> the attribute with the default value in the infoset that it
+          provides to its caller. Without schema validation, there would be no attribute value, but after
+          processing, the attribute value exists in the parsed data provided to the caller.</p>
+
+        <p>Within NIEM, the purpose of processing instances against schemas is primarily validation: testing that
+          data instances match desired constraints and guidelines. It should not be used to alter the content of
+          data.</p>
+
         <principle>
-          <p>The content of a NIEM-conformant data instance SHOULD NOT be modified by processing against XML Schema documents.</p>
+
+          <p>The data of a NIEM-conformant XML document provided by an XML parser SHOULD NOT be modified by the 
+            process of validating the data against an an XML Schema.</p>
+
         </principle>
+
       </section>
       <section>
         <title>Use XML validating parsers for content validation</title>
@@ -2272,22 +2286,53 @@
 
       </section>
 
-      <section id="sec-do-not-alter-data">
-        <title>Ensure schema processing does not alter processed data</title>
+      <section id="sec-no-infoset-mods">
 
-        <p>XML Schema provides the capability for element and attribute declarations to provide default values
-          when XML instances using those components do not provide values. This is done through the use of the
-          attributes <local-name>default</local-name> and <local-name>fixed</local-name>, both of
-          which provide default values to attributes and element content.</p>
+        <title>Ensure schema processing does not yield synthesized values</title>
 
-        <p>The use of default values means that the act of validating a schema will insert a value into an XML
-          instance where none existed prior to schema validation. Schema validation is for rejection of invalid
-          instances, not for modifying instance content, as described by
-          <ref idref="section-principle-disallow-content-modification"/>.</p>
+        <p>An XML document expresses an infoset (see <ref idref="XMLInfoset"/>); the infoset is the data carried
+          by the XML document, and is expressed as a set of information items (e.g., element information items,
+          attribute information items, etc.).
+          MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#d0e504,2.1,Overview of XML Schema) describes the
+          process followed by an XML Schema validating parser. Beyond the actions of a plain XML parser, which
+          provides the data from an XML document to its caller in a structured way, an XML Schema validating
+          parser does the following:</p>
 
-        <p>The transparency of validation to data content is ensured through a prohibition on the use
-          of <local-name>default</local-name> and <local-name>fixed</local-name> attributes in
-          NIEM-conformant schema documents.</p>
+        <blockquote>
+          <ol>
+            <li><p>Determining local schema-validity, that is whether an element or attribute information item
+                satisfies the constraints embodied in the relevant components of an XML Schema;</p></li>
+            <li><p>Synthesizing an overall validation outcome for the item, combining local schema-validity with
+                the results of schema-validity assessments of its descendants, if any, and adding appropriate
+                augmentations to the infoset to record this outcome.</p></li>
+          </ol>
+        </blockquote>
+
+        <p>In short, not only does an XML Schema validating parser yield data from an XML document to its caller,
+          it determines whether the XML document is valid against an XML Schema, and also provides
+          an <strong>augmented infoset</strong> to the caller, reflecting information implied by the schema,
+          which may not appear in the original XML document.</p>
+        
+        <p>XML Schema provides for element and attribute declarations to provide default values. When an XML
+          document does not contain a value for a component that has a default, the XML Schema validating parser
+          will <em>synthesize</em> a value for the component. This is done through the use of the
+          attributes <local-name>default</local-name> and <local-name>fixed</local-name>, both of which provide
+          default values to attributes and element content. An XML Schema validating parser that validates an XML
+          document against a schema that uses <local-name>default</local-name> or <local-name>fixed</local-name>
+          will yield an infoset that is augmented, yielding values in the XML infoset where none existed in the
+          original XML document.</p>
+
+        <p>NIEM schemas should not be constructed to yield synthesized values in the infoset. The process of XML
+          Schema validation against NIEM schemas should provide for marking data as valid or invalid, but should
+          not modify original infoset data with constructed values. The XML infoset yielded by a non-validating
+          XML parser should be the same as that yielded by an XML Schema validating parser. Turning on schema
+          validation should not alter the data received by the caller of the parser.</p>
+
+         <p>The prohibition of synthesized values is supported by
+           <ref idref="section-principle-no-infoset-mods"/>.  It is also supported through a
+           prohibition on all uses of <local-name>default</local-name>, and most uses
+           of <local-name>fixed</local-name> on attributes and elements defined by NIEM-conformant schema
+           documents.</p>
 
       </section>
       <section><title>Use namespaces rigorously</title>
@@ -3408,22 +3453,42 @@
               </xmlBlurb></pre>
             </rule>
             <p>This rule helps to ensure that schema processing does not alter processed data, as described in
-              <ref idref="sec-do-not-alter-data"/>.</p>
+              <ref idref="sec-no-infoset-mods"/>.</p>
           </ruleSection>
           <ruleSection>
             <title>No attribute fixed values</title>
+
+            <p>The <local-name>fixed</local-name> attribute is described by
+              MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#Attribute_Declaration_details,3.2.1,The Attribute Declaration Schema Component):</p>
+
+            <blockquote>
+
+              <p><em>default</em> specifies that the attribute is to appear unconditionally in the
+                post-schema-validation infoset, with the supplied value used whenever the attribute is not
+                actually present; <em>fixed</em> indicates that the attribute value if present must equal the
+                supplied constraint value, and if absent receives the supplied value as
+                for <em>default</em>.</p>
+
+            </blockquote>
+
+            <p></p>
+            
+            
             <rule applicability="REF EXT" id="no-at-fixed" class="Constraint">
               <pre><xmlBlurb memberOf="ref ext" id="xb-no-at-fixed">
 <sch:pattern>
+  <sch:rule context="xs:attribute[exists(@ref) and @use eq 'required']">
+    <sch:report test="false()">This rule does not constrain attribute uses that are required</sch:report>
+  </sch:rule>
   <sch:rule context="xs:attribute">
     <sch:assert test="empty(@fixed)"
-      >An element xs:attribute MUST NOT have an attribute {}fixed.</sch:assert>
+      >An element xs:attribute that is not a required attribute use MUST NOT have an attribute {}fixed.</sch:assert>
   </sch:rule>
 </sch:pattern>
               </xmlBlurb></pre>
             </rule>
             <p>This rule helps to ensure that schema processing does not alter processed data, as described in
-              <ref idref="sec-do-not-alter-data"/>.
+              <ref idref="sec-no-infoset-mods"/>.
               The use of the <code>fixed</code> attribute may result in alteration of the post-schema-validation
               infoset, like the use of <code>default</code> does. This behavior is described by
               MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#Attribute_Declaration_details,3.2.1,The Attribute Declaration Schema Component).</p>
