@@ -8002,7 +8002,7 @@ not be given the same name.</p></li>
           and <qName>structures:id</qName> must preserve the type constraints that would apply if nested elements
           were used instead of a reference. For example, an element of type <qName>nc:PersonType</qName> must
           always refer to another element of type <qName>nc:PersonType</qName>, or a type derived
-          from <qName>nc:PersonType</qName>, when using <qname>structures:ref</qname> to establish the
+          from <qName>nc:PersonType</qName>, when using <qName>structures:ref</qName> to establish the
           relationship.</p>
 
         <rule applicability="INS" class="Constraint" id="rule-ref-and-id-have-same-validation-root">
