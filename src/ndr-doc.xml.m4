@@ -2650,6 +2650,35 @@
 
         MACRO_HAS_DATA_DEFINITION(Simple type, st, xs:simpleType, A simple type)
 
+        <ruleSection>
+          <title>No use of <q>fixed</q> on simple type facets</title>
+
+          <p>An attribute <local-name>fixed</local-name> on a constraining facet
+            (e.g., <qName>xs:maxInclusive</qName>) of a simple type <var>$base</var> prevents a simple type
+            derived from <var>$base</var> from further restricting that facet. For example, if
+            simpleType <qName>nc:LatitudeDegreeSimpleType</qName> uses an <qName>xs:maxInclusive</qName> facet
+            that limits the maximum value to 90, a simple type derived from that type could not further restrict
+            the type to limit the maximum value to 45.</p>
+
+          <p>The use of <local-name>fixed</local-name> on simple type facets violates
+            <ref idref="principle-extensible"/>, since it prevents an extension schema from constraining a base
+            type. As a result, the <local-name>fixed</local-name> on simple type facets in reference schemas is
+            prohibited.</p>
+
+          <rule applicability="REF" id="no-facet-fixed" class="Constraint">
+            <pre><xmlBlurb memberOf="ref" id="xb-no-facet-fixed">
+<sch:pattern>
+  <sch:rule context="xs:*[self::xs:length or self::xs:minLength or self::xs:maxLength or self::xs:whiteSpace
+      or self::xs:maxInclusive or self::xs:maxEclusive or self::xs:minExclusive or self::xs:minInclusive 
+      or self::xs:totalDigits or self::xs:fractionDigits]">
+    <sch:assert test="empty(@fixed)"
+      >A simple type constraining facet MUST NOT have an attribute {}fixed.</sch:assert>
+  </sch:rule>
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+        
         <section>
           <title>Simple types prohibited as list item types</title>
 
