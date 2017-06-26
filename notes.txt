@@ -79,12 +79,39 @@
   - [X] verify
   - [X] commit
 - [X] a reference to the term namespace?
+- [X] remove src/resources.txt
 
 ** pending tasks: in order to be done
 
-- [ ] remove src/resources.txt
-- [ ] update to code list spec 4.0
 - [ ] id / ref / @uri resolution & unification
+  - [ ] complete rewrite of:
+    - [ ] section 12.1, "Content elements" file:///Users/wr/r/niem/ndr/doc/repo/niem-ndr-4.0beta2.html#section_12.1
+    - [ ] 12.2 "Reference element" file:///Users/wr/r/niem/ndr/doc/repo/niem-ndr-4.0beta2.html#section_12.2
+
+  - [ ] get a grip on the json-ld's spec definitoin of linking via IDs & composite objects.
+  - [ ] @ uri defined against a base uri according to xml:base standard
+
+    - how JSON LD does it: in section 6.1, base IRI:
+
+      - JSON-LD allows IRIs to be specified in a relative form which is resolved against the document base according section [5.1 Establishing a Base URI](http://tools.ietf.org/html/rfc3986#section-5.1) of [RFC3986]. The base IRI may be explicitly set with a context using the @base keyword.
+
+      - in section 9.1: 
+        - QUOTE: using a single node object for all triples having a common subject
+
+      - Every object is given an identifier:
+        - base resolution is (xml:base) + (a URI)
+        - @id -> URI is "#{@id}"
+        - @ref -> URI is "#{@ref}"
+        - @uri -> URI is "{@uri}"
+
+        - no single element can have more than one of @id, @ref, @uri.
+        - leave type-safety in place for @id, @ref, but not for @uri.
+
+    - [ ] look out for "ad hoc" language
+
+- [ ] NCCT issues
+
+- [ ] update to code list spec 4.0
 - [ ] very broken rule: Rule 10-37. Augmentation elements are not used directly
   - [ ] says REF, but has targets of REF,EXT
   - [ ] should be Schematron
@@ -92,11 +119,13 @@
   - [ ] Augmentation elements are of augmentation type
   - [ ] Augmentation elements are not abstract
 - [ ] get rid of &gt; and &lt;, prefer xpath gt and lt
-- [ ] add Schematron for rules without Schematron
 - [ ] add check: any component in the target namespace MUST be declared within the schema
+
+** Someday / maybe
+
+- [ ] add Schematron for rules without Schematron
 - [ ] Lighten EXT structural rules
 - [ ] use MACRO_REPRESENTATION_TERM_QUANTITY, and the other like macros, universally across the document. They're only used in some places.
-
 
 * Changes from 3.0 to 4.0
 
