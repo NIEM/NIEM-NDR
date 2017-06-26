@@ -78,11 +78,10 @@
   - [X] fix
   - [X] verify
   - [X] commit
+- [X] a reference to the term namespace?
 
 ** pending tasks: in order to be done
 
-- [ ] a reference to the term namespace?
-- [ ] add validation against ndr-rules.sch
 - [ ] remove src/resources.txt
 - [ ] update to code list spec 4.0
 - [ ] id / ref / @uri resolution & unification
