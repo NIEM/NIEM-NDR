@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$0")"
+
+. "$HOME"/share/wrtools-core/opt_help.bash
+. "$HOME"/share/wrtools-core/fail.bash
+
+#HELP:COMMAND_NAME: Run some convenient stuff
+#HELP:Usage: COMMAND_NAME $global-options* $command ...
+#HELP:global-options:
+#HELP:  --help | -h: Print this help
+
+OPTIND=1
+while getopts :h-: option
+do
+    case "$option" in
+        h ) opt_help;;
+        - )
+            case "$OPTARG" in
+                help ) opt_help;;
+                help=* ) fail "Long option \"${OPTARG%%=*}\" has an unexpected argument";;
+                * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
+            esac
+            ;;  
+        '?' ) fail "unknown option \"$OPTARG\"";;
+        : ) fail "option \"$OPTARG\" missing argument";;
+        * ) assert false;;
+    esac
+done
+shift $((OPTIND - 1))
+
+#HELP:Commands:
+
+(( $# >= 1 )) || fail "Need at least one command"
+
+case $1 in
+    #HELP:  log: get the log from the last dev-ndr-4.0beta2 to dev
+    log )
+        (
+            exec 3>&1
+            git log --reverse --pretty=format:%B dev-ndr-4.0beta2..dev | tee /dev/fd/3 | pbcopy
+        ) ;;
+    * )
+        fail "Unknown command \"$1\"";;
+esac
+         
+
