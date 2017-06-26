@@ -458,7 +458,6 @@
 <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
 <sch:ns prefix="appinfo" uri="MACRO_NS_APPINFO"/>
 <sch:ns prefix="structures" uri="MACRO_NS_STRUCTURES"/>
-<sch:ns prefix="term" uri="MACRO_NS_LOCAL_TERM"/>
       </xmlBlurb></pre>
     </figure>
 
@@ -6715,7 +6714,7 @@ not be given the same name.</p></li>
 <sch:pattern>
   <sch:rule context="appinfo:LocalTerm">
     <sch:assert test="exists(@literal) or exists(@definition)"
-            >The element {MACRO_NS_LOCAL_TERM}LocalTerm MUST have a literal or definition.</sch:assert>
+            >The element {MACRO_NS_APPINFO}LocalTerm MUST have a literal or definition.</sch:assert>
   </sch:rule>
 </sch:pattern>
           </xmlBlurb></pre>

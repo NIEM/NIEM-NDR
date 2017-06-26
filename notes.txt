@@ -73,19 +73,19 @@
   - [X] check rules
 - [X] eliminate use of the root() function, since it breaks contesa
   - [X] verified that root() is not in use
+- [X] structures & appinfo schemas are @version 4.0beta2pre1?
+  - [X] why?
+  - [X] fix
+  - [X] verify
+  - [X] commit
 
 ** pending tasks: in order to be done
 
-- [-] structures & appinfo schemas are @version 4.0beta2pre1?
-  - [X] why?
-  - [X] fix
-  - [ ] verify
-  - [ ] commit
-
-- [ ] update to code list spec 4.0
 - [ ] a reference to the term namespace?
+- [ ] add validation against ndr-rules.sch
+- [ ] remove src/resources.txt
+- [ ] update to code list spec 4.0
 - [ ] id / ref / @uri resolution & unification
-
 - [ ] very broken rule: Rule 10-37. Augmentation elements are not used directly
   - [ ] says REF, but has targets of REF,EXT
   - [ ] should be Schematron

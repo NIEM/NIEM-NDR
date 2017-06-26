@@ -29,7 +29,6 @@ m4_define([[[MACRO_CONFORMANCE_TARGETS_NS]]],[[[http://release.niem.gov/niem/con
 m4_define([[[MACRO_NS_CT]]],[[[MACRO_CONFORMANCE_TARGETS_NS]]])m4_dnl
 m4_define([[[MACRO_NDR_FUNCTIONS_NS]]],[[[MACRO_DOCUMENT_URI[[[]]]#NDRFunctions]]])m4_dnl
 m4_define([[[MACRO_NS_NDR_FUNCTIONS]]],[[[MACRO_DOCUMENT_URI[[[]]]#NDRFunctions]]])m4_dnl
-m4_define([[[MACRO_NS_LOCAL_TERM]]],[[[http://release.niem.gov/niem/appinfo/4.0/]]])m4_dnl
 m4_define([[[MACRO_SCH_NS]]],[[[http://purl.oclc.org/dsdl/schematron]]])m4_dnl
 m4_define([[[MACRO_NS_SCH]]],[[[http://purl.oclc.org/dsdl/schematron]]])m4_dnl
 m4_define([[[MACRO_XS_NS]]],[[[http://www.w3.org/2001/XMLSchema]]])m4_dnl
