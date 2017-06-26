@@ -6,6 +6,10 @@ look like this:
 
   <sch:report test="empty(@abstract) or xs:boolean(@abstract) = false()"
 
+Ensure element isn't abstract:
+
+  not(xs:boolean(@abstract) eq true())
+
 
 * 2017-05-15
 - [ ] update m4 to use ${m4}

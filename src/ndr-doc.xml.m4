@@ -7376,61 +7376,212 @@ not be given the same name.</p></li>
 
       <section><title>Data definition opening phrases</title>
 
-        <ruleSection><title>Standard opening phrase for element</title>
-          <rule applicability="REF EXT" id="rule-sop-element" class="Constraint">
-            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-element">
+        <section><title>Element opening phrases</title>
+
+        <ruleSection><title>Standard opening phrase for augmentation point element</title>
+          <rule applicability="REF EXT" id="rule-sop-augmentation-point" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-augmentation-point">
 <sch:pattern>
   <sch:rule context="xs:element[ends-with(@name, 'AugmentationPoint')]/xs:annotation/xs:documentation[1]">
     <sch:report test="not(starts-with(lower-case(normalize-space(.)), 'an augmentation point '))"
       >The data definition for an augmentation point element SHOULD begin with standard opening phrase "an augmentation point...".</sch:report>
   </sch:rule>
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for augmentation element</title>
+          <rule applicability="REF EXT" id="rule-sop-augmentation" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-augmentation">
+<sch:pattern>
   <sch:rule context="xs:element[ends-with(@name, 'Augmentation')]/xs:annotation/xs:documentation[1]">
     <sch:report test="every $phrase in ('supplements ', 'additional information about ')
                       satisfies not(starts-with(lower-case(normalize-space(.)), $phrase))"
       >The data definition for an augmentation element SHOULD begin with the standard opening phrase "supplements..." or "additional information about...".</sch:report>
   </sch:rule>
-  <sch:rule context="xs:element[ends-with(@name, 'Metadata')]/xs:annotation/xs:documentation[1]">
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for metadata element</title>
+          <rule applicability="REF EXT" id="rule-sop-metadata" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-metadata">
+<sch:pattern>
+  <sch:rule context="xs:element[ends-with(@name, 'Metadata')
+                                and not(xs:boolean(@abstract) eq true())]/xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '(metadata about|information that further qualifies)'))"
       >The data definition for a metadata element SHOULD begin with the standard opening phrase "metadata about..." or "information that further qualifies...".</sch:report>
   </sch:rule>
-  <sch:rule context="xs:element[ends-with(@name, 'Association') and empty(@abstract)
-                       ]/xs:annotation/xs:documentation[1]">
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for association element</title>
+          <rule applicability="REF EXT" id="rule-sop-association" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-association">
+<sch:pattern>
+  <sch:rule context="xs:element[ends-with(@name, 'Association')
+                                and not(xs:boolean(@abstract) eq true())]/xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)),
                                   '^an?( .*)? (relationship|association)'))"
       >The data definition for an association element that is not abstract SHOULD begin with the standard opening phrase "an (optional adjectives) (relationship|association)...".</sch:report>
   </sch:rule>
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for abstract element</title>
+          <rule applicability="REF EXT" id="rule-sop-abstract" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-abstract">
+<sch:pattern>
   <sch:rule context="xs:element[xs:boolean(@abstract) = true()
-                       ]/xs:annotation/xs:documentation[1]">
+                       and not(ends-with(@name, 'AugmentationPoint'))]/xs:annotation/xs:documentation[1]">
     <sch:report test="not(starts-with(lower-case(normalize-space(.)), 'a data concept'))"
       >The data definition for an abstract element SHOULD begin with the standard opening phrase "a data concept...".</sch:report>
   </sch:rule>
-  <sch:rule context="xs:element[ends-with(@name, 'Date')]/xs:annotation/xs:documentation[1]">
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for date element</title>
+          <rule applicability="REF EXT" id="rule-sop-date" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-date">
+<sch:pattern>
+  <sch:rule context="xs:element[ends-with(@name, 'Date') and not(xs:boolean(@abstract) eq true())]
+                       /xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (date|month|year)'))"
       >The data definition for an element with a date representation term SHOULD begin with the standard opening phrase "a(n?) (optional adjectives) (date|month|year)...".</sch:report>
   </sch:rule>
-  <sch:rule context="xs:element[ends-with(@name, 'Quantity')]/xs:annotation/xs:documentation[1]">
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for quantity element</title>
+          <rule applicability="REF EXT" id="rule-sop-quantity" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-quantity">
+<sch:pattern>
+  <sch:rule context="xs:element[ends-with(@name, 'Quantity') and not(xs:boolean(@abstract) eq true())]
+                       /xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (count|number)'))"
       >The data definition for an element with a quantity representation term SHOULD begin with the standard opening phrase "an (optional adjectives) (count|number)...".</sch:report>
   </sch:rule>
-  <sch:rule context="xs:element[ends-with(@name, 'Picture')]/xs:annotation/xs:documentation[1]">
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for picture element</title>
+          <rule applicability="REF EXT" id="rule-sop-picture" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-picture">
+<sch:pattern>
+  <sch:rule context="xs:element[ends-with(@name, 'Picture') and not(xs:boolean(@abstract) eq true())]
+                       /xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (image|picture|photograph)'))"
       >The data definition for an element with a picture representation term SHOULD begin with the standard opening phrase "an (optional adjectives) (image|picture|photograph)".</sch:report>
   </sch:rule>
-  <sch:rule context="xs:element[ends-with(@name, 'Indicator')]/xs:annotation/xs:documentation[1]">
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for indicator element</title>
+          <rule applicability="REF EXT" id="rule-sop-indicator" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-indicator">
+<sch:pattern>
+  <sch:rule context="xs:element[ends-with(@name, 'Indicator') and not(xs:boolean(@abstract) eq true())]
+                       /xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '^true if .*; false (otherwise|if)'))"
       >The data definition for an element with an indicator representation term SHOULD begin with the standard opening phrase "true if ...; false (otherwise|if)...".</sch:report>
   </sch:rule>
-  <sch:rule context="xs:element[ends-with(@name, 'Identification')]/xs:annotation/xs:documentation[1]">
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for identification element</title>
+          <rule applicability="REF EXT" id="rule-sop-identification" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-identification">
+<sch:pattern>
+  <sch:rule context="xs:element[ends-with(@name, 'Identification') and not(xs:boolean(@abstract) eq true())]
+                       /xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? identification'))"
       >The data definition for an element with an identification representation term SHOULD begin with the standard opening phrase "(a|an) (optional adjectives) identification...".</sch:report>
   </sch:rule>
-  <sch:rule context="xs:element[ends-with(@name, 'Name')]/xs:annotation/xs:documentation[1]">
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for name element</title>
+          <rule applicability="REF EXT" id="rule-sop-name" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-name">
+<sch:pattern>
+  <sch:rule context="xs:element[ends-with(@name, 'Name') and not(xs:boolean(@abstract) eq true())]
+                       /xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '^(a|an)( .*)? name'))"
       >The data definition for an element with a name representation term SHOULD begin with the standard opening phrase "(a|an) (optional adjectives) name...".</sch:report>
   </sch:rule>
-  <sch:rule context="xs:element[@name]/xs:annotation/xs:documentation[1]">
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for element</title>
+          <rule applicability="REF EXT" id="rule-sop-element" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-element">
+<sch:pattern>
+  <sch:rule context="xs:element[@name and not(xs:boolean(@abstract) eq true())]
+                       /xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '^an? '))"
       >The data definition for an element declaration with a name SHOULD begin with the standard opening phrase "(a|an)".</sch:report>
+  </sch:rule>
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        </section>
+        <section><title>Complex type opening phrases</title>
+
+        <ruleSection><title>Standard opening phrase for association type</title>
+          <rule applicability="REF EXT" id="rule-sop-association-type" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-association-type">
+<sch:pattern>
+  <sch:rule context="xs:complexType[ends-with(@name, 'AssociationType')]/xs:annotation/xs:documentation[1]">
+    <sch:report test="not(matches(lower-case(normalize-space(.)), '^a data type for (a relationship|an association)'))"
+      >The data definition for an association type SHOULD begin with the standard opening phrase "a data type for (a relationship|an association)...".</sch:report>
+  </sch:rule>
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for augmentation type</title>
+          <rule applicability="REF EXT" id="rule-sop-augmentation-type" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-augmentation-type">
+<sch:pattern>
+  <sch:rule context="xs:complexType[ends-with(@name, 'AugmentationType')]/xs:annotation/xs:documentation[1]">
+    <sch:report test="not(matches(lower-case(normalize-space(.)), '^a data type (that supplements|for additional information about)'))"
+      >The data definition for an augmentation type SHOULD begin with the standard opening phrase "a data type (that supplements|for additional information about)...".</sch:report>
+  </sch:rule>
+</sch:pattern>
+            </xmlBlurb></pre>
+          </rule>
+        </ruleSection>
+
+        <ruleSection><title>Standard opening phrase for metadata type</title>
+          <rule applicability="REF EXT" id="rule-sop-metadata-type" class="Constraint">
+            <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-metadata-type">
+<sch:pattern>
+  <sch:rule context="xs:complexType[ends-with(@name, 'MetadataType')]/xs:annotation/xs:documentation[1]">
+    <sch:report test="not(matches(lower-case(normalize-space(.)), '^a data type for (metadata about|information that further qualifies)'))"
+      >The data definition for a metadata type SHOULD begin with the standard opening phrase "a data type for (metadata about|information that further qualifies)...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7441,26 +7592,16 @@ not be given the same name.</p></li>
           <rule applicability="REF EXT" id="rule-sop-complex-type" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-complex-type">
 <sch:pattern>
-  <sch:rule context="xs:complexType[ends-with(@name, 'AssociationType')]/xs:annotation/xs:documentation[1]">
-    <sch:report test="not(matches(lower-case(normalize-space(.)), '^a data type for (a relationship|an association)'))"
-      >The data definition for an association type SHOULD begin with the standard opening phrase "a datatype for (a relationship|an association)...".</sch:report>
-  </sch:rule>
-  <sch:rule context="xs:complexType[ends-with(@name, 'AugmentationType')]/xs:annotation/xs:documentation[1]">
-    <sch:report test="not(matches(lower-case(normalize-space(.)), '^a data type (that supplements|for additional information about)'))"
-      >The data definition for an augmentation type SHOULD begin with the standard opening phrase "a data type (that supplements|for additional information about)...".</sch:report>
-  </sch:rule>
-  <sch:rule context="xs:complexType[ends-with(@name, 'MetadataType')]/xs:annotation/xs:documentation[1]">
-    <sch:report test="not(matches(lower-case(normalize-space(.)), '^a data type for (metadata about|information that further qualifies)'))"
-      >The data definition for a metadata type SHOULD begin with the standard opening phrase "a data type for (metadata about|information that further qualifies)...".</sch:report>
-  </sch:rule>
   <sch:rule context="xs:complexType/xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '^a data type'))"
-      >The data definition for a type SHOULD begin with the standard opening phrase "a data type...".</sch:report>
+      >The data definition for a complex type SHOULD begin with the standard opening phrase "a data type...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
           </rule>
         </ruleSection>
+
+        </section>
 
         <ruleSection><title>Standard opening phrase for simple type</title>
           <rule applicability="REF EXT" id="rule-sop-simple-type" class="Constraint">
@@ -7468,7 +7609,7 @@ not be given the same name.</p></li>
 <sch:pattern>
   <sch:rule context="xs:simpleType/xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '^a data type'))"
-      >The data definition for a type SHOULD begin with a standard opening phrase "a data type...".</sch:report>
+      >The data definition for a simple type SHOULD begin with a standard opening phrase "a data type...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>

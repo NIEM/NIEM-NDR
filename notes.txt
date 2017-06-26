@@ -76,7 +76,21 @@
 
 ** pending tasks: in order to be done
 
-- [ ] break up huge opening phrases rule
+- [X] break up huge opening phrases rule
+  - [X] section is: 11.6.1.1. Data definition opening phrases
+    - [X] Rule 11-29. Standard opening phrase for element
+    - [X] Rule 11-30. Standard opening phrase for complex type
+    - [ ] view
+    - [ ] verify
+- [ ] very broken rule: Rule 10-37. Augmentation elements are not used directly
+  - [ ] says REF, but has targets of REF,EXT
+  - [ ] should be Schematron
+- [ ] ensure rules:
+  - [ ] Augmentation elements are of augmentation type
+  - [ ] Augmentation elements are not abstract
+
+
+
 - [ ] get rid of &gt; and &lt;, prefer xpath gt and lt
 - [ ] add Schematron for rules without Schematron
 - [ ] add check: any component in the target namespace MUST be declared within the schema
