@@ -2289,7 +2289,7 @@
 
       <section id="sec-no-infoset-mods">
 
-        <title>Ensure schema parsing does not construct values</title>
+        <title>Ensure XML parsing does not construct values</title>
 
         <p>An XML document expresses an infoset (see <ref idref="XMLInfoset"/>); the infoset is the data carried
           by the XML document, and is expressed as a set of information items (e.g., element information items,
