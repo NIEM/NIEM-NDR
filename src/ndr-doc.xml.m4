@@ -1704,14 +1704,15 @@
         </principle>
       </section>
       <section id="section-principle-no-infoset-mods">
-        <title>Disallow content modification with XML processors</title>
+        <title>Disallow data modification through XML Schema validation</title>
 
-        <p>XML Schema has constructs that can make the data provided by an XML Schema validating parser differ
-          from that provided by a non-validating XML parser. For example, if an XML Schema attribute declaration
-          has a default value, and if an XML document omits the attribute where it might appear, an XML Schema
-          validating parser will <em>synthesize</em> the attribute with the default value in the infoset that it
-          provides to its caller. Without schema validation, there would be no attribute value, but after
-          processing, the attribute value exists in the parsed data provided to the caller.</p>
+        <p>XML Schema has features that can make the data provided by an XML Schema validating parser differ from
+          that provided by a non-validating XML parser. For example, if an XML Schema attribute declaration has a
+          <local-name>default</local-name> value, and if an XML document omits the attribute where it might
+          appear, an XML Schema validating parser will <em>synthesize</em> the attribute with the default value
+          in the infoset that it provides to its caller. Without schema validation, there would be no attribute
+          value, but after processing, the attribute value exists in the parsed data provided to the
+          caller. <ref idref="sec-no-infoset-mods"/> provides more detail.</p>
 
         <p>Within NIEM, the purpose of processing instances against schemas is primarily validation: testing that
           data instances match desired constraints and guidelines. It should not be used to alter the content of
@@ -2288,7 +2289,7 @@
 
       <section id="sec-no-infoset-mods">
 
-        <title>Ensure schema processing does not yield synthesized values</title>
+        <title>Ensure schema parsing does not construct values</title>
 
         <p>An XML document expresses an infoset (see <ref idref="XMLInfoset"/>); the infoset is the data carried
           by the XML document, and is expressed as a set of information items (e.g., element information items,
@@ -2310,25 +2311,25 @@
 
         <p>In short, not only does an XML Schema validating parser yield data from an XML document to its caller,
           it determines whether the XML document is valid against an XML Schema, and also provides
-          an <strong>augmented infoset</strong> to the caller, reflecting information implied by the schema,
-          which may not appear in the original XML document.</p>
+          an <strong>augmented infoset</strong> to the caller, constructed to reflect information implied by the
+          schema, which may not appear in the original XML document.</p>
         
         <p>XML Schema provides for element and attribute declarations to provide default values. When an XML
           document does not contain a value for a component that has a default, the XML Schema validating parser
-          will <em>synthesize</em> a value for the component. This is done through the use of the
+          will <em>construct</em> a value for the component. This is done through the use of the
           attributes <local-name>default</local-name> and <local-name>fixed</local-name>, both of which provide
           default values to attributes and element content. An XML Schema validating parser that validates an XML
           document against a schema that uses <local-name>default</local-name> or <local-name>fixed</local-name>
-          will yield an infoset that is augmented, yielding values in the XML infoset where none existed in the
-          original XML document.</p>
+          may yield an infoset that is augmented, constructing values in the provided XML infoset where none
+          existed in the original XML document.</p>
 
-        <p>NIEM schemas should not be constructed to yield synthesized values in the infoset. The process of XML
+        <p>NIEM schemas should not be constructed to yield constructed values in the infoset. The process of XML
           Schema validation against NIEM schemas should provide for marking data as valid or invalid, but should
           not modify original infoset data with constructed values. The XML infoset yielded by a non-validating
           XML parser should be the same as that yielded by an XML Schema validating parser. Turning on schema
           validation should not alter the data received by the caller of the parser.</p>
 
-         <p>The prohibition of synthesized values is supported by
+         <p>The prohibition of constructed values is supported by
            <ref idref="section-principle-no-infoset-mods"/>.  It is also supported through a
            prohibition on all uses of <local-name>default</local-name>, and most uses
            of <local-name>fixed</local-name> on attributes and elements defined by NIEM-conformant schema
