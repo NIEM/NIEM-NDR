@@ -77,7 +77,16 @@ case $command in
             time make -j 8 "$@"
         )
         ;;
-    
+
+    #HELP:  lint: run xmllint on the dox XML
+    lint )
+        (
+            cd "$(dirname "$0")"
+            make tmp/ndr-doc.xml
+            exec 3>&1
+            xmllint -noout tmp/ndr-doc.xml 2>&1 | tee /dev/fd/3 | emacsclientgrep
+        ) ;;
+
     * )
         fail "Unknown command \"$1\"";;
 esac

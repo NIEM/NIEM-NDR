@@ -259,9 +259,14 @@ complex types by name, in conformant schema:
     - NTK: xs:anyURI('MACRO_NS_IC_NTK')
     - ISM: xs:anyURI('MACRO_NS_IC_ISM')
 
-* Changes made
 
-  - Removed NIEM OVERVIEW Appendix
+
+* Images / Powerpoint
+
+- Save slides from the powerpoint
+  - as PNG
+  - size 720x540
+
 
 
 

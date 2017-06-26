@@ -1053,7 +1053,8 @@
     </section>
   </section>
 
-  <section><title>The NIEM conceptual model</title>
+  <section id="section-conceptual-model">
+    <title>The NIEM conceptual model</title>
 
     <p>This section describes aspects of the RDF model, and provides a mapping between NIEM concepts and the RDF
     model.</p>
@@ -1398,7 +1399,7 @@
 
       </section>
 
-      <section><title>NIEM instance mappings to RDF</title>
+      <section id="section-instance-rdf-mapping"><title>NIEM instance mappings to RDF</title>
 
         <p>This section has the following subsections:</p>
 
@@ -7808,17 +7809,86 @@ not be given the same name.</p></li>
         specified by <ref idref="XMLSchema-1"/>.</p>
     </ruleSection>
 
-    <section><title>Content elements</title>
+    <section><title>The meaning of NIEM data</title>
 
-      <p>In XML instances, relationships between data objects are expressed as XML elements:</p>
+      <p>The main way that NIEM XML data represents relationships and values is via the hierarchy of XML elements
+        in an XML document. For example, the following fragment of an XML document:</p>
+
+      <figure>
+        <title>Example of content elements</title>
+        <pre><xmlBlurb id="xb-example-content-element">
+<nc:Person>
+  <nc:PersonName>
+    <nc:PersonFullName>John Doe</nc:PersonFullName>
+  </nc:PersonName>
+</nc:Person>
+        </xmlBlurb></pre>
+      </figure>
+
+      <p>In this instance, the XML elements describe relationships between data objects:</p>
+
+      <table id="table-meaning-of-xml">
+        <title>Meaning of NIEM XML</title>
+        <theadr>
+          <th>XML description</th>
+          <th>The Meaning of the data</th>
+        </theadr>
+        <tr>
+          <td>The top element occurs within some context, about which we don't know anything.</td>
+          <td>There is some object, representing whatever is outside the outer element.</td>
+        </tr>
+        <tr>
+          <td>The top element is <qName>nc:Person</qName>. The NIEM reference schema defines the type
+            of the element as <qName>nc:PersonType</qName>.</td>
+          <td>There is a relationship, called <qName>nc:Person</qName>, between the unknown context object and an
+            object of type <qName>nc:PersonType</qName>.</td>
+        </tr>
+        <tr>
+          <td>The next element is <qName>nc:PersonName</qName>. The schema indicates that element is of
+            type <qName>nc:PersonNameType</qName>.</td>
+          <td>There is a relationship called <qName>nc:PersonName</qName> between the object of
+            type <qName>nc:PersonType</qName> and an object of type <qName>nc:PersonNameType</qName>.</td>
+        </tr>
+        <tr>
+          <td>The next element is <qName>nc:PersonFullName</qName>. The schema shows that the element is of
+            type <qName>nc:PersonNameTextType</qName>.</td>
+          <td>There is a relationship, called <qName>nc:PersonFullName</qName> from the object of
+            type <qName>nc:PersonNameType</qName> and an object of
+            type <qName>nc:PersonNameTextType</qName>.</td>
+        </tr>
+        <tr>
+          <td>Within that element is the simple value <q>John Doe</q>. The schema tells us the content of that
+            element is of simple type <qName>xs:string</qName>.</td>
+          <td>The object of type <qName>nc:PersonNameTextType</qName> has a value that is the literal <q>John
+              Doe</q>.</td>
+        </tr>
+      </table>
+
+      <p>To summarize:</p>
+
       <ol>
-        <li><p>Data objects are expressed as XML elements.</p></li>
-        <li><p>XML elements contain attributes and other elements.</p></li>
+        <li><p>Data objects and literal values are expressed in XML as the values of elements and
+            attributes.</p></li>
+        <li><p>The names of the XML elements and attributes identify and describe the relationships between the
+            objects and literals.</p></li>
+        <li><p>The names of the XML Schema complex types and simple types describe the data objects.</p></li>
       </ol>
 
-      <p>In this way, there is a relationship between the outer element (the containing element, also called the
-        parent element) and the inner elements (the contained elements, also called as the child elements). An
-        element that contains its content in this way is called a <termRef>content element</termRef>.</p>
+      <p>NIEM is designed so that NIEM XML data is a form of RDF data. This is described in some detail by
+        <ref idref="section-conceptual-model"/>, in particular <ref idref="section-instance-rdf-mapping"/>. The
+        XML data, above, corresponds to the following graph. Here, the circles are data objects, and the arrows
+        show relationships, between the objects, and between the objects and their types:</p>
+
+      <figure id="figure-instance-rdf-diagram">
+        <title>Diagram showing the meaning of XML data</title>
+        <image src="img/instance-rdf.png"/>
+      </figure>
+
+    </section>
+
+    <section>
+      <title>Identifiers and references</title>
+      
 
       <definition term="content element">
         <p>A <strong>content element</strong> is an element information item that does not contain an
@@ -7829,20 +7899,6 @@ not be given the same name.</p></li>
       <p>The most common NIEM patterns use content elements to represent most data. The following is an example
         of a content element in use. All elements in this example are content elements.</p>
 
-      <figure>
-        <title>Example of content elements</title>
-        <pre><xmlBlurb id="xb-example-content-element">
-<nc:Item>
-  <nc:ItemOwner>
-    <nc:EntityPerson>
-      <nc:PersonName>
-        <nc:PersonFullName>John Doe</nc:PersonFullName>
-      </nc:PersonName>
-    </nc:EntityPerson>
-  </nc:ItemOwner>
-</nc:Item>
-        </xmlBlurb></pre>
-      </figure>
 
     </section>
 
