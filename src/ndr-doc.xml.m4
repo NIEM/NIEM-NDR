@@ -7536,10 +7536,12 @@ not be given the same name.</p></li>
           <rule applicability="REF EXT" id="rule-sop-element" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-element">
 <sch:pattern>
-  <sch:rule context="xs:element[@name and not(xs:boolean(@abstract) eq true())]
+  <sch:rule context="xs:element[@name 
+                                and not(ends-with(@name, 'Indicator'))
+                                and not(xs:boolean(@abstract) eq true())]
                        /xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '^an? '))"
-      >The data definition for an element declaration with a name SHOULD begin with the standard opening phrase "(a|an)".</sch:report>
+      >The data definition for an element declaration SHOULD begin with the standard opening phrase "(a|an)".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
