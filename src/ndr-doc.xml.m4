@@ -7962,8 +7962,18 @@ not be given the same name.</p></li>
             </xmlBlurb></pre>
           </figure>
 
+          <p>Note that rules below establish that relationships established using <qName>structures:id</qName>
+            and <qName>structures:ref</qName> have the exact same meaning as relationships established using
+            nested elements. An information exchange specification may constrain them differently, or prefer one
+            over the other, but from a NIEM perspective, they have the same meaning.</p>
+
       <ruleSection>
         <title>Attribute <qName>structures:ref</qName> must reference <qName>structures:id</qName></title>
+
+        <p>Although many attributes with ID and IDREF semantics are defined by many vocabularies, for
+          consistency, within a NIEM XML document any attribute <qName>structures:ref</qName> must refer to an
+          attribute <qName>structures:id</qName>, and not any other attribute.</p>
+
         <rule applicability="INS" class="Constraint" id="rule-ref-refs-id">
           <pre><xmlBlurb id="xb-rule-ref-refs-id" memberOf="ins">
 <sch:pattern>
@@ -7987,6 +7997,13 @@ not be given the same name.</p></li>
 
       <ruleSection>
         <title>Linked elements have same validation root</title>
+
+        <p>NIEM supports type-safe references: references using <qName>structures:ref</qName>
+          and <qName>structures:id</qName> must preserve the type constraints that would apply if nested elements
+          were used instead of a reference. For example, an element of type <qName>nc:PersonType</qName> must
+          always refer to another element of type <qName>nc:PersonType</qName>, or a type derived
+          from <qName>nc:PersonType</qName>, when using <qname>structures:ref</qname> to establish the
+          relationship.</p>
 
         <rule applicability="INS" class="Constraint" id="rule-ref-and-id-have-same-validation-root">
           <p>Given that:</p>
