@@ -43,6 +43,15 @@ case $command in
             git log --reverse --pretty=format:%B dev-ndr-4.0beta2..dev | tee /dev/fd/3 | pbcopy
         ) ;;
 
+    #HELP:  catlog: concatenate a bunch of log entries
+    #HELP:    usage: COMMAND_NAME catlog $old-commit..$new-commit
+    catlog )
+        (
+            cd "$(dirname "$0")"
+            exec 3>&1
+            git log --reverse --pretty=format:%B "$@" | tee /dev/fd/3 | pbcopy
+        ) ;;
+
     #HELP:  rebuild: rebuild everything from nothing
     rebuild )
         (
