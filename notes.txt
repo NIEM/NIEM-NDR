@@ -76,9 +76,10 @@
 
 ** pending tasks: in order to be done
 
-- [ ] structures & appinfo schemas are @version 4.0beta2pre1?
-  - [ ] why?
-  - [ ] fix
+- [-] structures & appinfo schemas are @version 4.0beta2pre1?
+  - [X] why?
+  - [X] fix
+  - [ ] verify
   - [ ] commit
 
 - [ ] update to code list spec 4.0
