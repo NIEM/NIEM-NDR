@@ -1704,24 +1704,24 @@
         </principle>
       </section>
       <section id="section-principle-no-infoset-mods">
-        <title>Disallow data modification through XML Schema validation</title>
+        <title>Prohibit XML parsing from constructing values</title>
 
         <p>XML Schema has features that can make the data provided by an XML Schema validating parser differ from
           that provided by a non-validating XML parser. For example, if an XML Schema attribute declaration has a
           <local-name>default</local-name> value, and if an XML document omits the attribute where it might
-          appear, an XML Schema validating parser will <em>synthesize</em> the attribute with the default value
+          appear, an XML Schema validating parser will <em>construct</em> the attribute with the default value
           in the infoset that it provides to its caller. Without schema validation, there would be no attribute
           value, but after processing, the attribute value exists in the parsed data provided to the
           caller. <ref idref="sec-no-infoset-mods"/> provides more detail.</p>
 
         <p>Within NIEM, the purpose of processing instances against schemas is primarily validation: testing that
           data instances match desired constraints and guidelines. It should not be used to alter the content of
-          data.</p>
+          data passing through the parser.</p>
 
         <principle>
 
           <p>The data of a NIEM-conformant XML document provided by an XML parser SHOULD NOT be modified by the 
-            process of validating the data against an an XML Schema.</p>
+            process of validating the data against an XML Schema.</p>
 
         </principle>
 
