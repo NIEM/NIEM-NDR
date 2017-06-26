@@ -8068,22 +8068,25 @@ not be given the same name.</p></li>
 
       <section>
         <title>Reference and content elements have same meaning</title>
-        <p>An important aspect of the use of NIEM reference and content elements is that they have the same
-          meaning. The use of a content element versus a reference element is merely for convenience and ease of
-          serialization. There is no change in meaning or semantics between content and reference elements.</p>
 
-        <p>Any claim that content elements represent composition while reference elements represent aggregation
-          is incorrect. Any life cycle dependency is not expressed through the use of content and reference
-          elements, and is not an explicit part of the NIEM model.</p>
+        <p>An important aspect of the use of nested elements versus IDREF/ID references is that they have the
+          same meaning. Expressing a relationship via a nested element, versus an IDREF reference is merely for
+          convenience and ease of serialization. There is no change in meaning or semantics between relationships
+          expressed by sub-elements versus relationships expressed by <qName>structures:ref</qName>.</p>
 
-        <ruleSection><title>Reference and content elements have the same meaning</title>
+        <p>Any claim that nested elements represent composition while references represent aggregation is
+          incorrect. No life cycle dependency is implied by either method.</p>
+
+        <ruleSection><title>Nested elements and references have the same meaning.</title>
         <rule applicability="INS" class="Interpretation">
-          <p>There MUST NOT be any difference in meaning between a relationship established via an element declaration instantiated as a content element and that element declaration instantiated as a reference element.</p>
+          <p>There MUST NOT be any difference in meaning between a relationship established via an element
+          declaration instantiated by a nested element, and that element declaration instantiated via
+          reference.</p>
         </rule>
         </ruleSection>
 
-        <p>There is no difference in meaning between relationships established by content elements and those
-          established by reference elements. They are simply two mechanisms for expressing connections between
+        <p>There is no difference in meaning between relationships established by sub-elements and those
+          established by references. They are simply two mechanisms for expressing connections between
           objects. Neither mechanism implies that properties are intrinsic or extrinsic; such characteristics
           must be explicitly stated in property definitions.</p>
 
@@ -8127,9 +8130,9 @@ not be given the same name.</p></li>
           </xmlBlurb></pre>
         </figure>
 
-        <p>NIEM-conformant data instances may use content elements and reference elements as needed, to represent
-        the meaning of the fundamental data. There is no difference in meaning between reference and content
-        data representations. The two different methods are available for ease of representation. No difference
+        <p>NIEM-conformant data instances may use either representation as needed, to represent the meaning of
+        the fundamental data. There is no difference in meaning between reference and content data
+        representations. The two different methods are available for ease of representation. No difference
         in <em>meaning</em> should be implied by the use of one method or the other.</p>
 
         <p>Assertions that indicate <q>included</q> data is intrinsic, while referenced data is extrinsic, are
