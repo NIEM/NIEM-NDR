@@ -7538,6 +7538,8 @@ not be given the same name.</p></li>
 <sch:pattern>
   <sch:rule context="xs:element[@name 
                                 and not(ends-with(@name, 'Indicator'))
+                                and not(ends-with(@name, 'Augmentation'))
+                                and not(ends-with(@name, 'Metadata'))
                                 and not(xs:boolean(@abstract) eq true())]
                        /xs:annotation/xs:documentation[1]">
     <sch:report test="not(matches(lower-case(normalize-space(.)), '^an? '))"
