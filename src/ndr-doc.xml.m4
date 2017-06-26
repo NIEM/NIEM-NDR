@@ -7884,6 +7884,20 @@ not be given the same name.</p></li>
         <image src="img/instance-rdf.png"/>
       </figure>
 
+    <ruleSection><title>Empty content has no meaning</title>
+      <rule applicability="INS" class="Interpretation">
+
+        <p>Within the instance, the meaning of an element with no content is that additional properties are not
+          asserted. There MUST NOT be additional meaning interpreted for an element with no content.</p>
+
+      </rule>
+
+      <p>Elements without content only show a lack of asserted information. That is, all that is asserted is what
+        is explicitly stated, through a combination of XML instance data and its schema. Data that is not present
+        makes no claims. It may be absent due to lack of availability, lack of knowledge, or deliberate
+        withholding of information. These cases should be modeled explicitly, if they are required.</p>
+    </ruleSection>
+
     </section>
 
     <section id="section-id-and-ref">
@@ -8144,21 +8158,6 @@ not be given the same name.</p></li>
 
     </section>
 
-
-
-    <ruleSection><title>Empty content has no meaning</title>
-      <rule applicability="INS" class="Interpretation">
-
-        <p>Within the instance, the meaning of an element with no content is that additional properties are not
-          asserted. There MUST NOT be additional meaning interpreted for an element with no content.</p>
-
-      </rule>
-
-      <p>Elements without content only show a lack of asserted information. That is, all that is asserted is what
-        is explicitly stated, through a combination of XML instance data and its schema. Data that is not present
-        makes no claims. It may be absent due to lack of availability, lack of knowledge, or deliberate
-        withholding of information. These cases should be modeled explicitly, if they are required.</p>
-    </ruleSection>
 
     <section id="section-instance-metadata">
       <title>Instance metadata</title>
