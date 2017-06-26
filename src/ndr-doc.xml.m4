@@ -8344,10 +8344,10 @@ not be given the same name.</p></li>
     </reference>
   </section>
   <section id="section-include-structures-xsd"><title>Structures namespace</title>
-    <pre><include-text href="xsd/niem/structures/4.0/structures.xsd"/></pre>
+    <pre><include-text href="structures.xsd"/></pre>
   </section>
   <section id="section-appinfo-xsd"><title>Appinfo namespace</title>
-    <pre><include-text href="xsd/niem/appinfo/4.0/appinfo.xsd"/></pre>
+    <pre><include-text href="appinfo.xsd"/></pre>
   </section>
   <section id="index-of-defns"><title>Index of definitions</title>
     <indexOfDefinitions/>

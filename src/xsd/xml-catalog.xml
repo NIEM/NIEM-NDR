@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
-  <uri name="http://release.niem.gov/niem/appinfo/4.0/" uri="./niem/appinfo/4.0/appinfo.xsd"/>
-  <uri name="http://release.niem.gov/niem/conformanceTargets/3.0/" uri="./niem/conformanceTargets/3.0/conformanceTargets.xsd"/>
-  <uri name="http://www.w3.org/XML/1998/namespace" uri="./niem/external/xml/1.0/xml.xsd"/>
-  <uri name="http://release.niem.gov/niem/structures/4.0/" uri="./niem/structures/4.0/structures.xsd"/>
-</catalog>
