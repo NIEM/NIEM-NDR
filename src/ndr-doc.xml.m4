@@ -8080,6 +8080,8 @@ not be given the same name.</p></li>
 
       </ruleSection>
 
+        </section>
+        
       <section>
         <title>Reference and content elements have same meaning</title>
 
@@ -8154,7 +8156,6 @@ not be given the same name.</p></li>
 
       </section>
 
-        </section>
 
     </section>
 
