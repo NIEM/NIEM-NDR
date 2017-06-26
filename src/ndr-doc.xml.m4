@@ -7904,7 +7904,7 @@ not be given the same name.</p></li>
           <li>
             <p>Reuse: multiple objects have a relationship to a common object. For example, suppose
               <em>Bob</em> and <em>Sue</em> both have a <em>mother</em> relationship to <em>Sally</em>. Expressed
-              via nested elements, this would result in a duplicate representaiton of <em>Sally</em>.</p>
+              via nested elements, this would result in a duplicate representation of <em>Sally</em>.</p>
           </li>
         </ul>
 
@@ -7939,39 +7939,28 @@ not be given the same name.</p></li>
           </ul>
 
           <p>In short, within a NIEM-conformant XML document, an attribute <qName>structures:ref</qName> refers
-            to an attribute <qName>structures:id</qName>.</p>
+            to an attribute <qName>structures:id</qName>. These attributes may appear in an XML document to
+            express that an object that is the value of an element is the same as some other object within the
+            document. For example, in the following example, the user of the weapon (Bart) is the same person
+            that is the subject of the arrest:</p>
 
-          <p>It is good to avoid these problems; in order to avoid them, NIEM allows
-          <termRef term="reference element" >reference elements</termRef>. A reference element expresses a
-          relationship to another object by using a reference attribute, <qName>structures:ref</qName>. In
-          <ref idref="figure-example-of-reference-element" />, the outer object is the content
-          of <qName >nc:Item</qName >, which is an object of type <qName>nc:ItemType</qName>. It has a
-          relationship <qName >nc:ItemOwner</qName > to the object that is the content of
-          the <qName >nc:Entity</qName > element.</p>
-
-        <figure id="figure-example-of-reference-element">
-          <title>Example of reference element</title>
-          <pre><xmlBlurb id="xb-example-reference-element">
-<nc:Item>
-  <nc:ItemOwner structures:ref="m82"/>
-</nc:Item>
-<nc:Entity structures:id="m82">
-  <nc:EntityPerson>
-    <nc:PersonName>
-      <nc:PersonFullName>John Doe</nc:PersonFullName>
-    </nc:PersonName>
-  </nc:EntityPerson>
-</nc:Entity>
-          </xmlBlurb></pre>
-        </figure>
-
-        <p >NIEM XML instances use IDREF attributes to establish links between XML elements.</p >
-
-      <definition term="reference element">
-        <p>A <strong>reference element</strong> is an element information item that has an
-          attribute <qName >structures:ref</qName >. A reference element refers to its value by reference,
-          instead of carrying it as content.</p>
-      </definition>
+          <figure id="figure-id-ref-example">
+            <title>Example of <qName>structures:id</qName> and <qName>structures:ref</qName></title>
+            <pre><xmlBlurb id="xb-id-ref-example">
+<j:Arrest>
+  <j:ArrestInvolvedWeapon>
+    <nc:WeaponUser structures:id="bart">
+      <nc:PersonName>
+        <nc:PersonGivenName>Bart</nc:PersonGivenName>
+      </nc:PersonName>
+    </nc:WeaponUser>
+  </j:ArrestInvolvedWeapon>
+  <j:ArrestSubject>
+    <nc:RoleOfPerson structures:ref="bart"/>
+  </j:ArrestSubject>
+</j:Arrest>
+            </xmlBlurb></pre>
+          </figure>
 
       <ruleSection>
         <title>Attribute <qName>structures:ref</qName> must reference <qName>structures:id</qName></title>

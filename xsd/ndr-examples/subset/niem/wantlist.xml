@@ -4,6 +4,7 @@
   xmlns:w="http://niem.gov/niem/wantlist/2.2"
   xmlns:aamva_d20="http://release.niem.gov/niem/codes/aamva_d20/4.0/"
   xmlns:nc="http://release.niem.gov/niem/niem-core/4.0/" xmlns:scr="http://release.niem.gov/niem/domains/screening/4.0/">
+  <w:Element w:name="j:Arrest" w:isReference="false" w:nillable="true"/>
   <w:Element w:name="j:CrashDriver" w:isReference="false" w:nillable="true"/>
   <w:Element w:name="j:CrashDriverViolationCode" w:isReference="false" w:nillable="true"/>
   <w:Element w:name="j:CrashDrivingViolationCode" w:isReference="false" w:nillable="true"/>
@@ -273,6 +274,12 @@
     <w:Facet w:facet="enumeration" w:value="W80"/>
     <w:Facet w:facet="enumeration" w:value="W81"/>
   </w:Type>
+  <w:Type w:name="j:ArrestType" w:isRequested="false">
+    <w:ElementInType w:name="j:ArrestInvolvedWeapon"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
+    <w:ElementInType w:name="j:ArrestSubject" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="unbounded"/>
+  </w:Type>
   <w:Type w:name="j:CrashDriverType" w:isRequested="false">
     <w:ElementInType w:name="nc:RoleOfPerson" w:isReference="false"
       w:minOccurs="0" w:maxOccurs="unbounded"/>
@@ -280,6 +287,10 @@
       w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
     <w:ElementInType w:name="j:CrashDrivingViolationAbstract"
       w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
+  </w:Type>
+  <w:Type w:name="j:SubjectType" w:isRequested="false">
+    <w:ElementInType w:name="nc:RoleOfPerson" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="unbounded"/>
   </w:Type>
   <w:Type w:name="j:WitnessType" w:isRequested="false">
     <w:ElementInType w:name="nc:RoleOfPerson" w:isReference="false"
@@ -310,6 +321,8 @@
       w:minOccurs="0" w:maxOccurs="unbounded"/>
   </w:Type>
   <w:Type w:name="nc:PersonNameType" w:isRequested="false">
+    <w:ElementInType w:name="nc:PersonGivenName" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="unbounded"/>
     <w:ElementInType w:name="nc:PersonFullName" w:isReference="false"
       w:minOccurs="0" w:maxOccurs="unbounded"/>
   </w:Type>
@@ -322,6 +335,10 @@
   <w:Type w:name="nc:TelephoneNumberType" w:isRequested="false">
     <w:ElementInType w:name="nc:TelephoneNumberAbstract"
       w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
+  </w:Type>
+  <w:Type w:name="nc:WeaponType" w:isRequested="false">
+    <w:ElementInType w:name="nc:WeaponUser" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="unbounded"/>
   </w:Type>
   <w:Type w:name="scr:PersonPhoneAssociationType" w:isRequested="false">
     <w:ElementInType w:name="nc:Person" w:isReference="false"

@@ -98,8 +98,19 @@ case $command in
             grep -nH "$@" tmp/ndr-doc.xml | tee /dev/fd/3 | emacsclientgrep
         ) ;;
 
+    #HELP:  uss: update subset. Update xsd/ndr-examples/subset from the latest in Downloads
+    uss )
+        (
+            cd "$(dirname "$0")"
+            latest_subset=$(get-newest ~/Downloads/Subset_??-??-????_????.zip)
+            [[ -f "$latest_subset" ]] || fail "did not find subset"
+	    rm -rf xsd/ndr-examples/subset
+	    mkdir -p xsd/ndr-examples/subset
+	    unzip -d xsd/ndr-examples/subset "$latest_subset"
+        ) ;;
+
     * )
-        fail "Unknown command \"$1\"";;
+        fail "Unknown command \"$command\"";;
 esac
          
 
