@@ -3294,7 +3294,7 @@
         <ruleSection><title>Element declaration is nillable</title>
 
           <p>All elements declared by reference schemas allow a nil value. This enables the ID/IDREF mechanism
-            linking <qName>structures:ref</qName> and <qName>structures:id</qName>, as described by <ref idref="section-reference-elements"/>.</p>
+            linking <qName>structures:ref</qName> and <qName>structures:id</qName>, as described by <ref idref="section-id-and-ref"/>.</p>
 
             <p>A developer may constrain the use of <code>nil</code> in an instance by
               setting <code>nillable</code> to false in subset schemas, or by use of non-XML Schema mechanisms,
@@ -7834,7 +7834,7 @@ not be given the same name.</p></li>
           <th>The Meaning of the data</th>
         </theadr>
         <tr>
-          <td>The top element occurs within some context, about which we don't know anything.</td>
+          <td>The top element occurs within some context, about which we do not know anything.</td>
           <td>There is some object, representing whatever is outside the outer element.</td>
         </tr>
         <tr>
@@ -7886,55 +7886,62 @@ not be given the same name.</p></li>
 
     </section>
 
-    <section>
+    <section id="section-id-and-ref">
       <title>Identifiers and references</title>
       
-
-      <definition term="content element">
-        <p>A <strong>content element</strong> is an element information item that does not contain an
-          attribute <qName >structures:ref</qName >. A content element expresses its value as text and element
-          content of the element information item.</p>
-      </definition>
-
-      <p>The most common NIEM patterns use content elements to represent most data. The following is an example
-        of a content element in use. All elements in this example are content elements.</p>
-
-
-    </section>
-
-    <section id="section-reference-elements">
-      <title>Reference elements</title>
-
-      <p>Content elements are sufficient to represent data that takes the form of a tree. However, use of content
-        elements has limitations; expression of all relationships via element containment is not always
-        possible. Situations that cause problems include:</p>
+      <p>Nested elements, shown above, are sufficient to represent simple data that takes the form of a
+        tree. However, the use of nested elements has limitations; expression of all relationships via nested
+        elementis not always possible. Situations that cause problems include:</p>
 
         <ul>
           <li>
-            <p>Cycles: the relationships transitively held by an object include a relationship to itself.</p>
-
-            <p>For example, suppose that object 1 has a relationship to object 2 and object 2 has a relationship
-              to object 1. This is not a tree, and so needs some representation other than a simple tree.</p>
+            <p>Cycles: some object has a relationship that, when followed, eventually circles back to itself. For
+              example, suppose that <em>Bob</em> has a <em>sister</em> relationship to <em>Sue</em>, who has
+              a <em>brother</em> relationship back to <em>Bob</em>. This is not a tree, and so needs some
+              representation other than just nested elements.</p>
           </li>
 
           <li>
-            <p>Reuse: multiple objects have a relationship to a common object.</p>
-
-            <p>For example, suppose object 1 has a relationship to object 2 and object 3 has a relationship to
-              object 2. Expressed via containment, this would result in a duplicate of object 2.</p>
+            <p>Reuse: multiple objects have a relationship to a common object. For example, suppose
+              <em>Bob</em> and <em>Sue</em> both have a <em>mother</em> relationship to <em>Sally</em>. Expressed
+              via nested elements, this would result in a duplicate representaiton of <em>Sally</em>.</p>
           </li>
         </ul>
 
-        <p>A method that solves this problem is the use of references. In a C or assembler, you could use a
-          pointer. In C++, a reference might be used. In Java, a reference value might be used. The method
-          defined by the XML standard is the use of ID and IDREF. An IDREF refers to an ID. NIEM uses this method
-          and assigns to it specific semantics.</p>
+        <p>NIEM provides two different ways to solve this problem: the use of local identifiers and references,
+          and the use of uniform resource identifiers (URIs).</p>
 
-        <p>Naive solutions to these problems that use only content elements require techniques such as repeating
-          data and identifying and excluding duplicate data; these operation entail the use of excess storage and
-          processing time.</p>
+        <section>
+          <title>Local identifiers and references</title>
 
-        <p>It is good to avoid these problems; in order to avoid them, NIEM allows
+          <p>The XML specifications define ID and IDREF attributes, which act as references in XML data. This is
+          supported by XML Schema, and NIEM uses ID and IDREF as one way to reference data across data
+            objects. Under this framework:</p>
+
+          <ul>
+            <li><p>Within an XML document, each value of any attribute of type <qName>xs:ID</qName> must be
+                unique. For exampe, if an element has an attribute of type <qName>xs:ID</qName> with the value
+                of <q>Bob</q>, then there may not be any other attribute in the document that is of
+                type <qName>xs:ID</qName> that also has the value <q>Bob</q>. NIEM provides
+                attribute <qName>structures:id</qName> of type <qName>xs:ID</qName> to act as a standard local
+                identifier.</p></li>
+            <li><p>Within an XML document, the value of any attribute of type <qName>xs:IDREF</qName> must appear
+                somewhere within the document as the value of some attribute of type <qName>xs:ID</qName>. For
+                example, if an attribute of type <qName>xs:IDREF</qName> has the value <q>Bob</q>, then somewhere
+                within that XML document there must be an attribute of type <qName>xs:ID</qName> with the
+                value <q>Bob</q>. NIEM provides attribute <qName>structures:ref</qName> as a standard local
+                reference.</p></li>
+            <li><p>These constraints, that IDs must be unique, and that IDREFs must refer to IDs, are XML
+                costraints, not unique to NIEM.</p>
+            </li>
+            <li><p>There are additional constraints placed on XML documents and XML schemas regarding the use of
+                ID and IDREF attributes. For example, an element may not have two attributes of type ID.</p></li>
+          </ul>
+
+          <p>In short, within a NIEM-conformant XML document, an attribute <qName>structures:ref</qName> refers
+            to an attribute <qName>structures:id</qName>.</p>
+
+          <p>It is good to avoid these problems; in order to avoid them, NIEM allows
           <termRef term="reference element" >reference elements</termRef>. A reference element expresses a
           relationship to another object by using a reference attribute, <qName>structures:ref</qName>. In
           <ref idref="figure-example-of-reference-element" />, the outer object is the content
@@ -8123,7 +8130,12 @@ not be given the same name.</p></li>
         not valid and are not applicable to NIEM-conformant data instances and data definitions.</p>
 
       </section>
+
+        </section>
+
     </section>
+
+
 
     <ruleSection><title>Empty content has no meaning</title>
       <rule applicability="INS" class="Interpretation">

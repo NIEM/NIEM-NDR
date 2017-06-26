@@ -1,0 +1,25 @@
+# -*-org-*-
+
+* 2017-06-26 ids and references
+
+        <p>A method that solves this problem is the use of references. In a C or assembler, you could use a
+          pointer. In C++, a reference might be used. In Java, a reference value might be used.</p>
+
+        <p>The XML standard
+          establishes ID and IDREF attributes. method defined by the XML standard is the use of ID and IDREF. An IDREF refers to an ID. NIEM uses this
+          method and assigns to it specific semantics.</p>
+
+        <p>Naive solutions to these problems that use only content elements require techniques such as repeating
+          data and identifying and excluding duplicate data; these operation entail the use of excess storage and
+          processing time.</p>
+
+
+        <section>
+          <title>Uniform identifiers in NIEM data</title>
+
+          <p>The linked data methodology labels things with unique names, called URIs (uniform resource
+            identifiers). If two things have the same URI, then they are the same thing.</p>
+
+          <p>NIEM supports the linked data methodolog</p>
+
+        </section>
