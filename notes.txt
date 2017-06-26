@@ -73,15 +73,15 @@
   - [X] check rules
 - [X] eliminate use of the root() function, since it breaks contesa
   - [X] verified that root() is not in use
-
-** pending tasks: in order to be done
-
 - [X] break up huge opening phrases rule
   - [X] section is: 11.6.1.1. Data definition opening phrases
     - [X] Rule 11-29. Standard opening phrase for element
     - [X] Rule 11-30. Standard opening phrase for complex type
-    - [ ] view
-    - [ ] verify
+    - [X] view
+    - [X] verify
+
+** pending tasks: in order to be done
+
 - [ ] very broken rule: Rule 10-37. Augmentation elements are not used directly
   - [ ] says REF, but has targets of REF,EXT
   - [ ] should be Schematron
