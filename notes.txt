@@ -73,14 +73,13 @@
   - [X] check rules
 - [X] eliminate use of the root() function, since it breaks contesa
   - [X] verified that root() is not in use
-- [X] break up huge opening phrases rule
-  - [X] section is: 11.6.1.1. Data definition opening phrases
-    - [X] Rule 11-29. Standard opening phrase for element
-    - [X] Rule 11-30. Standard opening phrase for complex type
-    - [X] view
-    - [X] verify
 
 ** pending tasks: in order to be done
+
+- [ ] structures & appinfo schemas are @version 4.0beta2pre1?
+- [ ] update to code list spec 4.0
+- [ ] a reference to the term namespace?
+- [ ] id / ref / @uri resolution & unification
 
 - [ ] very broken rule: Rule 10-37. Augmentation elements are not used directly
   - [ ] says REF, but has targets of REF,EXT
@@ -88,16 +87,27 @@
 - [ ] ensure rules:
   - [ ] Augmentation elements are of augmentation type
   - [ ] Augmentation elements are not abstract
-
-
-
 - [ ] get rid of &gt; and &lt;, prefer xpath gt and lt
 - [ ] add Schematron for rules without Schematron
 - [ ] add check: any component in the target namespace MUST be declared within the schema
-- [ ] id / ref / @uri resolution & unification
 - [ ] Lighten EXT structural rules
 - [ ] use MACRO_REPRESENTATION_TERM_QUANTITY, and the other like macros, universally across the document. They're only used in some places.
 
+
+* Changes from 3.0 to 4.0
+
+- Merged local terminology into appinfo.
+- Defined new attribute @uri, supporting linked data-style content.
+- Updated the NIEM conceptual model's use of RDF to align with linked data & JSON-LD.
+- Allowed @fixed on required attribute uses, supported by better description of the effects of infoset augmentation by XML Schema validating parsers.
+- Prohibited @fixed on simpletype facets in reference schemas.
+- Changed naming rules from MUST to SHOULD.
+- Added naming rule that element and attributes of code types have names ending in "Code".
+- Removed Schematron from rules that always provide warnings.
+- Made text, spelling, and grammar corrections.
+- Allowed code types that are not based on XML Schema enumerations.
+- Allowed all legal ASCII characters in component names, now allowing hyphen, underscore, and period.
+- Broke up large composite rules about standard opening phrases into a set of smaller, simpler rules.
 
 * Agendas: discuss with:
 ** NTAC
