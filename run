@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "$0")"
-
 . "$HOME"/share/wrtools-core/opt_help.bash
 . "$HOME"/share/wrtools-core/fail.bash
 
@@ -32,14 +30,42 @@ shift $((OPTIND - 1))
 #HELP:Commands:
 
 (( $# >= 1 )) || fail "Need at least one command"
+command=$1
+shift
 
-case $1 in
+case $command in
     #HELP:  log: get the log from the last dev-ndr-4.0beta2 to dev
     log )
         (
+            (( $# == 0 )) || fail "unexepected args $*"
+            cd "$(dirname "$0")"
             exec 3>&1
             git log --reverse --pretty=format:%B dev-ndr-4.0beta2..dev | tee /dev/fd/3 | pbcopy
         ) ;;
+
+    #HELP:  rebuild: rebuild everything from nothing
+    rebuild )
+        (
+            (( $# == 0 )) || fail "unexepected args $*"
+            cd "$(dirname "$0")"
+            make distclean
+            make depend depend=build
+            time make -j 8 valid all
+        )
+        ;;
+    #HELP:  build $targets... : rebuild carefully
+    #HELP:    default targets: valid all
+    build )
+        (
+            cd "$(dirname "$0")"
+            if (( $# == 0 ))
+            then set valid all
+            fi
+            make depend depend=build
+            time make -j 8 "$@"
+        )
+        ;;
+    
     * )
         fail "Unknown command \"$1\"";;
 esac
