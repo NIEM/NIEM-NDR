@@ -8157,20 +8157,20 @@ not be given the same name.</p></li>
 
           <ul>
 
-            <li><p>With ref-to-id links, both the <qName>structures:ref</qName> and
-                the <qName>structures:id</qName> identifier are required to be within the same document.</p></li>
+            <li><p>With ref-to-id links, both <qName>structures:ref</qName> and
+                <qName>structures:id</qName> are required to be within the same document.</p></li>
 
-            <li><p>With ref-to-id links, both the <qName>structures:id</qName> and <qName>structures:ref</qName>
+            <li><p>With ref-to-id links, both <qName>structures:id</qName> and <qName>structures:ref</qName>
                 are required to be validated against the same schema.</p></li>
 
             <li><p>Ref-to-id links provide and require type safety, in that the type of an object pointed to by
-                a <qName>structures:ref</qName> must be consistent with the referencing
+                <qName>structures:ref</qName> must be consistent with the referencing
                 element<char name="rsquo"/>s type declaration.</p></li>
 
-            <li><p>The value of a <qName>structures:id</qName> must be unique for IDs within the
+            <li><p>The value of <qName>structures:id</qName> must be unique for IDs within the
                 document.</p></li>
 
-            <li><p>The value of a <qName>structures:ref</qName> must appear within the document as the value of
+            <li><p>The value of <qName>structures:ref</qName> must appear within the document as the value of
                 an attribute <qName>structures:id</qName>.</p></li>
 
             <li><p>An attribute <qName>structures:uri</qName> is a URI-reference that can reference any resource,
@@ -8183,7 +8183,7 @@ not be given the same name.</p></li>
                 same document, or in another conformant document.</p></li>
 
             <li><p>Any <qName>structures:uri</qName> may reference any other <qName>structures:uri</qName>,
-            within the same docuemnt, or in another conformant document.</p></li>
+                within the same docuemnt, or in another conformant document.</p></li>
 
           </ul>
           
@@ -8193,10 +8193,11 @@ not be given the same name.</p></li>
       <section>
         <title>Reference and content elements have same meaning</title>
 
-        <p>An important aspect of the use of nested elements versus IDREF/ID references is that they have the
-          same meaning. Expressing a relationship via a nested element, versus an IDREF reference is merely for
-          convenience and ease of serialization. There is no change in meaning or semantics between relationships
-          expressed by sub-elements versus relationships expressed by <qName>structures:ref</qName>.</p>
+        <p>An important aspect of the use of nested elements, ref-to-id references, and URI references, is that
+          they all have the same meaning. Expressing a relationship via a nested element, versus an ref-to-id
+          reference is merely for convenience and ease of serialization. There is no change in meaning or
+          semantics between relationships expressed by sub-elements versus relationships expressed
+          by <qName>structures:ref</qName> or <qName>structures:uri</qName>.</p>
 
         <p>Any claim that nested elements represent composition while references represent aggregation is
           incorrect. No life cycle dependency is implied by either method.</p>
@@ -8264,9 +8265,7 @@ not be given the same name.</p></li>
 
       </section>
 
-
     </section>
-
 
     <section id="section-instance-metadata">
       <title>Instance metadata</title>
