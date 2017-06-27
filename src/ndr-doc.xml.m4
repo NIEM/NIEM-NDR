@@ -6091,7 +6091,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 
       <ruleSection><title>Names use common abbreviations</title>
       <rule applicability="REF EXT" class="Constraint">
-        <p>The schema MUST use, in defined names, the abbreviations identified by <ref idref="table-abbrevs"/>,
+        <p>The schema SHOULD use, in defined names, the abbreviations identified by <ref idref="table-abbrevs"/>,
 rather than their full meanings.</p>
       </rule>
 

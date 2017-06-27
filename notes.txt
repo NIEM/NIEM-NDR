@@ -113,6 +113,7 @@
 ** pending tasks: in order to be done
 
 - [ ] NCCT issues
+- [ ] stand down abbreviations rule to SHOULD
 - [ ] update date to 6/27 (damn)
 
 - [ ] update to code list spec 4.0
