@@ -8084,7 +8084,7 @@ not be given the same name.</p></li>
         </section>
 
         <section>
-          <title>Uniform identifiers in NIEM data</title>
+          <title>Uniform resource identifiers in NIEM data</title>
 
           <p>NIEM supports the linked data methodology through the use of uniform resource identifiers (URIs),
             expressed through the attribute <qName>structures:uri</qName> in XML documents . This attribute works

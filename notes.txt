@@ -126,6 +126,7 @@
 - [ ] add Schematron for rules without Schematron
 - [ ] Lighten EXT structural rules
 - [ ] use MACRO_REPRESENTATION_TERM_QUANTITY, and the other like macros, universally across the document. They're only used in some places.
+- [ ] clean up straggler uses of term "content element" and "reference element".
 
 * Changes from 3.0 to 4.0
 
