@@ -5233,7 +5233,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
               substitutable for an augmentation point. Each of these elements expresses an additional
               characteristic or relationship of the base type.</p></li>
           <li><p>A developer may also define an augmentation type, and a corresponding augmentation element of
-              that type, which acts as a <em>bucket</em> of elements that apply to the base type. An augmentation
+              that type, which acts as a container of elements that apply to the base type. An augmentation
               element is defined to be substitutable for an augmentation point, which enables it to appear in
               instances of that base type.</p></li>
           <li><p>A developer of an information exchange may choose, through selection and subsetting reference
