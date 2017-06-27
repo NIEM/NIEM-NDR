@@ -2669,7 +2669,7 @@
             <pre><xmlBlurb memberOf="ref" id="xb-no-facet-fixed">
 <sch:pattern>
   <sch:rule context="xs:*[self::xs:length or self::xs:minLength or self::xs:maxLength or self::xs:whiteSpace
-      or self::xs:maxInclusive or self::xs:maxEclusive or self::xs:minExclusive or self::xs:minInclusive 
+      or self::xs:maxInclusive or self::xs:maxExclusive or self::xs:minExclusive or self::xs:minInclusive 
       or self::xs:totalDigits or self::xs:fractionDigits]">
     <sch:assert test="empty(@fixed)"
       >A simple type constraining facet MUST NOT have an attribute {}fixed.</sch:assert>
@@ -7917,7 +7917,7 @@ not be given the same name.</p></li>
       
       <p>Nested elements, shown above, are sufficient to represent simple data that takes the form of a
         tree. However, the use of nested elements has limitations; expression of all relationships via nested
-        elementis not always possible. Situations that cause problems include:</p>
+        elements is not always possible. Situations that cause problems include:</p>
 
         <ul>
           <li>
@@ -7961,7 +7961,7 @@ not be given the same name.</p></li>
 
           <ul>
             <li><p>Within an XML document, each value of any attribute of type <qName>xs:ID</qName> must be
-                unique. For exampe, if an element has an attribute of type <qName>xs:ID</qName> with the value
+                unique. For example, if an element has an attribute of type <qName>xs:ID</qName> with the value
                 of <q>Bob</q>, then there may not be any other attribute in the document that is of
                 type <qName>xs:ID</qName> that also has the value <q>Bob</q>. NIEM provides
                 attribute <qName>structures:id</qName> of type <qName>xs:ID</qName> to act as a standard local
@@ -7973,7 +7973,7 @@ not be given the same name.</p></li>
                 value <q>Bob</q>. NIEM provides attribute <qName>structures:ref</qName> as a standard local
                 reference.</p></li>
             <li><p>These constraints, that IDs must be unique, and that IDREFs must refer to IDs, are XML
-                costraints, not unique to NIEM.</p>
+                constraints, not unique to NIEM.</p>
             </li>
             <li><p>There are additional constraints placed on XML documents and XML schemas regarding the use of
                 ID and IDREF attributes. For example, an element may not have two attributes of type ID.</p></li>
@@ -8177,7 +8177,7 @@ not be given the same name.</p></li>
         </section>
 
         <section id="compare-contrast-id-ref-uri">
-          <title>Differentiating reference-to-identifer links and use of URIs</title>
+          <title>Differentiating reference-to-identifier links and use of URIs</title>
 
           <p>These two methods are similar, and can interoperate, but have distinctions:</p>
 
@@ -8209,7 +8209,7 @@ not be given the same name.</p></li>
                 same document, or in another conformant document.</p></li>
 
             <li><p>Any <qName>structures:uri</qName> may reference any other <qName>structures:uri</qName>,
-                within the same docuemnt, or in another conformant document.</p></li>
+                within the same document, or in another conformant document.</p></li>
 
           </ul>
           

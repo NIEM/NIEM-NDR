@@ -3,6 +3,8 @@ ActivityDescriptionText
 ActivityType
 AircraftFuselageColorCode
 Anders
+ArrestInvolvedWeapon
+ArrestSubject
 AssessmentPerson
 AssociationAugmentationPoint
 AssociationType
@@ -71,6 +73,7 @@ JSON
 JXDM
 LD
 Lanthaler
+LatitudeDegreeSimpleType
 Lindstrom
 LocalTerm
 Longley
@@ -107,8 +110,11 @@ PersonBirthDate
 PersonFBIIdentification
 PersonFirstNameName
 PersonFullName
+PersonGivenName
 PersonMedicalInsuranceIndicator
 PersonName
+PersonNameTextType
+PersonNameType
 PersonPhoneAssociation
 PersonPhoneAssociationType
 PersonProfessionalCertificateText
@@ -144,6 +150,7 @@ URI
 URIs
 URNs
 UpperCamelCase
+WeaponUser
 XHTML
 XPath
 XSD
@@ -165,6 +172,7 @@ ary
 attributeFormDefault
 attributeGroup
 augmentable
+bart
 blockDefault
 boolean
 cardinalities
@@ -182,6 +190,7 @@ extensibility
 externalAdapterTypeIndicator
 externalImportIndicator
 finalDefault
+fractionDigits
 gDay
 gMonth
 gMonthDay
@@ -196,6 +205,7 @@ infoset
 infosets
 initialisms
 interoperability
+interoperate
 itemType
 keyref
 lang
@@ -203,8 +213,13 @@ le
 lifecycles
 lowerCamelCase
 lt
+maxExclusive
+maxInclusive
+maxLength
 maxOccurs
 memberTypes
+minExclusive
+minInclusive
 minLength
 minOccurs
 namespace
@@ -244,6 +259,7 @@ subsetting
 substitutable
 substitutionGroup
 targetNamespace
+totalDigits
 translatability
 typeless
 unicode
@@ -252,6 +268,7 @@ untyped
 ur
 uri
 validator
+whiteSpace
 whitespace
 xml
 xmlns
