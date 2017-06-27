@@ -8143,7 +8143,10 @@ not be given the same name.</p></li>
             and <code>structures:ref="hello"</code> each denote the same resource identifier for
             an element as if it held an attribute <code>structures:uri="#hello"</code>.</p>
 
-          <p>Consistent with <ref idref="section-unique-object-ids"/>, the data implied by a set of elements zzzzz</p>
+          <p>Consistent with <ref idref="section-unique-object-ids"/>, a set of elements that each have the same
+            resource identifier denote the same object, which has that given identifier. This means that, in an
+            XML representation, the properties of an object may be spread across a set of elements that share an
+            identifier.</p>
 
         </section>
 
@@ -8154,34 +8157,36 @@ not be given the same name.</p></li>
 
           <ul>
 
-            <li><p>With reference-to-identifier links, both the reference and the identifier are required to be
-                within the same document.</p></li>
+            <li><p>With ref-to-id links, both the <qName>structures:ref</qName> and
+                the <qName>structures:id</qName> identifier are required to be within the same document.</p></li>
 
-            <li><p>With reference-to-identifier links, both the reference and the identifier are required to be
-                validated against the same schema.</p></li>
+            <li><p>With ref-to-id links, both the <qName>structures:id</qName> and <qName>structures:ref</qName>
+                are required to be validated against the same schema.</p></li>
 
-            <li><p>Reference-to-identifier links provide and require type safety, in that type of an object
-                pointed to by reference must be consistent with types of referencing element<char name="rsquo"/>s
-                type declaration.</p></li>
+            <li><p>Ref-to-id links provide and require type safety, in that the type of an object pointed to by
+                a <qName>structures:ref</qName> must be consistent with the referencing
+                element<char name="rsquo"/>s type declaration.</p></li>
 
-            <li><p>An identifier must be unique within the document; it can have the same meaning as </p></li>
+            <li><p>The value of a <qName>stuctures:id</qName> must be unique for IDs within the document.</p></li>
 
-            <li><p>a REF must reference the an ID within the document</p></li>
+            <li><p>The value of a <qName>structures:ref</qName> must appear within the document as the value of
+            an attribute <qName>structures:id</qName>.</p></li>
 
-            <li><p>a URIs can reference any identifier, inside or outside the document.</p></li>
+            <li><p>An attribute <qName>structures:uri</qName> is a URI-reference that can reference any resource,
+                inside or outside the document.</p></li>
 
-            <li><p>A uri can reference an ID within the same document, or in another odcument</p></li>
+            <li><p>A <qName>structures:uri</qName> can reference any <qName>structures:id</qName> within the same
+                document, or in another conformant document.</p></li>
 
-            <li><p>A uri can refernece a REF within the same document, or in another document</p></li>
+            <li><p>A <qName>structures:uri</qName> can reference any <qName>structures:ref</qName> within the
+                same document, or in another conformant document.</p></li>
 
-            <li><p>A uri can referen another uri, within the same docuemnt, or in another document.</p></li>
+            <li><p>Any <qName>structures:uri</qName> may reference any other <qName>structures:uri</qName>,
+            within the same docuemnt, or in another conformant document.</p></li>
 
           </ul>
           
         </section>
-
-
-
 
         
       <section>
