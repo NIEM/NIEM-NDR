@@ -5258,6 +5258,11 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
           concretely use the elements is at the discretion of the developers and implementers of an information
           exchange.</p>
 
+        <p>The term <termRef>augmentation</termRef> describes any element in a NIEM-conformant instance XML
+          document that appears as a result of being substituted for an augmentation point element. Such an
+          element may have a type that is an <termRef>augmentation type</termRef>, or it may be a direct element
+          that represents a property.</p>
+
         <definition term="augmentation">
           <p>An <strong>augmentation</strong> is an <termRef>element</termRef> that</p>
           <ol>
@@ -5576,6 +5581,11 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
                 association</p></li>
           </ol>
         </definition>
+
+        <p>This term may be mistaken for another. The term <termRef>augmentation element declaration</termRef>
+          describes element declarations defined by schemas, while the term <termRef>augmentation</termRef>
+          applies to any element information item within an XML document that appears as the result of being
+          substituted for an augmentation point.</p>
 
         <ruleSection>
           <title>Element within instance of augmentation type modifies base</title>

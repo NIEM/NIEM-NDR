@@ -106,24 +106,24 @@
         - leave type-safety in place for @id, @ref, but not for @uri.
 
     - [X] look out for "ad hoc" language
+- [X] element can only have one of id, ref, uri
+  - [X] test
+  - [X] verify
 
 ** pending tasks: in order to be done
 
-- [ ] element can only have one of id, ref, uri
-  - [ ] test
-  - [ ] verify
+- [ ] NCCT issues
+- [ ] update date to 6/27 (damn)
 
-  - [ ] NCCT issues
-
-  - [ ] update to code list spec 4.0
-  - [ ] very broken rule: Rule 10-37. Augmentation elements are not used directly
-    - [ ] says REF, but has targets of REF,EXT
-    - [ ] should be Schematron
-  - [ ] ensure rules:
-    - [ ] Augmentation elements are of augmentation type
-    - [ ] Augmentation elements are not abstract
-  - [ ] get rid of &gt; and &lt;, prefer xpath gt and lt
-  - [ ] add check: any component in the target namespace MUST be declared within the schema
+- [ ] update to code list spec 4.0
+- [ ] very broken rule: Rule 10-37. Augmentation elements are not used directly
+  - [ ] says REF, but has targets of REF,EXT
+  - [ ] should be Schematron
+- [ ] ensure rules:
+  - [ ] Augmentation elements are of augmentation type
+  - [ ] Augmentation elements are not abstract
+- [ ] get rid of &gt; and &lt;, prefer xpath gt and lt
+- [ ] add check: any component in the target namespace MUST be declared within the schema
 
 ** Someday / maybe
 
