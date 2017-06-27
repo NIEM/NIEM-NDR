@@ -5355,7 +5355,12 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 
         <p>In addition to defining elements that use an augmentation type, a schema document may define an
           element that substitutes for an augmentation point element, but does not use an augmentation type. For
-          example, the CBRN namespace defines an augmentation to <qName>nc:ScheduleType</qName>:</p>
+          example, the following CBRN namespace defines an augmentation to <qName>nc:ScheduleType</qName>. While
+          an element of an augmentation type acts as a container, holding elements that apply to an augmented
+          object, this element is a direct property of a schedule, providing a meaningful characteristic (hours
+          of operation) for a schedule. The resulting syntax is briefer than it would be using an augmentation
+          type; the resulting instance looks similar to how it might look if the schedule type had been extended,
+          rather than augmented.</p>
 
         <figure>
           <title>An augmentation that is not an augmentation type</title>
