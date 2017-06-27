@@ -1201,7 +1201,7 @@
 
     </section>
     
-    <section>
+    <section id="section-unique-object-ids">
       <title>Unique identification of data objects</title>
 
       <p>A NIEM data exchange may be ephemeral and ad hoc. That is, a message may be transmitted without any
@@ -7922,8 +7922,9 @@ not be given the same name.</p></li>
           </li>
         </ul>
 
-        <p>NIEM provides two different ways to solve this problem: the use of local identifiers and references,
-          and the use of uniform resource identifiers (URIs).</p>
+        <p>NIEM provides two different ways to solve this problem: the use of local references pointing to local
+          identifiers, and the use of uniform resource identifiers (URIs). These two methods are similar, and can
+          interoperate, but have distinctions, as described by <ref idref="compare-contrast-id-ref-uri"/>.</p>
 
         <section>
           <title>Local identifiers and references</title>
@@ -8081,6 +8082,107 @@ not be given the same name.</p></li>
       </ruleSection>
 
         </section>
+
+        <section>
+          <title>Uniform identifiers in NIEM data</title>
+
+          <p>NIEM supports the linked data methodology through the use of uniform resource identifiers (URIs),
+            expressed through the attribute <qName>structures:uri</qName> in XML documents . This attribute works
+            much like <qName>structures:ref</qName> and <qName>structures:id</qName>, and overlaps
+            somewhat. Linked data introduces key terminology:</p>
+          
+          <ul>
+            <li><p>Anything modeled or addressed by an information system may be called a <em>resource</em>:
+                people, vehicles, reports, documents, relationships, ideas: anything that is talked about and
+                modeled in an information system is a resource.</p></li>
+            <li><p>Every resource may have a name, called a uniform resource identifier (URI).</p></li>
+          </ul>
+
+          <p>As described in
+            <ref idref="section-unique-object-ids"/>, <qName>structures:uri</qName>, <qName>structures:id</qName>,
+            and <qName>structures:ref</qName> each denote a resource identifier. Although
+            a <qName>structures:ref</qName> must always refer to a <qName>structures:id</qName>, and a value
+            of <qName>structures:id</qName> must be unique within its document, a <qName>structures:uri</qName>
+            may refer to any of <qName>structures:uri</qName>, <qName>structures:ref</qName>,
+            or <qName>structures:id</qName>.</p>
+
+          <ruleSection>
+            <title><qName>structures:uri</qName> denotes resource identifier</title>
+            <rule applicability="INS" id="rule-uri-base" class="Interpretation">
+              <p>The value of an attribute <qName>structures:uri</qName> is a URI-reference, as defined by
+                <ref idref="RFC3986"/>, which denotes a resource identifier on the element holding the
+                attribute, in accordance with evaluation consistent with <ref idref="RFC3986"/> and
+                <ref idref="XMLBase"/>.</p>
+            </rule>
+          </ruleSection>
+
+          <p>The attributes <qName>structures:id</qName> and <qName>structures:ref</qName> each have a mapping to
+            equivalent values of <qName>structures:uri</qName>.</p>
+
+          <ruleSection>
+            <title><qName>structures:id</qName> denotes resource identifier</title>
+            <rule applicability="INS" id="rule-id-is-uri" class="Interpretation">
+              <p>The value of the <qName>structures:id</qName> with a value of <var>$value</var> denotes a
+                resource identifier on the element holding the attribute, as would be denoted by an
+                attribute <qName>structures:uri</qName> with a value
+                of <q><code>#<var>$value</var></code></q>.</p>
+            </rule>
+          </ruleSection>
+
+          <ruleSection>
+            <title><qName>structures:ref</qName> denotes resource identifier</title>
+            <rule applicability="INS" id="rule-ref-is-uri" class="Interpretation">
+              <p>The value of the <qName>structures:ref</qName> with a value of <var>$value</var> denotes a
+                resource identifier on the element holding the attribute, as would be denoted by an
+                attribute <qName>structures:uri</qName> with a value
+                of <q><code>#<var>$value</var></code></q>.</p>
+            </rule>
+          </ruleSection>
+
+          <p>For example, <code>structures:id="hello"</code>
+            and <code>structures:ref="hello"</code> each denote the same resource identifier for
+            an element as if it held an attribute <code>structures:uri="#hello"</code>.</p>
+
+          <p>Consistent with <ref idref="section-unique-object-ids"/>, the data implied by a set of elements zzzzz</p>
+
+        </section>
+
+        <section id="compare-contrast-id-ref-uri">
+          <title>Differentiating reference-to-identifer links and use of URIs</title>
+
+          <p>These two methods are similar, and can interoperate, but have distinctions:</p>
+
+          <ul>
+
+            <li><p>With reference-to-identifier links, both the reference and the identifier are required to be
+                within the same document.</p></li>
+
+            <li><p>With reference-to-identifier links, both the reference and the identifier are required to be
+                validated against the same schema.</p></li>
+
+            <li><p>Reference-to-identifier links provide and require type safety, in that type of an object
+                pointed to by reference must be consistent with types of referencing element<char name="rsquo"/>s
+                type declaration.</p></li>
+
+            <li><p>An identifier must be unique within the document; it can have the same meaning as </p></li>
+
+            <li><p>a REF must reference the an ID within the document</p></li>
+
+            <li><p>a URIs can reference any identifier, inside or outside the document.</p></li>
+
+            <li><p>A uri can reference an ID within the same document, or in another odcument</p></li>
+
+            <li><p>A uri can refernece a REF within the same document, or in another document</p></li>
+
+            <li><p>A uri can referen another uri, within the same docuemnt, or in another document.</p></li>
+
+          </ul>
+          
+        </section>
+
+
+
+
         
       <section>
         <title>Reference and content elements have same meaning</title>

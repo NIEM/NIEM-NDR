@@ -109,6 +109,9 @@ case $command in
 	    unzip -d xsd/ndr-examples/subset "$latest_subset"
         ) ;;
 
+    #HELP:  show: open grep-friendly buffer on copied text (e.g., jump to an error from a message)
+    show ) pbpaste | emacsclientgrep;;
+
     * )
         fail "Unknown command \"$command\"";;
 esac
