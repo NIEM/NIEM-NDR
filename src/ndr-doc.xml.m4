@@ -5207,10 +5207,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
               of the various person types represent the same person, or which parts of those instances are
               required to be populated; does each person restate the name and birth-date, or is that handled by
               just one instance?</p></li>
-          <li><p>A domain, having created its own <code>j:PersonType</code> that
-              extends <code>nc:PersonType</code>, is, of course, going to create elements of that type. These
-              elements will not be easily reused by other domains, as the Immigration namespace will want to
-              use <code>im:PersonType</code> instead of <code>j:PersonType</code>.</p></li>
+
         </ul>
 
         <p>This approach turns into a morass that is difficult to use and maintain, and which does
