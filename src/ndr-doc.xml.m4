@@ -8167,10 +8167,11 @@ not be given the same name.</p></li>
                 a <qName>structures:ref</qName> must be consistent with the referencing
                 element<char name="rsquo"/>s type declaration.</p></li>
 
-            <li><p>The value of a <qName>stuctures:id</qName> must be unique for IDs within the document.</p></li>
+            <li><p>The value of a <qName>structures:id</qName> must be unique for IDs within the
+                document.</p></li>
 
             <li><p>The value of a <qName>structures:ref</qName> must appear within the document as the value of
-            an attribute <qName>structures:id</qName>.</p></li>
+                an attribute <qName>structures:id</qName>.</p></li>
 
             <li><p>An attribute <qName>structures:uri</qName> is a URI-reference that can reference any resource,
                 inside or outside the document.</p></li>
