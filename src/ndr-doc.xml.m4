@@ -6629,7 +6629,7 @@ not be given the same name.</p></li>
       </ruleSection>
       <ruleSection>
         <title>External adapter type indicator annotates complex type</title>
-        <rule applicability="REF" id="rule-owner-of-appinfo-externaladaptertypeindicator" class="Constraint">
+        <rule applicability="REF EXT" id="rule-owner-of-appinfo-externaladaptertypeindicator" class="Constraint">
           <pre><xmlBlurb id="blurb-owner-of-appinfo-externaladaptertypeindicator" memberOf="ref">
 <sch:pattern>
   <sch:rule context="*[exists(@appinfo:externalAdapterTypeIndicator)]">
