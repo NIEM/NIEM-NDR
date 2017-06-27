@@ -109,25 +109,18 @@
 - [X] element can only have one of id, ref, uri
   - [X] test
   - [X] verify
+- [X] NCCT issues
+- [X] stand down abbreviations rule to SHOULD
+- [X] update date to 6/27 (damn)
 
 ** pending tasks: in order to be done
 
-- [ ] NCCT issues
-- [ ] stand down abbreviations rule to SHOULD
-- [ ] update date to 6/27 (damn)
-
 - [ ] update to code list spec 4.0
-- [ ] very broken rule: Rule 10-37. Augmentation elements are not used directly
-  - [ ] says REF, but has targets of REF,EXT
-  - [ ] should be Schematron
-- [ ] ensure rules:
-  - [ ] Augmentation elements are of augmentation type
-  - [ ] Augmentation elements are not abstract
-- [ ] get rid of &gt; and &lt;, prefer xpath gt and lt
-- [ ] add check: any component in the target namespace MUST be declared within the schema
 
 ** Someday / maybe
 
+- [ ] get rid of &gt; and &lt;, prefer xpath gt and lt
+- [ ] add check: any component in the target namespace MUST be declared within the schema
 - [ ] add Schematron for rules without Schematron
 - [ ] Lighten EXT structural rules
 - [ ] use MACRO_REPRESENTATION_TERM_QUANTITY, and the other like macros, universally across the document. They're only used in some places.
