@@ -7926,6 +7926,17 @@ not be given the same name.</p></li>
           identifiers, and the use of uniform resource identifiers (URIs). These two methods are similar, and can
           interoperate, but have distinctions, as described by <ref idref="compare-contrast-id-ref-uri"/>.</p>
 
+        <rule applicability="INS" class="Constraint" id="rule-only-one-id">
+          <pre><xmlBlurb id="xb-rule-only-one-id" memberOf="ins">
+<sch:pattern>
+  <sch:rule context="*[exists(@structures:id) or exists(@structures:ref) or exists(@structures:uri)]">
+    <sch:assert test="count(@structures:id | @structures:ref | @structures:uri) le 1"
+      >An element MUST NOT have more than one attribute that is structures:id, structures:ref, or structures:uri.</sch:assert>
+  </sch:rule>
+</sch:pattern>
+          </xmlBlurb></pre>
+        </rule>
+
         <section>
           <title>Local identifiers and references</title>
 

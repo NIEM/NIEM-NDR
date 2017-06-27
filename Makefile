@@ -323,7 +323,7 @@ conr ${niem_release_checked_out_token}:
 	git archive \
 	  --remote=${HOME}/r/niem/release/niem-releases \
 	  --prefix=${niem_release_checkout_dir}/ \
-	  dev-niem-4.0 | tar xvf -
+	  dev-niem-4.0rc3 | tar xvf -
 	${MKDIR_P} ${dir ${niem_release_checked_out_token}}
 	${touch} ${niem_release_checked_out_token}
 

@@ -80,16 +80,14 @@
   - [X] commit
 - [X] a reference to the term namespace?
 - [X] remove src/resources.txt
+- [X] id / ref / @uri resolution & unification
+  - [X] complete rewrite of:
+    - [X] section 12.1, "Content elements" file:///Users/wr/r/niem/ndr/doc/repo/niem-ndr-4.0beta2.html#section_12.1
+    - [X] 12.2 "Reference element" file:///Users/wr/r/niem/ndr/doc/repo/niem-ndr-4.0beta2.html#section_12.2
 
-** pending tasks: in order to be done
+  - [X] get a grip on the json-ld's spec definitoin of linking via IDs & composite objects.
 
-- [ ] id / ref / @uri resolution & unification
-  - [ ] complete rewrite of:
-    - [ ] section 12.1, "Content elements" file:///Users/wr/r/niem/ndr/doc/repo/niem-ndr-4.0beta2.html#section_12.1
-    - [ ] 12.2 "Reference element" file:///Users/wr/r/niem/ndr/doc/repo/niem-ndr-4.0beta2.html#section_12.2
-
-  - [ ] get a grip on the json-ld's spec definitoin of linking via IDs & composite objects.
-  - [ ] @ uri defined against a base uri according to xml:base standard
+  - [X] @ uri defined against a base uri according to xml:base standard
 
     - how JSON LD does it: in section 6.1, base IRI:
 
@@ -107,19 +105,25 @@
         - no single element can have more than one of @id, @ref, @uri.
         - leave type-safety in place for @id, @ref, but not for @uri.
 
-    - [ ] look out for "ad hoc" language
+    - [X] look out for "ad hoc" language
 
-- [ ] NCCT issues
+** pending tasks: in order to be done
 
-- [ ] update to code list spec 4.0
-- [ ] very broken rule: Rule 10-37. Augmentation elements are not used directly
-  - [ ] says REF, but has targets of REF,EXT
-  - [ ] should be Schematron
-- [ ] ensure rules:
-  - [ ] Augmentation elements are of augmentation type
-  - [ ] Augmentation elements are not abstract
-- [ ] get rid of &gt; and &lt;, prefer xpath gt and lt
-- [ ] add check: any component in the target namespace MUST be declared within the schema
+- [ ] element can only have one of id, ref, uri
+  - [ ] test
+  - [ ] verify
+
+  - [ ] NCCT issues
+
+  - [ ] update to code list spec 4.0
+  - [ ] very broken rule: Rule 10-37. Augmentation elements are not used directly
+    - [ ] says REF, but has targets of REF,EXT
+    - [ ] should be Schematron
+  - [ ] ensure rules:
+    - [ ] Augmentation elements are of augmentation type
+    - [ ] Augmentation elements are not abstract
+  - [ ] get rid of &gt; and &lt;, prefer xpath gt and lt
+  - [ ] add check: any component in the target namespace MUST be declared within the schema
 
 ** Someday / maybe
 
