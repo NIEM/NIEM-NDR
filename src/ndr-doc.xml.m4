@@ -178,7 +178,7 @@
 
     <section><title>Document references</title>
       <p>This document relies on references to many outside documents. Such references are noted by bold,
-        bracketed inline terms. For example, a reference to RFC 2119 is shown as <ref idref="RFC2119"/>. All
+        bracketed inline terms. For example, a reference to RFC 3986 is shown as <ref idref="RFC3986"/>. All
         reference documents are recorded in <ref idref="AppendixReferences"/>.</p>
     </section>
 
@@ -287,7 +287,7 @@
           <p>A rule states a specific requirement on an artifact or on the interpretation of an artifact. The classes of
             artifacts are identified by <termRef term="conformance target">conformance targets</termRef> that are
             enumerated by this document in <ref idref="SectionConformanceTargetsDefined"/>. The rules are
-            normative. Human-readable text in rules uses <ref idref="RFC2119"/> terminology as described in <ref idref="section-terminology-rfc-2119"/> for normative requirements and recommendations.</p>
+            normative. Human-readable text in rules uses <ref idref="BCP14"/> terminology as described in <ref idref="section-terminology-bcp-14"/> for normative requirements and recommendations.</p>
 
           <bogusRule section="&lt;section&gt;" number="&lt;number&gt;" applicability="&lt;applicability&gt;" class="&lt;classification&gt;">
             <p>An enforceable rule for NIEM.</p>
@@ -342,8 +342,8 @@
           validation, and others may be difficult or cumbersome to express in Schematron. In neither case are
           such rules any less normative. A rule that has no Schematron is just as normative as a rule that does
           have Schematron. The level of requirements and recommendations within a rule is expressed using
-          terminology from <ref idref="RFC2119"/> as described in
-          <ref idref="section-terminology-rfc-2119"/>.</p>
+          terminology from <ref idref="BCP14"/> as described in
+          <ref idref="section-terminology-bcp-14"/>.</p>
 
         <p>The Schematron rules are written using XPath2 as defined by
           <ref idref="XPath2"/>. These executable rules are normative.</p>
@@ -513,12 +513,13 @@
       describe NIEM. In addition, it defines terms related to these other standards. This section enumerates this
       externally-dependent terminology.</p>
 
-      <section id="section-terminology-rfc-2119">
-        <title>RFC 2119 terminology</title>
-        <p>Within normative content (rules and definitions), the key words MUST,
-          MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD, SHOULD NOT, RECOMMENDED, MAY,
-          and OPTIONAL in this document are to be interpreted as described in
-          <ref idref="RFC2119"/>.</p>
+      <section id="section-terminology-bcp-14">
+        <title>BCP 14 terminology</title>
+        <p>The key words <q>MUST</q>, <q>MUST NOT</q>, <q>REQUIRED</q>, <q>SHALL</q>,
+          <q>SHALL NOT</q>, <q>SHOULD</q>, <q>SHOULD NOT</q>, <q>RECOMMENDED</q>, <q>NOT RECOMMENDED</q>,
+          <q>MAY</q>, and <q>OPTIONAL</q> in this document are to be interpreted as described in
+          <ref idref="BCP14"/> <ref idref="RFC2119"/> <ref idref="RFC8174"/> when, and only when, they appear in
+          all capitals, as shown here.</p>
       </section>
       <section><title>XML terminology</title>
 
@@ -8472,6 +8473,20 @@ not be given the same name.</p></li>
            output mode: bibliography
            Output method: Copy to Clipboard -->
     <title>References</title>
+    <reference id="BCP14" label="BCP 14">
+      <p>Internet Engineering Task Force Best Current Practice 14. Available
+        from <link>https://www.ietf.org/rfc/bcp/bcp14.txt</link>. BCP 14 is composed of:</p>
+      <sub>
+        <reference id="RFC2119" label="RFC 2119">
+          <p>Bradner, S., <q>Key words for use in RFCs to Indicate Requirement Levels</q>, BCP 14, RFC 2119,
+            March 1997. Available from <link>http://www.ietf.org/rfc/rfc2119.txt</link>.</p>
+        </reference>
+        <reference id="RFC8174" label="RFC 8174">
+          <p>Leiba, B., <q>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</q>, BCP 14, RFC 8174, May
+            2017. Available from <link>https://www.ietf.org/rfc/rfc8174.txt</link>.</p>
+        </reference>
+      </sub>
+    </reference>
     <reference id="ClarkNS">
       <p>Clark, J. <q>XML Namespaces</q>, 4 February 1999. Available from <link>http://www.jclark.com/xml/xmlns.htm</link>.</p>
     </reference>
@@ -8517,10 +8532,7 @@ not be given the same name.</p></li>
     <reference id="RDFSemantics" label="RDF Semantics">
       <p>Patrick J. Hayes, and Peter F. Patel-Schneider, eds. <q>RDF 1.1 Semantics.</q> The World Wide Web Consortium (W3C), February 25, 2014. <link>MACRO_HREF_RDF_SEMANTICS</link>.</p>
     </reference>
--->
-    <reference id="RFC2119" label="RFC 2119">
-      <p>Bradner, S. <q>Key words for use in RFCs to Indicate Requirement Levels</q>, IETF RFC 2119, March 1997. Available from <link>http://www.ietf.org/rfc/rfc2119.txt</link>.</p>
-    </reference>
+-->      
     <reference id="RFC3986" label="RFC 3986">
       <p>Berners-Lee, T., et al. <q>Uniform Resource Identifier (URI): Generic Syntax</q>, Request for Comments 3986, January 2005. Available from <link>MACRO_HREF_RFC_3986</link>.</p>
     </reference>
