@@ -17,10 +17,6 @@ dependencies_mk := dependencies.mk
 #HELP:  anything else: if dependencies file exists, include it
 depend = include
 
-# ndr_version is the document & package version; the namespaces are defined within ndr-macros.m4.
-ndr_version = 4.0beta2
-#ndr_date_value := ${shell date --reference=src/ndr-doc.xml.m4 +%Y-%m-%d}
-ndr_date = 2017-06-27
 repo_dir = repo
 
 # command paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -73,7 +69,7 @@ rules_products = \
 
 # local names of products
 products = \
-  niem-ndr-${ndr_version}.html \
+  niem-ndr-doc.html \
   niem-ndr-doc.txt \
   ${rules_products} \
   ndr-functions.xsl \
@@ -81,10 +77,6 @@ products = \
   ctas-conformant-document.sch.xsl \
   appinfo.xsd \
   structures.xsd \
-
-archive_name = niem-ndr-${ndr_version}-${ndr_date}
-archive_dir = ${tmp_dir}/${archive_name}
-archive = ${tmp_dir}/${archive_name}.zip
 
 #############################################################################
 # other variables
@@ -105,10 +97,6 @@ ndr_doc_xml = ${tmp_dir}/ndr-doc.xml
 niem_release_checkout_dir = ${tmp_dir}/niem-release
 niem_release_checked_out_token = ${tokens_dir}/niem-release-checked-out
 
-m4_macros = \
-  --define=MACRO_NDR_VERSION=${ndr_version} \
-  --define=MACRO_NDR_DATE=${ndr_date} \
-
 #############################################################################
 #HELP:Targets:
 #############################################################################
@@ -125,9 +113,6 @@ html: ${ndr_doc_html}
 
 .PHONY: text #  Build text version
 text: ${ndr_doc_text}
-
-.PHONY: archive #  Build archive with everything in it
-archive: ${archive}
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # depend
@@ -155,7 +140,7 @@ distclean: clean
 	${RM} -r ${dependencies_mk}
 
 .PHONY: all #  Generate everything
-all: archive repo
+all: repo
 
 .PHONY: rules #  Generate rules
 rules: ${rules_products:%=${tmp_dir}/%}
@@ -268,38 +253,17 @@ ${valid_dir}/same/src/structures.xsd: ${tmp_dir}/structures.xsd ${niem_release_c
 
 # end valid
 #############################################################################
-# archive
-
-${archive}: ${products:%=${archive_dir}/%}
-	@ ${RM} ${archive}
-	cd ${tmp_dir} && ${zip} -9 -r ${archive_name}.zip ${archive_name}
-
-${archive_dir}/niem-ndr-${ndr_version}.html: ${ndr_doc_html}
-	@ ${MKDIR_P} ${dir $@}
-	${cp} $< $@
-
-${archive_dir}/niem-ndr-doc.txt: ${ndr_doc_text}
-	@ ${MKDIR_P} ${dir $@}
-	${cp} $< $@
-
-${archive_dir}/%: ${tmp_dir}/%
-	@ ${MKDIR_P} ${dir $@}
-	${cp} $< $@
-
-# archive - end
-#############################################################################
 # repo : put the NDR into a git repo for publication
 
-.PHONY: repo #  install current version into the repository
+.PHONY: repo #  install everything into the repository
 repo: ${products:%=${repo_dir}/%}
-	@ echo Recommended: git tag niem-ndr-${ndr_version}
 
 .PHONY: clean-repo #  Remove everything from repo/ so install can be clean
 clean-repo:
 	@ if [[ ! -d ${repo_dir} ]]; then echo Git repository '${repo_dir}' does not exist; exit 1; fi
 	${find} -L ${repo_dir} -mindepth 1 ! -path '${repo_dir}/.git' ! -path '${repo_dir}/.git/*' ! -path '${repo_dir}/README.md' -print0 | xargs -0 ${RM}
 
-${repo_dir}/niem-ndr-${ndr_version}.html: ${ndr_doc_html}
+${repo_dir}/niem-ndr-doc.html: ${ndr_doc_html}
 	${cp} $< $@
 
 ${repo_dir}/niem-ndr-doc.txt: ${ndr_doc_text}
@@ -328,16 +292,6 @@ conr ${niem_release_checked_out_token}:
 	${touch} ${niem_release_checked_out_token}
 
 #############################################################################
-# put temporary things here
-
-check :
-	${RM} ${tmp_dir}tokens/valid/doc/tmp/ndr-doc.xml
-	${MAKE} ${tmp_dir}tokens/valid/doc/tmp/ndr-doc.xml
-
-again:
-	${RM} ${archive_dir}/ndr-rules-conformance-target-ref.sch
-	${MAKE} ${archive_dir}/ndr-rules-conformance-target-ref.sch
-
 # make this the last target
 
 .PHONY: help #  Print this help
