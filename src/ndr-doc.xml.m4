@@ -524,7 +524,7 @@
       externally-dependent terminology.</p>
 
       <section id="section-terminology-bcp-14">
-        <title>BCP 14 terminology</title>
+        <title>IETF Best Current Practice 14 terminology</title>
         <p>The key words <q>MUST</q>, <q>MUST NOT</q>, <q>REQUIRED</q>, <q>SHALL</q>,
           <q>SHALL NOT</q>, <q>SHOULD</q>, <q>SHOULD NOT</q>, <q>RECOMMENDED</q>, <q>NOT RECOMMENDED</q>,
           <q>MAY</q>, and <q>OPTIONAL</q> in this document are to be interpreted as described in
