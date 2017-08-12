@@ -7376,7 +7376,7 @@ not be given the same name.</p></li>
 
         <ruleSection><title>Do not leak representation into data definition</title>
         <rule applicability="REF EXT" class="Constraint">
-          <p>A data definition MUST NOT contain explicit representational or data typing information such as
+          <p>A data definition SHOULD NOT contain explicit representational or data typing information such as
           number of characters, classes of characters, range of mathematical values, etc., unless the very nature
           of the component can be described only by such information.</p>
         </rule>
