@@ -5978,7 +5978,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
     <ruleSection>
       <title>Schema component name composed of English words</title>
       <rule applicability="REF EXT" class="Constraint">
-        <p>The name of any XML Schema component defined by the schema MUST be composed of words from the English
+        <p>The name of any XML Schema component defined by the schema SHOULD be composed of words from the English
           language, using the prevalent U.S. spelling, as provided by <ref idref="OED"/>.</p>
       </rule>
       <p>The English language has many spelling variations for the same word. For example, American
