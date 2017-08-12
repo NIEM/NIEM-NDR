@@ -177,7 +177,8 @@ ${ndr_doc_xml}: ${ndr_macros_m4} src/ndr-doc.xml.m4
 	@ ${MKDIR_P} ${dir $@}
 	${m4} ${m4_flags} ${ndr_macros_m4} src/ndr-doc.xml.m4 > $@
 	@ ${chmod} -w $@
-	@ if ${grep} -n 'MACRO' $@; then printf 'ERROR: unresolved M4 macro.\n' >&2; exit 1; else exit 0; fi
+	@ if ${grep} -n 'MACRO' $@; then printf 'ERROR: unresolved M4 macro.\n' >&2; exit 1; fi
+	if egrep -nH ' +$$' $@; then printf 'ERROR: stray whitespace in document' >&2; exit 1; fi
 
 ${tmp_dir}/%: src/%
 	@ ${MKDIR_P} ${dir $@}

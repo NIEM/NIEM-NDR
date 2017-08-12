@@ -46,7 +46,7 @@
       <xsl:include href="ndr-functions.xsl"/>
     </xmlBlurb>
   </comment>
-  
+
   <subsection>
     <title>Abstract</title>
     <p>This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version 4.0.</p>
@@ -69,7 +69,7 @@
     <p>Updates, revisions, and errata for this specification are posted to
       <link>https://github.com/NIEM/NIEM-NDR</link>. Please submit comments on this specification as issues
       at <link>https://github.com/NIEM/NIEM-NDR/issues</link>.</p>
-    
+
   </subsection>
 
   <subsection id="toc">
@@ -1210,7 +1210,7 @@
       their properties, which describe their characteristics and relationships.</p>
 
     </section>
-    
+
     <section id="section-unique-object-ids">
       <title>Unique identification of data objects</title>
 
@@ -1252,7 +1252,7 @@
             document. Semantically, <q><code>structures:ref="abe92"</code></q> is equivalent
             to <q><code>structures:uri="#abe92"</code></q></p></li>
       </ul>
-      
+
       <p>The values of URIs and IDs within NIEM XML documents are not presumed to have any particular
         significance. XML requires every ID to be unique within its XML document, and for every IDREF to refer to
         an ID within the same document. The mapping of IDs and IDREFs to URIs does not mean that the identifiers
@@ -1262,11 +1262,11 @@
         several XML elements that have the same identifier. These properties must be merged together to provide
         all the properties of a single object, as described by
         MACRO_REF_EXTERNAL(JSONLD,MACRO_HREF_JSON_LD#node-objects,8.2,Node Objects):</p>
-      
+
       <blockquote><p>The properties of a node in a graph may be spread among different node objects within a
           document. When that happens, the keys of the different node objects need to be merged to create the
           properties of the resulting node.</p></blockquote>
-      
+
       <p>Mapping of NIEM data to RDF frequently involves the use of blank nodes, instead of
         universally-meaningful resource IRIs.</p>
 
@@ -1500,7 +1500,7 @@
             <li><p><var>$attribute</var> is owned by a <termRef>conformant element information
                   item</termRef> <var>$context</var> that has property [type definition] that is
                 an <termRef>object type</termRef> or an <termRef>association type</termRef>, and</p></li>
-            <li><p><var>$attribute</var> has property [attribute declaration] 
+            <li><p><var>$attribute</var> has property [attribute declaration]
                 that is defined by a <termRef>reference schema document</termRef> or an <termRef>extension schema
                   document</termRef></p></li>
           </ul>
@@ -1730,7 +1730,7 @@
 
         <principle>
 
-          <p>The data of a NIEM-conformant XML document provided by an XML parser SHOULD NOT be modified by the 
+          <p>The data of a NIEM-conformant XML document provided by an XML parser SHOULD NOT be modified by the
             process of validating the data against an XML Schema.</p>
 
         </principle>
@@ -2331,7 +2331,7 @@
           it determines whether the XML document is valid against an XML Schema, and also provides
           an <strong>augmented infoset</strong> to the caller, constructed to reflect information implied by the
           schema, which may not appear in the original XML document.</p>
-        
+
         <p>XML Schema provides for element and attribute declarations to provide default values. When an XML
           document does not contain a value for a component that has a default, the XML Schema validating parser
           will <em>construct</em> a value for the component. This is done through the use of the
@@ -2687,7 +2687,7 @@
             <pre><xmlBlurb memberOf="ref" id="xb-no-facet-fixed">
 <sch:pattern>
   <sch:rule context="xs:*[self::xs:length or self::xs:minLength or self::xs:maxLength or self::xs:whiteSpace
-      or self::xs:maxInclusive or self::xs:maxExclusive or self::xs:minExclusive or self::xs:minInclusive 
+      or self::xs:maxInclusive or self::xs:maxExclusive or self::xs:minExclusive or self::xs:minInclusive
       or self::xs:totalDigits or self::xs:fractionDigits]">
     <sch:assert test="empty(@fixed)"
       >A simple type constraining facet MUST NOT have an attribute {}fixed.</sch:assert>
@@ -2696,7 +2696,7 @@
             </xmlBlurb></pre>
           </rule>
         </ruleSection>
-        
+
         <section>
           <title>Simple types prohibited as list item types</title>
 
@@ -3519,9 +3519,6 @@
 
             </blockquote>
 
-            <p></p>
-            
-            
             <rule applicability="REF EXT" id="no-at-fixed" class="Constraint">
               <pre><xmlBlurb memberOf="ref ext" id="xb-no-at-fixed">
 <sch:pattern>
@@ -5018,7 +5015,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 <sch:pattern>
   <sch:rule context="xs:element[exists(@name) and exists(@type) and ends-with(@type, 'CodeType')]">
     <sch:report role="warning"
-        test="not(ends-with(@name, 'Code'))"                 
+        test="not(ends-with(@name, 'Code'))"
       >An element with a type that is a code type SHOULD have a name with representation term "Code"</sch:report>
   </sch:rule>
 </sch:pattern>
@@ -5216,13 +5213,13 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         <ul>
           <li><p>It results in numerous, domain-specific specializations of <qName>nc:PersonType</qName>, each
               with common content and extension-specific content.</p></li>
-          
+
           <li><p>There is no method for the developer of an information exchange package description (IEPD) to bring
               these types back together into a single type that carries the attributes desired for the IEPD. XML
               Schema does not support multiple inheritance, so there would be no way to join
               together <code>nc:PersonType</code>, <code>j:PersonType</code>,
               and <code>im:PersonType</code>.</p></li>
-          
+
           <li><p>There is no standard or easy way for the developer to express that the various element instances
               of the various person types represent the same person, or which parts of those instances are
               required to be populated; does each person restate the name and birth-date, or is that handled by
@@ -6044,7 +6041,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
       <p>Names of standards and specifications, in particular, tend to consist of series of discrete
         numbers. Such names require some explicit separator to keep the values from running together. The
         separator used within NIEM is the hyphen.</p>
-      
+
       <p>Names of NIEM components follow the rules of XML Schema, by <ref idref="is-schema-doc"/>. NIEM
         components also follow the rules specified herein for each type of XML Schema component.</p>
 
@@ -6281,7 +6278,7 @@ rather than their full meanings.</p>
     <section>
       <title>Qualifier terms</title>
       <p>Qualifier terms modify object, property, representation, or other qualifier terms to increase semantic precision and reduce ambiguity. Qualifier terms may precede or succeed the terms they modify. The goal for the placement of qualifier terms is to generally follow the rules of ordinary English while maintaining clarity.</p>
-      
+
       <ruleSection>
         <title>Name may have multiple qualifier terms</title>
       <rule applicability="REF EXT" class="Constraint">
@@ -6327,7 +6324,7 @@ not be given the same name.</p></li>
       </rule>
       <p>This rule, carried over from 11179, is designed to prevent repeating terms unnecessarily within component names. For example, this rule allows designers to avoid naming an element <q>PersonFirstNameName.</q></p>
       </ruleSection>
-      
+
       <p>The valid value set of a data element or value domain is described by the representation term. NIEM uses
       a standard set of representation terms in the representation portion of a NIEM-conformant component
       name. <ref idref="table-representation-terms" /> lists the primary representation terms and a definition
@@ -6883,7 +6880,7 @@ not be given the same name.</p></li>
 
           <p>The use of lists should be reserved for cases where the data is fairly uniform.</p>
 
-          <p>Items in a list are not individually addressable by NIEM metadata techniques. The items may not be 
+          <p>Items in a list are not individually addressable by NIEM metadata techniques. The items may not be
             individually referenced by elements or attributes; one will have a value of the entire list,
             including all the items in the list. NIEM provides no method for individually addressing an item in a
             list. If an individual item in a list needs to be marked up in a manner different than other items in
@@ -7108,8 +7105,8 @@ not be given the same name.</p></li>
 <sch:pattern>
   <sch:rule context="xs:element[@name]">
     <sch:report role="warning"
-        test="not(exists(@abstract[xs:boolean(.) = true()]) 
-                  eq (ends-with(@name, 'Abstract') 
+        test="not(exists(@abstract[xs:boolean(.) = true()])
+                  eq (ends-with(@name, 'Abstract')
                       or ends-with(@name, 'AugmentationPoint')
                       or ends-with(@name, 'Representation')))"
       >An element declaration SHOULD have a name that ends in 'Abstract', 'AugmentationPoint', or 'Representation' if and only if it has the {abstract} property with a value of "true".</sch:report>
@@ -7217,8 +7214,8 @@ not be given the same name.</p></li>
 <sch:pattern>
   <sch:rule context="xs:attribute[exists(@name)]">
     <sch:report role="warning"
-        test="every $representation-term 
-              in (MACRO_LIST_OF_REPRESENTATION_TERMS, 'MACRO_REPRESENTATION_TERM_LIST') 
+        test="every $representation-term
+              in (MACRO_LIST_OF_REPRESENTATION_TERMS, 'MACRO_REPRESENTATION_TERM_LIST')
               satisfies not(ends-with(@name, $representation-term))"
       >An attribute name SHOULD end with a representation term.</sch:report>
   </sch:rule>
@@ -7439,7 +7436,7 @@ not be given the same name.</p></li>
 <sch:pattern>
   <sch:rule context="xs:element[ends-with(@name, 'Augmentation')]/xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
-        test="every $phrase 
+        test="every $phrase
               in ('supplements ', 'additional information about ')
               satisfies not(starts-with(lower-case(normalize-space(.)), $phrase))"
       >The data definition for an augmentation element SHOULD begin with the standard opening phrase "supplements..." or "additional information about...".</sch:report>
@@ -7588,7 +7585,7 @@ not be given the same name.</p></li>
           <rule applicability="REF EXT" id="rule-sop-element" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-element">
 <sch:pattern>
-  <sch:rule context="xs:element[@name 
+  <sch:rule context="xs:element[@name
                                 and not(ends-with(@name, 'Indicator'))
                                 and not(ends-with(@name, 'Augmentation'))
                                 and not(ends-with(@name, 'Metadata'))
@@ -7641,7 +7638,7 @@ not be given the same name.</p></li>
 <sch:pattern>
   <sch:rule context="xs:complexType[ends-with(@name, 'MetadataType')]/xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
-        test="not(matches(lower-case(normalize-space(.)), 
+        test="not(matches(lower-case(normalize-space(.)),
                           '^a data type for (metadata about|information that further qualifies)'))"
       >The data definition for a metadata type SHOULD begin with the standard opening phrase "a data type for (metadata about|information that further qualifies)...".</sch:report>
   </sch:rule>
@@ -7962,7 +7959,7 @@ not be given the same name.</p></li>
 
     <section id="section-id-and-ref">
       <title>Identifiers and references</title>
-      
+
       <p>Nested elements, shown above, are sufficient to represent simple data that takes the form of a
         tree. However, the use of nested elements has limitations; expression of all relationships via nested
         elements is not always possible. Situations that cause problems include:</p>
@@ -8149,7 +8146,7 @@ not be given the same name.</p></li>
           MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#cos-ct-derived-ok,,Schema Component Constraint: Type Derivation OK (Complex))
           within
           MACRO_REF_EXTERNAL(,MACRO_HREF_XML_SCHEMA_1#coss-ct,3.4.6,Constraints on Complex Type Definition Schema Components).</p>
-        
+
         <p>This rule requires that the type of the element pointed to by a <qName >structures:ref</qName >
           attribute must be of (or derived from) the type of the reference element.</p>
 
@@ -8164,7 +8161,7 @@ not be given the same name.</p></li>
             expressed through the attribute <qName>structures:uri</qName> in XML documents . This attribute works
             much like <qName>structures:ref</qName> and <qName>structures:id</qName>, and overlaps
             somewhat. Linked data introduces key terminology:</p>
-          
+
           <ul>
             <li><p>Anything modeled or addressed by an information system may be called a <em>resource</em>:
                 people, vehicles, reports, documents, relationships, ideas: anything that is talked about and
@@ -8260,10 +8257,7 @@ not be given the same name.</p></li>
                 within the same document, or in another conformant document.</p></li>
 
           </ul>
-          
         </section>
-
-        
       <section>
         <title>Reference and content elements have same meaning</title>
 
@@ -8579,7 +8573,7 @@ not be given the same name.</p></li>
     <reference id="RDFSemantics" label="RDF Semantics">
       <p>Patrick J. Hayes, and Peter F. Patel-Schneider, eds. <q>RDF 1.1 Semantics.</q> The World Wide Web Consortium (W3C), February 25, 2014. <link>MACRO_HREF_RDF_SEMANTICS</link>.</p>
     </reference>
--->      
+-->
     <reference id="RFC3986" label="RFC 3986">
       <p>Berners-Lee, T., et al. <q>Uniform Resource Identifier (URI): Generic Syntax</q>, Request for Comments 3986, January 2005. Available from <link>MACRO_HREF_RFC_3986</link>.</p>
     </reference>

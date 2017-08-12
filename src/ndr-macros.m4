@@ -58,8 +58,7 @@ m4_dnl $2 = short name for rule IDs
 m4_dnl $3 = rule context
 m4_dnl $4 = long term for rule text
 m4_dnl
-m4_define([[[MACRO_HAS_DATA_DEFINITION]]],[[[
-<ruleSection>
+m4_define([[[MACRO_HAS_DATA_DEFINITION]]],[[[<ruleSection>
   <title>$1 has data definition</title>
   <rule applicability="REF EXT" id="$2-has-dd" class="Constraint">
     <pre><xmlBlurb memberOf="ref ext" id="xb-$2-has-dd">
@@ -73,8 +72,7 @@ m4_define([[[MACRO_HAS_DATA_DEFINITION]]],[[[
     </xmlBlurb></pre>
   </rule>
   <p>This document defines the term <termRef>data definition</termRef>.</p>
-</ruleSection>
-]]])m4_dnl
+</ruleSection>]]])m4_dnl
 m4_define([[[MACRO_IS_ADAPTER_TYPE]]],[[[exists(@appinfo:externalAdapterTypeIndicator)]]])m4_dnl
 m4_define([[[MACRO_IS_NOT_ADAPTER_TYPE]]],[[[empty(@appinfo:externalAdapterTypeIndicator)]]])m4_dnl
 m4_define([[[MACRO_IN_ADAPTER_TYPE]]],[[[exists(ancestor::xs:complexType[MACRO_IS_ADAPTER_TYPE])]]])m4_dnl
@@ -99,7 +97,7 @@ m4_dnl # MACRO_GET_AUGMENTATION_TYPE_LOCAL_NAME( $augmentation-point-local-name 
 m4_define([[[MACRO_GET_AUGMENTATION_TYPE_LOCAL_NAME]]],[[[replace($1, 'AugmentationPoint$', 'Type')]]])m4_dnl
 m4_dnl
 m4_dnl # MACRO_GET_AUGMENTATION_TYPE_QNAME( $augmentation-point-qname, $whitespace-for-indenting )
-m4_define([[[MACRO_GET_AUGMENTATION_TYPE_QNAME]]],[[[QName(string(namespace-uri-from-QName($1)), 
+m4_define([[[MACRO_GET_AUGMENTATION_TYPE_QNAME]]],[[[QName(string(namespace-uri-from-QName($1)),
 $2[[[]]]  MACRO_GET_AUGMENTATION_TYPE_LOCAL_NAME(local-name-from-QName($1)))]]])m4_dnl
 m4_dnl
 m4_dnl # MACRO_ELEMENT_IS_AUGMENTATION_POINT_REF_EXPR( $whitespace-for-indenting )
