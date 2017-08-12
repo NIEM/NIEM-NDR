@@ -93,9 +93,14 @@
       Information Exchange Model (NIEM). NIEM is an information sharing framework based on the World Wide Web
       Consortium (W3C) Extensible Markup Language (XML) Schema standard. In February 2005, the U.S. Departments
       of Justice (DOJ) and Homeland Security (DHS) signed a cooperative agreement to jointly develop NIEM by
-      leveraging and expanding the Global Justice XML Data Model (GJXDM) into multiple domains. NIEM is a result
-      of a combined government and industry effort to improve information interoperability and exchange within
-      the United States at federal, state, tribal, and local levels of government.</p>
+      leveraging and expanding the Global Justice XML Data Model (GJXDM) into multiple domains.</p>
+
+    <p>NIEM is a product of a combined government and industry effort to improve information interoperability and
+      exchange within the United States at federal, state, tribal, and local levels of government. NIEM may have
+      started in the U.S., but its reach does not stop there. International governments and private sector
+      organizations can benefit from the value of NIEM, as well. Communities in Europe, North America, and
+      Australia already use NIEM for their information exchange efforts. NIEM 4.0 represents an initial step
+      toward evolving NIEM to support a more-global exchange environment</p>
 
     <p>NIEM specifies a set of reusable information components for defining standard information exchange
       messages, transactions, and documents on a large scale: across multiple communities of interest and lines
