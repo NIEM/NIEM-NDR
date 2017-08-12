@@ -83,6 +83,12 @@
     </rule>
   </pattern>
 
+  <pattern>
+    <rule context="sch:report">
+      <assert test="@role='warning'">An element sch:report must have attribute role="warning".</assert>
+    </rule>
+  </pattern>
+
 </schema>
 <!--
 Local Variables:

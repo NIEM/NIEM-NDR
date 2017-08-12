@@ -15,7 +15,10 @@ dependencies_mk := dependencies.mk
 #HELP:variable 'depend': (default value is 'include')
 #HELP:  'build': build new dependencies file
 #HELP:  anything else: if dependencies file exists, include it
-depend = include
+depend = build
+
+#HELP:Default is to clean, rebuild, and install
+.DEFAULT_GOAL = default
 
 repo_dir = repo
 
@@ -103,10 +106,14 @@ niem_release_checked_out_token = ${tokens_dir}/niem-release-checked-out
 
 # convenience targets # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-#HELP:  (There is no default target)
 .PHONY: default
 default:
-	@printf 'Bravely doing nothing. Use target "help" for more info.\n'
+	${MAKE} depend=no distclean
+	${MAKE} depend=build depend
+	${MAKE} depend=no --jobs all
+	${MAKE} depend=no valid
+	${MAKE} depend=no clean-repo
+	${MAKE} depend=no repo
 
 .PHONY: html #  Build HTML version
 html: ${ndr_doc_html}
