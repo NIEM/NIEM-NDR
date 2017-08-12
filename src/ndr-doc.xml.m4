@@ -835,7 +835,6 @@
         <ul>
           <li><p>It is explicitly designated as an <termRef>extension schema document</termRef> via
           the conformance targets attribute.</p></li>
-          <li><p>It provides the broadest, most fundamental definitions of components in its namespace.</p></li>
           <li><p>It provides the authoritative definition of business semantics for components in its
           namespace.</p></li>
           <li><p>It contains components that, when appropriate, use or are derived from the components
