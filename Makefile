@@ -96,6 +96,8 @@ ndr_doc_text := ${tmp_dir}/ndr-doc.txt
 # the NDR document with macros expanded
 ndr_doc_xml = ${tmp_dir}/ndr-doc.xml
 
+spell_results_txt = ${tmp_dir}/spell-results.txt
+
 # a copy of the niem release, for validation and comparison purposes
 niem_release_checkout_dir = ${tmp_dir}/niem-release
 niem_release_checked_out_token = ${tokens_dir}/niem-release-checked-out
@@ -153,8 +155,11 @@ all: repo
 rules: ${rules_products:%=${tmp_dir}/%}
 
 .PHONY: spell # check spelling
-spell: ${ndr_doc_text} aspell-exceptions.txt
-	${aspell} --home-dir=. -p aspell-exceptions.txt list < $< | sort -uf
+spell: ${valid_dir}/spelling-ok
+
+${spell_results_txt}: ${ndr_doc_text} aspell-exceptions.txt
+	@ ${MKDIR_P} ${dir $@}
+	${aspell} --home-dir=. -p aspell-exceptions.txt list < $< | sort -uf > $@
 
 #############################################################################
 # products
@@ -217,6 +222,7 @@ ${tmp_dir}/ndr-id-map.xml: ${ndr_doc_xml}
 
 .PHONY: valid #  validate what can be validated
 valid: \
+  ${valid_dir}/spelling-ok \
   ${valid_dir}/macros-eliminated/tmp/ndr-doc.xml \
   ${valid_dir}/macros-eliminated/tmp/appinfo.xsd \
   ${valid_dir}/macros-eliminated/tmp/structures.xsd \
@@ -257,6 +263,13 @@ ${valid_dir}/same/src/appinfo.xsd: ${tmp_dir}/appinfo.xsd ${niem_release_checked
 ${valid_dir}/same/src/structures.xsd: ${tmp_dir}/structures.xsd ${niem_release_checked_out_token}
 	diff $< ${niem_release_checkout_dir}/niem/utility/structures/4.0/structures.xsd
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
+
+${valid_dir}/spelling-ok: ${spell_results_txt} ${ndr_doc_text}
+	@ while read -r -d$$'\n'; do \
+	  echo "SPELLING: WORD NOT FOUND: $$REPLY"; \
+	  grep --context=1 "$$REPLY" ${ndr_doc_text}; \
+	done < ${spell_results_txt}
+	! [[ -s ${spell_results_txt} ]]
 
 # end valid
 #############################################################################
