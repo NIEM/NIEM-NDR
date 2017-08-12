@@ -1955,9 +1955,9 @@
 
         <p>Different users often have their own local practices for arranging components together, such as
           grouping components into sets and segments, or building in extra layers to help categorize components
-          and make them easier to find when drilling down through an object. Since the general community will not
-          share the same practices, NIEM components should just model the real world as simply and closely as
-          possible.</p>
+          and make them easier to find when drilling down through an object. Since the broader community may not
+          share the same practices, and grouping structures add additional complexity to both schemas and
+          instances, NIEM components should model the real world as simply and closely as possible.</p>
         
       </section>
       <section>
