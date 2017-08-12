@@ -1860,7 +1860,15 @@
         <principle>
           <p>NIEM-conformant instances and schemas SHOULD reuse components from NIEM distribution schemas when possible.</p>
         </principle>
-        <p>NIEM relies heavily on XML namespaces to prevent naming conflicts and clashes. Reuse of any component is always by reference to both its namespace and its local name. All NIEM component names have global scope. Therefore, validation always occurs against the reference schemas or subsets thereof.</p>
+
+        <p>NIEM relies heavily on XML namespaces to prevent naming conflicts and clashes. Reuse of any component
+          is always by reference to both its namespace and its local name. All NIEM component names have global
+          scope. An instance document or schema should use or reuse a NIEM component by referencing its
+          NIEM-defined namespace and local name. An application that validates an instance document that contains
+          a component in a NIEM namespace should conduct that validation using NIEM reference schema documents or
+          profiles of NIEM reference schema documents, to ensure consistency across exchanges and
+          implementations.</p>
+
         <p>Example:</p>
         <figure><title>Example of the use of a namespace</title>
           <pre><![CDATA[<xs:element ref="nc:BinaryCaptureDate" minOccurs="0" maxOccurs="unbounded"/>]]></pre>
