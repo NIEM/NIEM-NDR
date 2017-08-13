@@ -579,7 +579,7 @@
               [children] property of an element information item</p></li>
           <li><p>owner (of an attribute): the value of the [owner element] property of an attribute information
               item</p></li>
-          <li><p>document element: the value of the [document element] property of a document information item;
+          <li><p><termDef>document element</termDef>: the value of the [document element] property of a document information item;
               preferred over the term <q>root element</q>.</p></li>
         </ul>
 
@@ -925,7 +925,8 @@
 
       <p>Characteristics of a <termRef>conformant instance XML document</termRef> include:</p>
         <ul>
-          <li><p>The document element is locally schema-valid.</p></li>
+          <li><p>The <termRef>document element</termRef>
+              is locally schema-valid.</p></li>
 
           <li><p>Each element information item within the <termRef>XML document</termRef> that has property
               [namespace name] matching the target namespace of a <termRef>reference schema document</termRef >
@@ -939,7 +940,8 @@
       <p>Assessment against schemas may be directed by a Model Package Description (MPD), by other instructions,
       or by other tools.</p>
 
-      <p>Note that this specification does not require the document element of a <termRef>conformant instance XML
+      <p>Note that this specification does not require the <termRef>document element</termRef>
+        of a <termRef>conformant instance XML
         document</termRef> to be a <termRef>conformant element information item</termRef>. Other specifications,
         such as the MPD specification, may add additional constraints to these in order to specify MPD-specific
         or exchange-specific conformance constraints.</p>
@@ -2016,8 +2018,17 @@
   </section>
   <section>
     <title>Conformance to standards</title>
+
+    <p>There are numerous XML standards to which the instance and schema documents that constitute information
+    exchanges must conform. This section applies XML specifications to the conformance targets of this
+    document.</p>
+
     <section>
       <title>Conformance to XML</title>
+
+      <p>The XML specification <ref idref="XML"/> defines the term <termRef>XML document</termRef>. NIEM XML
+        documents, including instance documents and schema documents, must conform to the definition of this
+        term.</p>
 
       <ruleSection><title>Document is an XML document</title>
 
@@ -2025,12 +2036,16 @@
         <p>The document MUST be an XML document.</p>
       </rule>
 
-      <p>The term <termRef>XML document</termRef> is defined by this document.</p>
+      <p>This document establishes the term <termRef>XML document</termRef>, by reference to
+        <ref idref="XML"/>.</p>
 
       </ruleSection>
     </section>
     <section>
       <title>Conformance to XML Namespaces</title>
+
+      <p>The XML namespaces specification and errata define correct use of XML namespaces; NIEM-conformant XML
+        artifacts (instance documents and schema documents) must use namespaces properly.</p>
 
       <ruleSection><title>Document uses XML namespaces properly</title>
 
@@ -2046,26 +2061,37 @@
 
     <section>
       <title>Conformance to XML Schema</title>
-      <ruleSection><title>Document is a schema document</title>
+
+      <p>The XML Schema specification part 1 <ref idref="XMLSchema-1"/> defines the syntax of the
+        <termRef>XML Schema definition language</termRef>, and identifies an <termRef>XML document</termRef> that
+        follows that syntax as a <termRef>schema document</termRef>. This section requires that NIEM reference
+        and extension schema documents be <termRef term="schema document">schema documents</termRef>.</p>
+
+      <ruleSection>
+        <title>Document is a schema document</title>
         <rule applicability="REF EXT" id="is-schema-doc" class="Constraint">
-          <p>The document MUST be a schema document.</p>
+          <p>The [XML document] MUST be a [schema document].</p>
         </rule>
-        <p>This document defines the term <termRef>schema document</termRef>.</p>
+        <p>This document establishes the term <termRef>schema document</termRef>, by reference to
+          <ref idref="XMLSchema-1"/>.</p>
 
       </ruleSection>
+
       <ruleSection><title>Document element is <qName>xs:schema</qName></title>
         <rule applicability="REF EXT" id="rule-doc-element-is-xs-schema" class="Constraint">
           <pre><xmlBlurb memberOf="ref ext" id="xb-rule-doc-element-is-xs-schema">
 <sch:pattern>
   <sch:rule context="*[. is nf:get-document-element(.)]">
     <sch:assert test="self::xs:schema"
-      >The [document element] of the XML document MUST have the name xs:schema.</sch:assert>
+      >The [document element] of the [XML document] MUST have the name xs:schema.</sch:assert>
   </sch:rule>
 </sch:pattern>
           </xmlBlurb></pre>
         </rule>
-        <p>This document defines the term <termRef>XML document</termRef>.</p>
+        <p>This document establishes the terms <termRef>document element</termRef> by reference to
+          <ref idref="XMLInfoset"/>, and <termRef>XML document</termRef> by reference to <ref idref="XML"/>.</p>
       </ruleSection>
+
     </section>
 
     <section><title>ISO 11179 Part 4</title>
