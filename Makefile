@@ -143,6 +143,7 @@ endif
 .PHONY: clean #  Remove generated artifacts
 clean: clean-repo
 	${RM} -r ${tmp_dir}
+	${RM} ${wildcard tmp.*} ${wildcard *~}
 
 .PHONY: distclean #  Remove all artifacts
 distclean: clean

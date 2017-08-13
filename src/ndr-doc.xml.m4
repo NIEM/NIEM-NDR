@@ -2026,7 +2026,7 @@
     <section>
       <title>Conformance to XML</title>
 
-      <p>The XML specification (<ref idref="XML"/>) defines the term <termRef>XML document</termRef>. NIEM XML
+      <p>The XML specification <ref idref="XML"/> defines the term <termRef>XML document</termRef>. NIEM XML
         documents, including instance documents and schema documents, must conform to the definition of this
         term.</p>
 
@@ -2062,7 +2062,7 @@
     <section>
       <title>Conformance to XML Schema</title>
 
-      <p>The XML Schema specification part 1 (<ref idref="XMLSchema-1"/>) defines the syntax of the
+      <p>The XML Schema specification part 1 <ref idref="XMLSchema-1"/> defines the syntax of the
         <termRef>XML Schema definition language</termRef>, and identifies an <termRef>XML document</termRef> that
         follows that syntax as a <termRef>schema document</termRef>. This section requires that NIEM reference
         and extension schema documents be <termRef term="schema document">schema documents</termRef>.</p>
