@@ -4627,7 +4627,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
               <title>An XML instance of a role type</title>
               <pre><xmlBlurb id="xb-role-instance-j-CrashDriver">
 <j:CrashDriver>
-  <nc:RoleOfPerson structures:ref="BRAVO"/>
+  <nc:RoleOfPerson structures:ref="BRAVO" xsi:nil="true"/>
   <j:CrashDriverViolationCode>A10</j:CrashDriverViolationCode>
   <j:CrashDrivingViolationCode>S16</j:CrashDrivingViolationCode>
 </j:CrashDriver>
@@ -8072,7 +8072,7 @@ not be given the same name.</p></li>
     </nc:WeaponUser>
   </j:ArrestInvolvedWeapon>
   <j:ArrestSubject>
-    <nc:RoleOfPerson structures:ref="bart"/>
+    <nc:RoleOfPerson structures:ref="bart" xsi:nil="true"/>
   </j:ArrestSubject>
 </j:Arrest>
             </xmlBlurb></pre>
@@ -8334,7 +8334,7 @@ not be given the same name.</p></li>
   </nc:PersonName>
 </nc:Person>
 <j:Witness>
-  <nc:RoleOfPerson structures:ref="c58"/>
+  <nc:RoleOfPerson structures:ref="c58" xsi:nil="true"/>
 </j:Witness>
           </xmlBlurb></pre>
         </figure>
@@ -8342,7 +8342,7 @@ not be given the same name.</p></li>
         <figure id="figure-example-ref-forward">
           <title>Example with a forward reference</title>
           <pre><xmlBlurb id="xb-example-ref-forward">
-<nc:Person structures:ref="t85"/>
+<nc:Person structures:ref="t85" xsi:nil="true"/>
 <j:Witness>
   <nc:RoleOfPerson structures:id="t85">
     <nc:PersonName>

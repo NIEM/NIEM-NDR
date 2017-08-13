@@ -30,11 +30,13 @@ repo_dir = repo
 # # command variable defined by automake
 MKDIR_P = mkdir -p
 
+schema_dir = xsd/ndr-examples
+
 # # doc-processing
 check_doc = check-doc
-check_doc_flags = --catalog=xsd/ndr-examples/xml-catalog.xml
+check_doc_flags = --catalog=${schema_dir}/xml-catalog.xml
 process_doc = process-doc
-process_doc_flags = --catalog=xsd/ndr-examples/xml-catalog.xml
+process_doc_flags = --catalog=${schema_dir}/xml-catalog.xml
 doc_to_schematron = doc-to-schematron
 
 # # others
@@ -98,10 +100,6 @@ ndr_doc_xml = ${tmp_dir}/ndr-doc.xml
 
 spell_results_txt = ${tmp_dir}/spell-results.txt
 
-# a copy of the niem release, for validation and comparison purposes
-niem_release_checkout_dir = ${tmp_dir}/niem-release
-niem_release_checked_out_token = ${tokens_dir}/niem-release-checked-out
-
 #############################################################################
 #HELP:Targets:
 #############################################################################
@@ -132,7 +130,7 @@ depend: ${dependencies_mk}
 
 -include ${dependencies_mk}
 
-${dependencies_mk}: ${ndr_doc_xml} ${niem_release_checked_out_token}
+${dependencies_mk}: ${ndr_doc_xml}
 	${process_doc} ${process_doc_flags} --format=makedepend --in=$< --out=$@
 else
 ifeq (${wildcard ${dependencies_mk}},${dependencies_mk})
@@ -165,11 +163,11 @@ ${spell_results_txt}: ${ndr_doc_text} aspell-exceptions.txt
 #############################################################################
 # products
 
-${ndr_doc_html}: ${ndr_doc_xml} ${doc_html_required_files} ${niem_release_checked_out_token}
+${ndr_doc_html}: ${ndr_doc_xml} ${doc_html_required_files}
 	@ ${MKDIR_P} ${dir $@}
 	${process_doc} ${process_doc_flags} --in=$< --out=$@
 
-${ndr_doc_text}: ${ndr_doc_xml} ${doc_text_required_files} ${niem_release_checked_out_token}
+${ndr_doc_text}: ${ndr_doc_xml} ${doc_text_required_files}
 	@ ${MKDIR_P} ${dir $@}
 	${process_doc} ${process_doc_flags} --format=text --in=$< --out=$@
 
@@ -258,12 +256,12 @@ ${valid_dir}/ndr-rules/%: % ${tmp_dir}/ndr-rules.sch.xsl
 ${tmp_dir}/ndr-rules.sch.xsl: src/ndr-rules.sch
 	${schematron_compile} --output-file=$@ $<
 
-${valid_dir}/same/src/appinfo.xsd: ${tmp_dir}/appinfo.xsd ${niem_release_checked_out_token}
-	diff $< ${niem_release_checkout_dir}/niem/utility/appinfo/4.0/appinfo.xsd
+${valid_dir}/same/src/appinfo.xsd: ${tmp_dir}/appinfo.xsd
+	diff $< ${schema_dir}/niem/utility/appinfo/4.0/appinfo.xsd
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
-${valid_dir}/same/src/structures.xsd: ${tmp_dir}/structures.xsd ${niem_release_checked_out_token}
-	diff $< ${niem_release_checkout_dir}/niem/utility/structures/4.0/structures.xsd
+${valid_dir}/same/src/structures.xsd: ${tmp_dir}/structures.xsd
+	diff $< ${schema_dir}/niem/utility/structures/4.0/structures.xsd
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
 ${valid_dir}/spelling-ok: ${spell_results_txt} ${ndr_doc_text}
@@ -298,21 +296,6 @@ ${repo_dir}/%: ${tmp_dir}/%
 	${cp} $< $@
 
 # repo - end
-#############################################################################
-# check out niem release
-
-.PHONY: conr #  check out niem release
-conr ${niem_release_checked_out_token}:
-	${RM} -r ${niem_release_checkout_dir}
-	${RM} ${niem_release_checked_out_token}
-	${MKDIR_P} ${niem_release_checkout_dir}
-	git archive \
-	  --remote=${HOME}/r/niem/release/niem-releases \
-	  --prefix=${niem_release_checkout_dir}/ \
-	  dev-niem-4.0rc3 | tar xvf -
-	${MKDIR_P} ${dir ${niem_release_checked_out_token}}
-	${touch} ${niem_release_checked_out_token}
-
 #############################################################################
 # make this the last target
 
