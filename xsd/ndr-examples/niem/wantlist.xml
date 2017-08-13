@@ -6,14 +6,11 @@
   xmlns:nc="http://release.niem.gov/niem/niem-core/4.0/" xmlns:scr="http://release.niem.gov/niem/domains/screening/4.0/">
   <w:Element w:name="j:Arrest" w:isReference="false" w:nillable="true"/>
   <w:Element w:name="j:CrashDriver" w:isReference="false" w:nillable="true"/>
-  <w:Element w:name="j:CrashDriverViolationCode" w:isReference="false" w:nillable="true"/>
-  <w:Element w:name="j:CrashDrivingViolationCode" w:isReference="false" w:nillable="true"/>
+  <w:Element w:name="j:CrashDriverViolationCode" w:isReference="false" w:nillable="false"/>
+  <w:Element w:name="j:CrashDrivingViolationCode" w:isReference="false" w:nillable="false"/>
   <w:Element w:name="j:Witness" w:isReference="false" w:nillable="true"/>
-  <w:Element w:name="nc:Date" w:isReference="false" w:nillable="true"/>
-  <w:Element w:name="nc:Entity" w:isReference="false" w:nillable="true"/>
-  <w:Element w:name="nc:EntityPerson" w:isReference="false" w:nillable="true"/>
-  <w:Element w:name="nc:FullTelephoneNumber" w:isReference="false" w:nillable="true"/>
-  <w:Element w:name="nc:Item" w:isReference="false" w:nillable="true"/>
+  <w:Element w:name="nc:Date" w:isReference="false" w:nillable="false"/>
+  <w:Element w:name="nc:FullTelephoneNumber" w:isReference="false" w:nillable="false"/>
   <w:Element w:name="nc:Metadata" w:isReference="false" w:nillable="true"/>
   <w:Element w:name="nc:Person" w:isReference="false" w:nillable="true"/>
   <w:Element w:name="scr:PersonPhoneAssociation" w:isReference="false" w:nillable="true"/>
@@ -276,74 +273,66 @@
   </w:Type>
   <w:Type w:name="j:ArrestType" w:isRequested="false">
     <w:ElementInType w:name="j:ArrestInvolvedWeapon"
-      w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
     <w:ElementInType w:name="j:ArrestSubject" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="j:CrashDriverType" w:isRequested="false">
     <w:ElementInType w:name="nc:RoleOfPerson" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="1" w:maxOccurs="1"/>
     <w:ElementInType w:name="j:CrashDriverViolationAbstract"
-      w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
     <w:ElementInType w:name="j:CrashDrivingViolationAbstract"
-      w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="j:SubjectType" w:isRequested="false">
     <w:ElementInType w:name="nc:RoleOfPerson" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="j:WitnessType" w:isRequested="false">
     <w:ElementInType w:name="nc:RoleOfPerson" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="nc:DateType" w:isRequested="false">
-    <w:ElementInType w:name="nc:DateRepresentationAbstract"
-      w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
-  </w:Type>
-  <w:Type w:name="nc:EntityType" w:isRequested="false">
-    <w:ElementInType w:name="nc:EntityRepresentationAbstract"
-      w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
+    <w:ElementInType w:name="nc:DateRepresentation"
+      w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="nc:FullTelephoneNumberType" w:isRequested="false">
     <w:ElementInType w:name="nc:TelephoneNumberFullID"
-      w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
-  </w:Type>
-  <w:Type w:name="nc:ItemType" w:isRequested="false">
-    <w:ElementInType w:name="nc:ItemOwner" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="nc:MetadataType" w:isRequested="false">
     <w:ElementInType w:name="nc:ProbabilityPercent"
-      w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
     <w:ElementInType w:name="nc:ReportedDate" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="0" w:maxOccurs="1"/>
     <w:ElementInType w:name="nc:SourceText" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="0" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="nc:PersonNameType" w:isRequested="false">
     <w:ElementInType w:name="nc:PersonGivenName" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="0" w:maxOccurs="1"/>
     <w:ElementInType w:name="nc:PersonFullName" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="0" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="nc:PersonType" w:isRequested="false">
     <w:ElementInType w:name="nc:PersonBirthDate" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="0" w:maxOccurs="1"/>
     <w:ElementInType w:name="nc:PersonName" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="nc:TelephoneNumberType" w:isRequested="false">
     <w:ElementInType w:name="nc:TelephoneNumberAbstract"
-      w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="nc:WeaponType" w:isRequested="false">
     <w:ElementInType w:name="nc:WeaponUser" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="scr:PersonPhoneAssociationType" w:isRequested="false">
     <w:ElementInType w:name="nc:Person" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="1" w:maxOccurs="1"/>
     <w:ElementInType w:name="nc:TelephoneNumber" w:isReference="false"
-      w:minOccurs="0" w:maxOccurs="unbounded"/>
+      w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
 </w:WantList>

@@ -3,12 +3,5 @@
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
   <uri name="http://purl.oclc.org/dsdl/schematron" uri="schematron.xsd"/>
   <uri name="http://www.w3.org/2001/XMLSchema" uri="xml-schema-fragment.xsd"/>
-  <!-- 4.0 support schemas -->
-  <!--
-  <nextCatalog catalog="../../src/xsd/xml-catalog.xml"/>
-  -->
-  <!--
-  <nextCatalog catalog="../../tmp/niem-release/niem/xml-catalog.xml"/>
-  -->
-  <nextCatalog catalog="subset/niem/xml-catalog.xml"/>
+  <nextCatalog catalog="niem/xml-catalog.xml"/>
 </catalog>
