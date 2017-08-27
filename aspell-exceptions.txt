@@ -66,6 +66,9 @@ IESs
 IETF
 IRI
 IRIs
+IncidentAugmentation
+IncidentVictim
+IncidentWitness
 Infoset
 ItemDispositionType
 ItemOwner
@@ -185,12 +188,14 @@ complexType
 conformanceTargets
 conformant
 dateTime
+dec
 elementFormDefault
 eq
 et
 extensibility
 externalAdapterTypeIndicator
 externalImportIndicator
+fae
 finalDefault
 fractionDigits
 gDay
@@ -269,6 +274,7 @@ unstandardized
 untyped
 ur
 uri
+uuid
 validator
 whiteSpace
 whitespace
