@@ -8215,6 +8215,27 @@ not be given the same name.</p></li>
                 attribute, in accordance with evaluation consistent with <ref idref="RFC3986"/> and
                 <ref idref="XMLBase"/>.</p>
             </rule>
+
+            <figure id="figure-example-structures-uri-absolute">
+              <title>Example of <qName>structures:uri</qName> holding an absolute URI</title>
+              <pre><xmlBlurb id="xb-example-structures-uri-absolute">
+<j:Felony>
+  <j:IncidentAugmentation>
+    <j:IncidentVictim>
+      <nc:RoleOfPerson structures:uri="urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6">
+        <nc:PersonName>
+          <nc:PersonFullName>John Doe</nc:PersonFullName>
+        </nc:PersonName>
+      </nc:RoleOfPerson>
+    </j:IncidentVictim>
+    <j:IncidentWitness>
+      <nc:RoleOfPerson structures:uri="urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6" xsi:nil="true"/>
+    </j:IncidentWitness>
+  </j:IncidentAugmentation>
+</j:Felony>
+              </xmlBlurb></pre>
+            </figure>
+            
           </ruleSection>
 
           <p>The attributes <qName>structures:id</qName> and <qName>structures:ref</qName> each have a mapping to

@@ -107,6 +107,7 @@ case $command in
 	    rm -rf xsd/ndr-examples/niem
 	    mkdir -p xsd/ndr-examples
 	    unzip -d xsd/ndr-examples "$latest_subset"
+            rm -rf xsd/ndr-examples/niem/codes/genc
         ) ;;
     #HELP:  xsv: xml schema validate
     xsv ) (
