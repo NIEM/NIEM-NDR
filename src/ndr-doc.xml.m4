@@ -248,6 +248,9 @@
 
     </ul>
 
+      <p>In addition to the prefixes above, the prefix <code>example</code> is used for XML examples, denoting a
+        user-defined namespace, such as might be defined by an information exchange specification.</p>
+
   </section>
 
       <section id="SectionNormativeAndInformativeContent">
