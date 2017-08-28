@@ -4,6 +4,7 @@ ActivityType
 AircraftFuselageColorCode
 Anders
 ArrestInvolvedWeapon
+ArrestMessage
 ArrestSubject
 AssessmentPerson
 AssociationAugmentationPoint
@@ -154,6 +155,7 @@ UPA
 URI
 URIs
 URNs
+UUIDs
 UpperCamelCase
 WeaponUser
 XHTML

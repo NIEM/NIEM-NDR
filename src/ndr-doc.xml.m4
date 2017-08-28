@@ -8296,7 +8296,7 @@ not be given the same name.</p></li>
             <code>https://state.example/98723987/results.xml#delta</code>.</p>
 
           <figure id="figure-example-id-ref-uri">
-            <title>Example of <qName>structures:uri</qName>, <qName>structures:id</qName>, and <qName>structures:ref</qName> identifiying the same object.</title>
+            <title>Example of <qName>structures:uri</qName>, <qName>structures:id</qName>, and <qName>structures:ref</qName> identifying the same object.</title>
             <pre><xmlBlurb id="xb-example-structures-uri-id-ref-fragment">
 <example:ArrestMessage xml:base="https://state.example/98723987/results.xml">
   <j:Arrest>
