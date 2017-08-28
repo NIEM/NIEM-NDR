@@ -13,7 +13,7 @@
     <xs:complexContent>
       <xs:extension base="nc:ActivityType">
         <xs:sequence>
-          <xs:element ref="j:ArrestInvolvedWeapon" minOccurs="1" maxOccurs="1"/>
+          <xs:element ref="j:ArrestInvolvedWeapon" minOccurs="0" maxOccurs="1"/>
           <xs:element ref="j:ArrestSubject" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
       </xs:extension>

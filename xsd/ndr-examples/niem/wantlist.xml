@@ -275,7 +275,7 @@
   </w:Type>
   <w:Type w:name="j:ArrestType" w:isRequested="false">
     <w:ElementInType w:name="j:ArrestInvolvedWeapon"
-      w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
     <w:ElementInType w:name="j:ArrestSubject" w:isReference="false"
       w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
@@ -335,7 +335,7 @@
     <w:ElementInType w:name="nc:PersonBirthDate" w:isReference="false"
       w:minOccurs="0" w:maxOccurs="1"/>
     <w:ElementInType w:name="nc:PersonName" w:isReference="false"
-      w:minOccurs="1" w:maxOccurs="1"/>
+      w:minOccurs="0" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="nc:TelephoneNumberType" w:isRequested="false">
     <w:ElementInType w:name="nc:TelephoneNumberAbstract"

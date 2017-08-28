@@ -3,6 +3,7 @@
    xmlns:appinfo="MACRO_NS_APPINFO"
    xmlns:ct="MACRO_CONFORMANCE_TARGETS_NS"
    xmlns:doc="https://iead.ittl.gtri.org/wr24/doc/2011-09-30-2258"
+   xmlns:example="http://example.org/example/"
    xmlns:html="http://www.w3.org/1999/xhtml"
    xmlns:im="MACRO_NS_NIEM_DOMAIN_IM"
    xmlns:j="MACRO_NS_NIEM_DOMAIN_J"
@@ -8215,52 +8216,70 @@ not be given the same name.</p></li>
                 attribute, in accordance with evaluation consistent with <ref idref="RFC3986"/> and
                 <ref idref="XMLBase"/>.</p>
             </rule>
-
-            <figure id="figure-example-structures-uri-absolute">
-              <title>Example of <qName>structures:uri</qName> holding an absolute URI</title>
-              <pre><xmlBlurb id="xb-example-structures-uri-absolute">
-<j:Felony>
-  <j:IncidentAugmentation>
-    <j:IncidentVictim>
-      <nc:RoleOfPerson structures:uri="urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6">
-        <nc:PersonName>
-          <nc:PersonFullName>John Doe</nc:PersonFullName>
-        </nc:PersonName>
-      </nc:RoleOfPerson>
-    </j:IncidentVictim>
-    <j:IncidentWitness>
-      <nc:RoleOfPerson structures:uri="urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6" xsi:nil="true"/>
-    </j:IncidentWitness>
-  </j:IncidentAugmentation>
-</j:Felony>
-              </xmlBlurb></pre>
-            </figure>
-            
           </ruleSection>
+
+          <p>The following example shows a reference to an absolute URI, using the URN namespace for UUIDs:</p>
+          
+          <figure id="figure-example-structures-uri-absolute">
+            <title>Example of <qName>structures:uri</qName> holding an absolute URI</title>
+            <pre><xmlBlurb id="xb-example-structures-uri-absolute">
+<example:ArrestMessage>
+  <j:Arrest xsi:nil="true"
+    structures:uri="urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6"/>
+</example:ArrestMessage>
+            </xmlBlurb></pre>
+          </figure>
+          
+          <p>The following example shows a relative URI, using <qName>xml:base</qName> to carry the base URI for
+            the document. The person object identified by the <qName>structures:uri</qName> attribute has the URI
+            <code>http://state.example/scmods/B263-1655-2187</code>.</p>
+            
+          <figure id="figure-example-structures-uri-rel-with-base">
+            <title>Example of <qName>structures:uri</qName> holding a relative URI, with
+              an <qName>xml:base</qName></title>
+            <pre><xmlBlurb id="xb-example-structures-uri-rel-with-base">
+<example:ArrestMessage xml:base="http://state.example/scmods/">
+  <j:Arrest>
+    <j:ArrestSubject>
+      <nc:RoleOfPerson structures:uri="B263-1655-2187"/>
+    </j:ArrestSubject>
+  </j:Arrest>
+</example:ArrestMessage>
+            </xmlBlurb></pre>
+          </figure>
+          
+          <p>The following example shows a URI fragment. The example has no <qName>xml:base</qName>, so supposing
+            the example was from file <code>https://example.org/path/to/file.xml</code>, the person object has
+            the identifier <code>https://example.org/path/to/file.xml#first</code>.</p>
+            
+          <figure id="figure-example-structures-uri-fragment">
+            <title>Example of <qName>structures:uri</qName> holding a fragment</title>
+            <pre><xmlBlurb id="xb-example-structures-uri-fragment">
+<example:ArrestMessage>
+  <j:Arrest>
+    <j:ArrestSubject>
+      <nc:RoleOfPerson structures:uri="#first"/>
+    </j:ArrestSubject>
+  </j:Arrest>
+</example:ArrestMessage>
+            </xmlBlurb></pre>
+          </figure>
 
           <p>The attributes <qName>structures:id</qName> and <qName>structures:ref</qName> each have a mapping to
             equivalent values of <qName>structures:uri</qName>.</p>
 
           <ruleSection>
-            <title><qName>structures:id</qName> denotes resource identifier</title>
-            <rule applicability="INS" id="rule-id-is-uri" class="Interpretation">
-              <p>The value of the <qName>structures:id</qName> with a value of <var>$value</var> denotes a
-                resource identifier on the element holding the attribute, as would be denoted by an
+            <title><qName>structures:id</qName> and <qName>structures:id</qName> denote resource
+              identifier</title>
+            <rule applicability="INS" id="rule-id-ref-is-uri" class="Interpretation">
+              <p>The value of an attribute <qName>structures:id</qName> with a value of <var>$value</var>, or an
+                attribute <qName>structures:ref</qName> with a value of <var>$value</var>, denotes a resource
+                identifier on the element holding the attribute, as would be denoted by an
                 attribute <qName>structures:uri</qName> with a value
-                of <q><code>#<var>$value</var></code></q>.</p>
+                of <q><code>#</code></q><var>$value</var>.</p>
             </rule>
           </ruleSection>
-
-          <ruleSection>
-            <title><qName>structures:ref</qName> denotes resource identifier</title>
-            <rule applicability="INS" id="rule-ref-is-uri" class="Interpretation">
-              <p>The value of the <qName>structures:ref</qName> with a value of <var>$value</var> denotes a
-                resource identifier on the element holding the attribute, as would be denoted by an
-                attribute <qName>structures:uri</qName> with a value
-                of <q><code>#<var>$value</var></code></q>.</p>
-            </rule>
-          </ruleSection>
-
+          
           <p>For example, <code>structures:id="hello"</code>
             and <code>structures:ref="hello"</code> each denote the same resource identifier for
             an element as if it held an attribute <code>structures:uri="#hello"</code>.</p>
@@ -8269,6 +8288,37 @@ not be given the same name.</p></li>
             resource identifier denote the same object, which has that given identifier. This means that, in an
             XML representation, the properties of an object may be spread across a set of elements that share an
             identifier.</p>
+
+          <p>The following example contains four references to the same object, which has the identifier
+            <code>https://state.example/98723987/results.xml#delta</code>.</p>
+
+          <figure id="figure-example-id-ref-uri">
+            <title>Example of <qName>structures:uri</qName>, <qName>structures:id</qName>, and <qName>structures:ref</qName> identifiying the same object.</title>
+            <pre><xmlBlurb id="xb-example-structures-uri-id-ref-fragment">
+<example:ArrestMessage xml:base="https://state.example/98723987/results.xml">
+  <j:Arrest>
+    <j:ArrestSubject>
+      <nc:RoleOfPerson structures:id="delta"/>
+    </j:ArrestSubject>
+  </j:Arrest>
+  <j:Arrest>
+    <j:ArrestSubject>
+      <nc:RoleOfPerson structures:ref="delta"/>
+    </j:ArrestSubject>
+  </j:Arrest>
+  <j:Arrest>
+    <j:ArrestSubject>
+      <nc:RoleOfPerson structures:uri="#delta"/>
+    </j:ArrestSubject>
+  </j:Arrest>
+  <j:Arrest>
+    <j:ArrestSubject>
+      <nc:RoleOfPerson structures:uri="https://state.example/98723987/results.xml#delta"/>
+    </j:ArrestSubject>
+  </j:Arrest>
+</example:ArrestMessage>
+            </xmlBlurb></pre>
+          </figure>
 
         </section>
 
