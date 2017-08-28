@@ -8477,14 +8477,14 @@ not be given the same name.</p></li>
       <ul>
         <li><p>Metadata <code>s22</code> asserts Adam Barber gave the name.</p></li>
         <li><p>Metadata <code>j86</code> asserts the name and the birth date were reported on 4/26/2005.</p></li>
-        <li><p>Link metadata <code>o67</code> asserts a 25% probability that the name goes with the person.</p></li>
+        <li><p>Relationship metadata <code>k25</code> asserts a 25% probability that the name goes with the person.</p></li>
       </ul>
       <p>This shows several characteristics of metadata:</p>
       <ul>
         <li><p>Metadata objects may appear outside the data they describe.</p></li>
         <li><p>Metadata objects may be reused.</p></li>
         <li><p>Data may refer to more than one metadata object.</p></li>
-        <li><p>Metadata pertains to an object or simple content, while link metadata pertains to the relationship between objects.</p></li>
+        <li><p>Metadata pertains to an object or simple content, while relationship metadata pertains to the relationship between objects.</p></li>
       </ul>
       <p>An instance would not be valid XML if the <qName>structures:metadata</qName> or <qName>structures:relationshipMetadata</qName> attributes contained references for which there were no defined IDs. The instance would not be NIEM-conformant if the references were not to IDs defined with the <qName>structures:id</qName> attribute.</p>
 
