@@ -27,8 +27,9 @@ repo_dir = repo
 # # command variable defined by Make
 # RM = rm -f
 
-# # command variable defined by automake
+# # command variables defined by autoconf
 MKDIR_P = mkdir -p
+SED = sed
 
 schema_dir = xsd/ndr-examples
 
@@ -54,7 +55,6 @@ m4_flags = --prefix-builtins ${m4_macros} lib/m4-setup.m4
 schematron = schematron
 schematron_compile = schematron-compile
 schematron_execute = schematron-execute
-sed = sed
 touch = touch
 zip = zip
 
@@ -116,7 +116,12 @@ default:
 	${MAKE} depend=no repo
 
 .PHONY: html #  Build HTML version
-html: ${ndr_doc_html}
+html: ${tmp_dir}/html-turd
+
+${tmp_dir}/html-turd: ${ndr_doc_xml}
+	${MAKE} depend
+	${MAKE} --jobs=8 ${ndr_doc_html}
+	${MKDIR_P} ${dir $@} && ${touch} $@
 
 .PHONY: text #  Build text version
 text: ${ndr_doc_text}
@@ -174,7 +179,7 @@ ${ndr_doc_text}: ${ndr_doc_xml} ${doc_text_required_files}
 ${ndr_doc_xml}: ${ndr_macros_m4} src/ndr-doc.xml.m4 
 	@ ${RM} $@
 	@ ${MKDIR_P} ${dir $@}
-	${m4} ${m4_flags} ${ndr_macros_m4} src/ndr-doc.xml.m4 | ${sed} -e 's/  *$$//' > $@
+	${m4} ${m4_flags} ${ndr_macros_m4} src/ndr-doc.xml.m4 | ${SED} -e 's/  *$$//' > $@
 	@ ${chmod} -w $@
 	@ if ${grep} -n 'MACRO' $@; then printf 'ERROR: unresolved M4 macro.\n' >&2; exit 1; fi
 	if egrep -nH ' +$$' $@; then printf 'ERROR: stray whitespace in document' >&2; exit 1; fi
@@ -301,6 +306,6 @@ ${repo_dir}/%: ${tmp_dir}/%
 
 .PHONY: help #  Print this help
 help:
-	@ ${sed} -e '/^\.PHONY:/s/^\.PHONY: *\([^ #]*\) *\#\( *\)\([^ ].*\)/\2\1: \3/p;/^[^#]*#HELP:/s/[^#]*#HELP:\(.*\)/\1/p;d' ${this_makefile}
+	@ ${SED} -e '/^\.PHONY:/s/^\.PHONY: *\([^ #]*\) *\#\( *\)\([^ ].*\)/\2\1: \3/p;/^[^#]*#HELP:/s/[^#]*#HELP:\(.*\)/\1/p;d' ${this_makefile}
 
 # don't put anything after this

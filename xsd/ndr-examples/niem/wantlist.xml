@@ -8,6 +8,8 @@
   <w:Element w:name="j:CrashDriver" w:isReference="false" w:nillable="true"/>
   <w:Element w:name="j:CrashDriverViolationCode" w:isReference="false" w:nillable="false"/>
   <w:Element w:name="j:CrashDrivingViolationCode" w:isReference="false" w:nillable="false"/>
+  <w:Element w:name="j:Felony" w:isReference="false" w:nillable="true"/>
+  <w:Element w:name="j:IncidentAugmentation" w:isReference="false" w:nillable="true"/>
   <w:Element w:name="j:Witness" w:isReference="false" w:nillable="true"/>
   <w:Element w:name="nc:Date" w:isReference="false" w:nillable="false"/>
   <w:Element w:name="nc:FullTelephoneNumber" w:isReference="false" w:nillable="false"/>
@@ -273,7 +275,7 @@
   </w:Type>
   <w:Type w:name="j:ArrestType" w:isRequested="false">
     <w:ElementInType w:name="j:ArrestInvolvedWeapon"
-      w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
     <w:ElementInType w:name="j:ArrestSubject" w:isReference="false"
       w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
@@ -285,7 +287,17 @@
     <w:ElementInType w:name="j:CrashDrivingViolationAbstract"
       w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
+  <w:Type w:name="j:IncidentAugmentationType" w:isRequested="false">
+    <w:ElementInType w:name="j:IncidentVictim" w:isReference="false"
+      w:minOccurs="1" w:maxOccurs="1"/>
+    <w:ElementInType w:name="j:IncidentWitness" w:isReference="false"
+      w:minOccurs="1" w:maxOccurs="1"/>
+  </w:Type>
   <w:Type w:name="j:SubjectType" w:isRequested="false">
+    <w:ElementInType w:name="nc:RoleOfPerson" w:isReference="false"
+      w:minOccurs="1" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="j:VictimType" w:isRequested="false">
     <w:ElementInType w:name="nc:RoleOfPerson" w:isReference="false"
       w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
@@ -299,6 +311,10 @@
   </w:Type>
   <w:Type w:name="nc:FullTelephoneNumberType" w:isRequested="false">
     <w:ElementInType w:name="nc:TelephoneNumberFullID"
+      w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="nc:IncidentType" w:isRequested="false">
+    <w:ElementInType w:name="nc:IncidentAugmentationPoint"
       w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="nc:MetadataType" w:isRequested="false">
@@ -319,7 +335,7 @@
     <w:ElementInType w:name="nc:PersonBirthDate" w:isReference="false"
       w:minOccurs="0" w:maxOccurs="1"/>
     <w:ElementInType w:name="nc:PersonName" w:isReference="false"
-      w:minOccurs="1" w:maxOccurs="1"/>
+      w:minOccurs="0" w:maxOccurs="1"/>
   </w:Type>
   <w:Type w:name="nc:TelephoneNumberType" w:isRequested="false">
     <w:ElementInType w:name="nc:TelephoneNumberAbstract"
