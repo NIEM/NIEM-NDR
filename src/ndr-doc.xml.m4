@@ -8371,8 +8371,12 @@ not be given the same name.</p></li>
           semantics between relationships expressed by sub-elements versus relationships expressed
           by <qName>structures:ref</qName> or <qName>structures:uri</qName>.</p>
 
-        <p>Any claim that nested elements represent composition while references represent aggregation is
-          incorrect. No life cycle dependency is implied by either method.</p>
+        <p>Any claim that nested elements represent composition, while references represent aggregation is
+          incorrect. No life cycle dependency is implied by either method. Similarly, any claim that
+          <em>included</em> data is intrinsic (i.e., a property inherent to an object), while <em>referenced</em>
+          data is extrinsic (i.e., a property derived from a relationship to other things), is false. A property
+          represented as a nested element has the exact same meaning as that property represented by a
+          reference.</p>
 
         <ruleSection><title>Nested elements and references have the same meaning.</title>
         <rule applicability="INS" class="Interpretation">
@@ -8431,9 +8435,6 @@ not be given the same name.</p></li>
         the fundamental data. There is no difference in meaning between reference and content data
         representations. The two different methods are available for ease of representation. No difference
         in <em>meaning</em> should be implied by the use of one method or the other.</p>
-
-        <p>Assertions that indicate <q>included</q> data is intrinsic, while referenced data is extrinsic, are
-        not valid and are not applicable to NIEM-conformant data instances and data definitions.</p>
 
       </section>
 
