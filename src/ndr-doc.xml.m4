@@ -2365,7 +2365,7 @@
           an <strong>augmented infoset</strong> to the caller, constructed to reflect information implied by the
           schema, which may not appear in the original XML document.</p>
 
-        <p>XML Schema provides for element and attribute declarations to provide default values. When an XML
+        <p>XML Schema allows element and attribute declarations to provide default values. When an XML
           document does not contain a value for a component that has a default, the XML Schema validating parser
           will <em>construct</em> a value for the component. This is done through the use of the
           attributes <local-name>default</local-name> and <local-name>fixed</local-name>, both of which provide
@@ -2374,7 +2374,7 @@
           may yield an infoset that is augmented, constructing values in the provided XML infoset where none
           existed in the original XML document.</p>
 
-        <p>NIEM schemas should not be constructed to yield constructed values in the infoset. The process of XML
+        <p>NIEM schemas should not produce constructed values in the infoset. The process of XML
           Schema validation against NIEM schemas should provide for marking data as valid or invalid, but should
           not modify original infoset data with constructed values. The XML infoset yielded by a non-validating
           XML parser should be the same as that yielded by an XML Schema validating parser. Turning on schema
