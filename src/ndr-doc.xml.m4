@@ -1388,12 +1388,11 @@
           </li>
 
           <li>
-            <p>Otherwise, if <var>$value</var> has a base type definition <var>$base-type</var> that is listed as an
-            RDF-compatible XSD type in
-
-              MACRO_REF_EXTERNAL(RDFConcepts,MACRO_HREF_RDF_CONCEPTS#xsd-datatypes,5.1,The XML Schema Built-in Datatypes),
-
-              then the literal is:</p>
+            <p>Otherwise, if <var>$value</var> has a base type definition <var>$base-type</var> that is listed as
+              an RDF-compatible XSD type in
+              MACRO_REF_EXTERNAL(RDFConcepts,MACRO_HREF_RDF_CONCEPTS#xsd-datatypes,5.1,The XML Schema Built-in
+              Datatypes), and <var>$base-type</var> is not <qName>xs:string</qName>, then the literal
+              is:</p>
             <sub>
               <pre>&quot;$lexical-form&quot;^^$datatype-IRI</pre>
               <p>Where:</p>
