@@ -4507,9 +4507,22 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         <section><title>Role types and roles</title>
 
             <p>NIEM differentiates between an object and a role of the object. The term <q>role</q> is used here
-              to mean a function or part played by some object. The simplest way to represent a role of an object
-              is to use an element. The following element declaration models the role of a person who undergoes an
-              assessment:</p>
+              to mean a function or part played by some object.</p>
+
+            <p>Role types were introduced into NIEM after XML Schema extension proved to be insufficient in
+              certain situations. Roles support cases where one object has multiple functions in the same
+              instance document (such as when a person might be represented in the same information exchange as
+              both a <qName>j:CrashDriver</qName> and a <qName>j:ArrestSubject</qName>). Previously, this
+              resulted in base object information being duplicated in extensions, or being left ambiguously blank
+              in some places. Role types and RoleOf elements enable more precise semantics, with the option to
+              reference base object information rather than duplicate it. Role types also allow function
+              information to be defined once for multiple base objects, such as a
+              single <qName>j:VictimType</qName>, which represents victim information for persons, organizations,
+              and items (<qName>nc:RoleOfPerson</qName>, <qName>nc:RoleOfOrganization</qName>,
+              <qname>nc:RoleOfItem</qname>).</p>
+
+            <p>The simplest way to represent a role of an object is to use an element. The following element
+              declaration models the role of a person who undergoes an assessment:</p>
 
             <figure>
               <title>An element declaration that constitutes a role without the use of a role type</title>
