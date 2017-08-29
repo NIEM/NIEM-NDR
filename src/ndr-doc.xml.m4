@@ -3108,9 +3108,10 @@
             </rule>
 
             <p>This rule ensures that the definition of a complex type with simple content will use XML Schema
-            extension. This allows for the above cases while disallowing more complicated syntactic options
-            available in XML Schema. The above rule allows for use of <qName>xs:restriction</qName>
-            within <qName>xs:simpleContent</qName> in extension schemas.</p>
+            extension. This rule supports uniformity in the flexibility in the syntax of these types, by
+            disallowing more complicated alternate syntax options available in XML Schema. The above rule allows
+            for use of <qName>xs:restriction</qName> within <qName>xs:simpleContent</qName> in extension
+            schemas.</p>
           </ruleSection>
         </section>
 
