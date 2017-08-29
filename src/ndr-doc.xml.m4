@@ -3537,7 +3537,7 @@
               <ref idref="sec-no-infoset-mods"/>.</p>
           </ruleSection>
           <ruleSection>
-            <title>No attribute fixed values</title>
+            <title>No fixed values for optional attributes</title>
 
             <p>The <local-name>fixed</local-name> attribute is described by
               MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#Attribute_Declaration_details,3.2.1,The Attribute Declaration Schema Component):</p>
