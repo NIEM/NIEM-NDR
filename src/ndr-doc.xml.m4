@@ -2922,7 +2922,7 @@
         <title>Complex type definition</title>
 
         <ruleSection>
-          <title>Complex type definitions is top-level</title>
+          <title>Complex type definition is top-level</title>
           <rule applicability="REF EXT" id="ct-top-level" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-ct-top-level">
 <sch:pattern>
