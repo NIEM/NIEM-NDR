@@ -2730,6 +2730,8 @@
           </rule>
         </ruleSection>
 
+        MACRO_HAS_DATA_DEFINITION(Enumeration, enum, xs:enumeration, An enumeration facet)
+
         <section>
           <title>Simple types prohibited as list item types</title>
 
@@ -2914,8 +2916,6 @@
 
 
         </section>
-
-        MACRO_HAS_DATA_DEFINITION(Enumeration, enum, xs:enumeration, An enumeration facet)
 
       </section>
       <section>
