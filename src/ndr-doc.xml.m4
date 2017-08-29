@@ -2399,9 +2399,9 @@
           schema.</p>
 
         <p>The behavior of import statements is not necessarily intuitive. In
-          short, the import introduces namespace into the schema in which the
-          import appears; it has no transitive effect. If the namespaces of an
-          import statement are not referenced from the schema, then the import
+          short, the import introduces a namespace into the schema document in which the
+          import appears; it has no transitive effect. If the namespace introduced by an
+          import statement are not referenced from that schema document, then the import
           statement has no effect. </p>
 
         <p>Certain tools have been seen introducing transitive behavior on
