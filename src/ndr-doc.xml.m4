@@ -3028,7 +3028,7 @@
 
           <p>These two rules addresses a peculiarity of the <termRef>XML Schema definition language</termRef>,
             which allows a complex type to be constructed using <qName>xs:complexContent</qName>, and yet is
-            derived from a complex type that uses <qName>xs:simpleContent</qName>. These rules ensures that each
+            derived from a complex type that uses <qName>xs:simpleContent</qName>. These rules ensure that each
             type has the content style indicated by the schema. An example is included in the following
             figure. Note that type <qName>niem-xs:integer</qName> is a complex type with simple content.</p>
 
