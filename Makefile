@@ -115,6 +115,7 @@ default:
 	${MAKE} depend=no clean-repo
 	${MAKE} depend=no repo
 
+# Built this way for compatibility make-repeat.
 .PHONY: html #  Build HTML version
 html: ${tmp_dir}/html-turd
 
@@ -275,6 +276,7 @@ ${valid_dir}/spelling-ok: ${spell_results_txt} ${ndr_doc_text}
 	  grep --context=1 "$$REPLY" ${ndr_doc_text}; \
 	done < ${spell_results_txt}
 	! [[ -s ${spell_results_txt} ]]
+	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
 # end valid
 #############################################################################
