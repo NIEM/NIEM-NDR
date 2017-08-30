@@ -4581,7 +4581,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
               function information to be defined once for multiple base objects, such as a
               single <qName>j:VictimType</qName>, which represents victim information for persons, organizations,
               and items (e.g., via <qName>nc:RoleOfPerson</qName>, <qName>nc:RoleOfOrganization</qName>, and
-              <qname>nc:RoleOfItem</qname>).</p>
+              <qName>nc:RoleOfItem</qName>).</p>
 
             <p>The term <termRef>role type</termRef> has a normative definition:</p>
 
