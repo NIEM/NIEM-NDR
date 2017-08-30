@@ -4794,7 +4794,11 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
           document</termRef>.</p>
 
 
-      <p>A NIEM-conformant schema has well-known documentation points. Therefore, a schema that imports a NIEM-conformant namespace need not provide additional documentation. However, when an external schema document is imported, appropriate documentation must be provided at the point of import because documentation associated with external schema documents is undefined and variable. In this particular case, documentation of external schema documents is required at their point of use in NIEM.</p>
+      <p>A NIEM-conformant schema has well-known documentation points. Therefore, a schema that imports a
+        NIEM-conformant namespace need not provide additional documentation for the imported namesapce.  However,
+        when an external schema document is imported, appropriate documentation must be provided on
+        the <qName>xs:import</qName> element. This ensures that documentation for all external schema documents
+        will be both available and accessible in a consistent manner.</p>
 
       <section><title>Import of external namespace</title>
       <ruleSection>
