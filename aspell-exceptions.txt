@@ -133,6 +133,8 @@ RDFS
 ReportedDate
 Robie
 RoleOf
+RoleOfItem
+RoleOfOrganization
 RoleOfPerson
 Rosenthal
 ScheduleAugmentationPoint
@@ -157,6 +159,7 @@ URIs
 URNs
 UUIDs
 UpperCamelCase
+VictimType
 WeaponUser
 XHTML
 XPath

@@ -43,6 +43,13 @@ case $command in
             git log --reverse --pretty=format:%B dev-ndr-4.0beta2..dev | tee /dev/fd/3 | pbcopy
         ) ;;
 
+    #HELP:  clean out all build products
+    clean )
+        (
+            (( $# == 0 )) || fail "unexepected args $*"
+            cd "$(dirname "$0")"
+            make depend=no distclean
+        ) ;;
     #HELP:  catlog: concatenate a bunch of log entries
     #HELP:    usage: COMMAND_NAME catlog $old-commit..$new-commit
     catlog )

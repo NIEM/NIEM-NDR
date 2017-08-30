@@ -4508,8 +4508,8 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 
             <p>NIEM differentiates between an object and a role of the object. The term <q>role</q> is used here
               to mean a function or part played by some object. The simplest way to represent a role of an object
-              is to use an element. The following element declaration models the role of a person who undergoes an
-              assessment:</p>
+              is to use an element. The following element declaration models the role of a person who undergoes
+              an assessment:</p>
 
             <figure>
               <title>An element declaration that constitutes a role without the use of a role type</title>
@@ -4568,6 +4568,20 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 </xs:complexType>
               </xmlBlurb></pre>
             </figure>
+
+            <p>Role types were introduced into NIEM after XML Schema extension proved to be insufficient in
+              certain situations. An object may have multiple functions in the same instance document, each with
+              associated data.  For example, a person might be both a <qName>j:CrashDriver</qName> and
+              a <qName>j:ArrestSubject</qName>. Without roles, information about the person would be duplicated
+              in extensions, or would be left ambiguously blank in some places.</p>
+
+            <p>Role types and RoleOf elements enable more precise semantics. With roles, a single base object
+              (e.g., a person) can have multiple roles or functions within a message (e.g., a victim, a witness,
+              and a subject). A role type can reference a base object, rather than duplicate it. Role types allow
+              function information to be defined once for multiple base objects, such as a
+              single <qName>j:VictimType</qName>, which represents victim information for persons, organizations,
+              and items (e.g., via <qName>nc:RoleOfPerson</qName>, <qName>nc:RoleOfOrganization</qName>, and
+              <qName>nc:RoleOfItem</qName>).</p>
 
             <p>The term <termRef>role type</termRef> has a normative definition:</p>
 
