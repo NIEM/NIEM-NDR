@@ -92,19 +92,6 @@ case $command in
             make -j 8 depend=no valid
         )
         ;;
-    #HELP:  build $targets... : rebuild carefully
-    #HELP:    default targets: valid all
-    build )
-        (
-            cd "$(dirname "$0")"
-            if (( $# == 0 ))
-            then set valid all
-            fi
-            make depend depend=build
-            time make -j 8 "$@"
-        )
-        ;;
-
     #HELP:  lint: run xmllint on the doc XML
     lint )
         (

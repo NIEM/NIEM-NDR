@@ -4897,8 +4897,6 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 </sch:pattern>
               </xmlBlurb></pre>
             </rule>
-            <p>Each external adapter type is meant to stand alone; each type expresses a single concept, and is
-              built from schema components from one or more external schema documents.</p>
           </ruleSection>
 
           <ruleSection><title>External adapter type not a base type</title>
@@ -4918,10 +4916,11 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 </sch:pattern>
               </xmlBlurb></pre>
             </rule>
+
             <p>Each external adapter type is meant to stand alone; each type expresses a single concept, and is
               built from schema components from one or more external schema documents.</p>
-          </ruleSection>
 
+          </ruleSection>
 
             </section>
 
