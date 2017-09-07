@@ -4768,7 +4768,10 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
             <li><p>An external adapter type may be constructed from externally-defined elements and attributes. A goal
                 of this method is to represent, as a single unit, a set of data that embodies a single concept
                 from an external standard. This is an <termRef>external adapter type</termRef>.</p></li>
-            <li><p>A type that is not an external adapter type may incorporate externally-defined attributes.</p></li>
+
+            <li><p>A type that is not an external adapter type, and which is defined by an extension schema
+                document, may incorporate externally-defined attributes.</p></li>
+
           </ol>
 
           <figure id="figure-use-of-externals-diagram">
