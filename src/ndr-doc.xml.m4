@@ -5126,9 +5126,9 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
       </section>
       <section id="section-associations"><title>Associations</title>
 
-        <p>Within NIEM, an <xe>association</xe> is a specific relationship between objects. Associations are used
-        when a simple NIEM property is insufficient to model the relationship clearly, or when you want to model
-        properties of the relationship itself.</p>
+        <p>Within NIEM data, an <termRef>association</termRef> is a specific relationship between
+          objects. Associations are used when a simple NIEM property is insufficient to model the relationship
+          clearly, or when you want to model properties of the relationship itself.</p>
 
         <p>Here is an example of an association in an XML instance:</p>
 
@@ -5150,10 +5150,11 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 </xmlBlurb></pre>
         </figure>
         <p>This example shows an association between a person and a phone number. This relationship is defined by
-        the element <qName>scr:PersonPhoneAssociation</qName>, the structure of which is defined by the
-        type <qName>scr:PersonPhoneAssociationType</qName>. In practice, an <termRef>association type</termRef>
-        usually defines what kinds of things the association relates, while the association element may refine
-        the meaning of the association.</p>
+          the <termRef>association element declaration</termRef>
+          <qName>scr:PersonPhoneAssociation</qName>, the structure of which is defined by the
+          <termRef>association type</termRef> <qName>scr:PersonPhoneAssociationType</qName>. In practice,
+          an <termRef>association type</termRef> usually defines what kinds of things the association relates,
+          while the association element may refine the meaning of the association.</p>
 
         <p>An example of an association type defined by an XML Schema document follows, in
           <ref idref="figure-defn-of-assn-type"/>.</p>
@@ -5192,15 +5193,30 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
           person and a telephone number. This is followed by the definition of an association element declaration
           that uses the association type.</p>
 
-        <definition term="association type">
-          <p>In a NIEM-conformant schema, an <strong>association type</strong> is a type that establishes a relationship between objects, along with the properties of that relationship. An association type provides a structure that does not establish existence of an object but instead specifies relationships between objects.</p>
-        </definition>
         <definition term="association">
-          <p>In a NIEM-conformant schema, an <strong>association</strong> is an <termRef>element</termRef> whose
-          type is an <termRef>association type</termRef>.</p>
+          <p>An <em>association</em> is a <termRef>conformant element information item</termRef> that establishes
+            a relationship between two or more objects, optionally including properties of that relationship. An
+            association is an instance of an <termRef>association element declaration</termRef>, and has a type
+            that is an <termRef>association type</termRef>.
+          </p>
         </definition>
+
+        <definition term="association element declaration">
+          <p>An <strong>association element declaration</strong> is an <termRef>element declaration</termRef>
+            declared in a <termRef>reference schema document</termRef> or <termRef>extension schema
+            document</termRef> that describes a relationship between two or more objects, optionally including
+            properties of that relationship.</p>
+        </definition>
+
+        <definition term="association type">
+          <p>In a NIEM-conformant schema, an <strong>association type</strong> is a <termRef>complex type
+              definition</termRef> defined in a <termRef>reference schema document</termRef>
+              or <termRef>extension schema document</termRef> that establishes a relationship between two or more
+              objects, optionally including the properties of that relationship.</p>
+        </definition>
+
         <section><title>Association types</title>
-          <ruleSection><title>Association type is derived from association type</title>
+          <ruleSection><title>Association type derived from <qName>structures:AssociationType</qName></title>
             <rule applicability="REF EXT" id="rule-association-type-derived-from-association-type" class="Constraint">
               <pre><xmlBlurb id="xb-rule-association-type-derived-from-association-type" memberOf="ref ext">
 <sch:pattern>
@@ -5216,9 +5232,9 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 </sch:pattern>
               </xmlBlurb></pre>
             </rule>
-            <p>Associations are easily identifiable as such and have a commonly defined base type. Using the
-              qualifier <code>Association</code> immediately identifies a type as representing an
-              association.</p>
+            <p>Associations types are easily identifiable as such and have a common base
+              type, <qName>structures:AssociationType</qName>. Using the qualifier <code>Association</code>
+              immediately identifies a type as an <termRef>association type</termRef>.</p>
           </ruleSection>
         </section>
         <section><title>Association element declarations</title>
