@@ -5725,7 +5725,9 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
             conformant namespace by <ref idref="type-base-from-ns"/>.</p>
         </ruleSection>
 
-        <ruleSection><title>Type derived from augmentation type is an augmentation type</title>
+        <ruleSection>
+          <title>Type derived from <qName>structures:AugmentationType</qName> is an augmentation type</title>
+          
           <rule applicability="REF EXT" id="rule-type-derived-from-augmentation-type" class="Constraint">
             <pre><xmlBlurb id="xb-rule-type-derived-from-augmentation-type" memberOf="ref ext">
 <sch:pattern>
@@ -5737,6 +5739,10 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 </sch:pattern>
             </xmlBlurb></pre>
           </rule>
+
+          <p>This rule ensures that any type that is derived from an augmentation type,
+          including <qName>structures:AugmentationType</qName>, is itself an augmentation type.</p>
+
         </ruleSection>
         </section>
 
