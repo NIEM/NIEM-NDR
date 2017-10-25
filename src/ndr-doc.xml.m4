@@ -4474,7 +4474,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 
           <section><title>Object types with complex content</title>
 
-            <ruleSection><title>Object type with complex content is derived from object type</title>
+            <ruleSection><title>Object type with complex content is derived from <qName>structures:ObjectType</qName></title>
 
               <rule applicability="REF EXT" id="object-with-cc-derived-from-object" class="Constraint">
                 <pre><xmlBlurb memberOf="ref ext" id="xb-object-with-cc-derived-from-object">
