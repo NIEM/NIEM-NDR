@@ -5595,15 +5595,14 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
       </section>
       <section><title>Augmentation point element use</title>
         <ruleSection>
-          <title>Augmentation point element may only be referenced by its type</title>
+          <title>Augmentation point element is only referenced by its base type</title>
           <rule applicability="REF EXT" id="aug-el-in-type" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-aug-el-in-type">
 <sch:pattern>
   <sch:rule context="xs:complexType//xs:element[MACRO_ELEMENT_IS_AUGMENTATION_POINT_REF_EXPR([[[                     ]]])]">
-
     <sch:assert test="MACRO_GET_COMPONENT_QNAME(ancestor::xs:complexType[1])
-                      = MACRO_GET_AUGMENTATION_TYPE_QNAME(resolve-QName(@ref, .), [[[             ]]])"
-      >An augmentation point element MUST only be referenced by its corresponding type.</sch:assert>
+                      = MACRO_GET_AUGMENTATION_TYPE_QNAME(resolve-QName(@ref, .), [[[                        ]]])"
+      >An augmentation point element MUST only be referenced by its base type.</sch:assert>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
