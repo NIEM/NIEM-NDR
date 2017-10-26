@@ -112,6 +112,7 @@
 - [X] NCCT issues
 - [X] stand down abbreviations rule to SHOULD
 - [X] update date to 6/27 (damn)
+- [ ] handle assocation references
 
 ** pending tasks: in order to be done
 

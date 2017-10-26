@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o nounset -o errexit -o pipefail
+
 . "$HOME"/share/wrtools-core/opt_help.bash
 . "$HOME"/share/wrtools-core/fail.bash
 
@@ -34,6 +36,10 @@ command=$1
 shift
 
 case $command in
+
+    #HELP:  help: Print this help
+    help ) opt_help;;
+
     #HELP:  log: get the log from the last dev-ndr-4.0beta2 to dev
     log )
         (
@@ -68,7 +74,7 @@ case $command in
             (( $# == 0 )) || fail "unexepected args $*"
             cd "$(dirname "$0")"
             make depend=no distclean
-            make depend depend=build
+            make depend
             make -j 8 all
             make -j 8 valid
             make clean-repo
