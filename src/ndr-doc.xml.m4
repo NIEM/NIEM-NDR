@@ -5350,12 +5350,13 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
           that represents a property.</p>
 
         <definition term="augmentation">
-          <p>An <strong>augmentation</strong> is an <termRef>element</termRef> that</p>
+          <p>An <strong>augmentation</strong> is a <termRef>conformant element information item</termRef>
+          that:</p>
           <ol>
-            <li><p>is a child of an <termRef>element</termRef> that is an instance of an <termRef>augmentable
-                  type</termRef>, and</p></li>
-            <li><p>is a member of the substitution group of the augmentation point element declaration for
-              the <termRef>augmentable type</termRef>.</p></li>
+            <li><p>is an instance of an <termRef>augmentation element declaration</termRef>,</p></li>
+            <li><p>is a child of a <termRef>conformant element information item</termRef> that is an instance of
+                  an <termRef>augmentable type</termRef>, and</p></li>
+            <li><p>appears in the instance as a substitution for an augmentation point element.</p></li>
           </ol>
         </definition>
 
@@ -5673,10 +5674,10 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
           </ol>
         </definition>
 
-        <p>This term may be mistaken for another. The term <termRef>augmentation element declaration</termRef>
-          describes element declarations defined by schemas, while the term <termRef>augmentation</termRef>
-          applies to any element information item within an XML document that appears as the result of being
-          substituted for an augmentation point.</p>
+        <p>This term may be mistaken for the term <termRef>augmentation</termRef>. An <termRef>augmentation
+          element declaration</termRef> is an element declaration defined by a schemas, while an
+          <termRef>augmentation</termRef> is an element information item within an XML document that appears as
+          the result of being substituted for an augmentation point.</p>
 
         <ruleSection>
           <title>Element within instance of augmentation type modifies base</title>
