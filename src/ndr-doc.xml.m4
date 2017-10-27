@@ -5519,7 +5519,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
              value="MACRO_COMPLEX_TYPE_GET_AUGMENTATION_POINT_QNAME(.,[[[                        ]]])"/>
     <sch:assert test="xs:complexContent/xs:extension/xs:sequence/xs:element[
                         @ref[resolve-QName(., ..) = $augmentation-point-qname]]"
-      >An augmentable type MUST contain an element use of its augmentation point element.</sch:assert>
+      >An augmentable type MUST contain an element use of its corresponding augmentation point element.</sch:assert>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -5536,7 +5536,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
              value="MACRO_COMPLEX_TYPE_GET_AUGMENTATION_POINT_QNAME(.,[[[                        ]]])"/>
     <sch:assert test="count(xs:complexContent/xs:extension/xs:sequence/xs:element[
                               @ref[resolve-QName(., ..) = $augmentation-point-qname]]) le 1"
-      >An augmentable type MUST contain no more than one element use of its augmentation point element.</sch:assert>
+      >An augmentable type MUST contain no more than one element use of its corresponding augmentation point element.</sch:assert>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -5545,7 +5545,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 
       </section>
       <section><title>Augmentation point element declarations</title>
-        <ruleSection><title>Augmentation point corresponds to augmentable type</title>
+        <ruleSection><title>Augmentation point element corresponds to its base type</title>
           <rule applicability="REF EXT" id="aug-el-matches-aug-type" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-aug-el-matches-aug-type">
 <sch:pattern>
@@ -5555,7 +5555,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
                         parent::xs:schema/xs:complexType[
                           @name = MACRO_GET_AUGMENTATION_TYPE_LOCAL_NAME($element-name)
                           and MACRO_COMPLEX_TYPE_IS_AUGMENTABLE_TYPE_EXPR([[[                              ]]])])"
-      >A schema document containing an augmentation point element declaration MUST also contain a corresponding augmentable type definition.</sch:assert>
+      >A schema document containing an element declaration for an augmentation point element MUST also contain a type definition for its base type, a corresponding augmentable type.</sch:assert>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -5564,7 +5564,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         </ruleSection>
 
         <ruleSection>
-          <title>An augmentation point has no type</title>
+          <title>An augmentation point element has no type</title>
           <rule applicability="REF EXT" id="aug-pt-untyped" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-aug-pt-untyped">
 <sch:pattern>
@@ -5580,7 +5580,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
             <ref idref="el-with-no-type-is-abstract"/></p>
 
         </ruleSection>
-        <ruleSection><title>An augmentation point has no substitution group</title>
+        <ruleSection><title>An augmentation point element has no substitution group</title>
           <rule applicability="REF EXT" id="aug-pt-no-subst-grp" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-aug-pt-no-subst-grp">
 <sch:pattern>
@@ -5610,7 +5610,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         </ruleSection>
 
         <ruleSection>
-          <title>Augmentation point reference is optional</title>
+          <title>Augmentation point element use is optional</title>
           <rule applicability="REF" id="aug-el-is-optional" class="Constraint">
             <pre><xmlBlurb memberOf="ref" id="xb-aug-el-is-optional">
 <sch:pattern>
@@ -5624,7 +5624,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         </ruleSection>
 
         <ruleSection>
-          <title>Augmentation point reference is unbounded</title>
+          <title>Augmentation point element use is unbounded</title>
           <rule applicability="REF" id="aug-el-is-unbounded" class="Constraint">
             <pre><xmlBlurb memberOf="ref" id="xb-aug-el-is-unbounded">
 <sch:pattern>
@@ -5638,7 +5638,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         </ruleSection>
 
         <ruleSection>
-          <title>Augmentation point reference must be last particle</title>
+          <title>Augmentation point element use must be last element in its base type</title>
           <rule applicability="REF EXT" id="aug-ref-is-last" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-aug-ref-is-last">
 <sch:pattern>
