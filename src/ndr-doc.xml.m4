@@ -5784,10 +5784,10 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
       <section>
         <title>Metadata types</title>
         <p>Within NIEM, metadata is defined as <q>data about data.</q> This may include information such as the security of a piece of data or the source of the data. These pieces of metadata may be composed into a metadata type. The types of data to which metadata may be applied may be constrained.</p>
+
         <definition term="metadata type">
           <p>A <strong>metadata type</strong> describes data about data, that is, information that is not descriptive of objects and their relationships, but is descriptive of the data itself. It is useful to provide a general mechanism for data about data. This provides required flexibility to precisely represent information.</p>
         </definition>
-
 
         <ruleSection><title>Metadata type has data about data</title>
           <rule applicability="REF EXT" class="Constraint">
@@ -5796,38 +5796,30 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
           </rule>
         </ruleSection>
 
-        <ruleSection>
-          <title>Metadata type derived from structures:MetadataType</title>
-          <rule applicability="REF EXT" class="Constraint">
-            <p>Within the schema, a metadata type and only a metadata type MUST be derived directly
-              from <qName>structures:MetadataType</qName>.</p>
-          </rule>
-        </ruleSection>
+        <p>A metadata type establishes a specific, named aggregation of data about data. Any type transitively
+          derived from <qName>structures:MetadataType</qName> is a metadata type. Such metadata types should be
+          used as is and additional metadata types defined for additional content.</p>
 
-        <p>A metadata type establishes a specific, named aggregation of data about data. Any type derived
-          from <qName>structures:MetadataType</qName> is a metadata type. Metadata types should not be derived
-          from other metadata types. Such metadata types should be used as is and additional metadata types
-          defined for additional content.</p>
-
-          <ruleSection><title>Metadata types are derived from metadata types</title>
-            <rule applicability="REF EXT" id="rule-metadata-type-derived-from-metadata-type" class="Constraint">
-              <pre><xmlBlurb id="xb-rule-metadata-type-derived-from-metadata-type" memberOf="ref ext">
+        <ruleSection><title>Metadata types are derived from <qName>structures:MetadataType</qName></title>
+          <rule applicability="REF EXT" id="rule-metadata-type-derived-from-metadata-type" class="Constraint">
+            <pre><xmlBlurb id="xb-rule-metadata-type-derived-from-metadata-type" memberOf="ref ext">
 <sch:pattern>
   <sch:rule context="xs:complexType">
     <sch:let name="is-metadata-type" value="exists(@name[MACRO_NAME_IS_METADATA_TYPE_NAME(.)])"/>
-    <sch:let name="has-metadata-base-type" value="
-      exists(xs:complexContent[
+    <sch:let name="has-metadata-base-type" value="exists(xs:complexContent[
         exists(xs:*[local-name() = ('extension', 'restriction')
                     and exists(@base[MACRO_NAME_IS_METADATA_TYPE_NAME(.)])])])"/>
     <sch:assert test="$is-metadata-type = $has-metadata-base-type"
-      >A type MUST have a metadata type name if an only if it is derived from a metadata type.</sch:assert>
+      >A type MUST be a metadata type if and only if it is derived from a metadata type.</sch:assert>
   </sch:rule>
 </sch:pattern>
-              </xmlBlurb></pre>
-            </rule>
-            <p>Using the qualifier <code>Metadata</code> immediately identifies
-              a type as representing metadata.</p>
-          </ruleSection>
+            </xmlBlurb></pre>
+          </rule>
+
+          <p>A metadata type is derived from another metadata type, terminating in the base
+            type <qName>structures:MetadataType</qName>.  A type is easily identified as a metadata type by its
+            name, qualified with the term <code>Metadata</code>.</p>
+        </ruleSection>
 
       </section>
       <section><title>Metadata element declarations</title>
