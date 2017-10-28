@@ -5779,7 +5779,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
       <section>
         <title>Metadata</title>
 
-        <p>There are rules for use of metadata in instance in <ref idref="section-instance-metadata"/>.</p>
+        <p>There are rules for the use of metadata in instance in <ref idref="section-instance-metadata"/>.</p>
 
       <section>
         <title>Metadata types</title>
