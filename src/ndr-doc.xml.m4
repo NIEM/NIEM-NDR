@@ -6003,6 +6003,11 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
             element.</p></li>
       </ul>
 
+      <definition term="representation element declaration">
+        <p>A <strong>representation element declaration</strong> is an <termRef>element declaration</termRef>
+          that is abstract, and that has a {name} that ends in <q>Representation</q>.</p>
+      </definition>
+
       <ruleSection><title>Name of element that ends in <q>Representation</q> is abstract</title>
 	<rule applicability="REF EXT" id="el-representation-is-abstract" class="Constraint">
 	  <pre><xmlBlurb memberOf="ref ext" id="xb-el-representation-is-abstract">
@@ -6017,11 +6022,6 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 	</rule>
       </ruleSection>
     </section>
-
-    <definition term="representation element declaration">
-      <p>A <strong>representation element declaration</strong> is an <termRef>element declaration</termRef> that
-      is abstract, and that has a {name} that ends in <q>Representation</q>.</p>
-    </definition>
 
     <ruleSection><title>A substitution for a representation element declaration is a value for a type</title>
       <rule applicability="REF EXT" class="Interpretation">
