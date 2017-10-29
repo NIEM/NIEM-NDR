@@ -6183,8 +6183,9 @@ rather than their full meanings.</p>
         </tr>
       </table>
 
-      <p>Consistent, controlled, and documented abridged terms that are used frequently and/or tend to be lengthy
-        can support readability, clarity, and reduction of name length.</p>
+      <p>Consistent, controlled, and documented abridged terms that are commonly used in place of full terms can
+        support readability, clarity, and reduction of name length.</p>
+      
       </ruleSection>
 
       <section><title>Use of Acronyms, Initialisms, Abbreviations, and Jargon</title>
