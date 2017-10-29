@@ -6205,7 +6205,7 @@ rather than their full meanings.</p>
             <li><p>It is introduced into the schema document via an appinfo
                 element <qName>appinfo:LocalTerm</qName>.</p></li>
 
-            <li><p>It is used in the local name of a schema component within the schema document.</p></li>
+            <li><p>It may be used in the local name of a schema component within the schema document.</p></li>
           </ol>
         </definition>
 
