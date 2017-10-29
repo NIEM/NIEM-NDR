@@ -6282,8 +6282,11 @@ rather than their full meanings.</p>
 
       <p>Articles (e.g., a, an, the), conjunctions (e.g., and, or, but), and prepositions (e.g., at, by, for, from, in, of, to) are all disallowed in NIEM component names, unless they are required. For example, <code>PowerOfAttorneyCode</code> requires the preposition. These rules constrain slight variations in word forms and types to improve consistency and reduce potentially ambiguous or confusing component names.</p>
     </section>
-    <ruleSection><title>Component name follows pattern</title>
-      <p>Elements in NIEM-conformant schemas are given names that follow a specific pattern. This pattern comes from <ref idref="ISO11179-5"/>.</p>
+    <ruleSection><title>Element or attribute name follows pattern</title>
+
+      <p>Elements and attributes in NIEM-conformant schemas are given names that follow a specific pattern. This
+        pattern comes from <ref idref="ISO11179-5"/>.</p>
+
       <rule applicability="REF EXT" class="Constraint">
         <p>Except as specified elsewhere in this document, any element or attribute defined within the schema SHOULD have a name that takes the form:</p>
         <ul>
@@ -6295,7 +6298,9 @@ rather than their full meanings.</p>
           <li><p>A representation term (0 or 1).</p></li>
         </ul>
       </rule>
+
       <p>Consistent naming rules are helpful for users who wish to understand components with which they are unfamiliar, as well as for users to find components with known semantics. This rule establishes the basic structure for an element or attribute name, in line with the rules for names under <ref idref="ISO11179-5"/>. Note that many elements with complex type should not have a representation term.</p>
+
     </ruleSection>
     <section>
       <title>Object-class term</title>
