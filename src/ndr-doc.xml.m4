@@ -6354,7 +6354,7 @@ rather than their full meanings.</p>
       </ruleSection>
 
       <ruleSection>
-        <title>Order of qualifies is not significant</title>
+        <title>Order of qualifiers is not significant</title>
         <rule applicability="REF EXT" class="Constraint">
           <p>The order of qualifiers MUST NOT be used to differentiate names.</p>
         </rule>
