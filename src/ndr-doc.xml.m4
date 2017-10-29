@@ -5933,7 +5933,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
       to create a network of complex types with complex content and complex types with simple content that all
       substitute for a base type; the XML Schema syntax is complicated. Other alternatives each have their pros and cons.</p>
 
-      <p>To handle this need, NIEM has adopted the <q>Representation</q> pattern, in which a type has contains a
+      <p>To handle this need, NIEM has adopted the <q>Representation</q> pattern, in which a type contains a
         representation element, and the various representations for that type are in the substitution group for
         that representation element.</p>
 

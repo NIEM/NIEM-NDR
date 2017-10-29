@@ -68,7 +68,7 @@ case $command in
     #HELP:    usage: COMMAND_NAME cdiff $diff-args...
     cdiff ) PAGER=less git diff --word-diff=color "$@";;
         
-    #HELP:  rebuild: rebuild everything from nothing
+    #HELP:  rebuild: scrub & rebuild everything from nothing
     rebuild )
         (
             (( $# == 0 )) || fail "unexepected args $*"
@@ -81,12 +81,26 @@ case $command in
             make repo
         )
         ;;
-    #HELP:  html: Build the HTML doc ASAP
+
+    #HELP:  build: build everything & repo
+    build )
+        (
+            (( $# == 0 )) || fail "unexepected args $*"
+            cd "$(dirname "$0")"
+            make depend
+            make -j 8 all
+            make -j 8 valid
+            make clean-repo
+            make repo
+        )
+        ;;
+    #HELP:  html: Build the HTML doc after dependencies
     html )
         (
             (( $# == 0 )) || fail "unexepected args $*"
             cd "$(dirname "$0")"
-            make -j 8 depend=no tmp/ndr-doc.html
+            make depend
+            make -j 8 tmp/ndr-doc.html
         )
         ;;
     #HELP:  all:  Build all artifacts ASAP
