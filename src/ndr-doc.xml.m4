@@ -6690,6 +6690,14 @@ not be given the same name.</p></li>
         </rule>
       </ruleSection>
         </section>
+        <section>
+          <title>External adapters</title>
+
+          <p>The annotation attributes <qName>appinfo:externalImportIndicator</qName>
+            and <qName>appinfo:externalAdapterTypeIndicator</qName> document, in a machine-readable way, which
+            components are external (i.e., defined by schemas that are not NIEM-conformant), and which support
+            the use of external components.</p>
+          
       <ruleSection>
         <title>External import indicator annotates import</title>
         <rule applicability="REF EXT" id="rule-owner-of-appinfo-conformantindicator" class="Constraint">
@@ -6703,6 +6711,7 @@ not be given the same name.</p></li>
           </xmlBlurb></pre>
         </rule>
       </ruleSection>
+      
       <ruleSection>
         <title>External adapter type indicator annotates complex type</title>
         <rule applicability="REF EXT" id="rule-owner-of-appinfo-externaladaptertypeindicator" class="Constraint">
@@ -6716,6 +6725,8 @@ not be given the same name.</p></li>
           </xmlBlurb></pre>
         </rule>
       </ruleSection>
+</section>
+
       <section><title><qName>appinfo:appliesToTypes</qName> annotation</title>
         <ruleSection><title><qName>appinfo:appliesToTypes</qName> annotates metadata element</title>
           <rule applicability="REF EXT" id="rule-owner-of-appinfo-appliestotypes" class="Constraint">
