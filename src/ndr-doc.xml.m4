@@ -6554,12 +6554,11 @@ not be given the same name.</p></li>
       <p>XML Schema provides <em>application information</em> schema components to provide for automatic
         processing and machine-readable content for schemas, as described by
 
-          MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#application_information,3.13.2,XML Representation of Annotation Schema Components).
+        MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#application_information,3.13.2,XML Representation of Annotation Schema Components).
 
-        NIEM utilizes application information to convey information that is outside schema definition and outside
-        human-readable text definitions. NIEM uses application information to convey high-level data model
-        concepts and additional syntax to support the NIEM conceptual model and validation of NIEM-conformant XML
-        instances.</p>
+        XML Schema also allows the use of attributes (with namespaces other than the XML Schema namespace) to
+        carry additional information in schemas. NIEM uses these machine-readable annotations convey information
+        that is outside schema definition and outside human-readable text definitions.</p>
 
       <p>XML elements, attributes, and text content may appear as machine-readable annotations within an XML
         Schema document. The methods provided by XML Schema for machine-readable annotations are:</p>
