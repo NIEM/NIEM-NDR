@@ -6094,8 +6094,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
     </ruleSection>
 
       <p>Names of standards and specifications, in particular, tend to consist of series of discrete
-        numbers. Such names require some explicit separator to keep the values from running together. The
-        separator used within NIEM is the hyphen.</p>
+        numbers. Such names require some explicit separator to keep the values from running together.</p>
 
       <p>Names of NIEM components follow the rules of XML Schema, by <ref idref="is-schema-doc"/>. NIEM
         components also follow the rules specified herein for each type of XML Schema component.</p>
