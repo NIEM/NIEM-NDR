@@ -7546,7 +7546,7 @@ not be given the same name.</p></li>
           different sources, component data definitions should begin with a standard opening phrase, as defined
           below.</p>
 
-        <section><title>Element opening phrases</title>
+        <section><title>Element and attribute opening phrases</title>
 
         <ruleSection><title>Standard opening phrase for augmentation point element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-augmentation-point" class="Constraint">
@@ -7623,109 +7623,116 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for date element data definition</title>
+        <ruleSection><title>Standard opening phrase for date element or attribute data definition</title>
           <rule applicability="REF EXT" id="rule-sop-date" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-date">
 <sch:pattern>
-  <sch:rule context="xs:element[ends-with(@name, 'Date') and not(xs:boolean(@abstract) eq true())]
-                       /xs:annotation/xs:documentation[1]">
+  <sch:rule context="*[(self::xs:element or self::xs:attribute)
+                       and ends-with(@name, 'Date') and not(xs:boolean(@abstract) eq true())]
+                      /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (date|month|year)'))"
-      >The data definition for an element with a date representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) (date|month|year)...".</sch:report>
+      >The data definition for an element or attribute with a date representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) (date|month|year)...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for quantity element data definition</title>
+        <ruleSection><title>Standard opening phrase for quantity element or attribute data definition</title>
           <rule applicability="REF EXT" id="rule-sop-quantity" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-quantity">
 <sch:pattern>
-  <sch:rule context="xs:element[ends-with(@name, 'Quantity') and not(xs:boolean(@abstract) eq true())]
-                       /xs:annotation/xs:documentation[1]">
+  <sch:rule context="*[(self::xs:element or self::xs:attribute)
+                       and ends-with(@name, 'Quantity') and not(xs:boolean(@abstract) eq true())]
+                      /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (count|number)'))"
-      >The data definition for an element with a quantity representation term SHOULD begin with the standard opening phrase "An (optional adjectives) (count|number)...".</sch:report>
+      >The data definition for an element or attribute with a quantity representation term SHOULD begin with the standard opening phrase "An (optional adjectives) (count|number)...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for picture element data definition</title>
+        <ruleSection><title>Standard opening phrase for picture element or attribute data definition</title>
           <rule applicability="REF EXT" id="rule-sop-picture" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-picture">
 <sch:pattern>
-  <sch:rule context="xs:element[ends-with(@name, 'Picture') and not(xs:boolean(@abstract) eq true())]
-                       /xs:annotation/xs:documentation[1]">
+  <sch:rule context="*[(self::xs:element or self::xs:attribute)
+                       and ends-with(@name, 'Picture') and not(xs:boolean(@abstract) eq true())]
+                      /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (image|picture|photograph)'))"
-      >The data definition for an element with a picture representation term SHOULD begin with the standard opening phrase "An (optional adjectives) (image|picture|photograph)".</sch:report>
+      >The data definition for an element or attribute with a picture representation term SHOULD begin with the standard opening phrase "An (optional adjectives) (image|picture|photograph)".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for indicator element data definition</title>
+        <ruleSection><title>Standard opening phrase for indicator element or attribute data definition</title>
           <rule applicability="REF EXT" id="rule-sop-indicator" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-indicator">
 <sch:pattern>
-  <sch:rule context="xs:element[ends-with(@name, 'Indicator') and not(xs:boolean(@abstract) eq true())]
-                       /xs:annotation/xs:documentation[1]">
+  <sch:rule context="*[(self::xs:element or self::xs:attribute)]
+                       and ends-with(@name, 'Indicator') and not(xs:boolean(@abstract) eq true())]
+                      /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^true if .*; false (otherwise|if)'))"
-      >The data definition for an element with an indicator representation term SHOULD begin with the standard opening phrase "True if ...; false (otherwise|if)...".</sch:report>
+      >The data definition for an element or attribute with an indicator representation term SHOULD begin with the standard opening phrase "True if ...; false (otherwise|if)...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for identification element data definition</title>
+        <ruleSection><title>Standard opening phrase for identification element or attribute data definition</title>
           <rule applicability="REF EXT" id="rule-sop-identification" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-identification">
 <sch:pattern>
-  <sch:rule context="xs:element[ends-with(@name, 'Identification') and not(xs:boolean(@abstract) eq true())]
-                       /xs:annotation/xs:documentation[1]">
+  <sch:rule context="*[(self::xs:element or self::xs:attribute)
+                       and ends-with(@name, 'Identification') and not(xs:boolean(@abstract) eq true())]
+                      /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? identification'))"
-      >The data definition for an element with an identification representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) identification...".</sch:report>
+      >The data definition for an element or attribute with an identification representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) identification...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for name element data definition</title>
+        <ruleSection><title>Standard opening phrase for name element or attribute data definition</title>
           <rule applicability="REF EXT" id="rule-sop-name" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-name">
 <sch:pattern>
-  <sch:rule context="xs:element[ends-with(@name, 'Name') and not(xs:boolean(@abstract) eq true())]
-                       /xs:annotation/xs:documentation[1]">
+  <sch:rule context="*[(self::xs:element or self::xs:attribute)
+                       and ends-with(@name, 'Name') and not(xs:boolean(@abstract) eq true())]
+                      /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^(a|an)( .*)? name'))"
-      >The data definition for an element with a name representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) name...".</sch:report>
+      >The data definition for an element or attribute with a name representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) name...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for element data definition</title>
+        <ruleSection><title>Standard opening phrase for element or attribute data definition</title>
           <rule applicability="REF EXT" id="rule-sop-element" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-element">
 <sch:pattern>
-  <sch:rule context="xs:element[@name
-                                and not(ends-with(@name, 'Indicator'))
-                                and not(ends-with(@name, 'Augmentation'))
-                                and not(ends-with(@name, 'Metadata'))
-                                and not(xs:boolean(@abstract) eq true())]
-                       /xs:annotation/xs:documentation[1]">
+  <sch:rule context="*[(self::xs:element or self::xs:attribute)
+                       and @name
+                       and not(ends-with(@name, 'Indicator'))
+                       and not(ends-with(@name, 'Augmentation'))
+                       and not(ends-with(@name, 'Metadata'))
+                       and not(xs:boolean(@abstract) eq true())]
+                      /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^an? '))"
-      >The data definition for an element declaration SHOULD begin with the standard opening phrase "(A|An)".</sch:report>
+      >The data definition for an element or attribute declaration SHOULD begin with the standard opening phrase "(A|An)".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
