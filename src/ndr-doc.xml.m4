@@ -7542,6 +7542,10 @@ not be given the same name.</p></li>
 
       <section><title>Data definition opening phrases</title>
 
+        <p>In order to provide a more consistent voice across NIEM, a model built from requirements from many
+          different sources, component data definitions should begin with a standard opening phrase, as defined
+          below.</p>
+
         <section><title>Element opening phrases</title>
 
         <ruleSection><title>Standard opening phrase for augmentation point element</title>
