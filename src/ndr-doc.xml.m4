@@ -8504,11 +8504,25 @@ not be given the same name.</p></li>
           includes <qName >structures:id</qName > and other IDs that may be used within an XML document. Also,
           any value of <qName>structures:ref</qName> must also appear as the value of an ID.</p>
 
-        <p>By this rule, the following two XML fragments have the same meaning. First,
-          <ref idref="figure-example-ref-backward"/> shows a person object being expressed, followed by a
-          backwards reference to it. Second, <ref idref="figure-example-ref-forward"/> shows a person as a
-          forward reference to the person object that is expressed later, within the definition of a
-          witness. Both of these XML fragments have the same semantics.</p>
+        <p>By this rule, the following three XML fragments have a very similar meaning.  First,
+          <ref idref="figure-example-no-ref"/> shows a witness that is a role of a person.</p>
+
+        <figure id="figure-example-no-ref">
+          <title>Example with no reference</title>
+          <pre><xmlBlurb id="xb-example-no-ref">
+<j:Witness>
+  <nc:RoleOfPerson>
+    <nc:PersonName>
+      <nc:PersonFullName>John Doe</nc:PersonFullName>
+    </nc:PersonName>
+  </nc:RoleOfPerson>
+</j:Witness>              
+          </xmlBlurb></pre>
+        </figure>
+
+        <p><ref idref="figure-example-ref-backward"/> also expresses a witness object that is a role of a
+          person. It first expresses the person object, then the witness object as a role of a that person,
+          expressed as a reference back to the person.</p>
 
         <figure id="figure-example-ref-backward">
           <title>Example with a backward reference</title>
@@ -8523,6 +8537,10 @@ not be given the same name.</p></li>
 </j:Witness>
           </xmlBlurb></pre>
         </figure>
+
+        <p><ref idref="figure-example-ref-forward"/> shows a witness as a role of a person, with a separate
+          person object expressed as a forward reference to the person object that is expressed later, within the
+          definition of the witness.</p>
 
         <figure id="figure-example-ref-forward">
           <title>Example with a forward reference</title>
