@@ -7837,7 +7837,7 @@ not be given the same name.</p></li>
           <p>Two XML Schema documents MUST have the same value for
             attribute <local-name>targetNamespace</local-name> carried by the element <qName>xs:schema</qName>,
             and different values for attribute <local-name>version</local-name> carried by the
-            element <qName>xs:schema</qName> if and only if they are different views of the same set of
+            element <qName>xs:schema</qName> if and only if they are profiles of the same set of
             components.</p>
         </rule>
         </ruleSection>
