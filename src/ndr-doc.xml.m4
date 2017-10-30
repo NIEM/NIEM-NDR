@@ -7850,7 +7850,7 @@ not be given the same name.</p></li>
     </section>
 
     <section><title>Schema assembly</title>
-      <ruleSection><title>Reference schema imports reference schema</title>
+      <ruleSection><title>Reference schema document imports reference schema document</title>
         <rule applicability="SET" id="xs-import-consistent-with-schema" class="Constraint">
           <pre><xmlBlurb memberOf="set" id="xb-xs-import-consistent-with-schema">
 <sch:pattern>
@@ -7872,7 +7872,7 @@ not be given the same name.</p></li>
 
       </ruleSection>
 
-      <ruleSection><title>Extension schema document imports reference or extension schema</title>
+      <ruleSection><title>Extension schema document imports reference or extension schema document</title>
         <rule applicability="SET" id="rule-ext-imports-ext" class="Constraint">
           <pre><xmlBlurb memberOf="set" id="xb-rule-ext-imports-ext">
 <sch:pattern>
