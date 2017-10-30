@@ -7548,7 +7548,7 @@ not be given the same name.</p></li>
 
         <section><title>Element opening phrases</title>
 
-        <ruleSection><title>Standard opening phrase for augmentation point element</title>
+        <ruleSection><title>Standard opening phrase for augmentation point element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-augmentation-point" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-augmentation-point">
 <sch:pattern>
@@ -7562,7 +7562,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for augmentation element</title>
+        <ruleSection><title>Standard opening phrase for augmentation element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-augmentation" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-augmentation">
 <sch:pattern>
@@ -7578,7 +7578,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for metadata element</title>
+        <ruleSection><title>Standard opening phrase for metadata element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-metadata" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-metadata">
 <sch:pattern>
@@ -7593,7 +7593,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for association element</title>
+        <ruleSection><title>Standard opening phrase for association element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-association" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-association">
 <sch:pattern>
@@ -7608,7 +7608,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for abstract element</title>
+        <ruleSection><title>Standard opening phrase for abstract element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-abstract" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-abstract">
 <sch:pattern>
@@ -7623,7 +7623,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for date element</title>
+        <ruleSection><title>Standard opening phrase for date element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-date" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-date">
 <sch:pattern>
@@ -7638,7 +7638,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for quantity element</title>
+        <ruleSection><title>Standard opening phrase for quantity element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-quantity" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-quantity">
 <sch:pattern>
@@ -7653,7 +7653,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for picture element</title>
+        <ruleSection><title>Standard opening phrase for picture element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-picture" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-picture">
 <sch:pattern>
@@ -7668,7 +7668,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for indicator element</title>
+        <ruleSection><title>Standard opening phrase for indicator element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-indicator" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-indicator">
 <sch:pattern>
@@ -7683,7 +7683,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for identification element</title>
+        <ruleSection><title>Standard opening phrase for identification element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-identification" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-identification">
 <sch:pattern>
@@ -7698,7 +7698,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for name element</title>
+        <ruleSection><title>Standard opening phrase for name element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-name" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-name">
 <sch:pattern>
@@ -7713,7 +7713,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for element</title>
+        <ruleSection><title>Standard opening phrase for element data definition</title>
           <rule applicability="REF EXT" id="rule-sop-element" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-element">
 <sch:pattern>
@@ -7735,7 +7735,7 @@ not be given the same name.</p></li>
         </section>
         <section><title>Complex type opening phrases</title>
 
-        <ruleSection><title>Standard opening phrase for association type</title>
+        <ruleSection><title>Standard opening phrase for association type data definition</title>
           <rule applicability="REF EXT" id="rule-sop-association-type" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-association-type">
 <sch:pattern>
@@ -7749,7 +7749,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for augmentation type</title>
+        <ruleSection><title>Standard opening phrase for augmentation type data definition</title>
           <rule applicability="REF EXT" id="rule-sop-augmentation-type" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-augmentation-type">
 <sch:pattern>
@@ -7764,7 +7764,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for metadata type</title>
+        <ruleSection><title>Standard opening phrase for metadata type data definition</title>
           <rule applicability="REF EXT" id="rule-sop-metadata-type" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-metadata-type">
 <sch:pattern>
@@ -7779,7 +7779,7 @@ not be given the same name.</p></li>
           </rule>
         </ruleSection>
 
-        <ruleSection><title>Standard opening phrase for complex type</title>
+        <ruleSection><title>Standard opening phrase for complex type data definition</title>
           <rule applicability="REF EXT" id="rule-sop-complex-type" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-complex-type">
 <sch:pattern>
@@ -7795,7 +7795,7 @@ not be given the same name.</p></li>
 
         </section>
 
-        <ruleSection><title>Standard opening phrase for simple type</title>
+        <ruleSection><title>Standard opening phrase for simple type data definition</title>
           <rule applicability="REF EXT" id="rule-sop-simple-type" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-simple-type">
 <sch:pattern>
