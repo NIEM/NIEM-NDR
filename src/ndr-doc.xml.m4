@@ -7555,7 +7555,7 @@ not be given the same name.</p></li>
   <sch:rule context="xs:element[ends-with(@name, 'AugmentationPoint')]/xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(starts-with(lower-case(normalize-space(.)), 'an augmentation point '))"
-      >The data definition for an augmentation point element SHOULD begin with standard opening phrase "an augmentation point...".</sch:report>
+      >The data definition for an augmentation point element SHOULD begin with standard opening phrase "An augmentation point...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7571,7 +7571,7 @@ not be given the same name.</p></li>
         test="every $phrase
               in ('supplements ', 'additional information about ')
               satisfies not(starts-with(lower-case(normalize-space(.)), $phrase))"
-      >The data definition for an augmentation element SHOULD begin with the standard opening phrase "supplements..." or "additional information about...".</sch:report>
+      >The data definition for an augmentation element SHOULD begin with the standard opening phrase "Supplements..." or "Additional information about...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7586,7 +7586,7 @@ not be given the same name.</p></li>
                                 and not(xs:boolean(@abstract) eq true())]/xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '(metadata about|information that further qualifies)'))"
-      >The data definition for a metadata element SHOULD begin with the standard opening phrase "metadata about..." or "information that further qualifies...".</sch:report>
+      >The data definition for a metadata element SHOULD begin with the standard opening phrase "Metadata about..." or "Information that further qualifies...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7601,7 +7601,7 @@ not be given the same name.</p></li>
                                 and not(xs:boolean(@abstract) eq true())]/xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (relationship|association)'))"
-      >The data definition for an association element that is not abstract SHOULD begin with the standard opening phrase "an (optional adjectives) (relationship|association)...".</sch:report>
+      >The data definition for an association element that is not abstract SHOULD begin with the standard opening phrase "An (optional adjectives) (relationship|association)...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7616,7 +7616,7 @@ not be given the same name.</p></li>
                        and not(ends-with(@name, 'AugmentationPoint'))]/xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(starts-with(lower-case(normalize-space(.)), 'a data concept'))"
-      >The data definition for an abstract element SHOULD begin with the standard opening phrase "a data concept...".</sch:report>
+      >The data definition for an abstract element SHOULD begin with the standard opening phrase "A data concept...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7631,7 +7631,7 @@ not be given the same name.</p></li>
                        /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (date|month|year)'))"
-      >The data definition for an element with a date representation term SHOULD begin with the standard opening phrase "a(n?) (optional adjectives) (date|month|year)...".</sch:report>
+      >The data definition for an element with a date representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) (date|month|year)...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7646,7 +7646,7 @@ not be given the same name.</p></li>
                        /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (count|number)'))"
-      >The data definition for an element with a quantity representation term SHOULD begin with the standard opening phrase "an (optional adjectives) (count|number)...".</sch:report>
+      >The data definition for an element with a quantity representation term SHOULD begin with the standard opening phrase "An (optional adjectives) (count|number)...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7661,7 +7661,7 @@ not be given the same name.</p></li>
                        /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (image|picture|photograph)'))"
-      >The data definition for an element with a picture representation term SHOULD begin with the standard opening phrase "an (optional adjectives) (image|picture|photograph)".</sch:report>
+      >The data definition for an element with a picture representation term SHOULD begin with the standard opening phrase "An (optional adjectives) (image|picture|photograph)".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7676,7 +7676,7 @@ not be given the same name.</p></li>
                        /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^true if .*; false (otherwise|if)'))"
-      >The data definition for an element with an indicator representation term SHOULD begin with the standard opening phrase "true if ...; false (otherwise|if)...".</sch:report>
+      >The data definition for an element with an indicator representation term SHOULD begin with the standard opening phrase "True if ...; false (otherwise|if)...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7691,7 +7691,7 @@ not be given the same name.</p></li>
                        /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? identification'))"
-      >The data definition for an element with an identification representation term SHOULD begin with the standard opening phrase "(a|an) (optional adjectives) identification...".</sch:report>
+      >The data definition for an element with an identification representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) identification...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7706,7 +7706,7 @@ not be given the same name.</p></li>
                        /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^(a|an)( .*)? name'))"
-      >The data definition for an element with a name representation term SHOULD begin with the standard opening phrase "(a|an) (optional adjectives) name...".</sch:report>
+      >The data definition for an element with a name representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) name...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7725,7 +7725,7 @@ not be given the same name.</p></li>
                        /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^an? '))"
-      >The data definition for an element declaration SHOULD begin with the standard opening phrase "(a|an)".</sch:report>
+      >The data definition for an element declaration SHOULD begin with the standard opening phrase "(A|An)".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7742,7 +7742,7 @@ not be given the same name.</p></li>
   <sch:rule context="xs:complexType[ends-with(@name, 'AssociationType')]/xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^a data type for (a relationship|an association)'))"
-      >The data definition for an association type SHOULD begin with the standard opening phrase "a data type for (a relationship|an association)...".</sch:report>
+      >The data definition for an association type SHOULD begin with the standard opening phrase "A data type for (a relationship|an association)...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7757,7 +7757,7 @@ not be given the same name.</p></li>
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)),
                           '^a data type (that supplements|for additional information about)'))"
-      >The data definition for an augmentation type SHOULD begin with the standard opening phrase "a data type (that supplements|for additional information about)...".</sch:report>
+      >The data definition for an augmentation type SHOULD begin with the standard opening phrase "A data type (that supplements|for additional information about)...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7772,7 +7772,7 @@ not be given the same name.</p></li>
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)),
                           '^a data type for (metadata about|information that further qualifies)'))"
-      >The data definition for a metadata type SHOULD begin with the standard opening phrase "a data type for (metadata about|information that further qualifies)...".</sch:report>
+      >The data definition for a metadata type SHOULD begin with the standard opening phrase "A data type for (metadata about|information that further qualifies)...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7786,7 +7786,7 @@ not be given the same name.</p></li>
   <sch:rule context="xs:complexType/xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^a data type'))"
-      >The data definition for a complex type SHOULD begin with the standard opening phrase "a data type...".</sch:report>
+      >The data definition for a complex type SHOULD begin with the standard opening phrase "A data type...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -7802,7 +7802,7 @@ not be given the same name.</p></li>
   <sch:rule context="xs:simpleType/xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
         test="not(matches(lower-case(normalize-space(.)), '^a data type'))"
-      >The data definition for a simple type SHOULD begin with a standard opening phrase "a data type...".</sch:report>
+      >The data definition for a simple type SHOULD begin with a standard opening phrase "A data type...".</sch:report>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
