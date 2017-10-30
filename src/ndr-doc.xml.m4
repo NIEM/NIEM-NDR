@@ -7015,7 +7015,7 @@ not be given the same name.</p></li>
             variety of methods, including CSV spreadsheets.</p>
 
           <ruleSection>
-            <title>Name of a code simple type has standard suffix</title>
+            <title>Name of a code simple type ends in <q>CodeSimpleType</q></title>
 
             <rule applicability="REF EXT" id="code-st-name" class="Constraint">
               <pre><xmlBlurb memberOf="ref ext" id="xb-code-st-name">
