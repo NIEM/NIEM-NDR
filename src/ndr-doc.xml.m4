@@ -3561,7 +3561,7 @@
           </ruleSection>
         </section>
       </section>
-      <section>
+      <section id="section-profile-notation-declaration">
         <title>Notation declaration</title>
 
         <ruleSection>
@@ -3585,7 +3585,7 @@
     <section>
       <title>Model group components</title>
 
-      <section>
+      <section id="section-profile-model-group">
         <title>Model group</title>
 
         <p>Complex content definitions in XML Schema use model group schema
@@ -3798,7 +3798,7 @@
 
       </section>
 
-      <section>
+      <section id="section-profile-wildcard">
         <title>Wildcard</title>
         <ruleSection>
           <title>No use of <qName>xs:any</qName></title>
@@ -3840,7 +3840,7 @@
 
       </section>
     </section>
-    <section>
+    <section id="section-profile-identity-constraint">
       <title>Identity-constraint definition components</title>
 
       <p>XML Schema provides NIEM with the ability to apply uniqueness
@@ -3897,7 +3897,8 @@
 
     </section>
     <section><title>Group definition components</title>
-      <section><title>Model group definition</title>
+      <section id="section-profile-model-group-definitions">
+        <title>Model group definition</title>
         <ruleSection>
           <title>No use of <qName>xs:group</qName></title>
           <rule applicability="REF EXT" id="no-xs-group" class="Constraint">
@@ -3921,7 +3922,7 @@
         </ruleSection>
       </section>
 
-      <section>
+      <section id="section-profile-attribute-group-definition">
         <title>Attribute group definition</title>
 
         <ruleSection>
@@ -7299,11 +7300,30 @@ not be given the same name.</p></li>
         </ruleSection>
 
       </section>
-      <section><title>Notation declaration</title></section>
+      <section>
+        <title>Notation declaration</title>
+
+        <p>NIEM does not define any additional features relating to notation declarations. This section is present
+          to maintain with MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#concepts-data-model,2.2,XML
+          Schema Abstract Data Model), See <ref idref="section-profile-notation-declaration"/> for rules related
+          to notation declarations.</p>
+        
+      </section>
     </section>
 
-    <section><title>Model group components</title>
-      <section><title>Model group</title></section>
+    <section>
+      <title>Model group components</title>
+      
+      <section>
+        <title>Model group</title>
+
+        <p>NIEM does not define any additional features relating to model groups. This section is present to
+          maintain with MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#concepts-data-model,2.2,XML Schema
+          Abstract Data Model), See <ref idref="section-profile-model-group"/> for rules related to model
+          groups.</p>
+
+      </section>
+      
       <section><title>Particle</title>
         <section><title>Element use</title>
 
@@ -7407,12 +7427,46 @@ not be given the same name.</p></li>
       </section>
 
       </section>
-      <section><title>Wildcard</title></section>
+      <section>
+        <title>Wildcard</title>
+        
+        <p>NIEM does not define any additional features relating to wildcards. This section is present to
+          maintain with MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#concepts-data-model,2.2,XML Schema
+          Abstract Data Model), See <ref idref="section-profile-wildcard"/> for rules related to wildcards.</p>
+
+      </section>
     </section>
-    <section><title>Identity-constraint definition components</title></section>
+    <section>
+      <title>Identity-constraint definition components</title>
+
+        <p>NIEM does not define any additional features relating to identity-constraint definition components. This section
+          is present to maintain with
+          MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#concepts-data-model,2.2,XML Schema Abstract Data
+          Model), See <ref idref="section-profile-identity-constraint"/> for rules related to identity-constraint
+          definition components.</p>
+      
+    </section>
     <section><title>Group definition components</title>
-      <section><title>Model group definition</title></section>
-      <section><title>Attribute group definition</title></section>
+      <section>
+        <title>Model group definition</title>
+
+        <p>NIEM does not define any additional features relating to model group definitions. This section is
+          present to maintain with
+          MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#concepts-data-model,2.2,XML Schema Abstract Data
+          Model), See <ref idref="section-profile-model-group-definitions"/> for rules related to model group
+          definitions.</p>
+        
+      </section>
+      <section>
+        <title>Attribute group definition</title>
+
+        <p>NIEM does not define any additional features relating to attribute group definitions. This section is
+          present to maintain with
+          MACRO_REF_EXTERNAL(XMLSchema-1,MACRO_HREF_XML_SCHEMA_1#concepts-data-model,2.2,XML Schema Abstract Data
+          Model), See <ref idref="section-profile-attribute-group-definition"/> for rules related to attribute
+          group definitions.</p>
+
+      </section>
     </section>
 
     <section><title>Annotation components</title>
