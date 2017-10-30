@@ -8150,12 +8150,14 @@ not be given the same name.</p></li>
                 type <qName>xs:ID</qName> that also has the value <q>Bob</q>. NIEM provides
                 attribute <qName>structures:id</qName> of type <qName>xs:ID</qName> to act as a standard local
                 identifier.</p></li>
+
             <li><p>Within an XML document, the value of any attribute of type <qName>xs:IDREF</qName> must appear
                 somewhere within the document as the value of some attribute of type <qName>xs:ID</qName>. For
                 example, if an attribute of type <qName>xs:IDREF</qName> has the value <q>Bob</q>, then somewhere
                 within that XML document there must be an attribute of type <qName>xs:ID</qName> with the
-                value <q>Bob</q>. NIEM provides attribute <qName>structures:ref</qName> as a standard local
-                reference.</p></li>
+                value <q>Bob</q>. NIEM provides attribute <qName>structures:ref</qName> of
+                type <qName>xs:IDREF</qName> as a standard local reference.</p></li>
+            
             <li><p>These constraints, that IDs must be unique, and that IDREFs must refer to IDs, are XML
                 constraints, not unique to NIEM.</p>
             </li>
