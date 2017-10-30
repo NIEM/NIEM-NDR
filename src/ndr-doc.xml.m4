@@ -8473,7 +8473,7 @@ not be given the same name.</p></li>
         <title>Reference and content elements have same meaning</title>
 
         <p>An important aspect of the use of nested elements, ref-to-id references, and URI references, is that
-          they all have the same meaning. Expressing a relationship via a nested element, versus an ref-to-id
+          they all have the same meaning. Expressing a relationship as a nested element, versus as a ref-to-id
           reference is merely for convenience and ease of serialization. There is no change in meaning or
           semantics between relationships expressed by sub-elements versus relationships expressed
           by <qName>structures:ref</qName> or <qName>structures:uri</qName>.</p>
