@@ -6841,16 +6841,16 @@ not be given the same name.</p></li>
       <p>The structures namespace is a single namespace, separate from namespaces that define NIEM-conformant
       data. This document refers to this content via the prefix <code>structures</code>.</p>
 
-      <ruleSection><title>Use structures as specified</title>
+      <ruleSection><title>Use structures consistent with specification</title>
 
-      <rule applicability="REF EXT INS" class="Constraint">
-        <p>The schema or instance MUST use content within the NIEM <code>structures</code> namespace as specified
-          in this document and ONLY as specified by this document.</p>
+      <rule applicability="REF EXT INS SET" class="Constraint">
+        <p>Any schema or instance MUST use the NIEM <termRef>structures namespace</termRef> consistent with the
+          schema as it is defined in <ref idref="section-include-structures-xsd"/>.</p>
       </rule>
 
-      <p>This rule further enforces uniformity and consistency by mandating use of the
-        NIEM <code>structures</code> namespace as is, without modification. Users are not allowed to insert
-        types, attributes, etc. that are not specified by this document.</p>
+      <p>This rule further enforces uniform and consistent use of the NIEM <code>structures</code> namespace,
+        without addition. Users are not allowed to insert types, attributes, etc. that are not specified by this
+        document. However, users may profile the structures namespace, as needed.</p>
 
       </ruleSection>
     </section>
