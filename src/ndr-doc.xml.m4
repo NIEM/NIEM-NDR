@@ -8777,6 +8777,11 @@ not be given the same name.</p></li>
     <reference id="ClarkNS">
       <p>Clark, J. <q>XML Namespaces</q>, 4 February 1999. Available from <link>http://www.jclark.com/xml/xmlns.htm</link>.</p>
     </reference>
+    <reference id="code-lists-spec" label="Code Lists">
+      <p>Webb Roberts. <q>NIEM Code Lists Specification.</q> NIEM Technical Architecture Committee (NTAC), June
+      20, 2016. Available from <link>MACRO_HREF_CODE_LISTS</link>.
+</p>
+    </reference>
     <reference id="ConfReq">
       <p>Lynne Rosenthal, and Mark Skall, eds. <q>Conformance Requirements for Specifications v1.0.</q> The Organization for the Advancement of Structured Information Standards (OASIS), March 15, 2002. <link>https://www.oasis-open.org/committees/download.php/305/conformance_requirements-v1.pdf</link>.</p>
     </reference>
@@ -8789,19 +8794,14 @@ not be given the same name.</p></li>
     <reference id="ISO11179-5" label="ISO 11179-5">
       <p><q>ISO/IEC 11179-5:2005, Information technology <char name="mdash"/> Metadata registries (MDR) <char name="mdash"/> Part 5: Naming and identification principles</q>. Available from <link>http://standards.iso.org/ittf/PubliclyAvailableStandards/c035347_ISO_IEC_11179-5_2005(E).zip</link>.</p>
     </reference>
-    <reference id="JSONLD" label="JSON LD">
-      <p>Manu Sporny, Dave Longley, Gregg Kellogg, Markus Lanthaler, and Niklas Lindstrom. <q>JSON-LD 1.0, A JSON-Based Serialization for Linked Data, W3C Recommendation.</q> Edited by Manu Sporny, Gregg Kellogg, and Markus Lanthaler. W3C, January 16, 2014. <link></link>MACRO_HREF_JSON_LD.</p>
-    </reference>
     <reference id="JLS">
       <p>James Gosling, Bill Joy, Guy Steele, Gilad Bracha, and Alex Buckley. <q>The Java Language Specification, Java SE 8 Edition.</q> Oracle Corp, March 3, 2014. <link>http://docs.oracle.com/javase/specs/jls/se8/html/</link>.</p>
     </reference>
+    <reference id="JSONLD" label="JSON LD">
+      <p>Manu Sporny, Dave Longley, Gregg Kellogg, Markus Lanthaler, and Niklas Lindstrom. <q>JSON-LD 1.0, A JSON-Based Serialization for Linked Data, W3C Recommendation.</q> Edited by Manu Sporny, Gregg Kellogg, and Markus Lanthaler. W3C, January 16, 2014. <link></link>MACRO_HREF_JSON_LD.</p>
+    </reference>
     <reference id="N-ary">
       <p><q>Defining N-ary Relations on the Semantic Web</q>, W3C Working Group Note, 12 April 2006. Available from <link>MACRO_HREF_NARY/</link>.</p>
-    </reference>
-    <reference id="code-lists-spec" label="Code Lists">
-      <p>Webb Roberts. <q>NIEM Code Lists Specification.</q> NIEM Technical Architecture Committee (NTAC), June
-      20, 2016. Available from <link>MACRO_HREF_CODE_LISTS</link>.
-</p>
     </reference>
     <reference id="OED">
       <p><q>Oxford English Dictionary, Third Edition</q>, Oxford University Press, November 2010. <link>http://dictionary.oed.com/</link>.</p>
@@ -8809,19 +8809,11 @@ not be given the same name.</p></li>
     <reference id="RDFConcepts" label="RDF Concepts">
       <p>Richard Cyganiak, David Wood, and Markus Lanthaler, eds. <q>RDF 1.1 Concepts and Abstract Syntax.</q> The World Wide Web Consortium (W3C), February 25, 2014. <link>MACRO_HREF_RDF_CONCEPTS</link>.</p>
     </reference>
-    <!--
-    <reference id="RDFPrimer" label="RDF Primer">
-      <p>Guus Schreiber, and Yves Raimond, eds. <q>RDF 1.1 Primer.</q> W3C, February 25, 2014. <link>MACRO_HREF_RDF_PRIMER</link>.</p>
-    </reference>
-    <reference id="RDFSchema" label="RDF Schema">
-      <p>Dan Brickley, and R.V. Guha, eds. <q>RDF Schema 1.1.</q> The World Wide Web Consortium (W3C), February 25, 2014. <link>MACRO_HREF_RDF_SCHEMA</link>.</p>
-    </reference>
-    <reference id="RDFSemantics" label="RDF Semantics">
-      <p>Patrick J. Hayes, and Peter F. Patel-Schneider, eds. <q>RDF 1.1 Semantics.</q> The World Wide Web Consortium (W3C), February 25, 2014. <link>MACRO_HREF_RDF_SEMANTICS</link>.</p>
-    </reference>
--->
     <reference id="RFC3986" label="RFC 3986">
       <p>Berners-Lee, T., et al. <q>Uniform Resource Identifier (URI): Generic Syntax</q>, Request for Comments 3986, January 2005. Available from <link>MACRO_HREF_RFC_3986</link>.</p>
+    </reference>
+    <reference id="Schematron">
+      <p><q>ISO/IEC STANDARD 19757-3: Information technology <char name="mdash"/> Document Schema Definition Languages (DSDL) Part 3: Rule-based validation <char name="mdash"/> Schematron</q>, ISO/IEC, 1 June 2006. Retrieved from <link>http://standards.iso.org/ittf/PubliclyAvailableStandards/c040833_ISO_IEC_19757-3_2006(E).zip</link>.</p>
     </reference>
     <reference id="XML">
       <p><q>Extensible Markup Language (XML) 1.0 (Fourth Edition)</q>, W3C Recommendation, 16 August 2006. Available from <link>MACRO_HREF_XML</link>.</p>
@@ -8838,14 +8830,11 @@ not be given the same name.</p></li>
     <reference id="XMLNamespacesErrata" label="XML Namespaces Errata">
       <p><q>Namespaces in XML Errata</q>, 6 December 2002. Available from <link>http://www.w3.org/XML/xml-names-19990114-errata</link>.</p>
     </reference>
-    <reference id="XMLSchema-1" label="XML Schema Structures">
-      <p><q>XML Schema Part 1: Structures Second Edition</q>, W3C Recommendation, 28 October 2004. Available from <link>MACRO_HREF_XML_SCHEMA_1</link>.</p>
-    </reference>
     <reference id="XMLSchema-2" label="XML Schema Datatypes">
       <p><q>XML Schema Part 2: Datatypes Second Edition</q>, W3C Recommendation, 28 October 2004. Available at <link>MACRO_HREF_XML_SCHEMA_2</link>.</p>
     </reference>
-    <reference id="Schematron">
-      <p><q>ISO/IEC STANDARD 19757-3: Information technology <char name="mdash"/> Document Schema Definition Languages (DSDL) Part 3: Rule-based validation <char name="mdash"/> Schematron</q>, ISO/IEC, 1 June 2006. Retrieved from <link>http://standards.iso.org/ittf/PubliclyAvailableStandards/c040833_ISO_IEC_19757-3_2006(E).zip</link>.</p>
+    <reference id="XMLSchema-1" label="XML Schema Structures">
+      <p><q>XML Schema Part 1: Structures Second Edition</q>, W3C Recommendation, 28 October 2004. Available from <link>MACRO_HREF_XML_SCHEMA_1</link>.</p>
     </reference>
     <reference id="XPath2" label="XPath 2">
       <p>Berglund, Anders, Scott Boag, Don Chamberlin, Mary F. Fern<char name="aacute"/>ndez, Michael Kay, Jonathan Robie, and J<char name="eacute"/>r<char name="ocirc"/>me Sim<char name="eacute"/>on. <q>XML Path Language (XPath) 2.0 (Second Edition)</q>, W3C Recommendation, 3 January 2011. <link>http://www.w3.org/TR/2010/REC-xpath20-20101214/</link>.</p>
