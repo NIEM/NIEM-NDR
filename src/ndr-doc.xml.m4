@@ -5870,6 +5870,21 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
             </rule>
           </ruleSection>
 
+          <p><ref idref="figure-sample-applies-to-types"/> shows an example
+            of <qName>appinfo:appliesToTypes</qName>, defining a metadata element that is applicable to all
+            objects and all associations.</p>
+
+      <figure id="figure-sample-applies-to-types">
+        <title>Sample use of <qName>appinfo:appliesToTypes</qName></title>
+        <pre><xmlBlurb id="xb-figure-sample-applies-to-types">
+<xs:element name="Metadata" type="nc:MetadataType" nillable="true"
+    appinfo:appliesToTypes="structures:ObjectType structures:AssociationType">
+  <xs:annotation>
+    <xs:documentation>Information that further qualifies primary data; data about data.</xs:documentation>
+  </xs:annotation>
+</xs:element>
+        </xmlBlurb></pre>
+      </figure>
 
         </section>
         </section>
@@ -8614,12 +8629,12 @@ not be given the same name.</p></li>
       <p>An instance would not be valid XML if the <qName>structures:metadata</qName> or <qName>structures:relationshipMetadata</qName> attributes contained references for which there were no defined IDs. The instance would not be NIEM-conformant if the references were not to IDs defined with the <qName>structures:id</qName> attribute.</p>
 
       <p>Application of metadata to a type or element to which it is not applicable is not NIEM-conformant. A
-      metadata element may be labeled as applicable to multiple elements via
-      attribute <qName>appinfo:appliesToElements</qName>, or to multiple types via
-      attribute <qName>appinfo:appliesToTypes</qName>. In either case it may apply to an instance of any of the
-      listed elements or types. A metadata element with neither
-      attribute <qName>appinfo:appliesToElements</qName> nor attribute <qName>appinfo:appliesToTypes</qName> may
-      be applied to any element of any type.</p>
+        metadata element may be labeled as applicable to multiple elements via
+        attribute <qName>appinfo:appliesToElements</qName>, or to multiple types via
+        attribute <qName>appinfo:appliesToTypes</qName>. In either case it may apply to an instance of any of the
+        listed elements or types. For an example, see <ref idref="figure-sample-applies-to-types"/>. A metadata
+        element with neither attribute <qName>appinfo:appliesToElements</qName> nor
+        attribute <qName>appinfo:appliesToTypes</qName> may be applied to any element of any type.</p>
 
       <ruleSection><title>Metadata applies to referring entity</title>
         <rule applicability="INS" class="Interpretation">
