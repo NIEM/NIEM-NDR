@@ -7675,7 +7675,7 @@ not be given the same name.</p></li>
           <rule applicability="REF EXT" id="rule-sop-indicator" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-rule-sop-indicator">
 <sch:pattern>
-  <sch:rule context="*[(self::xs:element or self::xs:attribute)]
+  <sch:rule context="*[(self::xs:element or self::xs:attribute)
                        and ends-with(@name, 'Indicator') and not(xs:boolean(@abstract) eq true())]
                       /xs:annotation/xs:documentation[1]">
     <sch:report role="warning"
