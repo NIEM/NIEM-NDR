@@ -718,7 +718,7 @@
       </section>
       <section>
         <title>XML Namespaces terminology</title>
-        <p>This document uses XML Namespaces as defined by <ref idref="XMLNamespaces"/> and <ref idref="XMLNamespacesErrata"/>.</p>
+        <p>This document uses XML Namespaces as defined by <ref idref="XMLNamespaces"/>.</p>
       </section>
 
       <section>
@@ -2035,7 +2035,7 @@
     <section>
       <title>Conformance to XML Namespaces</title>
 
-      <p>The XML namespaces specification and errata define correct use of XML namespaces; NIEM-conformant XML
+      <p>The XML namespaces specification defines correct use of XML namespaces; NIEM-conformant XML
         artifacts (instance documents and schema documents) must use namespaces properly.</p>
 
       <ruleSection><title>Document uses XML namespaces properly</title>
@@ -2045,7 +2045,7 @@
       </rule>
 
       <p>The terms <em>namespace-well-formed</em> and <em>namespace-valid</em> are normatively defined by
-        <ref idref="XMLNamespaces"/> and <ref idref="XMLNamespacesErrata"/>.</p>
+        <ref idref="XMLNamespaces"/>.</p>
       </ruleSection>
 
     </section>
@@ -8826,9 +8826,6 @@ not be given the same name.</p></li>
     </reference>
     <reference id="XMLNamespaces" label="XML Namespaces">
       <p><q>Namespaces in XML 1.0 (Third Edition)</q>, W3C Recommendation, 8 December 2009. Available from <link>MACRO_HREF_XML_NAMESPACES</link>.</p>
-    </reference>
-    <reference id="XMLNamespacesErrata" label="XML Namespaces Errata">
-      <p><q>Namespaces in XML Errata</q>, 6 December 2002. Available from <link>http://www.w3.org/XML/xml-names-19990114-errata</link>.</p>
     </reference>
     <reference id="XMLSchema-2" label="XML Schema Datatypes">
       <p><q>XML Schema Part 2: Datatypes Second Edition</q>, W3C Recommendation, 28 October 2004. Available at <link>MACRO_HREF_XML_SCHEMA_2</link>.</p>
