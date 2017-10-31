@@ -127,6 +127,7 @@ PersonProfessionalCertificateText
 PersonSightedIndicator
 PersonType
 PowerOfAttorneyCode
+ProbabilityPercent
 QName
 RDF
 RDFS
