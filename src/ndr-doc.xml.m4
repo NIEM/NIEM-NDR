@@ -5844,7 +5844,8 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 
             <p>Each metadata element declaration may be applied to a set of elements. Any element to which a
               metadata element may be validly applied is called an <q>applicable element</q> for the metadata
-              element.</p>
+              element. A metadata element that does not explicitly specify applicability information may be
+              applied to any NIEM-conformant element.</p>
 
             <rule applicability="REF EXT SET" class="Interpretation" id="rule-metadata-applicable-elements">
 
