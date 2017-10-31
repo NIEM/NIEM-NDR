@@ -8593,7 +8593,7 @@ not be given the same name.</p></li>
   </nc:ReportedDate>
 </nc:Metadata>
 <nc:Metadata structures:id="k25">
-  <nc:ProbabilityPercent>0.25</nc:ProbabilityPercent>
+  <nc:ProbabilityPercent>25</nc:ProbabilityPercent>
 </nc:Metadata>
           </xmlBlurb></pre>
 
