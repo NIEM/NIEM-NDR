@@ -6503,12 +6503,12 @@ not be given the same name.</p></li>
             <tr>
               <td></td>
               <td>MACRO_REPRESENTATION_TERM_RATE</td>
-              <td>A representation of a ratio where the two units are not included.</td>
+              <td>A relative speed of change or progress.</td>
             </tr>
             <tr>
               <td></td>
               <td>MACRO_REPRESENTATION_TERM_PERCENT</td>
-              <td>A representation of a ratio in which the two units are the same.</td>
+              <td>A representation of a unitless ratio, expressed as parts of a hundred, with 100 percent representing a ratio of 1 to 1.</td>
             </tr>
             <tr>
               <td>MACRO_REPRESENTATION_TERM_QUANTITY</td>
