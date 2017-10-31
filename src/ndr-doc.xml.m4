@@ -8669,7 +8669,7 @@ not be given the same name.</p></li>
 
 
       <ruleSection>
-        <title>Value of <qName>structures:relationshipMetadata</qName> refers to value of <qName>structures:id</qName></title>
+        <title>Values of <qName>structures:relationshipMetadata</qName> refer to values of <qName>structures:id</qName></title>
         <rule applicability="INS" class="Constraint">
           <p>Given that each IDREF in the value of an attribute <qName>structures:relationshipMetadata</qName>
             must match the value of an ID attribute on some element in the XML document, that ID attribute MUST
