@@ -4,6 +4,7 @@ set -o nounset -o errexit -o pipefail
 
 . "$HOME"/share/wrtools-core/opt_help.bash
 . "$HOME"/share/wrtools-core/fail.bash
+. "$HOME"/share/wrtools-core/opt_verbose.bash
 
 #HELP:COMMAND_NAME: Run some convenient stuff
 #HELP:Usage: COMMAND_NAME $global-options* $command ...
@@ -11,13 +12,16 @@ set -o nounset -o errexit -o pipefail
 #HELP:  --help | -h: Print this help
 
 OPTIND=1
-while getopts :h-: option
+while getopts :hv-: option
 do
     case "$option" in
         h ) opt_help;;
+        v ) opt_verbose;;
         - )
             case "$OPTARG" in
                 help ) opt_help;;
+                verbose ) opt_verbose;;
+                verbose=* ) fail "Long option \"${OPTARG%%=*}\" has unexpected argument";;
                 help=* ) fail "Long option \"${OPTARG%%=*}\" has an unexpected argument";;
                 * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
             esac
@@ -150,6 +154,32 @@ case $command in
         make tmp/ndr-doc.xml depend=no
         check-doc --catalog=xsd/ndr-examples/xml-catalog.xml tmp/ndr-doc.xml 2>&1 | emacsclientgrep
     ) ;;
+        
+    #HELP:  publish: publish docs to subversion (for version 4.0rc1)
+    publish )
+        artifacts_dir=repo
+        version_real=4.0rc1
+        version_pretend=4.0
+
+        no_version_dir=$HOME/r/iead/niem-gov/reference/niem/specification/naming-and-design-rules
+        version_dir=$no_version_dir/$version_real
+        
+        short_name=niem-ndr
+        
+        mkdir -p "${version_dir}"
+
+        (
+            cd "$artifacts_dir"
+            vrun git archive -9 \
+                --prefix=${short_name}-${version_pretend}/ \
+                -o ${version_dir}/${short_name}-${version_real}.zip \
+                $short_name-$version_real
+            
+            vrun git show $short_name-$version_real:niem-ndr-doc.html > ${version_dir}/${short_name}-${version_real}.html
+            vrun git show $short_name-$version_real:niem-ndr-doc.txt  > ${version_dir}/${short_name}-${version_real}.txt
+        )
+        ;;
+
         
 
     #HELP:  show: open grep-friendly buffer on copied text (e.g., jump to an error from a message)
