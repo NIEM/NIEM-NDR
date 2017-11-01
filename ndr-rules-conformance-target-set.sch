@@ -23,31 +23,31 @@
   </sch:rule>
 </sch:pattern>
               
-<sch:pattern id="rule_10-73"><sch:title>appinfo:appliesToTypes references types</sch:title>
+<sch:pattern id="rule_10-72"><sch:title>appinfo:appliesToTypes references types</sch:title>
   <sch:rule context="*[exists(@appinfo:appliesToTypes)]">
-    <sch:assert test="every $item in tokenize(normalize-space(@appinfo:appliesToTypes), ' ') satisfies                         exists(nf:resolve-type(., resolve-QName($item, .)))">Rule 10-73: Every item in @appinfo:appliesToTypes MUST resolve to a type.</sch:assert>
+    <sch:assert test="every $item in tokenize(normalize-space(@appinfo:appliesToTypes), ' ') satisfies                         exists(nf:resolve-type(., resolve-QName($item, .)))">Rule 10-72: Every item in @appinfo:appliesToTypes MUST resolve to a type.</sch:assert>
   </sch:rule>
 </sch:pattern>
             
-<sch:pattern id="rule_10-75"><sch:title>appinfo:appliesToElements references elements</sch:title>
+<sch:pattern id="rule_10-74"><sch:title>appinfo:appliesToElements references elements</sch:title>
   <sch:rule context="*[exists(@appinfo:appliesToElements)]">
-    <sch:assert test="every $item in tokenize(normalize-space(@appinfo:appliesToElements), ' ') satisfies                         count(nf:resolve-element(., resolve-QName($item, .))) = 1">Rule 10-75: Every item in @appinfo:appliesToElements MUST resolve to an element.</sch:assert>
+    <sch:assert test="every $item in tokenize(normalize-space(@appinfo:appliesToElements), ' ') satisfies                         count(nf:resolve-element(., resolve-QName($item, .))) = 1">Rule 10-74: Every item in @appinfo:appliesToElements MUST resolve to an element.</sch:assert>
   </sch:rule>
 </sch:pattern>
             
 <sch:pattern id="rule_11-15"><sch:title>Name of element declaration with simple content has representation term</sch:title>
   <sch:rule context="xs:element[@name and @type        and (nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ReferenceSchemaDocument'))             or nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ExtensionSchemaDocument')))        and (some $type-qname in resolve-QName(@type, .) satisfies (               nf:get-target-namespace(.) != namespace-uri-from-QName($type-qname)               and nf:resolve-type(., $type-qname)/xs:simpleContent))]">
-    <sch:report test="every $representation-term in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List') satisfies                             not(ends-with(@name, $representation-term))">Rule 11-15: the name of an element declaration that is of simple content SHOULD use a representation term.</sch:report>
+    <sch:report role="warning" test="every $representation-term               in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List')               satisfies not(ends-with(@name, $representation-term))">Rule 11-15: the name of an element declaration that is of simple content SHOULD use a representation term.</sch:report>
   </sch:rule>
 </sch:pattern>
               
-<sch:pattern id="rule_11-48"><sch:title>Reference schema imports reference schema</sch:title>
+<sch:pattern id="rule_11-48"><sch:title>Reference schema document imports reference schema document</sch:title>
   <sch:rule context="xs:import[                          nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ReferenceSchemaDocument'))                          and exists(@namespace)                          and empty(@appinfo:externalImportIndicator)                          and not(xs:anyURI(@namespace) = (xs:anyURI('http://release.niem.gov/niem/structures/4.0/'),                                                           xs:anyURI('http://www.w3.org/XML/1998/namespace')))]">
     <sch:assert test="some $schema in nf:resolve-namespace(., @namespace) satisfies                         nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ReferenceSchemaDocument'))">Rule 11-48: A namespace imported as conformant from a reference schema document MUST identify a namespace defined by a reference schema document.</sch:assert>
   </sch:rule>
 </sch:pattern>
           
-<sch:pattern id="rule_11-49"><sch:title>Extension schema document imports reference or extension schema</sch:title>
+<sch:pattern id="rule_11-49"><sch:title>Extension schema document imports reference or extension schema document</sch:title>
   <sch:rule context="xs:import[                          nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ExtensionSchemaDocument'))                          and exists(@namespace)                          and empty(@appinfo:externalImportIndicator)                          and not(xs:anyURI(@namespace) = (xs:anyURI('http://release.niem.gov/niem/structures/4.0/'),                                                           xs:anyURI('http://www.w3.org/XML/1998/namespace')))]">
     <sch:assert test="some $schema in nf:resolve-namespace(., @namespace) satisfies (                         nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ReferenceSchemaDocument'))                         or nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ExtensionSchemaDocument')))">Rule 11-49: A namespace imported as conformant from an extension schema document MUST identify a namespace defined by a reference schema document or an extension schema document.</sch:assert>
   </sch:rule>

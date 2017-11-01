@@ -204,7 +204,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-73</xsl:attribute>
+            <xsl:attribute name="id">rule_10-72</xsl:attribute>
             <xsl:attribute name="name">appinfo:appliesToTypes references types</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -213,7 +213,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-75</xsl:attribute>
+            <xsl:attribute name="id">rule_10-74</xsl:attribute>
             <xsl:attribute name="name">appinfo:appliesToElements references elements</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -232,7 +232,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-48</xsl:attribute>
-            <xsl:attribute name="name">Reference schema imports reference schema</xsl:attribute>
+            <xsl:attribute name="name">Reference schema document imports reference schema document</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M14"/>
@@ -241,7 +241,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-49</xsl:attribute>
-            <xsl:attribute name="name">Extension schema document imports reference or extension schema</xsl:attribute>
+            <xsl:attribute name="name">Extension schema document imports reference or extension schema document</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M15"/>
@@ -321,7 +321,7 @@
       <xsl:apply-templates select="*" mode="M10"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-73appinfo:appliesToTypes references types-->
+   <!--PATTERN rule_10-72appinfo:appliesToTypes references types-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">appinfo:appliesToTypes references types</svrl:text>
 
 	  <!--RULE -->
@@ -340,7 +340,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-73: Every item in @appinfo:appliesToTypes MUST resolve to a type.</svrl:text>
+               <svrl:text>Rule 10-72: Every item in @appinfo:appliesToTypes MUST resolve to a type.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -351,7 +351,7 @@
       <xsl:apply-templates select="*" mode="M11"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-75appinfo:appliesToElements references elements-->
+   <!--PATTERN rule_10-74appinfo:appliesToElements references elements-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">appinfo:appliesToElements references elements</svrl:text>
 
 	  <!--RULE -->
@@ -370,7 +370,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-75: Every item in @appinfo:appliesToElements MUST resolve to an element.</svrl:text>
+               <svrl:text>Rule 10-74: Every item in @appinfo:appliesToElements MUST resolve to an element.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -391,10 +391,11 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:element[@name and @type        and (nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ReferenceSchemaDocument'))             or nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ExtensionSchemaDocument')))        and (some $type-qname in resolve-QName(@type, .) satisfies (               nf:get-target-namespace(.) != namespace-uri-from-QName($type-qname)               and nf:resolve-type(., $type-qname)/xs:simpleContent))]"/>
 
-		    <!--REPORT -->
-      <xsl:if test="every $representation-term in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List') satisfies                             not(ends-with(@name, $representation-term))">
+		    <!--REPORT warning-->
+      <xsl:if test="every $representation-term               in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List')               satisfies not(ends-with(@name, $representation-term))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="every $representation-term in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List') satisfies not(ends-with(@name, $representation-term))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -408,8 +409,8 @@
       <xsl:apply-templates select="*" mode="M13"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-48Reference schema imports reference schema-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Reference schema imports reference schema</svrl:text>
+   <!--PATTERN rule_11-48Reference schema document imports reference schema document-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Reference schema document imports reference schema document</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:import[                          nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ReferenceSchemaDocument'))                          and exists(@namespace)                          and empty(@appinfo:externalImportIndicator)                          and not(xs:anyURI(@namespace) = (xs:anyURI('http://release.niem.gov/niem/structures/4.0/'),                                                           xs:anyURI('http://www.w3.org/XML/1998/namespace')))]"
@@ -438,8 +439,8 @@
       <xsl:apply-templates select="*" mode="M14"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-49Extension schema document imports reference or extension schema-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Extension schema document imports reference or extension schema</svrl:text>
+   <!--PATTERN rule_11-49Extension schema document imports reference or extension schema document-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Extension schema document imports reference or extension schema document</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:import[                          nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ExtensionSchemaDocument'))                          and exists(@namespace)                          and empty(@appinfo:externalImportIndicator)                          and not(xs:anyURI(@namespace) = (xs:anyURI('http://release.niem.gov/niem/structures/4.0/'),                                                           xs:anyURI('http://www.w3.org/XML/1998/namespace')))]"

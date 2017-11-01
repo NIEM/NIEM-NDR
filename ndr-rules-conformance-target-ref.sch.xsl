@@ -331,7 +331,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-14</xsl:attribute>
-            <xsl:attribute name="name">No list item type of xs:ID</xsl:attribute>
+            <xsl:attribute name="name">Enumeration has data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M25"/>
@@ -340,7 +340,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-15</xsl:attribute>
-            <xsl:attribute name="name">No list item type of xs:IDREF</xsl:attribute>
+            <xsl:attribute name="name">No list item type of xs:ID</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M26"/>
@@ -349,7 +349,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-16</xsl:attribute>
-            <xsl:attribute name="name">No list item type of xs:anySimpleType</xsl:attribute>
+            <xsl:attribute name="name">No list item type of xs:IDREF</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M27"/>
@@ -358,7 +358,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-17</xsl:attribute>
-            <xsl:attribute name="name">No list item type of xs:ENTITY</xsl:attribute>
+            <xsl:attribute name="name">No list item type of xs:anySimpleType</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M28"/>
@@ -367,7 +367,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-18</xsl:attribute>
-            <xsl:attribute name="name">No union member types of xs:ID</xsl:attribute>
+            <xsl:attribute name="name">No list item type of xs:ENTITY</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M29"/>
@@ -376,7 +376,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-19</xsl:attribute>
-            <xsl:attribute name="name">No union member types of xs:IDREF</xsl:attribute>
+            <xsl:attribute name="name">No union member types of xs:ID</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M30"/>
@@ -385,7 +385,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-20</xsl:attribute>
-            <xsl:attribute name="name">No union member types of xs:IDREFS</xsl:attribute>
+            <xsl:attribute name="name">No union member types of xs:IDREF</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M31"/>
@@ -394,7 +394,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-21</xsl:attribute>
-            <xsl:attribute name="name">No union member types of xs:anySimpleType</xsl:attribute>
+            <xsl:attribute name="name">No union member types of xs:IDREFS</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M32"/>
@@ -403,7 +403,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-22</xsl:attribute>
-            <xsl:attribute name="name">No union member types of xs:ENTITY</xsl:attribute>
+            <xsl:attribute name="name">No union member types of xs:anySimpleType</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M33"/>
@@ -412,7 +412,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-23</xsl:attribute>
-            <xsl:attribute name="name">No union member types of xs:ENTITIES</xsl:attribute>
+            <xsl:attribute name="name">No union member types of xs:ENTITY</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M34"/>
@@ -421,7 +421,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-24</xsl:attribute>
-            <xsl:attribute name="name">Enumeration has data definition</xsl:attribute>
+            <xsl:attribute name="name">No union member types of xs:ENTITIES</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M35"/>
@@ -430,7 +430,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-25</xsl:attribute>
-            <xsl:attribute name="name">Complex type definitions is top-level</xsl:attribute>
+            <xsl:attribute name="name">Complex type definition is top-level</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M36"/>
@@ -718,7 +718,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_9-58</xsl:attribute>
-            <xsl:attribute name="name">No attribute fixed values</xsl:attribute>
+            <xsl:attribute name="name">No fixed values for optional attributes</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M68"/>
@@ -1015,7 +1015,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_10-2</xsl:attribute>
-            <xsl:attribute name="name">Object type with complex content is derived from object type</xsl:attribute>
+            <xsl:attribute name="name">Object type with complex content is derived from structures:ObjectType</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M101"/>
@@ -1132,7 +1132,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_10-21</xsl:attribute>
-            <xsl:attribute name="name">Association type is derived from association type</xsl:attribute>
+            <xsl:attribute name="name">Association type derived from structures:AssociationType</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M114"/>
@@ -1168,7 +1168,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_10-25</xsl:attribute>
-            <xsl:attribute name="name">Augmentation point corresponds to augmentable type</xsl:attribute>
+            <xsl:attribute name="name">Augmentation point element corresponds to its base type</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M118"/>
@@ -1177,7 +1177,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_10-26</xsl:attribute>
-            <xsl:attribute name="name">An augmentation point has no type</xsl:attribute>
+            <xsl:attribute name="name">An augmentation point element has no type</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M119"/>
@@ -1186,7 +1186,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_10-27</xsl:attribute>
-            <xsl:attribute name="name">An augmentation point has no substitution group</xsl:attribute>
+            <xsl:attribute name="name">An augmentation point element has no substitution group</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M120"/>
@@ -1195,7 +1195,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_10-28</xsl:attribute>
-            <xsl:attribute name="name">Augmentation point element may only be referenced by its type</xsl:attribute>
+            <xsl:attribute name="name">Augmentation point element is only referenced by its base type</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M121"/>
@@ -1204,7 +1204,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_10-29</xsl:attribute>
-            <xsl:attribute name="name">Augmentation point reference is optional</xsl:attribute>
+            <xsl:attribute name="name">Augmentation point element use is optional</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M122"/>
@@ -1213,7 +1213,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_10-30</xsl:attribute>
-            <xsl:attribute name="name">Augmentation point reference is unbounded</xsl:attribute>
+            <xsl:attribute name="name">Augmentation point element use is unbounded</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M123"/>
@@ -1222,7 +1222,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_10-31</xsl:attribute>
-            <xsl:attribute name="name">Augmentation point reference must be last particle</xsl:attribute>
+            <xsl:attribute name="name">Augmentation point element use must be last element in its base type</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M124"/>
@@ -1240,7 +1240,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_10-35</xsl:attribute>
-            <xsl:attribute name="name">Type derived from augmentation type is an augmentation type</xsl:attribute>
+            <xsl:attribute name="name">Type derived from structures:AugmentationType is an augmentation type</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M126"/>
@@ -1257,8 +1257,8 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-40</xsl:attribute>
-            <xsl:attribute name="name">Metadata types are derived from metadata types</xsl:attribute>
+            <xsl:attribute name="id">rule_10-39</xsl:attribute>
+            <xsl:attribute name="name">Metadata types are derived from structures:MetadataType</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M128"/>
@@ -1266,7 +1266,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-41</xsl:attribute>
+            <xsl:attribute name="id">rule_10-40</xsl:attribute>
             <xsl:attribute name="name">Metadata element declaration type is a metadata type</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1275,7 +1275,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-43</xsl:attribute>
+            <xsl:attribute name="id">rule_10-42</xsl:attribute>
             <xsl:attribute name="name">Name of element that ends in "Representation" is abstract</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1284,7 +1284,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-46</xsl:attribute>
+            <xsl:attribute name="id">rule_10-45</xsl:attribute>
             <xsl:attribute name="name">Schema component names have only specific characters</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1293,7 +1293,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-49</xsl:attribute>
+            <xsl:attribute name="id">rule_10-48</xsl:attribute>
             <xsl:attribute name="name">Attribute name begins with lower case letter</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1302,7 +1302,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-50</xsl:attribute>
+            <xsl:attribute name="id">rule_10-49</xsl:attribute>
             <xsl:attribute name="name">Name of schema component other than attribute and proxy type begins with upper case letter</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1311,7 +1311,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-69</xsl:attribute>
+            <xsl:attribute name="id">rule_10-68</xsl:attribute>
             <xsl:attribute name="name">Deprecated annotates schema component</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1320,7 +1320,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-70</xsl:attribute>
+            <xsl:attribute name="id">rule_10-69</xsl:attribute>
             <xsl:attribute name="name">External import indicator annotates import</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1329,7 +1329,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-71</xsl:attribute>
+            <xsl:attribute name="id">rule_10-70</xsl:attribute>
             <xsl:attribute name="name">External adapter type indicator annotates complex type</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1338,7 +1338,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-72</xsl:attribute>
+            <xsl:attribute name="id">rule_10-71</xsl:attribute>
             <xsl:attribute name="name">appinfo:appliesToTypes annotates metadata element</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1347,7 +1347,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-74</xsl:attribute>
+            <xsl:attribute name="id">rule_10-73</xsl:attribute>
             <xsl:attribute name="name">appinfo:appliesToElements annotates metadata element</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1356,7 +1356,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-76</xsl:attribute>
+            <xsl:attribute name="id">rule_10-75</xsl:attribute>
             <xsl:attribute name="name">appinfo:LocalTerm annotates schema</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1365,7 +1365,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_10-77</xsl:attribute>
+            <xsl:attribute name="id">rule_10-76</xsl:attribute>
             <xsl:attribute name="name">appinfo:LocalTerm has literal or definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -1420,7 +1420,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-7</xsl:attribute>
-            <xsl:attribute name="name">Name of a code simple type has standard suffix</xsl:attribute>
+            <xsl:attribute name="name">Name of a code simple type ends in "CodeSimpleType"</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M146"/>
@@ -1537,7 +1537,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-29</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for augmentation point element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for augmentation point element data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M159"/>
@@ -1546,7 +1546,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-30</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for augmentation element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for augmentation element data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M160"/>
@@ -1555,7 +1555,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-31</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for metadata element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for metadata element data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M161"/>
@@ -1564,7 +1564,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-32</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for association element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for association element data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M162"/>
@@ -1573,7 +1573,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-33</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for abstract element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for abstract element data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M163"/>
@@ -1582,7 +1582,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-34</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for date element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for date element or attribute data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M164"/>
@@ -1591,7 +1591,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-35</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for quantity element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for quantity element or attribute data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M165"/>
@@ -1600,7 +1600,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-36</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for picture element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for picture element or attribute data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M166"/>
@@ -1609,7 +1609,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-37</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for indicator element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for indicator element or attribute data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M167"/>
@@ -1618,7 +1618,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-38</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for identification element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for identification element or attribute data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M168"/>
@@ -1627,7 +1627,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-39</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for name element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for name element or attribute data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M169"/>
@@ -1636,7 +1636,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-40</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for element</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for element or attribute data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M170"/>
@@ -1645,7 +1645,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-41</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for association type</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for association type data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M171"/>
@@ -1654,7 +1654,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-42</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for augmentation type</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for augmentation type data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M172"/>
@@ -1663,7 +1663,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-43</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for metadata type</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for metadata type data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M173"/>
@@ -1672,7 +1672,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-44</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for complex type</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for complex type data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M174"/>
@@ -1681,7 +1681,7 @@
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
             <xsl:attribute name="id">rule_11-45</xsl:attribute>
-            <xsl:attribute name="name">Standard opening phrase for simple type</xsl:attribute>
+            <xsl:attribute name="name">Standard opening phrase for simple type data definition</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M175"/>
@@ -1797,7 +1797,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 7-4: The [document element] of the XML document MUST have the name xs:schema.</svrl:text>
+               <svrl:text>Rule 7-4: The [document element] of the [XML document] MUST have the name xs:schema.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -2135,11 +2135,11 @@
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No use of "fixed" on simple type facets</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:*[self::xs:length or self::xs:minLength or self::xs:maxLength or self::xs:whiteSpace       or self::xs:maxInclusive or self::xs:maxExclusive or self::xs:minExclusive or self::xs:minInclusive        or self::xs:totalDigits or self::xs:fractionDigits]"
+   <xsl:template match="xs:*[self::xs:length or self::xs:minLength or self::xs:maxLength or self::xs:whiteSpace       or self::xs:maxInclusive or self::xs:maxExclusive or self::xs:minExclusive or self::xs:minInclusive       or self::xs:totalDigits or self::xs:fractionDigits]"
                  priority="1000"
                  mode="M24">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                       context="xs:*[self::xs:length or self::xs:minLength or self::xs:maxLength or self::xs:whiteSpace       or self::xs:maxInclusive or self::xs:maxExclusive or self::xs:minExclusive or self::xs:minInclusive        or self::xs:totalDigits or self::xs:fractionDigits]"/>
+                       context="xs:*[self::xs:length or self::xs:minLength or self::xs:maxLength or self::xs:whiteSpace       or self::xs:maxInclusive or self::xs:maxExclusive or self::xs:minExclusive or self::xs:minInclusive       or self::xs:totalDigits or self::xs:fractionDigits]"/>
 
 		    <!--ASSERT -->
       <xsl:choose>
@@ -2160,11 +2160,38 @@
       <xsl:apply-templates select="*" mode="M24"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-14No list item type of xs:ID-->
+   <!--PATTERN rule_9-14Enumeration has data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Enumeration has data definition</svrl:text>
+
+	  <!--RULE -->
+   <xsl:template match="xs:enumeration" priority="1000" mode="M25">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="xs:enumeration"/>
+
+		    <!--ASSERT -->
+      <xsl:choose>
+         <xsl:when test="some $definition in xs:annotation/xs:documentation[1] satisfies                         string-length(normalize-space(string($definition))) &gt; 0"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="some $definition in xs:annotation/xs:documentation[1] satisfies string-length(normalize-space(string($definition))) &gt; 0">
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>Rule 9-14: An enumeration facet MUST have a data definition.</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="*" mode="M25"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M25"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M25">
+      <xsl:apply-templates select="*" mode="M25"/>
+   </xsl:template>
+
+   <!--PATTERN rule_9-15No list item type of xs:ID-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No list item type of xs:ID</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:*[exists(@itemType)]" priority="1000" mode="M25">
+   <xsl:template match="xs:*[exists(@itemType)]" priority="1000" mode="M26">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:*[exists(@itemType)]"/>
 
@@ -2177,22 +2204,22 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 9-14: A schema component MUST NOT have an attribute {}itemType with a value of xs:ID.</svrl:text>
+               <svrl:text>Rule 9-15: A schema component MUST NOT have an attribute {}itemType with a value of xs:ID.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M25"/>
+      <xsl:apply-templates select="*" mode="M26"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M25"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M25">
-      <xsl:apply-templates select="*" mode="M25"/>
+   <xsl:template match="text()" priority="-1" mode="M26"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M26">
+      <xsl:apply-templates select="*" mode="M26"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-15No list item type of xs:IDREF-->
+   <!--PATTERN rule_9-16No list item type of xs:IDREF-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No list item type of xs:IDREF</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:*[exists(@itemType)]" priority="1000" mode="M26">
+   <xsl:template match="xs:*[exists(@itemType)]" priority="1000" mode="M27">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:*[exists(@itemType)]"/>
 
@@ -2205,22 +2232,22 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 9-15: A schema component MUST NOT have an attribute {}itemType with a value of xs:IDREF.</svrl:text>
+               <svrl:text>Rule 9-16: A schema component MUST NOT have an attribute {}itemType with a value of xs:IDREF.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M26"/>
+      <xsl:apply-templates select="*" mode="M27"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M26"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M26">
-      <xsl:apply-templates select="*" mode="M26"/>
+   <xsl:template match="text()" priority="-1" mode="M27"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M27">
+      <xsl:apply-templates select="*" mode="M27"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-16No list item type of xs:anySimpleType-->
+   <!--PATTERN rule_9-17No list item type of xs:anySimpleType-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No list item type of xs:anySimpleType</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:*[exists(@itemType)]" priority="1000" mode="M27">
+   <xsl:template match="xs:*[exists(@itemType)]" priority="1000" mode="M28">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:*[exists(@itemType)]"/>
 
@@ -2233,22 +2260,22 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 9-16: A schema component MUST NOT have an attribute {}itemType with a value of xs:anySimpleType.</svrl:text>
+               <svrl:text>Rule 9-17: A schema component MUST NOT have an attribute {}itemType with a value of xs:anySimpleType.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M27"/>
+      <xsl:apply-templates select="*" mode="M28"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M27"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M27">
-      <xsl:apply-templates select="*" mode="M27"/>
+   <xsl:template match="text()" priority="-1" mode="M28"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M28">
+      <xsl:apply-templates select="*" mode="M28"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-17No list item type of xs:ENTITY-->
+   <!--PATTERN rule_9-18No list item type of xs:ENTITY-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No list item type of xs:ENTITY</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:*[exists(@itemType)]" priority="1000" mode="M28">
+   <xsl:template match="xs:*[exists(@itemType)]" priority="1000" mode="M29">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:*[exists(@itemType)]"/>
 
@@ -2261,22 +2288,22 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 9-17: A schema component MUST NOT have an attribute {}itemType with a value of xs:ENTITY.</svrl:text>
+               <svrl:text>Rule 9-18: A schema component MUST NOT have an attribute {}itemType with a value of xs:ENTITY.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M28"/>
+      <xsl:apply-templates select="*" mode="M29"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M28"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M28">
-      <xsl:apply-templates select="*" mode="M28"/>
+   <xsl:template match="text()" priority="-1" mode="M29"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M29">
+      <xsl:apply-templates select="*" mode="M29"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-18No union member types of xs:ID-->
+   <!--PATTERN rule_9-19No union member types of xs:ID-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No union member types of xs:ID</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M29">
+   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M30">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:*[exists(@memberTypes)]"/>
 
@@ -2289,22 +2316,22 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 9-18: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:ID.</svrl:text>
+               <svrl:text>Rule 9-19: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:ID.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M29"/>
+      <xsl:apply-templates select="*" mode="M30"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M29"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M29">
-      <xsl:apply-templates select="*" mode="M29"/>
+   <xsl:template match="text()" priority="-1" mode="M30"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M30">
+      <xsl:apply-templates select="*" mode="M30"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-19No union member types of xs:IDREF-->
+   <!--PATTERN rule_9-20No union member types of xs:IDREF-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No union member types of xs:IDREF</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M30">
+   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M31">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:*[exists(@memberTypes)]"/>
 
@@ -2317,22 +2344,22 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 9-19: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:IDREF.</svrl:text>
+               <svrl:text>Rule 9-20: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:IDREF.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M30"/>
+      <xsl:apply-templates select="*" mode="M31"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M30"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M30">
-      <xsl:apply-templates select="*" mode="M30"/>
+   <xsl:template match="text()" priority="-1" mode="M31"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M31">
+      <xsl:apply-templates select="*" mode="M31"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-20No union member types of xs:IDREFS-->
+   <!--PATTERN rule_9-21No union member types of xs:IDREFS-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No union member types of xs:IDREFS</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M31">
+   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M32">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:*[exists(@memberTypes)]"/>
 
@@ -2345,22 +2372,22 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 9-20: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:IDREFS.</svrl:text>
+               <svrl:text>Rule 9-21: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:IDREFS.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M31"/>
+      <xsl:apply-templates select="*" mode="M32"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M31"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M31">
-      <xsl:apply-templates select="*" mode="M31"/>
+   <xsl:template match="text()" priority="-1" mode="M32"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M32">
+      <xsl:apply-templates select="*" mode="M32"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-21No union member types of xs:anySimpleType-->
+   <!--PATTERN rule_9-22No union member types of xs:anySimpleType-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No union member types of xs:anySimpleType</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M32">
+   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M33">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:*[exists(@memberTypes)]"/>
 
@@ -2373,22 +2400,22 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 9-21: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:anySimpleType.</svrl:text>
+               <svrl:text>Rule 9-22: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:anySimpleType.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M32"/>
+      <xsl:apply-templates select="*" mode="M33"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M32"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M32">
-      <xsl:apply-templates select="*" mode="M32"/>
+   <xsl:template match="text()" priority="-1" mode="M33"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M33">
+      <xsl:apply-templates select="*" mode="M33"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-22No union member types of xs:ENTITY-->
+   <!--PATTERN rule_9-23No union member types of xs:ENTITY-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No union member types of xs:ENTITY</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M33">
+   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M34">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:*[exists(@memberTypes)]"/>
 
@@ -2401,22 +2428,22 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 9-22: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:ENTITY.</svrl:text>
+               <svrl:text>Rule 9-23: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:ENTITY.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="*" mode="M33"/>
+      <xsl:apply-templates select="*" mode="M34"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M33"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M33">
-      <xsl:apply-templates select="*" mode="M33"/>
+   <xsl:template match="text()" priority="-1" mode="M34"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M34">
+      <xsl:apply-templates select="*" mode="M34"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-23No union member types of xs:ENTITIES-->
+   <!--PATTERN rule_9-24No union member types of xs:ENTITIES-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No union member types of xs:ENTITIES</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M34">
+   <xsl:template match="xs:*[exists(@memberTypes)]" priority="1000" mode="M35">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:*[exists(@memberTypes)]"/>
 
@@ -2429,34 +2456,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 9-23: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:ENTITIES.</svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-      <xsl:apply-templates select="*" mode="M34"/>
-   </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M34"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M34">
-      <xsl:apply-templates select="*" mode="M34"/>
-   </xsl:template>
-
-   <!--PATTERN rule_9-24Enumeration has data definition-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Enumeration has data definition</svrl:text>
-
-	  <!--RULE -->
-   <xsl:template match="xs:enumeration" priority="1000" mode="M35">
-      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="xs:enumeration"/>
-
-		    <!--ASSERT -->
-      <xsl:choose>
-         <xsl:when test="some $definition in xs:annotation/xs:documentation[1] satisfies                         string-length(normalize-space(string($definition))) &gt; 0"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="some $definition in xs:annotation/xs:documentation[1] satisfies string-length(normalize-space(string($definition))) &gt; 0">
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>Rule 9-24: An enumeration facet MUST have a data definition.</svrl:text>
+               <svrl:text>Rule 9-24: A schema component MUST NOT have an attribute {}memberTypes that includes a value of xs:ENTITIES.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -2467,8 +2467,8 @@
       <xsl:apply-templates select="*" mode="M35"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-25Complex type definitions is top-level-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Complex type definitions is top-level</svrl:text>
+   <!--PATTERN rule_9-25Complex type definition is top-level-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Complex type definition is top-level</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType" priority="1000" mode="M36">
@@ -3351,8 +3351,8 @@
       <xsl:apply-templates select="*" mode="M67"/>
    </xsl:template>
 
-   <!--PATTERN rule_9-58No attribute fixed values-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No attribute fixed values</svrl:text>
+   <!--PATTERN rule_9-58No fixed values for optional attributes-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">No fixed values for optional attributes</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:attribute[exists(@ref) and @use eq 'required']"
@@ -3361,9 +3361,10 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:attribute[exists(@ref) and @use eq 'required']"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="false()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="false()">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -3745,9 +3746,10 @@
    <xsl:template match="node()[comment()]" priority="1000" mode="M82">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="node()[comment()]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="true()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="true()">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -4242,8 +4244,8 @@
       <xsl:apply-templates select="*" mode="M100"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-2Object type with complex content is derived from object type-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Object type with complex content is derived from object type</svrl:text>
+   <!--PATTERN rule_10-2Object type with complex content is derived from structures:ObjectType-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Object type with complex content is derived from structures:ObjectType</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType[exists(xs:complexContent)                                     and not(ends-with(@name, 'AssociationType')                                         or ends-with(@name, 'MetadataType')                                         or ends-with(@name, 'AugmentationType'))]"
@@ -4552,10 +4554,11 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:complexType[exists(xs:simpleContent[                        exists(xs:*[local-name() = ('extension', 'restriction')                                    and (ends-with(@base, 'CodeSimpleType')                                    or ends-with(@base, 'CodeType'))])])]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(ends-with(@name, 'CodeType'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(ends-with(@name, 'CodeType'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -4579,10 +4582,11 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:element[exists(@name) and exists(@type) and ends-with(@type, 'CodeType')]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(ends-with(@name, 'Code'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(ends-with(@name, 'Code'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -4626,8 +4630,8 @@
       <xsl:apply-templates select="*" mode="M113"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-21Association type is derived from association type-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Association type is derived from association type</svrl:text>
+   <!--PATTERN rule_10-21Association type derived from structures:AssociationType-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Association type derived from structures:AssociationType</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType" priority="1000" mode="M114">
@@ -4706,7 +4710,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-23: An augmentable type MUST contain an element use of its augmentation point element.</svrl:text>
+               <svrl:text>Rule 10-23: An augmentable type MUST contain an element use of its corresponding augmentation point element.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -4738,7 +4742,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-24: An augmentable type MUST contain no more than one element use of its augmentation point element.</svrl:text>
+               <svrl:text>Rule 10-24: An augmentable type MUST contain no more than one element use of its corresponding augmentation point element.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -4749,8 +4753,8 @@
       <xsl:apply-templates select="*" mode="M117"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-25Augmentation point corresponds to augmentable type-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Augmentation point corresponds to augmentable type</svrl:text>
+   <!--PATTERN rule_10-25Augmentation point element corresponds to its base type-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Augmentation point element corresponds to its base type</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:element[exists(@name[                                  matches(., 'AugmentationPoint$')])]"
@@ -4769,7 +4773,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-25: A schema document containing an augmentation point element declaration MUST also contain a corresponding augmentable type definition.</svrl:text>
+               <svrl:text>Rule 10-25: A schema document containing an element declaration for an augmentation point element MUST also contain a type definition for its base type, a corresponding augmentable type.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -4780,8 +4784,8 @@
       <xsl:apply-templates select="*" mode="M118"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-26An augmentation point has no type-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">An augmentation point has no type</svrl:text>
+   <!--PATTERN rule_10-26An augmentation point element has no type-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">An augmentation point element has no type</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:element[exists(@name[                                  matches(., 'AugmentationPoint$')])]"
@@ -4809,8 +4813,8 @@
       <xsl:apply-templates select="*" mode="M119"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-27An augmentation point has no substitution group-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">An augmentation point has no substitution group</svrl:text>
+   <!--PATTERN rule_10-27An augmentation point element has no substitution group-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">An augmentation point element has no substitution group</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:element[exists(@name[                                  matches(., 'AugmentationPoint$')])]"
@@ -4839,8 +4843,8 @@
       <xsl:apply-templates select="*" mode="M120"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-28Augmentation point element may only be referenced by its type-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Augmentation point element may only be referenced by its type</svrl:text>
+   <!--PATTERN rule_10-28Augmentation point element is only referenced by its base type-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Augmentation point element is only referenced by its base type</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType//xs:element[exists(@ref[                        matches(local-name-from-QName(resolve-QName(., ..)), 'AugmentationPoint$')]) ]"
@@ -4851,14 +4855,14 @@
 
 		    <!--ASSERT -->
       <xsl:choose>
-         <xsl:when test="QName(string(nf:get-target-namespace(ancestor::xs:complexType[1])), ancestor::xs:complexType[1]/@name)                       = QName(string(namespace-uri-from-QName(resolve-QName(@ref, .))),                 replace(local-name-from-QName(resolve-QName(@ref, .)), 'AugmentationPoint$', 'Type'))"/>
+         <xsl:when test="QName(string(nf:get-target-namespace(ancestor::xs:complexType[1])), ancestor::xs:complexType[1]/@name)                       = QName(string(namespace-uri-from-QName(resolve-QName(@ref, .))),                           replace(local-name-from-QName(resolve-QName(@ref, .)), 'AugmentationPoint$', 'Type'))"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="QName(string(nf:get-target-namespace(ancestor::xs:complexType[1])), ancestor::xs:complexType[1]/@name) = QName(string(namespace-uri-from-QName(resolve-QName(@ref, .))), replace(local-name-from-QName(resolve-QName(@ref, .)), 'AugmentationPoint$', 'Type'))">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-28: An augmentation point element MUST only be referenced by its corresponding type.</svrl:text>
+               <svrl:text>Rule 10-28: An augmentation point element MUST only be referenced by its base type.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -4869,8 +4873,8 @@
       <xsl:apply-templates select="*" mode="M121"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-29Augmentation point reference is optional-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Augmentation point reference is optional</svrl:text>
+   <!--PATTERN rule_10-29Augmentation point element use is optional-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Augmentation point element use is optional</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType//xs:element[exists(@ref[                            matches(local-name-from-QName(resolve-QName(., ..)), 'AugmentationPoint$')]) ]"
@@ -4899,8 +4903,8 @@
       <xsl:apply-templates select="*" mode="M122"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-30Augmentation point reference is unbounded-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Augmentation point reference is unbounded</svrl:text>
+   <!--PATTERN rule_10-30Augmentation point element use is unbounded-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Augmentation point element use is unbounded</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType//xs:element[exists(@ref[                            matches(local-name-from-QName(resolve-QName(., ..)), 'AugmentationPoint$')]) ]"
@@ -4929,8 +4933,8 @@
       <xsl:apply-templates select="*" mode="M123"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-31Augmentation point reference must be last particle-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Augmentation point reference must be last particle</svrl:text>
+   <!--PATTERN rule_10-31Augmentation point element use must be last element in its base type-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Augmentation point element use must be last element in its base type</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType//xs:element[exists(@ref[                            matches(local-name-from-QName(resolve-QName(., ..)), 'AugmentationPoint$')]) ]"
@@ -4989,8 +4993,8 @@
       <xsl:apply-templates select="*" mode="M125"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-35Type derived from augmentation type is an augmentation type-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Type derived from augmentation type is an augmentation type</svrl:text>
+   <!--PATTERN rule_10-35Type derived from structures:AugmentationType is an augmentation type-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Type derived from structures:AugmentationType is an augmentation type</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:*[(self::xs:restriction or self::xs:extension)                           and ends-with(@base, 'AugmentationType')]"
@@ -5047,8 +5051,8 @@
       <xsl:apply-templates select="*" mode="M127"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-40Metadata types are derived from metadata types-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Metadata types are derived from metadata types</svrl:text>
+   <!--PATTERN rule_10-39Metadata types are derived from structures:MetadataType-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Metadata types are derived from structures:MetadataType</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType" priority="1000" mode="M128">
@@ -5056,7 +5060,7 @@
       <xsl:variable name="is-metadata-type"
                     select="exists(@name[ends-with(., 'MetadataType')])"/>
       <xsl:variable name="has-metadata-base-type"
-                    select="       exists(xs:complexContent[         exists(xs:*[local-name() = ('extension', 'restriction')                     and exists(@base[ends-with(., 'MetadataType')])])])"/>
+                    select="exists(xs:complexContent[         exists(xs:*[local-name() = ('extension', 'restriction')                     and exists(@base[ends-with(., 'MetadataType')])])])"/>
 
 		    <!--ASSERT -->
       <xsl:choose>
@@ -5067,7 +5071,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-40: A type MUST have a metadata type name if an only if it is derived from a metadata type.</svrl:text>
+               <svrl:text>Rule 10-39: A type MUST be a metadata type if and only if it is derived from a metadata type.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -5078,7 +5082,7 @@
       <xsl:apply-templates select="*" mode="M128"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-41Metadata element declaration type is a metadata type-->
+   <!--PATTERN rule_10-40Metadata element declaration type is a metadata type-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Metadata element declaration type is a metadata type</svrl:text>
 
 	  <!--RULE -->
@@ -5095,7 +5099,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-41: An element MUST have a name that ends in 'Metadata' if and only if it has a type that is a metadata type.</svrl:text>
+               <svrl:text>Rule 10-40: An element MUST have a name that ends in 'Metadata' if and only if it has a type that is a metadata type.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -5106,7 +5110,7 @@
       <xsl:apply-templates select="*" mode="M129"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-43Name of element that ends in "Representation" is abstract-->
+   <!--PATTERN rule_10-42Name of element that ends in "Representation" is abstract-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Name of element that ends in "Representation" is abstract</svrl:text>
 
 	  <!--RULE -->
@@ -5116,14 +5120,15 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:element[@name[ends-with(., 'Representation')]]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="empty(@abstract) or xs:boolean(@abstract) = false()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="empty(@abstract) or xs:boolean(@abstract) = false()">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 10-43: An element declaration with a name that ends in 'Representation' SHOULD have the {abstract} property with a value of "true".</svrl:text>
+            <svrl:text>Rule 10-42: An element declaration with a name that ends in 'Representation' SHOULD have the {abstract} property with a value of "true".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M130"/>
@@ -5133,7 +5138,7 @@
       <xsl:apply-templates select="*" mode="M130"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-46Schema component names have only specific characters-->
+   <!--PATTERN rule_10-45Schema component names have only specific characters-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Schema component names have only specific characters</svrl:text>
 
 	  <!--RULE -->
@@ -5149,7 +5154,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-46: The name of an XML Schema component defined by the schema must be composed of only the characters uppercase 'A' through 'Z', lowercase 'a' through 'z', numbers '0' through '9', underscore, hyphen, and period.</svrl:text>
+               <svrl:text>Rule 10-45: The name of an XML Schema component defined by the schema must be composed of only the characters uppercase 'A' through 'Z', lowercase 'a' through 'z', numbers '0' through '9', underscore, hyphen, and period.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -5160,7 +5165,7 @@
       <xsl:apply-templates select="*" mode="M131"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-49Attribute name begins with lower case letter-->
+   <!--PATTERN rule_10-48Attribute name begins with lower case letter-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Attribute name begins with lower case letter</svrl:text>
 
 	  <!--RULE -->
@@ -5176,7 +5181,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-49: Within the schema, any attribute declaration MUST have a name that begins with a lowercase letter
+               <svrl:text>Rule 10-48: Within the schema, any attribute declaration MUST have a name that begins with a lowercase letter
       ('a'-'z').</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
@@ -5188,20 +5193,21 @@
       <xsl:apply-templates select="*" mode="M132"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-50Name of schema component other than attribute and proxy type begins with upper case letter-->
+   <!--PATTERN rule_10-49Name of schema component other than attribute and proxy type begins with upper case letter-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Name of schema component other than attribute and proxy type begins with upper case letter</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:attribute" priority="1002" mode="M133">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="xs:attribute"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="false()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="false()">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 10-50: This rule does not apply to an attribute.</svrl:text>
+            <svrl:text>Rule 10-49: This rule does not apply to an attribute.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M133"/>
@@ -5214,13 +5220,14 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:complexType[some $name in @name,                                     $extension in xs:simpleContent/xs:extension,                                     $base-qname in resolve-QName($extension/@base, $extension) satisfies                                     $base-qname = QName('http://www.w3.org/2001/XMLSchema', $name)]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="false()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="false()">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 10-50: This rule does not apply to a proxy types.</svrl:text>
+            <svrl:text>Rule 10-49: This rule does not apply to a proxy types.</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M133"/>
@@ -5238,7 +5245,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-50: Within the schema, an XML Schema component that is not an attribute declaration or proxy type MUST have a name that begins with an upper-case letter ('A'-'Z').</svrl:text>
+               <svrl:text>Rule 10-49: Within the schema, an XML Schema component that is not an attribute declaration or proxy type MUST have a name that begins with an upper-case letter ('A'-'Z').</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -5249,7 +5256,7 @@
       <xsl:apply-templates select="*" mode="M133"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-69Deprecated annotates schema component-->
+   <!--PATTERN rule_10-68Deprecated annotates schema component-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Deprecated annotates schema component</svrl:text>
 
 	  <!--RULE -->
@@ -5266,7 +5273,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-69: The attribute appinfo:deprecated MUST be owned by an element with a namespace name <namespace-uri-for-prefix xmlns="https://iead.ittl.gtri.org/wr24/doc/2011-09-30-2258"
+               <svrl:text>Rule 10-68: The attribute appinfo:deprecated MUST be owned by an element with a namespace name <namespace-uri-for-prefix xmlns="https://iead.ittl.gtri.org/wr24/doc/2011-09-30-2258"
                                             xmlns:sch="http://purl.oclc.org/dsdl/schematron">xs</namespace-uri-for-prefix>.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
@@ -5278,7 +5285,7 @@
       <xsl:apply-templates select="*" mode="M134"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-70External import indicator annotates import-->
+   <!--PATTERN rule_10-69External import indicator annotates import-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">External import indicator annotates import</svrl:text>
 
 	  <!--RULE -->
@@ -5296,7 +5303,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-70: The attribute {http://release.niem.gov/niem/appinfo/4.0/}externalImportIndicator MUST be owned by an element xs:import.</svrl:text>
+               <svrl:text>Rule 10-69: The attribute {http://release.niem.gov/niem/appinfo/4.0/}externalImportIndicator MUST be owned by an element xs:import.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -5307,7 +5314,7 @@
       <xsl:apply-templates select="*" mode="M135"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-71External adapter type indicator annotates complex type-->
+   <!--PATTERN rule_10-70External adapter type indicator annotates complex type-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">External adapter type indicator annotates complex type</svrl:text>
 
 	  <!--RULE -->
@@ -5326,7 +5333,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-71: The attribute appinfo:externalAdapterTypeIndicator MUST be owned by an element xs:complexType.</svrl:text>
+               <svrl:text>Rule 10-70: The attribute appinfo:externalAdapterTypeIndicator MUST be owned by an element xs:complexType.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -5337,7 +5344,7 @@
       <xsl:apply-templates select="*" mode="M136"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-72appinfo:appliesToTypes annotates metadata element-->
+   <!--PATTERN rule_10-71appinfo:appliesToTypes annotates metadata element-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">appinfo:appliesToTypes annotates metadata element</svrl:text>
 
 	  <!--RULE -->
@@ -5356,7 +5363,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-72: The attribute appinfo:appliesToTypes MUST be owned by a metadata element.</svrl:text>
+               <svrl:text>Rule 10-71: The attribute appinfo:appliesToTypes MUST be owned by a metadata element.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -5367,7 +5374,7 @@
       <xsl:apply-templates select="*" mode="M137"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-74appinfo:appliesToElements annotates metadata element-->
+   <!--PATTERN rule_10-73appinfo:appliesToElements annotates metadata element-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">appinfo:appliesToElements annotates metadata element</svrl:text>
 
 	  <!--RULE -->
@@ -5386,7 +5393,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-74: The attribute appinfo:appliesToElements MUST be owned by a metadata element.</svrl:text>
+               <svrl:text>Rule 10-73: The attribute appinfo:appliesToElements MUST be owned by a metadata element.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -5397,7 +5404,7 @@
       <xsl:apply-templates select="*" mode="M138"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-76appinfo:LocalTerm annotates schema-->
+   <!--PATTERN rule_10-75appinfo:LocalTerm annotates schema-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">appinfo:LocalTerm annotates schema</svrl:text>
 
 	  <!--RULE -->
@@ -5413,7 +5420,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-76: The element appinfo:LocalTerm MUST be application information on an element xs:schema.</svrl:text>
+               <svrl:text>Rule 10-75: The element appinfo:LocalTerm MUST be application information on an element xs:schema.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -5424,7 +5431,7 @@
       <xsl:apply-templates select="*" mode="M139"/>
    </xsl:template>
 
-   <!--PATTERN rule_10-77appinfo:LocalTerm has literal or definition-->
+   <!--PATTERN rule_10-76appinfo:LocalTerm has literal or definition-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">appinfo:LocalTerm has literal or definition</svrl:text>
 
 	  <!--RULE -->
@@ -5440,7 +5447,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-77: The element {http://release.niem.gov/niem/appinfo/4.0/}LocalTerm MUST have a literal or definition.</svrl:text>
+               <svrl:text>Rule 10-76: The element {http://release.niem.gov/niem/appinfo/4.0/}LocalTerm MUST have a literal or definition.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -5461,9 +5468,10 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:complexType[some $name in @name,                                     $extension in xs:simpleContent/xs:extension,                                     $base-qname in resolve-QName($extension/@base, $extension) satisfies                                     $base-qname = QName('http://www.w3.org/2001/XMLSchema', $name)]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="false()">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="false()">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -5611,8 +5619,8 @@
       <xsl:apply-templates select="*" mode="M145"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-7Name of a code simple type has standard suffix-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Name of a code simple type has standard suffix</svrl:text>
+   <!--PATTERN rule_11-7Name of a code simple type ends in "CodeSimpleType"-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Name of a code simple type ends in "CodeSimpleType"</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:simpleType[exists(@name)       and (xs:restriction/xs:enumeration            or xs:restriction[ends-with(local-name-from-QName(resolve-QName(@base, .)), 'CodeSimpleType')])]"
@@ -5621,10 +5629,11 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:simpleType[exists(@name)       and (xs:restriction/xs:enumeration            or xs:restriction[ends-with(local-name-from-QName(resolve-QName(@base, .)), 'CodeSimpleType')])]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(ends-with(@name, 'CodeSimpleType'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(ends-with(@name, 'CodeSimpleType'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -5648,10 +5657,11 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:attribute[exists(@name) and exists(@type) and ends-with(@type, 'CodeSimpleType')]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(ends-with(@name, 'Code'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(ends-with(@name, 'Code'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -5758,10 +5768,11 @@
    <xsl:template match="xs:element[@name]" priority="1000" mode="M151">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="xs:element[@name]"/>
 
-		    <!--REPORT -->
-      <xsl:if test="not(exists(@abstract[xs:boolean(.) = true()])                            eq (ends-with(@name, 'Abstract')                                or ends-with(@name, 'AugmentationPoint')                               or ends-with(@name, 'Representation')))">
+		    <!--REPORT warning-->
+      <xsl:if test="not(exists(@abstract[xs:boolean(.) = true()])                   eq (ends-with(@name, 'Abstract')                       or ends-with(@name, 'AugmentationPoint')                       or ends-with(@name, 'Representation')))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(exists(@abstract[xs:boolean(.) = true()]) eq (ends-with(@name, 'Abstract') or ends-with(@name, 'AugmentationPoint') or ends-with(@name, 'Representation')))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -5785,10 +5796,11 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:element[@name and @type                                 and (some $type-qname in resolve-QName(@type, .) satisfies (                                        nf:get-target-namespace(.) = namespace-uri-from-QName($type-qname)                                        and nf:resolve-type(., $type-qname)/xs:simpleContent))]"/>
 
-		    <!--REPORT -->
-      <xsl:if test="every $representation-term in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List') satisfies                             not(ends-with(@name, $representation-term))">
+		    <!--REPORT warning-->
+      <xsl:if test="every $representation-term               in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List')               satisfies not(ends-with(@name, $representation-term))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="every $representation-term in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List') satisfies not(ends-with(@name, $representation-term))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -5872,10 +5884,11 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:attribute[exists(@name)]"/>
 
-		    <!--REPORT -->
-      <xsl:if test="every $representation-term in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List') satisfies                             not(ends-with(@name, $representation-term))">
+		    <!--REPORT warning-->
+      <xsl:if test="every $representation-term               in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List')               satisfies not(ends-with(@name, $representation-term))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="every $representation-term in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List') satisfies not(ends-with(@name, $representation-term))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
@@ -5978,8 +5991,8 @@
       <xsl:apply-templates select="*" mode="M158"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-29Standard opening phrase for augmentation point element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for augmentation point element</svrl:text>
+   <!--PATTERN rule_11-29Standard opening phrase for augmentation point element data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for augmentation point element data definition</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:element[ends-with(@name, 'AugmentationPoint')]/xs:annotation/xs:documentation[1]"
@@ -5988,14 +6001,15 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:element[ends-with(@name, 'AugmentationPoint')]/xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(starts-with(lower-case(normalize-space(.)), 'an augmentation point '))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(starts-with(lower-case(normalize-space(.)), 'an augmentation point '))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-29: The data definition for an augmentation point element SHOULD begin with standard opening phrase "an augmentation point...".</svrl:text>
+            <svrl:text>Rule 11-29: The data definition for an augmentation point element SHOULD begin with standard opening phrase "An augmentation point...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M159"/>
@@ -6005,8 +6019,8 @@
       <xsl:apply-templates select="*" mode="M159"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-30Standard opening phrase for augmentation element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for augmentation element</svrl:text>
+   <!--PATTERN rule_11-30Standard opening phrase for augmentation element data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for augmentation element data definition</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:element[ends-with(@name, 'Augmentation')]/xs:annotation/xs:documentation[1]"
@@ -6015,14 +6029,15 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:element[ends-with(@name, 'Augmentation')]/xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
-      <xsl:if test="every $phrase in ('supplements ', 'additional information about ')                       satisfies not(starts-with(lower-case(normalize-space(.)), $phrase))">
+		    <!--REPORT warning-->
+      <xsl:if test="every $phrase               in ('supplements ', 'additional information about ')               satisfies not(starts-with(lower-case(normalize-space(.)), $phrase))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="every $phrase in ('supplements ', 'additional information about ') satisfies not(starts-with(lower-case(normalize-space(.)), $phrase))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-30: The data definition for an augmentation element SHOULD begin with the standard opening phrase "supplements..." or "additional information about...".</svrl:text>
+            <svrl:text>Rule 11-30: The data definition for an augmentation element SHOULD begin with the standard opening phrase "Supplements..." or "Additional information about...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M160"/>
@@ -6032,8 +6047,8 @@
       <xsl:apply-templates select="*" mode="M160"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-31Standard opening phrase for metadata element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for metadata element</svrl:text>
+   <!--PATTERN rule_11-31Standard opening phrase for metadata element data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for metadata element data definition</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:element[ends-with(@name, 'Metadata')                                 and not(xs:boolean(@abstract) eq true())]/xs:annotation/xs:documentation[1]"
@@ -6042,14 +6057,15 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:element[ends-with(@name, 'Metadata')                                 and not(xs:boolean(@abstract) eq true())]/xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(matches(lower-case(normalize-space(.)), '(metadata about|information that further qualifies)'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '(metadata about|information that further qualifies)'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-31: The data definition for a metadata element SHOULD begin with the standard opening phrase "metadata about..." or "information that further qualifies...".</svrl:text>
+            <svrl:text>Rule 11-31: The data definition for a metadata element SHOULD begin with the standard opening phrase "Metadata about..." or "Information that further qualifies...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M161"/>
@@ -6059,8 +6075,8 @@
       <xsl:apply-templates select="*" mode="M161"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-32Standard opening phrase for association element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for association element</svrl:text>
+   <!--PATTERN rule_11-32Standard opening phrase for association element data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for association element data definition</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:element[ends-with(@name, 'Association')                                 and not(xs:boolean(@abstract) eq true())]/xs:annotation/xs:documentation[1]"
@@ -6069,14 +6085,15 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:element[ends-with(@name, 'Association')                                 and not(xs:boolean(@abstract) eq true())]/xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
-      <xsl:if test="not(matches(lower-case(normalize-space(.)),                                   '^an?( .*)? (relationship|association)'))">
+		    <!--REPORT warning-->
+      <xsl:if test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (relationship|association)'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (relationship|association)'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-32: The data definition for an association element that is not abstract SHOULD begin with the standard opening phrase "an (optional adjectives) (relationship|association)...".</svrl:text>
+            <svrl:text>Rule 11-32: The data definition for an association element that is not abstract SHOULD begin with the standard opening phrase "An (optional adjectives) (relationship|association)...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M162"/>
@@ -6086,8 +6103,8 @@
       <xsl:apply-templates select="*" mode="M162"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-33Standard opening phrase for abstract element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for abstract element</svrl:text>
+   <!--PATTERN rule_11-33Standard opening phrase for abstract element data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for abstract element data definition</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:element[xs:boolean(@abstract) = true()                        and not(ends-with(@name, 'AugmentationPoint'))]/xs:annotation/xs:documentation[1]"
@@ -6096,14 +6113,15 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:element[xs:boolean(@abstract) = true()                        and not(ends-with(@name, 'AugmentationPoint'))]/xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(starts-with(lower-case(normalize-space(.)), 'a data concept'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(starts-with(lower-case(normalize-space(.)), 'a data concept'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-33: The data definition for an abstract element SHOULD begin with the standard opening phrase "a data concept...".</svrl:text>
+            <svrl:text>Rule 11-33: The data definition for an abstract element SHOULD begin with the standard opening phrase "A data concept...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M163"/>
@@ -6113,24 +6131,25 @@
       <xsl:apply-templates select="*" mode="M163"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-34Standard opening phrase for date element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for date element</svrl:text>
+   <!--PATTERN rule_11-34Standard opening phrase for date element or attribute data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for date element or attribute data definition</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:element[ends-with(@name, 'Date') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"
+   <xsl:template match="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Date') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"
                  priority="1000"
                  mode="M164">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                       context="xs:element[ends-with(@name, 'Date') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"/>
+                       context="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Date') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (date|month|year)'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (date|month|year)'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-34: The data definition for an element with a date representation term SHOULD begin with the standard opening phrase "a(n?) (optional adjectives) (date|month|year)...".</svrl:text>
+            <svrl:text>Rule 11-34: The data definition for an element or attribute with a date representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) (date|month|year)...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M164"/>
@@ -6140,24 +6159,25 @@
       <xsl:apply-templates select="*" mode="M164"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-35Standard opening phrase for quantity element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for quantity element</svrl:text>
+   <!--PATTERN rule_11-35Standard opening phrase for quantity element or attribute data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for quantity element or attribute data definition</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:element[ends-with(@name, 'Quantity') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"
+   <xsl:template match="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Quantity') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"
                  priority="1000"
                  mode="M165">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                       context="xs:element[ends-with(@name, 'Quantity') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"/>
+                       context="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Quantity') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (count|number)'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (count|number)'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-35: The data definition for an element with a quantity representation term SHOULD begin with the standard opening phrase "an (optional adjectives) (count|number)...".</svrl:text>
+            <svrl:text>Rule 11-35: The data definition for an element or attribute with a quantity representation term SHOULD begin with the standard opening phrase "An (optional adjectives) (count|number)...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M165"/>
@@ -6167,24 +6187,25 @@
       <xsl:apply-templates select="*" mode="M165"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-36Standard opening phrase for picture element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for picture element</svrl:text>
+   <!--PATTERN rule_11-36Standard opening phrase for picture element or attribute data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for picture element or attribute data definition</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:element[ends-with(@name, 'Picture') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"
+   <xsl:template match="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Picture') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"
                  priority="1000"
                  mode="M166">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                       context="xs:element[ends-with(@name, 'Picture') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"/>
+                       context="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Picture') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (image|picture|photograph)'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? (image|picture|photograph)'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-36: The data definition for an element with a picture representation term SHOULD begin with the standard opening phrase "an (optional adjectives) (image|picture|photograph)".</svrl:text>
+            <svrl:text>Rule 11-36: The data definition for an element or attribute with a picture representation term SHOULD begin with the standard opening phrase "An (optional adjectives) (image|picture|photograph)".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M166"/>
@@ -6194,24 +6215,25 @@
       <xsl:apply-templates select="*" mode="M166"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-37Standard opening phrase for indicator element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for indicator element</svrl:text>
+   <!--PATTERN rule_11-37Standard opening phrase for indicator element or attribute data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for indicator element or attribute data definition</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:element[ends-with(@name, 'Indicator') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"
+   <xsl:template match="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Indicator') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"
                  priority="1000"
                  mode="M167">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                       context="xs:element[ends-with(@name, 'Indicator') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"/>
+                       context="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Indicator') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(matches(lower-case(normalize-space(.)), '^true if .*; false (otherwise|if)'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^true if .*; false (otherwise|if)'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-37: The data definition for an element with an indicator representation term SHOULD begin with the standard opening phrase "true if ...; false (otherwise|if)...".</svrl:text>
+            <svrl:text>Rule 11-37: The data definition for an element or attribute with an indicator representation term SHOULD begin with the standard opening phrase "True if ...; false (otherwise|if)...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M167"/>
@@ -6221,24 +6243,25 @@
       <xsl:apply-templates select="*" mode="M167"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-38Standard opening phrase for identification element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for identification element</svrl:text>
+   <!--PATTERN rule_11-38Standard opening phrase for identification element or attribute data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for identification element or attribute data definition</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:element[ends-with(@name, 'Identification') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"
+   <xsl:template match="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Identification') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"
                  priority="1000"
                  mode="M168">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                       context="xs:element[ends-with(@name, 'Identification') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"/>
+                       context="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Identification') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? identification'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^an?( .*)? identification'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-38: The data definition for an element with an identification representation term SHOULD begin with the standard opening phrase "(a|an) (optional adjectives) identification...".</svrl:text>
+            <svrl:text>Rule 11-38: The data definition for an element or attribute with an identification representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) identification...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M168"/>
@@ -6248,24 +6271,25 @@
       <xsl:apply-templates select="*" mode="M168"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-39Standard opening phrase for name element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for name element</svrl:text>
+   <!--PATTERN rule_11-39Standard opening phrase for name element or attribute data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for name element or attribute data definition</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:element[ends-with(@name, 'Name') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"
+   <xsl:template match="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Name') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"
                  priority="1000"
                  mode="M169">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                       context="xs:element[ends-with(@name, 'Name') and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"/>
+                       context="*[(self::xs:element or self::xs:attribute)                        and ends-with(@name, 'Name') and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(matches(lower-case(normalize-space(.)), '^(a|an)( .*)? name'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^(a|an)( .*)? name'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-39: The data definition for an element with a name representation term SHOULD begin with the standard opening phrase "(a|an) (optional adjectives) name...".</svrl:text>
+            <svrl:text>Rule 11-39: The data definition for an element or attribute with a name representation term SHOULD begin with the standard opening phrase "(A|An) (optional adjectives) name...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M169"/>
@@ -6275,24 +6299,25 @@
       <xsl:apply-templates select="*" mode="M169"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-40Standard opening phrase for element-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for element</svrl:text>
+   <!--PATTERN rule_11-40Standard opening phrase for element or attribute data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for element or attribute data definition</svrl:text>
 
 	  <!--RULE -->
-   <xsl:template match="xs:element[@name                                  and not(ends-with(@name, 'Indicator'))                                 and not(ends-with(@name, 'Augmentation'))                                 and not(ends-with(@name, 'Metadata'))                                 and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"
+   <xsl:template match="*[(self::xs:element or self::xs:attribute)                        and @name                        and not(ends-with(@name, 'Indicator'))                        and not(ends-with(@name, 'Augmentation'))                        and not(ends-with(@name, 'Metadata'))                        and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"
                  priority="1000"
                  mode="M170">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                       context="xs:element[@name                                  and not(ends-with(@name, 'Indicator'))                                 and not(ends-with(@name, 'Augmentation'))                                 and not(ends-with(@name, 'Metadata'))                                 and not(xs:boolean(@abstract) eq true())]                        /xs:annotation/xs:documentation[1]"/>
+                       context="*[(self::xs:element or self::xs:attribute)                        and @name                        and not(ends-with(@name, 'Indicator'))                        and not(ends-with(@name, 'Augmentation'))                        and not(ends-with(@name, 'Metadata'))                        and not(xs:boolean(@abstract) eq true())]                       /xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(matches(lower-case(normalize-space(.)), '^an? '))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^an? '))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-40: The data definition for an element declaration SHOULD begin with the standard opening phrase "(a|an)".</svrl:text>
+            <svrl:text>Rule 11-40: The data definition for an element or attribute declaration SHOULD begin with the standard opening phrase "(A|An)".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M170"/>
@@ -6302,8 +6327,8 @@
       <xsl:apply-templates select="*" mode="M170"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-41Standard opening phrase for association type-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for association type</svrl:text>
+   <!--PATTERN rule_11-41Standard opening phrase for association type data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for association type data definition</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType[ends-with(@name, 'AssociationType')]/xs:annotation/xs:documentation[1]"
@@ -6312,14 +6337,15 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:complexType[ends-with(@name, 'AssociationType')]/xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(matches(lower-case(normalize-space(.)), '^a data type for (a relationship|an association)'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^a data type for (a relationship|an association)'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-41: The data definition for an association type SHOULD begin with the standard opening phrase "a data type for (a relationship|an association)...".</svrl:text>
+            <svrl:text>Rule 11-41: The data definition for an association type SHOULD begin with the standard opening phrase "A data type for (a relationship|an association)...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M171"/>
@@ -6329,8 +6355,8 @@
       <xsl:apply-templates select="*" mode="M171"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-42Standard opening phrase for augmentation type-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for augmentation type</svrl:text>
+   <!--PATTERN rule_11-42Standard opening phrase for augmentation type data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for augmentation type data definition</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType[ends-with(@name, 'AugmentationType')]/xs:annotation/xs:documentation[1]"
@@ -6339,14 +6365,15 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:complexType[ends-with(@name, 'AugmentationType')]/xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
-      <xsl:if test="not(matches(lower-case(normalize-space(.)), '^a data type (that supplements|for additional information about)'))">
+		    <!--REPORT warning-->
+      <xsl:if test="not(matches(lower-case(normalize-space(.)),                           '^a data type (that supplements|for additional information about)'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^a data type (that supplements|for additional information about)'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-42: The data definition for an augmentation type SHOULD begin with the standard opening phrase "a data type (that supplements|for additional information about)...".</svrl:text>
+            <svrl:text>Rule 11-42: The data definition for an augmentation type SHOULD begin with the standard opening phrase "A data type (that supplements|for additional information about)...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M172"/>
@@ -6356,8 +6383,8 @@
       <xsl:apply-templates select="*" mode="M172"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-43Standard opening phrase for metadata type-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for metadata type</svrl:text>
+   <!--PATTERN rule_11-43Standard opening phrase for metadata type data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for metadata type data definition</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType[ends-with(@name, 'MetadataType')]/xs:annotation/xs:documentation[1]"
@@ -6366,14 +6393,15 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:complexType[ends-with(@name, 'MetadataType')]/xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
-      <xsl:if test="not(matches(lower-case(normalize-space(.)), '^a data type for (metadata about|information that further qualifies)'))">
+		    <!--REPORT warning-->
+      <xsl:if test="not(matches(lower-case(normalize-space(.)),                           '^a data type for (metadata about|information that further qualifies)'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^a data type for (metadata about|information that further qualifies)'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-43: The data definition for a metadata type SHOULD begin with the standard opening phrase "a data type for (metadata about|information that further qualifies)...".</svrl:text>
+            <svrl:text>Rule 11-43: The data definition for a metadata type SHOULD begin with the standard opening phrase "A data type for (metadata about|information that further qualifies)...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M173"/>
@@ -6383,8 +6411,8 @@
       <xsl:apply-templates select="*" mode="M173"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-44Standard opening phrase for complex type-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for complex type</svrl:text>
+   <!--PATTERN rule_11-44Standard opening phrase for complex type data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for complex type data definition</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:complexType/xs:annotation/xs:documentation[1]"
@@ -6393,14 +6421,15 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:complexType/xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(matches(lower-case(normalize-space(.)), '^a data type'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^a data type'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-44: The data definition for a complex type SHOULD begin with the standard opening phrase "a data type...".</svrl:text>
+            <svrl:text>Rule 11-44: The data definition for a complex type SHOULD begin with the standard opening phrase "A data type...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M174"/>
@@ -6410,8 +6439,8 @@
       <xsl:apply-templates select="*" mode="M174"/>
    </xsl:template>
 
-   <!--PATTERN rule_11-45Standard opening phrase for simple type-->
-   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for simple type</svrl:text>
+   <!--PATTERN rule_11-45Standard opening phrase for simple type data definition-->
+   <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Standard opening phrase for simple type data definition</svrl:text>
 
 	  <!--RULE -->
    <xsl:template match="xs:simpleType/xs:annotation/xs:documentation[1]"
@@ -6420,14 +6449,15 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="xs:simpleType/xs:annotation/xs:documentation[1]"/>
 
-		    <!--REPORT -->
+		    <!--REPORT warning-->
       <xsl:if test="not(matches(lower-case(normalize-space(.)), '^a data type'))">
          <svrl:successful-report xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                  test="not(matches(lower-case(normalize-space(.)), '^a data type'))">
+            <xsl:attribute name="role">warning</xsl:attribute>
             <xsl:attribute name="location">
                <xsl:apply-templates select="." mode="schematron-select-full-path"/>
             </xsl:attribute>
-            <svrl:text>Rule 11-45: The data definition for a simple type SHOULD begin with a standard opening phrase "a data type...".</svrl:text>
+            <svrl:text>Rule 11-45: The data definition for a simple type SHOULD begin with a standard opening phrase "A data type...".</svrl:text>
          </svrl:successful-report>
       </xsl:if>
       <xsl:apply-templates select="*" mode="M175"/>

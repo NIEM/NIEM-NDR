@@ -204,7 +204,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_12-16</xsl:attribute>
+            <xsl:attribute name="id">rule_12-15</xsl:attribute>
             <xsl:attribute name="name">Attribute structures:metadata references metadata element</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -213,7 +213,7 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">rule_12-17</xsl:attribute>
+            <xsl:attribute name="id">rule_12-16</xsl:attribute>
             <xsl:attribute name="name">Attribute structures:relationshipMetadata references metadata element</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
@@ -283,7 +283,7 @@
       <xsl:apply-templates select="*" mode="M10"/>
    </xsl:template>
 
-   <!--PATTERN rule_12-16Attribute structures:metadata references metadata element-->
+   <!--PATTERN rule_12-15Attribute structures:metadata references metadata element-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Attribute structures:metadata references metadata element</svrl:text>
 
 	  <!--RULE -->
@@ -300,7 +300,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 12-16: Each item in the value of an attribute structures:metadata MUST appear as the value of an attribute structures:id with an owner element that is a metadata element.</svrl:text>
+               <svrl:text>Rule 12-15: Each item in the value of an attribute structures:metadata MUST appear as the value of an attribute structures:id with an owner element that is a metadata element.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -311,7 +311,7 @@
       <xsl:apply-templates select="*" mode="M11"/>
    </xsl:template>
 
-   <!--PATTERN rule_12-17Attribute structures:relationshipMetadata references metadata element-->
+   <!--PATTERN rule_12-16Attribute structures:relationshipMetadata references metadata element-->
    <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Attribute structures:relationshipMetadata references metadata element</svrl:text>
 
 	  <!--RULE -->
@@ -330,7 +330,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 12-17: Each item in the value of an attribute structures:relationshipMetadata MUST appear as the value of an attribute structures:id with an owner element that is a metadata element.</svrl:text>
+               <svrl:text>Rule 12-16: Each item in the value of an attribute structures:relationshipMetadata MUST appear as the value of an attribute structures:id with an owner element that is a metadata element.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
