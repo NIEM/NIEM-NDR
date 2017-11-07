@@ -7148,9 +7148,10 @@ not be given the same name.</p></li>
 
         <ruleSection><title>Element type does not have a simple type name</title>
 
-          <p>This rule ensures that all conformant elements will have complex types that contain attributes from
-            the structures namespace, enabling a consistent approach for using IDs, references, metadata,
-            relationship metadata, and security markup data.</p>
+          <p>This rule, in conjunction with <ref idref="st-name-ends-in-simpletype"/>, ensures that all
+            conformant elements will have complex types that contain attributes from the structures namespace,
+            enabling a consistent approach for using IDs, references, metadata, relationship metadata, and
+            security markup data.</p>
 
           <rule applicability="REF EXT" id="el-type-name-not-simple-type" class="Constraint">
             <pre><xmlBlurb memberOf="ref ext" id="xb-el-type-name-not-simple-type">
