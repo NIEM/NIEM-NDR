@@ -8779,7 +8779,7 @@ not be given the same name.</p></li>
       <p>Clark, J. <q>XML Namespaces</q>, 4 February 1999. Available from <link>http://www.jclark.com/xml/xmlns.htm</link>.</p>
     </reference>
     <reference id="code-lists-spec" label="Code Lists">
-      <p>Webb Roberts. <q>NIEM Code Lists Specification.</q> NIEM Technical Architecture Committee (NTAC), November 1, 2017. Available from <link>MACRO_HREF_CODE_LISTS</link>.
+      <p>Webb Roberts. <q>NIEM Code Lists Specification.</q> NIEM Technical Architecture Committee (NTAC), November 7, 2017. Available from <link>MACRO_HREF_CODE_LISTS</link>.
 </p>
     </reference>
     <reference id="ConfReq">
