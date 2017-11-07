@@ -5663,7 +5663,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         </definition>
 
         <p>This term may be mistaken for the term <termRef>augmentation</termRef>. An <termRef>augmentation
-          element declaration</termRef> is an element declaration defined by a schemas, while an
+          element declaration</termRef> is an element declaration defined by a schema, while an
           <termRef>augmentation</termRef> is an element information item within an XML document that appears as
           the result of being substituted for an augmentation point.</p>
 
