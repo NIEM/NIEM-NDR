@@ -2,7 +2,7 @@ National Information Exchange Model Naming and Design Rules
 
 Version 4.0
 
-November 1, 2017
+November 7, 2017
 
 NIEM Technical Architecture Committee (NTAC)
 
@@ -3970,7 +3970,7 @@ Rule 10-31. Augmentation point element use must be last element in its base type
 
          3. is designed to be used as an [augmentation] of its parent object or association
 
-   This term may be mistaken for the term [augmentation]. An [augmentation element declaration] is an element declaration defined by a schemas, while an [augmentation] is an element information item within an XML document that appears as the result of being substituted for an augmentation point.
+   This term may be mistaken for the term [augmentation]. An [augmentation element declaration] is an element declaration defined by a schema, while an [augmentation] is an element information item within an XML document that appears as the result of being substituted for an augmentation point.
 
 Rule 10-32. Element within instance of augmentation type modifies base
 
@@ -5000,7 +5000,7 @@ Rule 11-10. Complex type with simple content has structures:SimpleObjectAttribut
 
 Rule 11-11. Element type does not have a simple type name
 
-   This rule ensures that all conformant elements will have complex types that contain attributes from the structures namespace, enabling a consistent approach for using IDs, references, metadata, relationship metadata, and security markup data.
+   This rule, in conjunction with Rule 11-3, Name of simple type ends in "SimpleType", ensures that all conformant elements will have complex types that contain attributes from the structures namespace, enabling a consistent approach for using IDs, references, metadata, relationship metadata, and security markup data.
 
    [Rule 11-11] (REF, EXT)
 
@@ -6133,7 +6133,7 @@ Appendix A. References
 
    [ClarkNS]: Clark, J. "XML Namespaces", 4 February 1999. Available from http://www.jclark.com/xml/xmlns.htm.
 
-   [Code Lists]: Webb Roberts. "NIEM Code Lists Specification." NIEM Technical Architecture Committee (NTAC), November 1, 2017. Available from https://reference.niem.gov/niem/specification/code-lists/4.0/niem-code-lists-4.0.html. 
+   [Code Lists]: Webb Roberts. "NIEM Code Lists Specification." NIEM Technical Architecture Committee (NTAC), November 7, 2017. Available from https://reference.niem.gov/niem/specification/code-lists/4.0/niem-code-lists-4.0.html. 
 
    [ConfReq]: Lynne Rosenthal, and Mark Skall, eds. "Conformance Requirements for Specifications v1.0." The Organization for the Advancement of Structured Information Standards (OASIS), March 15, 2002. https://www.oasis-open.org/committees/download.php/305/conformance_requirements-v1.pdf.
 
