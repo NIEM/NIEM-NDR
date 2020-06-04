@@ -1,5 +1,7 @@
-/.svn
-/tmp
+/Makefile
+/autom4te.cache
+/config.log
+/config.status
 /dependencies.mk
-/repo
-/repo-webbs-old-version
+/run
+/tmp

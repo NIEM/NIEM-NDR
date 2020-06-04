@@ -20,7 +20,7 @@ depend = build
 #HELP:Default is to clean, rebuild, and install
 .DEFAULT_GOAL = default
 
-repo_dir = repo
+repo_dir = publish
 
 # command paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
