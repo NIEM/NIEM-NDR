@@ -3,7 +3,7 @@
 #############################################################################
 
 this_makefile := ${lastword ${MAKEFILE_LIST}}
-SHELL = /bin/bash 
+SHELL = @bash@ -o pipefail -o errexit -o nounset
 # generated dependencies for things derived from the NDR doc
 dependencies_mk := dependencies.mk
 .SECONDARY:
@@ -28,39 +28,58 @@ repo_dir = publish
 # RM = rm -f
 
 # # command variables defined by autoconf
-MKDIR_P = mkdir -p
-SED = sed
+MKDIR_P = @MKDIR_P@
+SED = @SED@
 
-schema_dir = xsd/ndr-examples
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+INSTALL_DATA = @INSTALL_DATA@
 
 # # doc-processing
-check_doc = check-doc
-check_doc_flags = --catalog=${schema_dir}/xml-catalog.xml
-process_doc = process-doc
-process_doc_flags = --catalog=${schema_dir}/xml-catalog.xml
-doc_to_schematron = doc-to-schematron
+check_doc = @check_doc@
+process_doc = @process_doc@
+doc_to_schematron = @doc_to_schematron@
+
+# # schematron
+schematron = @schematron@
+schematron_compile = @schematron_compile@
+schematron_execute = @schematron_execute@
+
+# XML
+check_xml = @check_xml@
+
+# Unix
+## ImageMagick
+identify = identify
+## aspell
+aspell = aspell
 
 # # others
-aspell = aspell
 base64 = base64
-check_xml = check-xml
 chmod = chmod
 cp = cp
 find = find
 grep = grep
 head = head
-identify = identify
 m4 = m4
-m4_flags = --prefix-builtins ${m4_macros} lib/m4-setup.m4
-schematron = schematron
-schematron_compile = schematron-compile
-schematron_execute = schematron-execute
 touch = touch
 zip = zip
 
+
 # source paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+schema_dir = xsd/ndr-examples
 ndr_macros_m4 = src/ndr-macros.m4
+
+#############################################################################
+# command flags
+
+check_doc_flags = --catalog=${schema_dir}/xml-catalog.xml
+process_doc_flags = --catalog=${schema_dir}/xml-catalog.xml
+m4_flags = --prefix-builtins ${m4_macros} lib/m4-setup.m4
+
+
 
 #############################################################################
 # products

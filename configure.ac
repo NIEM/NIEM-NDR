@@ -34,8 +34,30 @@ test "x$[]$sort" = "x" && AC_MSG_ERROR([sort not found])
 
 # webb stuff
 
+AC_PATH_PROG(check_doc,check-doc)
+test "x$[]$check_doc" = "x" && AC_MSG_ERROR([check-doc not found])
+
 AC_PATH_PROG(process_doc,process-doc)
 test "x$[]$process_doc" = "x" && AC_MSG_ERROR([process-doc not found])
+
+AC_PATH_PROG(doc_to_schematron,doc-to-schematron)
+test "x$[]$doc_to_schematron" = "x" && AC_MSG_ERROR([doc-to-schematron not found])
+
+AC_PATH_PROG(schematron,schematron)
+test "x$[]$schematron" = "x" && AC_MSG_ERROR([schematron not found])
+
+AC_PATH_PROG(schematron_compile,schematron-compile)
+test "x$[]$schematron_compile" = "x" && AC_MSG_ERROR([schematron-compile not found])
+
+AC_PATH_PROG(schematron_execute,schematron-execute)
+test "x$[]$schematron_execute" = "x" && AC_MSG_ERROR([schematron-execute not found])
+
+AC_PATH_PROG(check_xml,check-xml)
+test "x$[]$check_xml" = "x" && AC_MSG_ERROR([check-xml not found])
+
+# AC_PATH_PROG(var,cmd)
+# test "x$[]$var" = "x" && AC_MSG_ERROR([cmd not found])
+
 
 ### output & quit
 
