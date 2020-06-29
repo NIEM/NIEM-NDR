@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <xs:schema
-    targetNamespace="MACRO_NS_APPINFO"
-    version="4.0"
-    xmlns:appinfo="MACRO_NS_APPINFO"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  targetNamespace="MACRO_NS_APPINFO"
+  version="MACRO_NDR_VERSION"
+  xml:lang="en-US"
+  xmlns:appinfo="MACRO_NS_APPINFO"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:annotation>
     <xs:documentation>The appinfo schema provides support for high level data model concepts and additional syntax to support the NIEM conceptual model and validation of NIEM-conformant instances.</xs:documentation>
@@ -11,7 +12,7 @@
 
   <xs:attribute name="deprecated">
     <xs:annotation>
-      <xs:documentation>The Deprecated element provides a method for identifying schema components as being deprecated. A deprecated component is one that is provided, but the use of which is not recommended.</xs:documentation>
+      <xs:documentation>The deprecated attribute provides a method for identifying schema components as being deprecated. A deprecated component is one that is provided, but the use of which is not recommended.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:restriction base="xs:boolean">
@@ -63,8 +64,7 @@
   <xs:element name="LocalTerm">
     <xs:complexType>
       <xs:sequence>
-	<xs:element name="SourceText" type="appinfo:NonemptyStringSimpleType" 
-                    minOccurs="0" maxOccurs="unbounded" form="qualified"/>
+	<xs:element name="SourceText" type="appinfo:NonemptyStringSimpleType" minOccurs="0" maxOccurs="unbounded" form="qualified"/>
       </xs:sequence>
       <xs:attribute name="term" type="appinfo:NonemptyStringSimpleType" use="required"/>
       <xs:attribute name="literal" type="appinfo:NonemptyStringSimpleType"/>
@@ -89,3 +89,9 @@
   </xs:simpleType>
 
 </xs:schema>
+m4_dnl Local Variables:
+m4_dnl mode: sgml
+m4_dnl indent-tabs-mode: nil
+m4_dnl fill-column: 9999
+m4_dnl sgml-basic-offset: 2
+m4_dnl End:

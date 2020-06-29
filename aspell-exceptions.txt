@@ -260,6 +260,7 @@ reusability
 schemaLocation
 schemas
 scr
+sequenceID
 simpleContent
 simpleType
 sourceURIs
