@@ -273,8 +273,9 @@
    <map:rule descriptiveID="" ruleID="rule_12-12"/>
    <map:rule descriptiveID="" ruleID="rule_12-13"/>
    <map:rule descriptiveID="" ruleID="rule_12-14"/>
-   <map:rule descriptiveID="rule-attr-metadata-refs-metadata" ruleID="rule_12-15"/>
+   <map:rule descriptiveID="" ruleID="rule_12-15"/>
+   <map:rule descriptiveID="rule-attr-metadata-refs-metadata" ruleID="rule_12-16"/>
    <map:rule descriptiveID="rule-attr-rel-metadata-refs-metadata"
-             ruleID="rule_12-16"/>
-   <map:rule descriptiveID="" ruleID="rule_12-17"/>
+             ruleID="rule_12-17"/>
+   <map:rule descriptiveID="" ruleID="rule_12-18"/>
 </map:map>

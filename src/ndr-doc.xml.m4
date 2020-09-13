@@ -1203,6 +1203,8 @@
       properties. NIEM-conformant data contains elements and attributes. These correspond to RDF resources and
       their properties, which describe their characteristics and relationships.</p>
 
+      <p>The order of properties of an object is not defined, in general, by RDF. NIEM expresses the relative order of properties of an object through the use of attribute <qName>structures:sequenceID</qName>. This specification does not define a mapping for this mechanism to RDF.</p>
+
     </section>
 
     <section id="section-unique-object-ids">
@@ -8396,7 +8398,7 @@ not be given the same name.</p></li>
             equivalent values of <qName>structures:uri</qName>.</p>
 
           <ruleSection>
-            <title><qName>structures:id</qName> and <qName>structures:id</qName> denote resource
+            <title><qName>structures:id</qName> and <qName>structures:ref</qName> denote resource
               identifier</title>
             <rule applicability="INS" id="rule-id-ref-is-uri" class="Interpretation">
               <p>The value of an attribute <qName>structures:id</qName> with a value of <var>$value</var>, or an
@@ -8580,6 +8582,61 @@ not be given the same name.</p></li>
 
       </section>
 
+    </section>
+
+    <section>
+      <title>Property order and sequence identifiers</title>
+
+      <p>The properties of a NIEM data object, by default, have no specific order, regardless of their lexical order in XML data. A NIEM data object instance has a set of properties; these properties will appear in an XML instance as child elements of one or more parent elements.  An object may be composed from multiple XML element instances, through the use of <qName>structures:id</qName>, <qName>structures:ref</qName>, and <qName>structures:uri</qName>. Order of child elements within each parent element is defined by the schema, which can specify exact element order, or can have flexible ordering (for example, elements provided via a substitution group may appear in any order). The order of parent and child elements in a document does not dictate the order of properties of an object.</p>
+
+      <p>A system may interpret the order of properties based on the order of XML elements within XML data; this interpretation is fine, but it is not required by the NIEM specifications. In many cases, the order of XML elements is sufficient to describe the order of properties. However, there are cases where the order of XML elements is not sufficient. One example is a proper name where the natural order of the name<char name="rsquo"/>s components may not be the same as the order of the elements as defined by the XML Schema. In this case, the structure defined by <qName>nc:PersonNameType</qName> defines a sequence of name parts, including given name followed by surname. This works well enough for Western names:</p>
+      
+      <figure id="figure-sequenceid-not-needed">
+        <title>An instance of a name type</title>
+        <pre><![CDATA[<nc:Person>
+  <nc:PersonName>
+    <nc:PersonGivenName>John</nc:PersonGivenName>
+    <nc:PersonSurName>Doe</nc:PersonSurName>
+  </nc:PersonName>
+</nc:Person>]]></pre>
+      </figure>
+
+      <p>The order above does not work well for Chinese personal names, where the surname precedes the given name. For example, the basketball player Yao Ming has a given name of Ming and a surname of Yao. This cannot be expressed by the simple sequence used above, because it orders the given name before the surname. NIEM provides the attribute <qName>structures:sequenceID</qName> to explicitly express the order of properties of an object, regardless of the order of XML elements. The following example shows the <qName>structures:sequenceID</qName> attribute being used. This data is interpreted as <q>Yao</q> occurring before <q>Ming</q>.</p>
+
+      <figure id="figure-sequenceid-example">
+        <title>An instance of a name type that uses <qName>structures:sequenceID</qName></title>
+        <pre><![CDATA[<nc:Person>
+  <nc:PersonName>
+    <nc:PersonGivenName structures:sequenceID="2">Ming</nc:PersonGivenName>
+    <nc:PersonSurName structures:sequenceID="1">Yao</nc:PersonSurName>
+  </nc:PersonName>
+</nc:Person>]]></pre>
+      </figure>
+
+      <p>Use of the <qName>structures:sequenceID</qName> is called for whenever an exchange wants to concretely express the order of properties of an object. This is most useful when elements of a complex type do not appear in the desired order. This can occur when the type of an object is derived from a base type via <qName>xs:extension</qName>, in which case elements owned by the base type occur first, followed by elements added to the derived type. Another useful case is where properties of an object are be expressed across multiple elements that have the same resource identifier provided via attributes <qName>structures:id</qName>, <qName>structures:ref</qName>, or <qName>structures:uri</qName>. These properties may be provided an explicit order using <qName>structures:sequenceID</qName>.</p>
+
+      <p>The order of data is as yielded by the <qName>xsl:sort</qName> element, which is defined by XSLT, with data-type of xsl:number, and order of ascending. Content with identical structures:sequenceID values has undefined order.</p>
+
+      <p>The use of instance-based sequencing, including the use of <qName>structures:sequenceID</qName>, is preferred over efforts to sequence data definitions. For example, the use of <q>address line 1</q>, <q>address line 2</q>, <q>address line 3</q>, etc., is not recommended. Instead, a single <q>address line</q> would be preferred, with order expressed in the XML instance.</p>
+
+      <ruleSection><title>Order of properties is expressed via <qName>structures:sequenceID</qName></title>
+
+        <p>The order of properties within an object may be expressed through the use of attribute <qName>structures:sequenceID</qName>.</p>
+        
+        <rule applicability="INS" class="Interpretation">
+          <p>Given two properties of object <var>$Object</var>,</p>
+          <ul>
+            <li><p>property <var>$Property1</var> with attribute <qName>structures:sequenceID</qName> with value <var>$Value1</var>, and</p></li>
+            <li><p>property <var>$Property2</var> with attribute <qName>structures:sequenceID</qName> with value <var>$Value2</var></p></li>
+          </ul>
+          <p>If <var>$Value1</var> is less than <var>$Value2</var>, then <var>$Property1</var> MUST be interpreted as occurring before <var>$Property2</var> within <var>$Object</var>.</p>
+          <p>If <var>$Value2</var> is less than <var>$Value1</var>, then <var>$Property2</var> MUST be interpreted as occurring before <var>$Property1</var> within <var>$Object</var>.</p>
+          <p>The value of an attribute <qName>structures:sequenceID</qName> MUST be interpreted as an integer value. Comparisons between their values must be interpreted as comparisons between integers.</p>
+          <p>The relative order of two properties, where either does not have attribute <qName>structures:sequenceID</qName> is unspecified. The relative order of two properties that have the same value for attribute <qName>structures:sequenceID</qName> is unspecified.</p>
+        </rule>
+      </ruleSection>
+
+      <p>This specification does not designate order of properties of an object where attribute <qName>structures:sequenceID</qName> does not appear.</p>
     </section>
 
     <section id="section-instance-metadata">
@@ -8856,5 +8913,5 @@ not be given the same name.</p></li>
 m4_dnl Local Variables:
 m4_dnl mode: sgml
 m4_dnl indent-tabs-mode: nil
-m4_dnl fill-column: 113
+m4_dnl fill-column: 99999
 m4_dnl End:

@@ -125,6 +125,7 @@ PersonPhoneAssociation
 PersonPhoneAssociationType
 PersonProfessionalCertificateText
 PersonSightedIndicator
+PersonSurName
 PersonType
 PowerOfAttorneyCode
 ProbabilityPercent
@@ -158,14 +159,16 @@ UPA
 URI
 URIs
 URNs
+UTF
 UUIDs
 UpperCamelCase
-UTF
 VictimType
 WeaponUser
 XHTML
 XPath
 XSD
+XSLT
+Yao
 YearDate
 YearMonthDate
 Za
@@ -290,5 +293,6 @@ whitespace
 xml
 xmlns
 xs
+xsd
 xsi
 xsl

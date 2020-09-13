@@ -706,6 +706,8 @@ Rule 4-6. Schema claims extension conformance target
 
    The XML Schema types that define NIEM objects and associations are related to each other via elements and attributes. That is, a type contains elements and attributes, and an element or attribute has a value that is an instance of an XML Schema type. These elements and attributes are XML Schema representations, which correspond to RDF properties. NIEM-conformant XML Schemas describe things and their properties. NIEM-conformant data contains elements and attributes. These correspond to RDF resources and their properties, which describe their characteristics and relationships.
 
+   The order of properties of an object is not defined, in general, by RDF. NIEM expresses the relative order of properties of an object through the use of attribute structures:sequenceID. This specification does not define a mapping for this mechanism to RDF.
+
 5.4. Unique identification of data objects
 
    A NIEM data exchange may be ephemeral and ad hoc. That is, a message may be transmitted without any expectation of persistence. Such a message exists only to exchange data and may not have any universal meaning beyond that specific exchange. As such, a message may or may not have a URI as an identifier. NIEM was designed with the assumption that a given exchange need not have any unique identifier; NIEM does not require a unique identifier. NIEM also does not require any object carried by a message to be identified by a URI.
@@ -4057,7 +4059,7 @@ Rule 10-37. Augmentation elements are not used directly
 
 10.5. Metadata
 
-   There are rules for the use of metadata in instance in Section 12.3, Instance metadata, below.
+   There are rules for the use of metadata in instance in Section 12.4, Instance metadata, below.
 
 10.5.1. Metadata types
 
@@ -5886,7 +5888,7 @@ Rule 12-7. structures:uri denotes resource identifier
 
    The attributes structures:id and structures:ref each have a mapping to equivalent values of structures:uri.
 
-Rule 12-8. structures:id and structures:id denote resource identifier
+Rule 12-8. structures:id and structures:ref denote resource identifier
 
    [Rule 12-8] (INS)
 
@@ -6001,11 +6003,65 @@ Rule 12-9. Nested elements and references have the same meaning.
 
    NIEM-conformant data instances may use either representation as needed, to represent the meaning of the fundamental data. There is no difference in meaning between reference and content data representations. The two different methods are available for ease of representation. No difference in meaning should be implied by the use of one method or the other.
 
-12.3. Instance metadata
+12.3. Property order and sequence identifiers
+
+   The properties of a NIEM data object, by default, have no specific order, regardless of their lexical order in XML data. A NIEM data object instance has a set of properties; these properties will appear in an XML instance as child elements of one or more parent elements. An object may be composed from multiple XML element instances, through the use of structures:id, structures:ref, and structures:uri. Order of child elements within each parent element is defined by the schema, which can specify exact element order, or can have flexible ordering (for example, elements provided via a substitution group may appear in any order). The order of parent and child elements in a document does not dictate the order of properties of an object.
+
+   A system may interpret the order of properties based on the order of XML elements within XML data; this interpretation is fine, but it is not required by the NIEM specifications. In many cases, the order of XML elements is sufficient to describe the order of properties. However, there are cases where the order of XML elements is not sufficient. One example is a proper name where the natural order of the name's components may not be the same as the order of the elements as defined by the XML Schema. In this case, the structure defined by nc:PersonNameType defines a sequence of name parts, including given name followed by surname. This works well enough for Western names:
+
+   Figure 12-11: An instance of a name type
+
+      <nc:Person>
+        <nc:PersonName>
+          <nc:PersonGivenName>John</nc:PersonGivenName>
+          <nc:PersonSurName>Doe</nc:PersonSurName>
+        </nc:PersonName>
+      </nc:Person>
+
+   The order above does not work well for Chinese personal names, where the surname precedes the given name. For example, the basketball player Yao Ming has a given name of Ming and a surname of Yao. This cannot be expressed by the simple sequence used above, because it orders the given name before the surname. NIEM provides the attribute structures:sequenceID to explicitly express the order of properties of an object, regardless of the order of XML elements. The following example shows the structures:sequenceID attribute being used. This data is interpreted as "Yao" occurring before "Ming".
+
+   Figure 12-12: An instance of a name type that uses structures:sequenceID
+
+      <nc:Person>
+        <nc:PersonName>
+          <nc:PersonGivenName structures:sequenceID="2">Ming</nc:PersonGivenName>
+          <nc:PersonSurName structures:sequenceID="1">Yao</nc:PersonSurName>
+        </nc:PersonName>
+      </nc:Person>
+
+   Use of the structures:sequenceID is called for whenever an exchange wants to concretely express the order of properties of an object. This is most useful when elements of a complex type do not appear in the desired order. This can occur when the type of an object is derived from a base type via xs:extension, in which case elements owned by the base type occur first, followed by elements added to the derived type. Another useful case is where properties of an object are be expressed across multiple elements that have the same resource identifier provided via attributes structures:id, structures:ref, or structures:uri. These properties may be provided an explicit order using structures:sequenceID.
+
+   The order of data is as yielded by the xsl:sort element, which is defined by XSLT, with data-type of xsl:number, and order of ascending. Content with identical structures:sequenceID values has undefined order.
+
+   The use of instance-based sequencing, including the use of structures:sequenceID, is preferred over efforts to sequence data definitions. For example, the use of "address line 1", "address line 2", "address line 3", etc., is not recommended. Instead, a single "address line" would be preferred, with order expressed in the XML instance.
+
+Rule 12-10. Order of properties is expressed via structures:sequenceID
+
+   The order of properties within an object may be expressed through the use of attribute structures:sequenceID.
+
+   [Rule 12-10] (INS)
+
+      Given two properties of object $Object,
+
+         *  property $Property1 with attribute structures:sequenceID with value $Value1, and
+
+         *  property $Property2 with attribute structures:sequenceID with value $Value2
+
+      If $Value1 is less than $Value2, then $Property1 MUST be interpreted as occurring before $Property2 within $Object.
+
+      If $Value2 is less than $Value1, then $Property2 MUST be interpreted as occurring before $Property1 within $Object.
+
+      The value of an attribute structures:sequenceID MUST be interpreted as an integer value. Comparisons between their values must be interpreted as comparisons between integers.
+
+      The relative order of two properties, where either does not have attribute structures:sequenceID is unspecified. The relative order of two properties that have the same value for attribute structures:sequenceID is unspecified.
+
+   This specification does not designate order of properties of an object where attribute structures:sequenceID does not appear.
+
+12.4. Instance metadata
 
    NIEM provides the metadata mechanism for giving information about object assertions. An object may have an attribute that refers to one or more metadata objects. A structures:metadata attribute indicates that a data item has the given metadata. A structures:relationshipMetadata attribute asserts that the link (or relationship) established by an element has the given metadata.
 
-   Figure 12-11: Example of metadata used in an instance
+   Figure 12-13: Example of metadata used in an instance
 
       <nc:Person>
         <nc:PersonBirthDate structures:metadata="j86">
@@ -6049,45 +6105,45 @@ Rule 12-9. Nested elements and references have the same meaning.
 
    Application of metadata to a type or element to which it is not applicable is not NIEM-conformant. A metadata element may be labeled as applicable to multiple elements via attribute appinfo:appliesToElements, or to multiple types via attribute appinfo:appliesToTypes. In either case it may apply to an instance of any of the listed elements or types. For an example, see Figure 10-14, Sample use of appinfo:appliesToTypes, above. A metadata element with neither attribute appinfo:appliesToElements nor attribute appinfo:appliesToTypes may be applied to any element of any type.
 
-Rule 12-10. Metadata applies to referring entity
+Rule 12-11. Metadata applies to referring entity
 
-   [Rule 12-10] (INS)
+   [Rule 12-11] (INS)
 
       Within an element instance, when an object $O links to a metadata object via an attribute structures:metadata, the information in the metadata object MUST be applied to the object $O.
 
    structures:metadata applies metadata to an object.
 
-Rule 12-11. Referent of structures:relationshipMetadata annotates relationship
+Rule 12-12. Referent of structures:relationshipMetadata annotates relationship
 
-   [Rule 12-11] (INS)
+   [Rule 12-12] (INS)
 
       Within an element instance, when an object $O1 contains an element $E, with content object $O2 or with a reference to object $O2, and $O2 links to a metadata object via an attribute structures:relationshipMetadata, the information in the metadata object MUST be applied to the relationship $E between $O1 and $O2.
 
    structures:relationshipMetadata applies metadata to a relationship between two objects.
 
-Rule 12-12. Values of structures:metadata refer to values of structures:id
-
-   [Rule 12-12] (INS)
-
-      Given that each IDREF in the value of an attribute structures:metadata must match the value of an ID attribute on some element in the XML document, that ID attribute MUST be an occurrence of the attribute structures:id.
-
-Rule 12-13. Values of structures:relationshipMetadata refer to values of structures:id
+Rule 12-13. Values of structures:metadata refer to values of structures:id
 
    [Rule 12-13] (INS)
 
-      Given that each IDREF in the value of an attribute structures:relationshipMetadata must match the value of an ID attribute on some element in the XML document, that ID attribute MUST be an occurrence of the attribute structures:id.
+      Given that each IDREF in the value of an attribute structures:metadata must match the value of an ID attribute on some element in the XML document, that ID attribute MUST be an occurrence of the attribute structures:id.
 
-Rule 12-14. structures:metadata and structures:relationshipMetadata refer to metadata elements
+Rule 12-14. Values of structures:relationshipMetadata refer to values of structures:id
 
    [Rule 12-14] (INS)
 
-      Each element referenced by an attribute structures:metadata or an attribute structures:relationshipMetadata MUST have [element declaration] that is a [metadata element declaration].
+      Given that each IDREF in the value of an attribute structures:relationshipMetadata must match the value of an ID attribute on some element in the XML document, that ID attribute MUST be an occurrence of the attribute structures:id.
 
-   Although not implemented in Schematron, this rule covers the cases not covered by Rule 12-15, Attribute structures:metadata references metadata element.
-
-Rule 12-15. Attribute structures:metadata references metadata element
+Rule 12-15. structures:metadata and structures:relationshipMetadata refer to metadata elements
 
    [Rule 12-15] (INS)
+
+      Each element referenced by an attribute structures:metadata or an attribute structures:relationshipMetadata MUST have [element declaration] that is a [metadata element declaration].
+
+   Although not implemented in Schematron, this rule covers the cases not covered by Rule 12-16, Attribute structures:metadata references metadata element.
+
+Rule 12-16. Attribute structures:metadata references metadata element
+
+   [Rule 12-16] (INS)
 
       <sch:pattern>
         <sch:rule context="*[exists(@structures:metadata)]">
@@ -6100,9 +6156,9 @@ Rule 12-15. Attribute structures:metadata references metadata element
 
    Note that this will NOT diagnose a scenario in which the element with a name ending in "Metadata" is an external element; additional tests would be required to catch that.
 
-Rule 12-16. Attribute structures:relationshipMetadata references metadata element
+Rule 12-17. Attribute structures:relationshipMetadata references metadata element
 
-   [Rule 12-16] (INS)
+   [Rule 12-17] (INS)
 
       <sch:pattern>
         <sch:rule context="*[exists(@structures:relationshipMetadata)]">
@@ -6115,9 +6171,9 @@ Rule 12-16. Attribute structures:relationshipMetadata references metadata elemen
 
    Note that this will NOT diagnose a scenario in which the element with a name ending in "Metadata" is an external element; additional tests would be required to catch that.
 
-Rule 12-17. Metadata is applicable to element
+Rule 12-18. Metadata is applicable to element
 
-   [Rule 12-17] (INS)
+   [Rule 12-18] (INS)
 
       Given that an element $SUBJECT-ELEMENT uses a metadata element $METADATA-ELEMENT through a value in either an attribute structures:metadata or an attribute structures:relationshipMetadata, the element $SUBJECT-ELEMENT MUST be an applicable element for $METADATA-ELEMENT.
 
@@ -6647,16 +6703,17 @@ Appendix E. Index of rules
    Rule 12-5, Linked elements have same validation root: Section 12.2.1, Local identifiers and references
    Rule 12-6, Attribute structures:ref references element of correct type: Section 12.2.1, Local identifiers and references
    Rule 12-7, structures:uri denotes resource identifier: Section 12.2.2, Uniform resource identifiers in NIEM data
-   Rule 12-8, structures:id and structures:id denote resource identifier: Section 12.2.2, Uniform resource identifiers in NIEM data
+   Rule 12-8, structures:id and structures:ref denote resource identifier: Section 12.2.2, Uniform resource identifiers in NIEM data
    Rule 12-9, Nested elements and references have the same meaning.: Section 12.2.4, Reference and content elements have same meaning
-   Rule 12-10, Metadata applies to referring entity: Section 12.3, Instance metadata
-   Rule 12-11, Referent of structures:relationshipMetadata annotates relationship: Section 12.3, Instance metadata
-   Rule 12-12, Values of structures:metadata refer to values of structures:id: Section 12.3, Instance metadata
-   Rule 12-13, Values of structures:relationshipMetadata refer to values of structures:id: Section 12.3, Instance metadata
-   Rule 12-14, structures:metadata and structures:relationshipMetadata refer to metadata elements: Section 12.3, Instance metadata
-   Rule 12-15, Attribute structures:metadata references metadata element: Section 12.3, Instance metadata
-   Rule 12-16, Attribute structures:relationshipMetadata references metadata element: Section 12.3, Instance metadata
-   Rule 12-17, Metadata is applicable to element: Section 12.3, Instance metadata
+   Rule 12-10, Order of properties is expressed via structures:sequenceID: Section 12.3, Property order and sequence identifiers
+   Rule 12-11, Metadata applies to referring entity: Section 12.4, Instance metadata
+   Rule 12-12, Referent of structures:relationshipMetadata annotates relationship: Section 12.4, Instance metadata
+   Rule 12-13, Values of structures:metadata refer to values of structures:id: Section 12.4, Instance metadata
+   Rule 12-14, Values of structures:relationshipMetadata refer to values of structures:id: Section 12.4, Instance metadata
+   Rule 12-15, structures:metadata and structures:relationshipMetadata refer to metadata elements: Section 12.4, Instance metadata
+   Rule 12-16, Attribute structures:metadata references metadata element: Section 12.4, Instance metadata
+   Rule 12-17, Attribute structures:relationshipMetadata references metadata element: Section 12.4, Instance metadata
+   Rule 12-18, Metadata is applicable to element: Section 12.4, Instance metadata
 
 Appendix F. General index
 
