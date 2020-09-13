@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <xs:schema
-  ct:conformanceTargets="http://reference.niem.gov/niem/specification/naming-and-design-rules/4.0/#ReferenceSchemaDocument"
+  ct:conformanceTargets="http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/#ReferenceSchemaDocument"
   targetNamespace="http://example.org/example/"
   version="1"
-  xmlns:appinfo="http://release.niem.gov/niem/appinfo/4.0/"
-  xmlns:j="http://release.niem.gov/niem/domains/jxdm/6.0/"
+  xmlns:appinfo="http://release.niem.gov/niem/appinfo/5.0/"
+  xmlns:j="http://release.niem.gov/niem/domains/jxdm/7.0/"
   xmlns:ct="http://release.niem.gov/niem/conformanceTargets/3.0/"
   xmlns:example="http://example.org/example/"
-  xmlns:structures="http://release.niem.gov/niem/structures/4.0/"
+  xmlns:structures="http://release.niem.gov/niem/structures/5.0/"
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:annotation>
     <xs:documentation>A schema for examples.</xs:documentation>
   </xs:annotation>
 
-  <xs:import namespace="http://release.niem.gov/niem/structures/4.0/"/>
-  <xs:import namespace="http://release.niem.gov/niem/domains/jxdm/6.0/"/>
+  <xs:import namespace="http://release.niem.gov/niem/structures/5.0/"/>
+  <xs:import namespace="http://release.niem.gov/niem/domains/jxdm/7.0/"/>
   <xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
 
   <xs:element name="ArrestMessage" type="example:ArrestMessageType" nillable="true">

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="US-ASCII"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
   targetNamespace="MACRO_NS_STRUCTURES"
   version="MACRO_NDR_VERSION"

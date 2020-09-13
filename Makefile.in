@@ -76,7 +76,7 @@ ndr_macros_m4 = src/ndr-macros.m4
 # command flags
 
 check_doc_flags = --catalog=${schema_dir}/xml-catalog.xml
-process_doc_flags = --catalog=${schema_dir}/xml-catalog.xml
+process_doc_flags = --catalog=${schema_dir}/xml-catalog.xml --not-paranoid
 m4_flags = --prefix-builtins ${m4_macros} lib/m4-setup.m4
 
 
@@ -252,7 +252,6 @@ valid: \
   ${valid_dir}/macros-eliminated/tmp/appinfo.xsd \
   ${valid_dir}/macros-eliminated/tmp/structures.xsd \
   ${valid_dir}/same/src/appinfo.xsd \
-  ${valid_dir}/same/src/structures.xsd \
   ${valid_dir}/xml/${ndr_doc_xml} \
   ${valid_dir}/doc/${ndr_doc_xml} \
   ${valid_dir}/ndr-rules/${ndr_doc_xml} \
@@ -261,6 +260,10 @@ valid: \
   ${valid_dir}/xml/tmp/ndr-rules-conformance-target-set.sch \
   ${valid_dir}/xml/tmp/ndr-rules-conformance-target-ins.sch \
   ${valid_dir}/xml/tmp/ndr-functions.xsl \
+  ${valid_dir}/same/src/appinfo.xsd \
+  ${valid_dir}/same/src/structures.xsd \
+
+
 
 ${valid_dir}/macros-eliminated/%: %
 	! grep 'MACRO_' $< > /dev/null
@@ -282,11 +285,11 @@ ${tmp_dir}/ndr-rules.sch.xsl: src/ndr-rules.sch
 	${schematron_compile} --output-file=$@ $<
 
 ${valid_dir}/same/src/appinfo.xsd: ${tmp_dir}/appinfo.xsd
-	diff $< ${schema_dir}/niem/utility/appinfo/4.0/appinfo.xsd
+	diff $< ${schema_dir}/niem/utility/appinfo.xsd
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
 ${valid_dir}/same/src/structures.xsd: ${tmp_dir}/structures.xsd
-	diff $< ${schema_dir}/niem/utility/structures/4.0/structures.xsd
+	diff $< ${schema_dir}/niem/utility/structures.xsd
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
 ${valid_dir}/spelling-ok: ${spell_results_txt} ${ndr_doc_text}

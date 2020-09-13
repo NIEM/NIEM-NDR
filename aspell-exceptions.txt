@@ -160,6 +160,7 @@ URIs
 URNs
 UUIDs
 UpperCamelCase
+UTF
 VictimType
 WeaponUser
 XHTML
