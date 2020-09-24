@@ -33,165 +33,110 @@ do
 done
 shift $((OPTIND - 1))
 
-#HELP:Commands:
+if (( $# == 0 ))
+then echo "No command given. Defaulting to \"d all\"" >&2
+     set -- d all
+fi
 
-(( $# >= 1 )) || fail "Need at least one command"
-command=$1
-shift
+while (( $# > 0 ))
+do command=$1
+   shift
+   
+   #HELP:Commands:
 
-case $command in
+   # put the most important / main targets higher
+   case $command in
 
-    #HELP:  help: Print this help
-    help ) opt_help;;
+       #HELP:  help: Print this help
+       help ) opt_help;;
 
-    #HELP:  log: get the log from the last dev-ndr-4.0beta2 to dev
-    log )
-        (
-            (( $# == 0 )) || fail "unexepected args $*"
-            cd "$(dirname "$0")"
-            exec 3>&1
-            git log --reverse --pretty=format:%B dev-ndr-4.0beta2..dev | tee /dev/fd/3 | pbcopy
-        ) ;;
+       #HELP:  d: Build dependencies, if needed
+       d )
+           make -j 8 depend build_dependencies=true
+           ;;
 
-    #HELP:  clean out all build products
-    clean )
-        (
-            (( $# == 0 )) || fail "unexepected args $*"
-            cd "$(dirname "$0")"
-            make depend=no distclean
-        ) ;;
-    #HELP:  catlog: concatenate a bunch of log entries
-    #HELP:    usage: COMMAND_NAME catlog $old-commit..$new-commit
-    catlog )
-        (
-            exec 3>&1
-            git log --reverse --pretty=format:%B "$@" | tee /dev/fd/3 | pbcopy
-        ) ;;
+       #HELP:  oh: "open html": Build the HTML doc ASAP, then open it
+       oh )
+           time make -j 8 publish/niem-ndr.html
+           open publish/niem-ndr.html
+           ;;
 
-    #HELP:  cdiff: color diff
-    #HELP:    usage: COMMAND_NAME cdiff $diff-args...
-    cdiff ) PAGER=less git diff --word-diff=color "$@";;
-        
-    #HELP:  rebuild: scrub & rebuild everything from nothing
-    rebuild )
-        (
-            (( $# == 0 )) || fail "unexepected args $*"
-            cd "$(dirname "$0")"
-            make depend=no distclean
-            make depend
-            make -j 8 all
-            make -j 8 valid
-            make clean-repo
-            make repo
-        )
-        ;;
+       #HELP:  all: Build artifacts; no testing
+       all )
+           time make -j 8 all
+           ;;
 
-    #HELP:  build: build everything & repo
-    build )
-        (
-            (( $# == 0 )) || fail "unexepected args $*"
-            cd "$(dirname "$0")"
-            make depend
-            make -j 8 all
-            make -j 8 valid
-            make clean-repo
-            make repo
-        )
-        ;;
-    #HELP:  html: Build the HTML doc after dependencies
-    html )
-        (
-            (( $# == 0 )) || fail "unexepected args $*"
-            cd "$(dirname "$0")"
-            make depend
-            make -j 8 tmp/ndr-doc.html
-        )
-        ;;
-    #HELP:  oh: "open html": Build the HTML doc ASAP, then open it
-    oh )
-        "$0" html
-        open "$(dirname "$0")/tmp/ndr-doc.html"
-        ;;
-    #HELP:  all:  Build all artifacts ASAP
-    all )
-        (
-            (( $# == 0 )) || fail "unexepected args $*"
-            cd "$(dirname "$0")"
-            make -j 8 depend=no all
-            make -j 8 depend=no valid
-        )
-        ;;
-    #HELP:  lint: run xmllint on the doc XML
-    lint )
-        (
-            cd "$(dirname "$0")"
-            make tmp/ndr-doc.xml
-            exec 3>&1
-            xmllint -noout tmp/ndr-doc.xml 2>&1 | tee /dev/fd/3 | emacsclientgrep
-        ) ;;
+       #HELP:  cdiff: color diff
+       #HELP:    usage: COMMAND_NAME cdiff $diff-args...
+       cdiff ) PAGER=less git diff --word-diff=color "$@";;
+       
+       #HELP:  rebuild: scrub & rebuild everything from nothing
+       rebuild )
+           make clean
+           make depend
+           make -j 8 all
+           make -j 8 valid
+           ;;
 
-    #HELP:  grep: find something in the doc XML
-    #HELP:    usage: COMMAND_NAME grep $grep-args...
-    grep )
-        (( $# > 0 )) || fail "grep needs args; what am I looking for?" 
-        (
-            cd "$(dirname "$0")"
-            make tmp/ndr-doc.xml
-            exec 3>&1
-            grep -nH "$@" tmp/ndr-doc.xml | tee /dev/fd/3 | emacsclientgrep
-        ) ;;
+       #HELP:  grep: find something in the doc XML
+       #HELP:    usage: COMMAND_NAME grep $grep-args...
+       grep )
+           (( $# > 0 )) || fail "grep needs args; what am I looking for?" 
+           make -j 8 tmp/ndr-doc.xml
+           exec 3>&1
+           grep -nH "$@" tmp/ndr-doc.xml | tee /dev/fd/3 | emacsclientgrep
+           ;;
 
-    #HELP:  uss: update subset. Update xsd/ndr-examples/subset from the latest in Downloads
-    uss )
-        (
-            cd "$(dirname "$0")"
-            latest_subset=$(get-newest ~/Downloads/Subset_??-??-????_????.zip)
-            [[ -f "$latest_subset" ]] || fail "did not find subset"
-	    rm -rf xsd/ndr-examples/niem
-	    mkdir -p xsd/ndr-examples
-	    unzip -d xsd/ndr-examples "$latest_subset"
-            rm -rf xsd/ndr-examples/niem/codes/genc
-            git checkout -- xsd/ndr-examples/niem/utility/structures/4.0/structures.xsd
-        ) ;;
-    #HELP:  xsv: xml schema validate
-    xsv ) (
-        cd "$(dirname "$0")"
-        make tmp/ndr-doc.xml depend=no
-        check-doc --catalog=xsd/ndr-examples/xml-catalog.xml tmp/ndr-doc.xml 2>&1 | emacsclientgrep
-    ) ;;
-        
-    #HELP:  publish: publish docs to subversion (for version 4.0rc1)
-    publish )
-        artifacts_dir=repo
-        version_real=4.0rc1
-        version_pretend=4.0
+       #HELP:  uss: update subset. Update xsd/ndr-examples/subset from the latest in Downloads
+       uss )
+           (
+               cd "$(dirname "$0")"
+               latest_subset=$(get-newest ~/Downloads/Subset_??-??-????_????.zip)
+               [[ -f "$latest_subset" ]] || fail "did not find subset"
+	       rm -rf xsd/ndr-examples/niem
+	       mkdir -p xsd/ndr-examples
+	       unzip -d xsd/ndr-examples "$latest_subset"
+               rm -rf xsd/ndr-examples/niem/codes/genc
+               git checkout -- xsd/ndr-examples/niem/utility/structures/4.0/structures.xsd
+           ) ;;
+       #HELP:  xsv: xml schema validate
+       xsv ) (
+           cd "$(dirname "$0")"
+           make tmp/ndr-doc.xml depend=no
+           check-doc --catalog=xsd/ndr-examples/xml-catalog.xml tmp/ndr-doc.xml 2>&1 | emacsclientgrep
+       ) ;;
+       
+       #HELP:  publish: publish docs to subversion (for version 4.0rc1)
+       publish )
+           artifacts_dir=repo
+           version_real=4.0rc1
+           version_pretend=4.0
 
-        no_version_dir=$HOME/r/iead/niem-gov/reference/niem/specification/naming-and-design-rules
-        version_dir=$no_version_dir/$version_real
-        
-        short_name=niem-ndr
-        
-        mkdir -p "${version_dir}"
+           no_version_dir=$HOME/r/iead/niem-gov/reference/niem/specification/naming-and-design-rules
+           version_dir=$no_version_dir/$version_real
+           
+           short_name=niem-ndr
+           
+           mkdir -p "${version_dir}"
 
-        (
-            cd "$artifacts_dir"
-            vrun git archive -9 \
-                --prefix=${short_name}-${version_pretend}/ \
-                -o ${version_dir}/${short_name}-${version_real}.zip \
-                $short_name-$version_real
-            
-            vrun git show $short_name-$version_real:niem-ndr-doc.html > ${version_dir}/${short_name}-${version_real}.html
-            vrun git show $short_name-$version_real:niem-ndr-doc.txt  > ${version_dir}/${short_name}-${version_real}.txt
-        )
-        ;;
+           (
+               cd "$artifacts_dir"
+               vrun git archive -9 \
+                    --prefix=${short_name}-${version_pretend}/ \
+                    -o ${version_dir}/${short_name}-${version_real}.zip \
+                    $short_name-$version_real
+               
+               vrun git show $short_name-$version_real:niem-ndr-doc.html > ${version_dir}/${short_name}-${version_real}.html
+               vrun git show $short_name-$version_real:niem-ndr-doc.txt  > ${version_dir}/${short_name}-${version_real}.txt
+           )
+           ;;
 
-        
+       #HELP:  show: open grep-friendly buffer on copied text (e.g., jump to an error from a message)
+       show ) pbpaste | emacsclientgrep;;
 
-    #HELP:  show: open grep-friendly buffer on copied text (e.g., jump to an error from a message)
-    show ) pbpaste | emacsclientgrep;;
+       * )
+           fail "Unknown command \"$command\"";;
+   esac
+done
 
-    * )
-        fail "Unknown command \"$command\"";;
-esac
-         
 

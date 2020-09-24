@@ -596,11 +596,21 @@ schematron
 doc_to_schematron
 process_doc
 check_doc
+zip
+touch
 sort
 m4
-fgrep
+identify
+head
+grep
+find
+egrep
+diff
+cp
+chmod
 cat
 bash
+base64
 aspell
 SED
 MKDIR_P
@@ -1968,7 +1978,49 @@ $as_echo "no" >&6; }
 fi
 
 
-test "x$$aspell" = "x" && as_fn_error $? "aspell not found" "$LINENO" 5
+test "x$aspell" = "x" && as_fn_error $? "aspell not found" "$LINENO" 5
+
+# Extract the first word of "base64", so it can be a program name with args.
+set dummy base64; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_base64+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $base64 in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_base64="$base64" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_base64="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+base64=$ac_cv_path_base64
+if test -n "$base64"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $base64" >&5
+$as_echo "$base64" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+test "x$base64" = "x" && as_fn_error $? "base64 not found" "$LINENO" 5
 
 # Extract the first word of "bash", so it can be a program name with args.
 set dummy bash; ac_word=$2
@@ -2010,7 +2062,7 @@ $as_echo "no" >&6; }
 fi
 
 
-test "x$$bash" = "x" && as_fn_error $? "bash not found" "$LINENO" 5
+test "x$bash" = "x" && as_fn_error $? "bash not found" "$LINENO" 5
 
 for ac_prog in gcat cat
 do
@@ -2057,18 +2109,18 @@ fi
   test -n "$cat" && break
 done
 
-test "x$$cat" = "x" && as_fn_error $? "cat not found" "$LINENO" 5
+test "x$cat" = "x" && as_fn_error $? "cat not found" "$LINENO" 5
 
-# Extract the first word of "gfgrep fgrep", so it can be a program name with args.
-set dummy gfgrep fgrep; ac_word=$2
+# Extract the first word of "chmod", so it can be a program name with args.
+set dummy chmod; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
-if ${ac_cv_path_fgrep+:} false; then :
+if ${ac_cv_path_chmod+:} false; then :
   $as_echo_n "(cached) " >&6
 else
-  case $fgrep in
+  case $chmod in
   [\\/]* | ?:[\\/]*)
-  ac_cv_path_fgrep="$fgrep" # Let the user override the test with a path.
+  ac_cv_path_chmod="$chmod" # Let the user override the test with a path.
   ;;
   *)
   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
@@ -2078,7 +2130,7 @@ do
   test -z "$as_dir" && as_dir=.
     for ac_exec_ext in '' $ac_executable_extensions; do
   if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_fgrep="$as_dir/$ac_word$ac_exec_ext"
+    ac_cv_path_chmod="$as_dir/$ac_word$ac_exec_ext"
     $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
     break 2
   fi
@@ -2089,17 +2141,312 @@ IFS=$as_save_IFS
   ;;
 esac
 fi
-fgrep=$ac_cv_path_fgrep
-if test -n "$fgrep"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $fgrep" >&5
-$as_echo "$fgrep" >&6; }
+chmod=$ac_cv_path_chmod
+if test -n "$chmod"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $chmod" >&5
+$as_echo "$chmod" >&6; }
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 fi
 
 
-test "x$$fgrep" = "x" && as_fn_error $? "fgrep not found" "$LINENO" 5
+test "x$chmod" = "x" && as_fn_error $? "chmod not found" "$LINENO" 5
+
+# Extract the first word of "cp", so it can be a program name with args.
+set dummy cp; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_cp+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $cp in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_cp="$cp" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_cp="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+cp=$ac_cv_path_cp
+if test -n "$cp"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $cp" >&5
+$as_echo "$cp" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+test "x$cp" = "x" && as_fn_error $? "cp not found" "$LINENO" 5
+
+# Extract the first word of "diff", so it can be a program name with args.
+set dummy diff; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_diff+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $diff in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_diff="$diff" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_diff="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+diff=$ac_cv_path_diff
+if test -n "$diff"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $diff" >&5
+$as_echo "$diff" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+test "x$diff" = "x" && as_fn_error $? "diff not found" "$LINENO" 5
+
+# Extract the first word of "gegrep egrep", so it can be a program name with args.
+set dummy gegrep egrep; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_egrep+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $egrep in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_egrep="$egrep" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_egrep="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+egrep=$ac_cv_path_egrep
+if test -n "$egrep"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $egrep" >&5
+$as_echo "$egrep" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+test "x$egrep" = "x" && as_fn_error $? "egrep not found" "$LINENO" 5
+
+# Extract the first word of "gfind find", so it can be a program name with args.
+set dummy gfind find; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_find+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $find in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_find="$find" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_find="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+find=$ac_cv_path_find
+if test -n "$find"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $find" >&5
+$as_echo "$find" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+test "x$find" = "x" && as_fn_error $? "find not found" "$LINENO" 5
+
+# Extract the first word of "ggrep grep", so it can be a program name with args.
+set dummy ggrep grep; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_grep+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $grep in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_grep="$grep" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_grep="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+grep=$ac_cv_path_grep
+if test -n "$grep"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $grep" >&5
+$as_echo "$grep" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+test "x$grep" = "x" && as_fn_error $? "grep not found" "$LINENO" 5
+
+# Extract the first word of "head", so it can be a program name with args.
+set dummy head; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_head+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $head in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_head="$head" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_head="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+head=$ac_cv_path_head
+if test -n "$head"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $head" >&5
+$as_echo "$head" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+test "x$head" = "x" && as_fn_error $? "head not found" "$LINENO" 5
+
+# from ImageMagick
+# Extract the first word of "identify", so it can be a program name with args.
+set dummy identify; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_identify+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $identify in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_identify="$identify" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_identify="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+identify=$ac_cv_path_identify
+if test -n "$identify"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $identify" >&5
+$as_echo "$identify" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+test "x$identify" = "x" && as_fn_error $? "identify not found" "$LINENO" 5
 
 # Extract the first word of "gm4 m4", so it can be a program name with args.
 set dummy gm4 m4; ac_word=$2
@@ -2141,7 +2488,7 @@ $as_echo "no" >&6; }
 fi
 
 
-test "x$$m4" = "x" && as_fn_error $? "m4 not found" "$LINENO" 5
+test "x$m4" = "x" && as_fn_error $? "m4 not found" "$LINENO" 5
 
 # Extract the first word of "gsort sort", so it can be a program name with args.
 set dummy gsort sort; ac_word=$2
@@ -2183,7 +2530,91 @@ $as_echo "no" >&6; }
 fi
 
 
-test "x$$sort" = "x" && as_fn_error $? "sort not found" "$LINENO" 5
+test "x$sort" = "x" && as_fn_error $? "sort not found" "$LINENO" 5
+
+# Extract the first word of "touch", so it can be a program name with args.
+set dummy touch; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_touch+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $touch in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_touch="$touch" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_touch="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+touch=$ac_cv_path_touch
+if test -n "$touch"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $touch" >&5
+$as_echo "$touch" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+test "x$touch" = "x" && as_fn_error $? "touch not found" "$LINENO" 5
+
+# Extract the first word of "zip", so it can be a program name with args.
+set dummy zip; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_zip+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $zip in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_zip="$zip" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_zip="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+zip=$ac_cv_path_zip
+if test -n "$zip"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $zip" >&5
+$as_echo "$zip" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+test "x$zip" = "x" && as_fn_error $? "zip not found" "$LINENO" 5
 
 # webb stuff
 
@@ -2227,7 +2658,7 @@ $as_echo "no" >&6; }
 fi
 
 
-test "x$$check_doc" = "x" && as_fn_error $? "check-doc not found" "$LINENO" 5
+test "x$check_doc" = "x" && as_fn_error $? "check-doc not found" "$LINENO" 5
 
 # Extract the first word of "process-doc", so it can be a program name with args.
 set dummy process-doc; ac_word=$2
@@ -2269,7 +2700,7 @@ $as_echo "no" >&6; }
 fi
 
 
-test "x$$process_doc" = "x" && as_fn_error $? "process-doc not found" "$LINENO" 5
+test "x$process_doc" = "x" && as_fn_error $? "process-doc not found" "$LINENO" 5
 
 # Extract the first word of "doc-to-schematron", so it can be a program name with args.
 set dummy doc-to-schematron; ac_word=$2
@@ -2311,7 +2742,7 @@ $as_echo "no" >&6; }
 fi
 
 
-test "x$$doc_to_schematron" = "x" && as_fn_error $? "doc-to-schematron not found" "$LINENO" 5
+test "x$doc_to_schematron" = "x" && as_fn_error $? "doc-to-schematron not found" "$LINENO" 5
 
 # Extract the first word of "schematron", so it can be a program name with args.
 set dummy schematron; ac_word=$2
@@ -2353,7 +2784,7 @@ $as_echo "no" >&6; }
 fi
 
 
-test "x$$schematron" = "x" && as_fn_error $? "schematron not found" "$LINENO" 5
+test "x$schematron" = "x" && as_fn_error $? "schematron not found" "$LINENO" 5
 
 # Extract the first word of "schematron-compile", so it can be a program name with args.
 set dummy schematron-compile; ac_word=$2
@@ -2395,7 +2826,7 @@ $as_echo "no" >&6; }
 fi
 
 
-test "x$$schematron_compile" = "x" && as_fn_error $? "schematron-compile not found" "$LINENO" 5
+test "x$schematron_compile" = "x" && as_fn_error $? "schematron-compile not found" "$LINENO" 5
 
 # Extract the first word of "schematron-execute", so it can be a program name with args.
 set dummy schematron-execute; ac_word=$2
@@ -2437,7 +2868,7 @@ $as_echo "no" >&6; }
 fi
 
 
-test "x$$schematron_execute" = "x" && as_fn_error $? "schematron-execute not found" "$LINENO" 5
+test "x$schematron_execute" = "x" && as_fn_error $? "schematron-execute not found" "$LINENO" 5
 
 # Extract the first word of "check-xml", so it can be a program name with args.
 set dummy check-xml; ac_word=$2
@@ -2479,7 +2910,7 @@ $as_echo "no" >&6; }
 fi
 
 
-test "x$$check_xml" = "x" && as_fn_error $? "check-xml not found" "$LINENO" 5
+test "x$check_xml" = "x" && as_fn_error $? "check-xml not found" "$LINENO" 5
 
 # AC_PATH_PROG(var,cmd)
 # test "x$[]$var" = "x" && AC_MSG_ERROR([cmd not found])

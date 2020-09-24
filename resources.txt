@@ -53,3 +53,31 @@
           instead of carrying it as content.</p>
       </definition>
 
+
+#############################################################################
+
+Makefile stuff
+
+# convenience targets # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+.PHONY: default
+default:
+	${MAKE} depend=no distclean
+	${MAKE} depend=build depend
+	${MAKE} depend=no --jobs all
+	${MAKE} depend=no valid
+	${MAKE} depend=no clean-repo
+	${MAKE} depend=no repo
+
+# Built this way for compatibility make-repeat.
+.PHONY: html #  Build HTML version
+html: ${tmp_dir}/html-turd
+
+${tmp_dir}/html-turd: ${ndr_doc_xml}
+	${MAKE} depend
+	${MAKE} --jobs=8 ${ndr_doc_html}
+	${MKDIR_P} ${dir $@} && ${touch} $@
+
+.PHONY: text #  Build text version
+text: ${ndr_doc_text}
+

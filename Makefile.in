@@ -4,44 +4,44 @@
 
 this_makefile := ${lastword ${MAKEFILE_LIST}}
 SHELL = @bash@ -o pipefail -o errexit -o nounset
-# generated dependencies for things derived from the NDR doc
-dependencies_mk := dependencies.mk
 .SECONDARY:
 
+#HELP:Default target is "all"
+.DEFAULT_GOAL = all
+
 #############################################################################
-# things to set / override
-#############################################################################
-
-#HELP:variable 'depend': (default value is 'include')
-#HELP:  'build': build new dependencies file
-#HELP:  anything else: if dependencies file exists, include it
-depend = build
-
-#HELP:Default is to clean, rebuild, and install
-.DEFAULT_GOAL = default
-
-repo_dir = publish
-
-# command paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-# # command variable defined by Make
-# RM = rm -f
-
-# # command variables defined by autoconf
-MKDIR_P = @MKDIR_P@
-SED = @SED@
-
+# autoconf/configure standard things
 INSTALL = @INSTALL@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_DATA = @INSTALL_DATA@
+MKDIR_P = @MKDIR_P@
+SED = @SED@
 
-# # doc-processing
+#############################################################################
+# local things identified by autoconf/configure
+
+# Unix stuff
+aspell = @aspell@
+base64 = @base64@
+chmod = @chmod@
+cp = @cp@
+diff = @diff@
+find = @find@
+egrep = @egrep@
+grep = @grep@
+head = @head@
+identify = @identify@ # from ImageMagick
+m4 = @m4@
+touch = @touch@
+zip = @zip@
+
+# doc-processing
 check_doc = @check_doc@
 process_doc = @process_doc@
 doc_to_schematron = @doc_to_schematron@
 
-# # schematron
+# schematron
 schematron = @schematron@
 schematron_compile = @schematron_compile@
 schematron_execute = @schematron_execute@
@@ -49,150 +49,114 @@ schematron_execute = @schematron_execute@
 # XML
 check_xml = @check_xml@
 
-# Unix
-## ImageMagick
-identify = identify
-## aspell
-aspell = aspell
+#############################################################################
+# variables
 
-# # others
-base64 = base64
-chmod = chmod
-cp = cp
-find = find
-grep = grep
-head = head
-m4 = m4
-touch = touch
-zip = zip
+doc_name = niem-ndr
+publish_dir = publish
+temp_dir = tmp
+tokens_dir = ${temp_dir}/tokens
+valid_dir = ${tokens_dir}/valid
 
+conformance_targets = ref ext ins set
 
-# source paths # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+sch_files = \
+  ${conformance_targets:%=${publish_dir}/ndr-rules-conformance-target-%.sch} \
+  ${publish_dir}/ctas-conformant-document.sch
+
+all_files = \
+  ${publish_dir}/${doc_name}.html \
+  ${publish_dir}/${doc_name}.txt \
+  ${publish_dir}/ndr-functions.xsl \
+  ${publish_dir}/ctas-conformant-document.sch \
+  ${publish_dir}/ctas-conformant-document.sch.xsl \
+  ${publish_dir}/appinfo.xsd \
+  ${publish_dir}/structures.xsd \
+  ${publish_dir}/ndr-id-map.xml \
+  ${sch_files} \
+  ${sch_files:%.sch=%.sch.xsl} \
+
+xml_files = \
+  ${filter %.xml,${all_files}} \
+  ${filter %.xsd,${all_files}} \
+  ${filter %.sch,${all_files}} \
+  ${filter %.xsl,${all_files}} \
+
+xsd_files = ${filter %.xsd,${all_files}}
+
+# checks to make sure that the source is sane
+pre_valid_tokens = \
+  ${valid_dir}/doc/${ndr_doc_xml} \
+  ${valid_dir}/ndr-rules/${ndr_doc_xml} \
+
+valid_tokens = \
+  ${valid_dir}/spelling-ok/publish/${doc_name}.txt \
+  ${all_files:%=${valid_dir}/macros-eliminated/%} \
+  ${xml_files:%=${valid_dir}/xml/%} \
+  ${xsd_files:%=${valid_dir}/same/%} \
+
+# the NDR document with macros expanded
+ndr_doc_xml = ${temp_dir}/ndr-doc.xml
 
 schema_dir = xsd/ndr-examples
 ndr_macros_m4 = src/ndr-macros.m4
 
-#############################################################################
-# command flags
-
 check_doc_flags = --catalog=${schema_dir}/xml-catalog.xml
 process_doc_flags = --catalog=${schema_dir}/xml-catalog.xml --not-paranoid
-m4_flags = --prefix-builtins ${m4_macros} lib/m4-setup.m4
-
-
-
-#############################################################################
-# products
-
-conformance_targets = ref ext ins set
-
-rules_products = \
-  ${conformance_targets:%=ndr-rules-conformance-target-%.sch} \
-  ${conformance_targets:%=ndr-rules-conformance-target-%.sch.xsl} \
-  ndr-id-map.xml \
-
-# local names of products
-products = \
-  niem-ndr-doc.html \
-  niem-ndr-doc.txt \
-  ${rules_products} \
-  ndr-functions.xsl \
-  ctas-conformant-document.sch \
-  ctas-conformant-document.sch.xsl \
-  appinfo.xsd \
-  structures.xsd \
-
-#############################################################################
-# other variables
-
-# things that are derived & intermediate
-tmp_dir = tmp
-tokens_dir = ${tmp_dir}/tokens
-valid_dir = ${tokens_dir}/valid
-# The NDR document rendered in HTML
-ndr_doc_html := ${tmp_dir}/ndr-doc.html
-# The NDR document rendered in text
-ndr_doc_text := ${tmp_dir}/ndr-doc.txt
-
-# the NDR document with macros expanded
-ndr_doc_xml = ${tmp_dir}/ndr-doc.xml
-
-spell_results_txt = ${tmp_dir}/spell-results.txt
+m4_flags = --prefix-builtins lib/m4-setup.m4
 
 #############################################################################
 #HELP:Targets:
+
+
+#############################################################################
+# dependency inclusion: generated dependencies for things derived from the NDR doc
+
+depend_mk := dependencies.mk
+build_dependencies = false
+
+ifeq (${build_dependencies},true) # it's OK to build dependencies
+
+# convenience target to build dependencies only if needed
+.PHONY: depend
+depend: ${depend_mk}
+
+${depend_mk}: ${ndr_doc_xml}
+	${MKDIR_P} ${dir $@}
+	${process_doc} ${process_doc_flags} --format=makedepend --in=$< --out=$@
+
+else
+
+${depend_mk}: ${ndr_doc_xml}
+	@ echo "Warning: Dependencies are out of date. 'make depend' to rebuild dependencies." >&2
+
+.PHONY: depend #  Force rebuild of dependencies
+depend:
+	${RM} ${depend_mk}
+	${MAKE} ${depend_mk} build_dependencies=true
+
+endif
+
+ifeq (${wildcard ${depend_mk}},${depend_mk}) # use existing dependencies
+  include ${depend_mk}
+else
+  ${warning No dependencies present. 'make depend' to build dependencies}
+endif
+
+# end dependency inclusion
 #############################################################################
 
-# convenience targets # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-.PHONY: default
-default:
-	${MAKE} depend=no distclean
-	${MAKE} depend=build depend
-	${MAKE} depend=no --jobs all
-	${MAKE} depend=no valid
-	${MAKE} depend=no clean-repo
-	${MAKE} depend=no repo
-
-# Built this way for compatibility make-repeat.
-.PHONY: html #  Build HTML version
-html: ${tmp_dir}/html-turd
-
-${tmp_dir}/html-turd: ${ndr_doc_xml}
-	${MAKE} depend
-	${MAKE} --jobs=8 ${ndr_doc_html}
-	${MKDIR_P} ${dir $@} && ${touch} $@
-
-.PHONY: text #  Build text version
-text: ${ndr_doc_text}
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# depend
-
-ifeq (${depend},build)
-.PHONY: depend
-depend: ${dependencies_mk}
-
--include ${dependencies_mk}
-
-${dependencies_mk}: ${ndr_doc_xml}
-	${process_doc} ${process_doc_flags} --format=makedepend --in=$< --out=$@
-else
-ifeq (${wildcard ${dependencies_mk}},${dependencies_mk})
-include ${dependencies_mk}
-endif
-endif
-
-.PHONY: clean #  Remove generated artifacts
-clean: clean-repo
-	${RM} -r ${tmp_dir}
-	${RM} ${wildcard tmp.*} ${wildcard *~}
-
-.PHONY: distclean #  Remove all artifacts
-distclean: clean
-	${RM} -r ${dependencies_mk}
-
 .PHONY: all #  Generate everything
-all: repo
-
-.PHONY: rules #  Generate rules
-rules: ${rules_products:%=${tmp_dir}/%}
-
-.PHONY: spell # check spelling
-spell: ${valid_dir}/spelling-ok
-
-${spell_results_txt}: ${ndr_doc_text} aspell-exceptions.txt
-	@ ${MKDIR_P} ${dir $@}
-	${aspell} --home-dir=. -p aspell-exceptions.txt list < $< | sort -uf > $@
+all: ${all_files}
 
 #############################################################################
 # products
 
-${ndr_doc_html}: ${ndr_doc_xml} ${doc_html_required_files}
+${publish_dir}/${doc_name}.html: ${ndr_doc_xml} ${doc_html_required_files}
 	@ ${MKDIR_P} ${dir $@}
 	${process_doc} ${process_doc_flags} --in=$< --out=$@
 
-${ndr_doc_text}: ${ndr_doc_xml} ${doc_text_required_files}
+${publish_dir}/${doc_name}.txt: ${ndr_doc_xml} ${doc_text_required_files}
 	@ ${MKDIR_P} ${dir $@}
 	${process_doc} ${process_doc_flags} --format=text --in=$< --out=$@
 
@@ -202,129 +166,96 @@ ${ndr_doc_xml}: ${ndr_macros_m4} src/ndr-doc.xml.m4
 	${m4} ${m4_flags} ${ndr_macros_m4} src/ndr-doc.xml.m4 | ${SED} -e 's/  *$$//' > $@
 	@ ${chmod} -w $@
 	@ if ${grep} -n 'MACRO' $@; then printf 'ERROR: unresolved M4 macro.\n' >&2; exit 1; fi
-	if egrep -nH ' +$$' $@; then printf 'ERROR: stray whitespace in document' >&2; exit 1; fi
+	if ${egrep} -nH ' +$$' $@; then printf 'ERROR: stray whitespace in document' >&2; exit 1; fi
 
-${tmp_dir}/%: src/%
+${publish_dir}/ndr-rules-conformance-target-%.sch: ${ndr_doc_xml}
+	@ ${MKDIR_P} ${dir $@}
+	${doc_to_schematron} --blurb-set=$* --out=$@ $<
+
+${publish_dir}/ndr-id-map.xml: ${ndr_doc_xml}
+	@ ${MKDIR_P} ${dir $@}
+	${process_doc} ${process_doc_flags} --format=rules-id-map --in=$< --out=$@
+
+${publish_dir}/%: ${temp_dir}/%
 	@ ${MKDIR_P} ${dir $@}
 	${cp} $< $@
 
-${tmp_dir}/img/%.png.width.txt: ${tmp_dir}/img/%.png
-	@ ${MKDIR_P} ${dir $@}
-	${identify} -format '%w' $< > $@
-
-${tmp_dir}/%: src/%.m4 src/ndr-macros.m4 
-	@ ${MKDIR_P} ${dir $@}
-	${m4} ${m4_flags} src/ndr-macros.m4 $< > $@
-
-# rules schematron # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-${tmp_dir}/ndr-rules-conformance-target-ref.sch: ${ndr_doc_xml}
-	@ ${MKDIR_P} ${dir $@}
-	${doc_to_schematron} --blurb-set=ref --out=$@ $<
-
-${tmp_dir}/ndr-rules-conformance-target-ext.sch: ${ndr_doc_xml}
-	@ ${MKDIR_P} ${dir $@}
-	${doc_to_schematron} --blurb-set=ext --out=$@ $<
-
-${tmp_dir}/ndr-rules-conformance-target-set.sch: ${ndr_doc_xml}
-	@ ${MKDIR_P} ${dir $@}
-	${doc_to_schematron} --blurb-set=set --out=$@ $<
-
-${tmp_dir}/ndr-rules-conformance-target-ins.sch: ${ndr_doc_xml}
-	@ ${MKDIR_P} ${dir $@}
-	${doc_to_schematron} --blurb-set=ins --out=$@ $<
-
-${tmp_dir}/%.sch.xsl: ${tmp_dir}/%.sch
+%.sch.xsl: %.sch
 	${schematron_compile} --output-file=$@ $<
 
-${tmp_dir}/ndr-id-map.xml: ${ndr_doc_xml}
+# # temp_dir
+
+${temp_dir}/%: src/%.m4
 	@ ${MKDIR_P} ${dir $@}
-	${process_doc} ${process_doc_flags} --format=rules-id-map --in=$< --out=$@
+	${m4} ${m4_flags} ${ndr_macros_m4} $< > $@
+	@ if ${grep} -n 'MACRO' $@; then printf 'ERROR: unresolved M4 macro.\n' >&2; exit 1; fi
+
+${temp_dir}/%: src/%
+	@ ${MKDIR_P} ${dir $@}
+	${cp} $< $@
+
+${temp_dir}/img/%.png.width.txt: ${temp_dir}/img/%.png
+	@ ${MKDIR_P} ${dir $@}
+	${identify} -format '%w' $< > $@
 
 # end products
 #############################################################################
 # valid
 
 .PHONY: valid #  validate what can be validated
-valid: \
-  ${valid_dir}/spelling-ok \
-  ${valid_dir}/macros-eliminated/tmp/ndr-doc.xml \
-  ${valid_dir}/macros-eliminated/tmp/appinfo.xsd \
-  ${valid_dir}/macros-eliminated/tmp/structures.xsd \
-  ${valid_dir}/same/src/appinfo.xsd \
-  ${valid_dir}/xml/${ndr_doc_xml} \
-  ${valid_dir}/doc/${ndr_doc_xml} \
-  ${valid_dir}/ndr-rules/${ndr_doc_xml} \
-  ${valid_dir}/xml/tmp/ndr-rules-conformance-target-ref.sch \
-  ${valid_dir}/xml/tmp/ndr-rules-conformance-target-ext.sch \
-  ${valid_dir}/xml/tmp/ndr-rules-conformance-target-set.sch \
-  ${valid_dir}/xml/tmp/ndr-rules-conformance-target-ins.sch \
-  ${valid_dir}/xml/tmp/ndr-functions.xsl \
-  ${valid_dir}/same/src/appinfo.xsd \
-  ${valid_dir}/same/src/structures.xsd \
+valid: ${valid_tokens}
 
-
+.PHONY: pre-valid #  validate inputs to the doc processing system (paranoia)
+pre-valid: ${pre_valid_tokens}
 
 ${valid_dir}/macros-eliminated/%: %
-	! grep 'MACRO_' $< > /dev/null
+	! ${grep} 'MACRO_' $< > /dev/null
 	@ ${MKDIR_P} ${dir $@} && touch $@
 
 ${valid_dir}/xml/%: %
 	${check_xml} $<
 	@ ${MKDIR_P} ${dir $@} && touch $@
 
+# pre-valid checks
+
 ${valid_dir}/doc/%: %
 	${check_doc} ${check_doc_flags} $<
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
-${valid_dir}/ndr-rules/%: % ${tmp_dir}/ndr-rules.sch.xsl
-	${schematron_execute} --xslt-file=${tmp_dir}/ndr-rules.sch.xsl --format=text $<
+${valid_dir}/ndr-rules/%: % ${temp_dir}/ndr-rules.sch.xsl
+	${schematron_execute} --xslt-file=${temp_dir}/ndr-rules.sch.xsl --format=text $<
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
-${tmp_dir}/ndr-rules.sch.xsl: src/ndr-rules.sch
-	${schematron_compile} --output-file=$@ $<
-
-${valid_dir}/same/src/appinfo.xsd: ${tmp_dir}/appinfo.xsd
-	diff $< ${schema_dir}/niem/utility/appinfo.xsd
+${valid_dir}/same/publish/appinfo.xsd: ${publish_dir}/appinfo.xsd ./xsd/ndr-examples/niem/utility/appinfo.xsd
+	${diff} $^
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
-${valid_dir}/same/src/structures.xsd: ${tmp_dir}/structures.xsd
-	diff $< ${schema_dir}/niem/utility/structures.xsd
+${valid_dir}/same/publish/structures.xsd: ${publish_dir}/structures.xsd ./xsd/ndr-examples/niem/utility/structures.xsd
+	${diff} $^
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
 
-${valid_dir}/spelling-ok: ${spell_results_txt} ${ndr_doc_text}
+${valid_dir}/spelling-ok/%: ${temp_dir}/spell-results/%
 	@ while read -r -d$$'\n'; do \
 	  echo "SPELLING: WORD NOT FOUND: $$REPLY"; \
-	  grep --context=1 "$$REPLY" ${ndr_doc_text}; \
-	done < ${spell_results_txt}
-	! [[ -s ${spell_results_txt} ]]
+	  ${grep} -n --context=1 "$$REPLY" $*; \
+	done < $<
+	! [[ -s $< ]]
 	@ ${MKDIR_P} ${dir $@} && ${touch} $@
+
+${temp_dir}/spell-results/%: % aspell-exceptions.txt
+	@ ${MKDIR_P} ${dir $@}
+	${aspell} --home-dir=. -p aspell-exceptions.txt list < $< | sort -uf > $@
 
 # end valid
 #############################################################################
-# repo : put the NDR into a git repo for publication
 
-.PHONY: repo #  install everything into the repository
-repo: ${products:%=${repo_dir}/%}
 
-.PHONY: clean-repo #  Remove everything from repo/ so install can be clean
-clean-repo:
-	@ if [[ ! -d ${repo_dir} ]]; then echo Git repository '${repo_dir}' does not exist; exit 1; fi
-	${find} -L ${repo_dir} -mindepth 1 ! -path '${repo_dir}/.git' ! -path '${repo_dir}/.git/*' ! -path '${repo_dir}/README.md' -print0 | xargs -0 ${RM}
 
-${repo_dir}/niem-ndr-doc.html: ${ndr_doc_html}
-	${cp} $< $@
+.PHONY: clean #  Remove all regular build products
+clean:
+	${RM} -r ${temp_dir}
+	${RM} ${all_files}
 
-${repo_dir}/niem-ndr-doc.txt: ${ndr_doc_text}
-	${cp} $< $@
-
-${repo_dir}/ndr-rules-conformance-target-%.sch: ${tmp_dir}/ndr-rules-conformance-target-%.sch
-	${cp} $< $@
-
-${repo_dir}/%: ${tmp_dir}/%
-	${cp} $< $@
-
-# repo - end
 #############################################################################
 # make this the last target
 
