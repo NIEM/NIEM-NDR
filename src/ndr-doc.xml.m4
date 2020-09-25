@@ -6072,6 +6072,25 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
     </ruleSection>
 
     <ruleSection>
+      <title>Schema component name has <qName>xml:lang</qName></title>
+
+      <p>MACRO_REF_EXTERNAL(XML,MACRO_HREF_XML#sec-lang-tag,2.12,Language Identification) defines attribute <qName>xml:lang</qName>, which establishes the language used in the contents and attributes of an XML document. To facilitate clarity and future support for languages other than US English, each component name defined in a conformant schema is in the scope of an occurrence of <qName>xml:lang</qName>, which defines the language used in the component name.</p>
+
+      <rule applicability="REF EXT" class="Constraint" id="rule-component-name-has-xml-lang">
+        <pre><xmlBlurb id="xb-rule-component-name-has-xml-lang" memberOf="ref ext">
+<sch:pattern>
+  <sch:rule context="xs:*[exists(@name)]">
+    <sch:let name="xml-lang-attribute" value="ancestor-or-self::*[exists(@xml:lang)][1]/@xml:lang"/>
+    <sch:assert test="exists($xml-lang-attribute)
+                      and string-length(normalize-space($xml-lang-attribute)) gt 0"
+                >The name of an XML Schema component defined by the schema MUST be in the scope of an occurrence of attribute xml:lang that has a value that is not empty.</sch:assert>
+  </sch:rule>
+</sch:pattern>
+        </xmlBlurb></pre>
+      </rule>
+    </ruleSection>
+
+    <ruleSection>
       <title>Schema component names have only specific characters</title>
       <rule applicability="REF EXT" id="rule-names-have-specific-characters" class="Constraint">
         <pre><xmlBlurb id="xb-rule-names-have-specific-characters" memberOf="ref ext">
@@ -7558,6 +7577,27 @@ not be given the same name.</p></li>
             provided by MACRO_REF_EXTERNAL(ISO11179-4,,5.3,Recommendations).</p>
         </rule>
       </ruleSection>
+
+      <ruleSection>
+        <title><qName>xs:documentation</qName> has <qName>xml:lang</qName></title>
+
+        <p>MACRO_REF_EXTERNAL(XML,MACRO_HREF_XML#sec-lang-tag,2.12,Language Identification) defines attribute <qName>xml:lang</qName>, which establishes the language used in the contents and attributes of an XML document. To facilitate clarity and future support for languages other than US English, each occurrence of <qName>xs:documentation</qName> in a conformant schema is in the scope of an occurrence of <qName>xml:lang</qName>, which defines the language used in the documentation.</p>
+
+        <rule applicability="REF EXT" class="Constraint" id="rule-xs-documentation-has-xml-lang">
+          <pre><xmlBlurb id="xb-rule-xs-documentation-has-xml-lang" memberOf="ref ext">
+<sch:pattern>
+  <sch:rule context="xs:documentation">
+    <sch:let name="xml-lang-attribute" value="ancestor-or-self::*[exists(@xml:lang)][1]/@xml:lang"/>
+    <sch:assert test="exists($xml-lang-attribute)
+                      and string-length(normalize-space($xml-lang-attribute)) gt 0"
+                >An occurrence of xs:documentation within the schema MUST be in the scope of an occurrence of attribute xml:lang that has a value that is not empty.</sch:assert>
+  </sch:rule>
+</sch:pattern>
+          </xmlBlurb></pre>
+          
+        </rule>
+      </ruleSection>
+      
 
       <section><title>Data definition opening phrases</title>
 

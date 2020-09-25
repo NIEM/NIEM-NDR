@@ -3313,7 +3313,7 @@ Rule 10-6. Instance of RoleOf element indicates a role object
 
    To construct such a component, a NIEM-conformant schema must import the namespace defined by the [external schema document].
 
-   Rule 11-48, Reference schema document imports reference schema document and Rule 11-49, Extension schema document imports reference or extension schema document require that xs:import elements be consistent with an importing [schema document].
+   Rule 11-49, Reference schema document imports reference schema document and Rule 11-50, Extension schema document imports reference or extension schema document require that xs:import elements be consistent with an importing [schema document].
 
    A NIEM-conformant schema has well-known documentation points. Therefore, a schema that imports a NIEM-conformant namespace need not provide additional documentation for the imported namespace. However, when an external schema document is imported, appropriate documentation must be provided on the xs:import element. This ensures that documentation for all external schema documents will be both available and accessible in a consistent manner.
 
@@ -4271,9 +4271,24 @@ Rule 10-44. Schema component name composed of English words
 
    The English language has many spelling variations for the same word. For example, American English "program" has a corresponding British spelling "programme." This variation has the potential to cause interoperability problems when XML components are exchanged because of the different names used by the same elements. Providing users with a dictionary standard for spelling will mitigate this potential interoperability issue.
 
-Rule 10-45. Schema component names have only specific characters
+Rule 10-45. Schema component name has xml:lang
+
+   [XML] Section 2.12, Language Identification defines attribute xml:lang, which establishes the language used in the contents and attributes of an XML document. To facilitate clarity and future support for languages other than US English, each component name defined in a conformant schema is in the scope of an occurrence of xml:lang, which defines the language used in the component name.
 
    [Rule 10-45] (REF, EXT)
+
+      <sch:pattern>
+        <sch:rule context="xs:*[exists(@name)]">
+          <sch:let name="xml-lang-attribute" value="ancestor-or-self::*[exists(@xml:lang)][1]/@xml:lang"/>
+          <sch:assert test="exists($xml-lang-attribute)
+                            and string-length(normalize-space($xml-lang-attribute)) gt 0"
+                      >The name of an XML Schema component defined by the schema MUST be in the scope of an occurrence of attribute xml:lang that has a value that is not empty.</sch:assert>
+        </sch:rule>
+      </sch:pattern>
+
+Rule 10-46. Schema component names have only specific characters
+
+   [Rule 10-46] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:*[exists(@name)]">
@@ -4298,9 +4313,9 @@ Rule 10-45. Schema component names have only specific characters
 
    Other characters, such as unicode characters outside the ASCII character set, are explicitly prohibited from the name of an XML Schema component defined by the schema.
 
-Rule 10-46. Punctuation in component name is a separator
+Rule 10-47. Punctuation in component name is a separator
 
-   [Rule 10-46] (REF, EXT)
+   [Rule 10-47] (REF, EXT)
 
       The characters hyphen ("-"), underscore ("_") MAY appear in a component name only when used as a separator between parts of a word, phrase, or value, which would otherwise be incomprehensible without the use of a separator. The period character (".") MAY appear in component names only when appearing as a separator (as above) or as a decimal within a numeric value. A punctuation character MUST NOT be used as a substitute for camel case in component names, or as a method to avoid camel case in component names.
 
@@ -4312,15 +4327,15 @@ Rule 10-46. Punctuation in component name is a separator
 
    Names of conformant components use camel case formatting. Camel case is the convention of writing compound words or phrases with no spaces and an initial lowercase or uppercase letter, with each remaining word element beginning with an uppercase letter. UpperCamelCase is written with an initial uppercase letter, and lowerCamelCase is written with an initial lowercase letter.
 
-Rule 10-47. Names use camel case
+Rule 10-48. Names use camel case
 
-   [Rule 10-47] (REF, EXT)
+   [Rule 10-48] (REF, EXT)
 
       The name of any XML Schema component defined by the schema MUST use the camel case formatting convention.
 
-Rule 10-48. Attribute name begins with lower case letter
+Rule 10-49. Attribute name begins with lower case letter
 
-   [Rule 10-48] (REF, EXT)
+   [Rule 10-49] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:attribute[exists(@name)]">
@@ -4330,9 +4345,9 @@ Rule 10-48. Attribute name begins with lower case letter
         </sch:rule>
       </sch:pattern>
 
-Rule 10-49. Name of schema component other than attribute and proxy type begins with upper case letter
+Rule 10-50. Name of schema component other than attribute and proxy type begins with upper case letter
 
-   [Rule 10-49] (REF, EXT)
+   [Rule 10-50] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:attribute">
@@ -4356,9 +4371,9 @@ Rule 10-49. Name of schema component other than attribute and proxy type begins 
 
    Acronyms and abbreviations have the ability to improve readability and comprehensibility of large, complex, or frequently used terms. They also obscure meaning and impair understanding when their definitions are not clear or when they are used injudiciously. They should be used with great care. Acronyms and abbreviations that are used must be documented and used consistently.
 
-Rule 10-50. Names use common abbreviations
+Rule 10-51. Names use common abbreviations
 
-   [Rule 10-50] (REF, EXT)
+   [Rule 10-51] (REF, EXT)
 
       The schema SHOULD use, in defined names, the abbreviations identified by Table Table 10-1, Abbreviations used in schema component names, rather than their full meanings.
 
@@ -4390,15 +4405,15 @@ Rule 10-50. Names use common abbreviations
 
    See additional rules constraining the use of local terminology in Section 10.9.2, Local terminology, below.
 
-Rule 10-51. Local term declaration is local to its schema document
+Rule 10-52. Local term declaration is local to its schema document
 
-   [Rule 10-51] (REF, EXT)
+   [Rule 10-52] (REF, EXT)
 
       An element appinfo:LocalTerm MUST establish the meaning of a [local term] only within the XML Schema document in which it occurs. There MUST NOT be any transitive inheritance of local terminology within schema documents that import the containing schema document.
 
-Rule 10-52. Local terminology interpretation
+Rule 10-53. Local terminology interpretation
 
-   [Rule 10-52] (REF, EXT)
+   [Rule 10-53] (REF, EXT)
 
       An element information item appinfo:LocalTerm MUST establish a term as follows:
 
@@ -4414,31 +4429,31 @@ Rule 10-52. Local terminology interpretation
 
 10.8.3. Word forms
 
-Rule 10-53. Singular form is preferred in name
-
-   [Rule 10-53] (REF, EXT)
-
-      A noun used as a term in the name of an XML Schema component MUST be in singular form unless the concept itself is plural.
-
-Rule 10-54. Present tense is preferred in name
+Rule 10-54. Singular form is preferred in name
 
    [Rule 10-54] (REF, EXT)
 
-      A verb used as a term in the name of an XML Schema component MUST be used in the present tense unless the concept itself is past tense.
+      A noun used as a term in the name of an XML Schema component MUST be in singular form unless the concept itself is plural.
 
-Rule 10-55. Name does not have nonessential words
+Rule 10-55. Present tense is preferred in name
 
    [Rule 10-55] (REF, EXT)
+
+      A verb used as a term in the name of an XML Schema component MUST be used in the present tense unless the concept itself is past tense.
+
+Rule 10-56. Name does not have nonessential words
+
+   [Rule 10-56] (REF, EXT)
 
       Articles, conjunctions, and prepositions MUST NOT be used in NIEM component names except where they are required for clarity or by standard convention.
 
    Articles (e.g., a, an, the), conjunctions (e.g., and, or, but), and prepositions (e.g., at, by, for, from, in, of, to) are all disallowed in NIEM component names, unless they are required. For example, PowerOfAttorneyCode requires the preposition. These rules constrain slight variations in word forms and types to improve consistency and reduce potentially ambiguous or confusing component names.
 
-Rule 10-56. Element or attribute name follows pattern
+Rule 10-57. Element or attribute name follows pattern
 
    Elements and attributes in NIEM-conformant schemas are given names that follow a specific pattern. This pattern comes from [ISO 11179-5].
 
-   [Rule 10-56] (REF, EXT)
+   [Rule 10-57] (REF, EXT)
 
       Except as specified elsewhere in this document, any element or attribute defined within the schema SHOULD have a name that takes the form:
 
@@ -4460,9 +4475,9 @@ Rule 10-56. Element or attribute name follows pattern
 
    NIEM adopts an object-oriented approach to representation of data. Object classes represent what [ISO 11179-5] refers to as "things of interest in a universe of discourse that may be found in a model of that universe." An object class or object term is a word that represents a class of real-world entities or concepts. An object-class term describes the applicable context for a NIEM component.
 
-Rule 10-57. Object-class term identifies concrete category
+Rule 10-58. Object-class term identifies concrete category
 
-   [Rule 10-57] (REF, EXT)
+   [Rule 10-58] (REF, EXT)
 
       The object-class term of a NIEM component MUST consist of a term identifying a category of concrete concepts or entities.
 
@@ -4478,9 +4493,9 @@ Rule 10-57. Object-class term identifies concrete category
 
    Objects or concepts are usually described in terms of their characteristic properties, data attributes, or constituent subparts. Most objects can be described by several characteristics. Therefore, a property term in the name of a data component represents a characteristic or subpart of an object class and generally describes the essence of that data component.
 
-Rule 10-58. Property term describes characteristic or subpart
+Rule 10-59. Property term describes characteristic or subpart
 
-   [Rule 10-58] (REF, EXT)
+   [Rule 10-59] (REF, EXT)
 
       A property term MUST describe or represent a characteristic or subpart of an entity or concept.
 
@@ -4490,21 +4505,21 @@ Rule 10-58. Property term describes characteristic or subpart
 
    Qualifier terms modify object, property, representation, or other qualifier terms to increase semantic precision and reduce ambiguity. Qualifier terms may precede or succeed the terms they modify. The goal for the placement of qualifier terms is to generally follow the rules of ordinary English while maintaining clarity.
 
-Rule 10-59. Name may have multiple qualifier terms
-
-   [Rule 10-59] (REF, EXT)
-
-      Multiple qualifier terms MAY be used within a component name as necessary to ensure clarity and uniqueness within its namespace and usage context.
-
-Rule 10-60. Name has minimum necessary number of qualifier terms
+Rule 10-60. Name may have multiple qualifier terms
 
    [Rule 10-60] (REF, EXT)
 
-      The number of qualifier terms SHOULD be limited to the absolute minimum required to make the component name unique and understandable.
+      Multiple qualifier terms MAY be used within a component name as necessary to ensure clarity and uniqueness within its namespace and usage context.
 
-Rule 10-61. Order of qualifiers is not significant
+Rule 10-61. Name has minimum necessary number of qualifier terms
 
    [Rule 10-61] (REF, EXT)
+
+      The number of qualifier terms SHOULD be limited to the absolute minimum required to make the component name unique and understandable.
+
+Rule 10-62. Order of qualifiers is not significant
+
+   [Rule 10-62] (REF, EXT)
 
       The order of qualifiers MUST NOT be used to differentiate names.
 
@@ -4520,9 +4535,9 @@ Rule 10-61. Order of qualifiers is not significant
 
       3. It indicates the nature of the value carried by element. Labeling elements and attributes with a notional indicator of the content eases discovery and comprehension.
 
-Rule 10-62. Redundant term in name is omitted
+Rule 10-63. Redundant term in name is omitted
 
-   [Rule 10-62] (REF, EXT)
+   [Rule 10-63] (REF, EXT)
 
       If any word in the representation term is redundant with any word in the property term, one occurrence SHOULD be deleted.
 
@@ -4582,25 +4597,25 @@ Rule 10-62. Redundant term in name is omitted
 
       Abstract||An element that may represent a concept, rather than a concrete property. This representation term may be used in tandem with another of the listed representation terms.
 
-Rule 10-63. Element with simple content has representation term
+Rule 10-64. Element with simple content has representation term
 
-   [Rule 10-63] (REF, EXT)
+   [Rule 10-64] (REF, EXT)
 
       Within the schema, the name of an element declaration that is of simple content SHOULD use an appropriate representation term as found in Table Table 10-2, Representation terms.
 
    This rule is also supported by Rule 11-14, Name of element declaration with simple content has representation term and Rule 11-15, Name of element declaration with simple content has representation term, which provide tests that a top-level declaration has a representation term.
 
-Rule 10-64. Element with complex content has representation term when appropriate
+Rule 10-65. Element with complex content has representation term when appropriate
 
-   [Rule 10-64] (REF, EXT)
+   [Rule 10-65] (REF, EXT)
 
       Within the schema, the name of an element declaration that is of complex content, and that corresponds to a concept listed in Table Table 10-2, Representation terms, SHOULD use a representation term from that table.
 
    An element that represents a value listed in the table should have a representation term. It should do so even if its type is complex with multiple parts. For example, a type with multiple fields may represent an audio binary, a date, or a name.
 
-Rule 10-65. Element with complex content has representation term only when appropriate
+Rule 10-66. Element with complex content has representation term only when appropriate
 
-   [Rule 10-65] (REF, EXT)
+   [Rule 10-66] (REF, EXT)
 
       Within the schema, the name of an element declaration that is of complex content and that does not correspond to a concept listed in Table Table 10-2, Representation terms SHOULD NOT use a representation term.
 
@@ -4638,9 +4653,9 @@ Rule 10-65. Element with complex content has representation term only when appro
 
    The majority of uses of [application information] from the [appinfo namespace] are described in the modeling rules for the specific component.
 
-Rule 10-66. Machine-readable annotations are valid
+Rule 10-67. Machine-readable annotations are valid
 
-   [Rule 10-66] (REF, EXT)
+   [Rule 10-67] (REF, EXT)
 
       Every element information item or attribute information item that appears as a machine-readable annotation in a schema MUST be a valid instance, according to its specification.
 
@@ -4666,17 +4681,17 @@ Rule 10-66. Machine-readable annotations are valid
 
    The definition for [deprecated component] is adapted from [JLS] Section 9.6.4.6, @Deprecated.
 
-Rule 10-67. Component marked as deprecated is deprecated component
+Rule 10-68. Component marked as deprecated is deprecated component
 
-   [Rule 10-67] (REF, EXT)
+   [Rule 10-68] (REF, EXT)
 
       A [schema component] that has an attribute appinfo:deprecated with a value of "true" MUST be a [deprecated component].
 
    Deprecation can allow version management to be more consistent; versions of schema may be incrementally improved without introducing validation problems and incompatibility. As XML Schema lacks a deprecation mechanism, NIEM defines such a mechanism.
 
-Rule 10-68. Deprecated annotates schema component
+Rule 10-69. Deprecated annotates schema component
 
-   [Rule 10-68] (REF, EXT)
+   [Rule 10-69] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[exists(@appinfo:deprecated)]">
@@ -4689,9 +4704,9 @@ Rule 10-68. Deprecated annotates schema component
 
    The annotation attributes appinfo:externalImportIndicator and appinfo:externalAdapterTypeIndicator document, in a machine-readable way, which components are external (i.e., defined by schemas that are not NIEM-conformant), and which support the use of external components.
 
-Rule 10-69. External import indicator annotates import
+Rule 10-70. External import indicator annotates import
 
-   [Rule 10-69] (REF, EXT)
+   [Rule 10-70] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[exists(@appinfo:externalImportIndicator)]">
@@ -4700,9 +4715,9 @@ Rule 10-69. External import indicator annotates import
         </sch:rule>
       </sch:pattern>
 
-Rule 10-70. External adapter type indicator annotates complex type
+Rule 10-71. External adapter type indicator annotates complex type
 
-   [Rule 10-70] (REF, EXT)
+   [Rule 10-71] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[exists(@appinfo:externalAdapterTypeIndicator)]">
@@ -4713,9 +4728,9 @@ Rule 10-70. External adapter type indicator annotates complex type
 
 10.9.1.3. appinfo:appliesToTypes annotation
 
-Rule 10-71. appinfo:appliesToTypes annotates metadata element
+Rule 10-72. appinfo:appliesToTypes annotates metadata element
 
-   [Rule 10-71] (REF, EXT)
+   [Rule 10-72] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[exists(@appinfo:appliesToTypes)]">
@@ -4725,9 +4740,9 @@ Rule 10-71. appinfo:appliesToTypes annotates metadata element
         </sch:rule>
       </sch:pattern>
 
-Rule 10-72. appinfo:appliesToTypes references types
+Rule 10-73. appinfo:appliesToTypes references types
 
-   [Rule 10-72] (SET)
+   [Rule 10-73] (SET)
 
       <sch:pattern>
         <sch:rule context="*[exists(@appinfo:appliesToTypes)]">
@@ -4739,9 +4754,9 @@ Rule 10-72. appinfo:appliesToTypes references types
 
 10.9.1.4. appinfo:appliesToElements annotation
 
-Rule 10-73. appinfo:appliesToElements annotates metadata element
+Rule 10-74. appinfo:appliesToElements annotates metadata element
 
-   [Rule 10-73] (REF, EXT)
+   [Rule 10-74] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[exists(@appinfo:appliesToElements)]">
@@ -4752,9 +4767,9 @@ Rule 10-73. appinfo:appliesToElements annotates metadata element
         </sch:rule>
       </sch:pattern>
 
-Rule 10-74. appinfo:appliesToElements references elements
+Rule 10-75. appinfo:appliesToElements references elements
 
-   [Rule 10-74] (SET)
+   [Rule 10-75] (SET)
 
       <sch:pattern>
         <sch:rule context="*[exists(@appinfo:appliesToElements)]">
@@ -4766,9 +4781,9 @@ Rule 10-74. appinfo:appliesToElements references elements
 
 10.9.2. Local terminology
 
-Rule 10-75. appinfo:LocalTerm annotates schema
+Rule 10-76. appinfo:LocalTerm annotates schema
 
-   [Rule 10-75] (REF, EXT)
+   [Rule 10-76] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="appinfo:LocalTerm">
@@ -4779,9 +4794,9 @@ Rule 10-75. appinfo:LocalTerm annotates schema
 
    This document defines the term [application information].
 
-Rule 10-76. appinfo:LocalTerm has literal or definition
+Rule 10-77. appinfo:LocalTerm has literal or definition
 
-   [Rule 10-76] (REF, EXT)
+   [Rule 10-77] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="appinfo:LocalTerm">
@@ -4800,9 +4815,9 @@ Rule 10-76. appinfo:LocalTerm has literal or definition
 
    The structures namespace is a single namespace, separate from namespaces that define NIEM-conformant data. This document refers to this content via the prefix structures.
 
-Rule 10-77. Use structures consistent with specification
+Rule 10-78. Use structures consistent with specification
 
-   [Rule 10-77] (REF, EXT, INS, SET)
+   [Rule 10-78] (REF, EXT, INS, SET)
 
       Any schema or instance MUST use the NIEM [structures namespace] consistent with the schema as it is defined in Appendix B, Structures namespace.
 
@@ -5071,7 +5086,7 @@ Rule 11-14. Name of element declaration with simple content has representation t
         </sch:rule>
       </sch:pattern>
 
-   Representation terms are defined by Table Table 10-2, Representation terms, above. This Schematron rule supports Rule 10-63, Element with simple content has representation term.
+   Representation terms are defined by Table Table 10-2, Representation terms, above. This Schematron rule supports Rule 10-64, Element with simple content has representation term.
 
 Rule 11-15. Name of element declaration with simple content has representation term
 
@@ -5094,7 +5109,7 @@ Rule 11-15. Name of element declaration with simple content has representation t
         </sch:rule>
       </sch:pattern>
 
-   Representation terms are defined by Table Table 10-2, Representation terms, above. This rule supports Rule 10-63, Element with simple content has representation term.
+   Representation terms are defined by Table Table 10-2, Representation terms, above. This rule supports Rule 10-64, Element with simple content has representation term.
 
 11.2.2. Element substitution group
 
@@ -5298,15 +5313,30 @@ Rule 11-28. Data definition follows 11179-4 recommendations
 
       Each [data definition] SHOULD conform to the recommendations for data definitions provided by [ISO 11179-4] Section 5.3, Recommendations.
 
+Rule 11-29. xs:documentation has xml:lang
+
+   [XML] Section 2.12, Language Identification defines attribute xml:lang, which establishes the language used in the contents and attributes of an XML document. To facilitate clarity and future support for languages other than US English, each occurrence of xs:documentation in a conformant schema is in the scope of an occurrence of xml:lang, which defines the language used in the documentation.
+
+   [Rule 11-29] (REF, EXT)
+
+      <sch:pattern>
+        <sch:rule context="xs:documentation">
+          <sch:let name="xml-lang-attribute" value="ancestor-or-self::*[exists(@xml:lang)][1]/@xml:lang"/>
+          <sch:assert test="exists($xml-lang-attribute)
+                            and string-length(normalize-space($xml-lang-attribute)) gt 0"
+                      >An occurrence of xs:documentation within the schema MUST be in the scope of an occurrence of attribute xml:lang that has a value that is not empty.</sch:assert>
+        </sch:rule>
+      </sch:pattern>
+
 11.6.1.1. Data definition opening phrases
 
    In order to provide a more consistent voice across NIEM, a model built from requirements from many different sources, component data definitions should begin with a standard opening phrase, as defined below.
 
 11.6.1.1.1. Element and attribute opening phrases
 
-Rule 11-29. Standard opening phrase for augmentation point element data definition
+Rule 11-30. Standard opening phrase for augmentation point element data definition
 
-   [Rule 11-29] (REF, EXT)
+   [Rule 11-30] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[ends-with(@name, 'AugmentationPoint')]/xs:annotation/xs:documentation[1]">
@@ -5316,9 +5346,9 @@ Rule 11-29. Standard opening phrase for augmentation point element data definiti
         </sch:rule>
       </sch:pattern>
 
-Rule 11-30. Standard opening phrase for augmentation element data definition
+Rule 11-31. Standard opening phrase for augmentation element data definition
 
-   [Rule 11-30] (REF, EXT)
+   [Rule 11-31] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[ends-with(@name, 'Augmentation')]/xs:annotation/xs:documentation[1]">
@@ -5330,9 +5360,9 @@ Rule 11-30. Standard opening phrase for augmentation element data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-31. Standard opening phrase for metadata element data definition
+Rule 11-32. Standard opening phrase for metadata element data definition
 
-   [Rule 11-31] (REF, EXT)
+   [Rule 11-32] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[ends-with(@name, 'Metadata')
@@ -5343,9 +5373,9 @@ Rule 11-31. Standard opening phrase for metadata element data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-32. Standard opening phrase for association element data definition
+Rule 11-33. Standard opening phrase for association element data definition
 
-   [Rule 11-32] (REF, EXT)
+   [Rule 11-33] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[ends-with(@name, 'Association')
@@ -5356,9 +5386,9 @@ Rule 11-32. Standard opening phrase for association element data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-33. Standard opening phrase for abstract element data definition
+Rule 11-34. Standard opening phrase for abstract element data definition
 
-   [Rule 11-33] (REF, EXT)
+   [Rule 11-34] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[xs:boolean(@abstract) = true()
@@ -5369,9 +5399,9 @@ Rule 11-33. Standard opening phrase for abstract element data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-34. Standard opening phrase for date element or attribute data definition
+Rule 11-35. Standard opening phrase for date element or attribute data definition
 
-   [Rule 11-34] (REF, EXT)
+   [Rule 11-35] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5383,9 +5413,9 @@ Rule 11-34. Standard opening phrase for date element or attribute data definitio
         </sch:rule>
       </sch:pattern>
 
-Rule 11-35. Standard opening phrase for quantity element or attribute data definition
+Rule 11-36. Standard opening phrase for quantity element or attribute data definition
 
-   [Rule 11-35] (REF, EXT)
+   [Rule 11-36] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5397,9 +5427,9 @@ Rule 11-35. Standard opening phrase for quantity element or attribute data defin
         </sch:rule>
       </sch:pattern>
 
-Rule 11-36. Standard opening phrase for picture element or attribute data definition
+Rule 11-37. Standard opening phrase for picture element or attribute data definition
 
-   [Rule 11-36] (REF, EXT)
+   [Rule 11-37] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5411,9 +5441,9 @@ Rule 11-36. Standard opening phrase for picture element or attribute data defini
         </sch:rule>
       </sch:pattern>
 
-Rule 11-37. Standard opening phrase for indicator element or attribute data definition
+Rule 11-38. Standard opening phrase for indicator element or attribute data definition
 
-   [Rule 11-37] (REF, EXT)
+   [Rule 11-38] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5425,9 +5455,9 @@ Rule 11-37. Standard opening phrase for indicator element or attribute data defi
         </sch:rule>
       </sch:pattern>
 
-Rule 11-38. Standard opening phrase for identification element or attribute data definition
+Rule 11-39. Standard opening phrase for identification element or attribute data definition
 
-   [Rule 11-38] (REF, EXT)
+   [Rule 11-39] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5439,9 +5469,9 @@ Rule 11-38. Standard opening phrase for identification element or attribute data
         </sch:rule>
       </sch:pattern>
 
-Rule 11-39. Standard opening phrase for name element or attribute data definition
+Rule 11-40. Standard opening phrase for name element or attribute data definition
 
-   [Rule 11-39] (REF, EXT)
+   [Rule 11-40] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5453,9 +5483,9 @@ Rule 11-39. Standard opening phrase for name element or attribute data definitio
         </sch:rule>
       </sch:pattern>
 
-Rule 11-40. Standard opening phrase for element or attribute data definition
+Rule 11-41. Standard opening phrase for element or attribute data definition
 
-   [Rule 11-40] (REF, EXT)
+   [Rule 11-41] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5473,9 +5503,9 @@ Rule 11-40. Standard opening phrase for element or attribute data definition
 
 11.6.1.1.2. Complex type opening phrases
 
-Rule 11-41. Standard opening phrase for association type data definition
+Rule 11-42. Standard opening phrase for association type data definition
 
-   [Rule 11-41] (REF, EXT)
+   [Rule 11-42] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:complexType[ends-with(@name, 'AssociationType')]/xs:annotation/xs:documentation[1]">
@@ -5485,9 +5515,9 @@ Rule 11-41. Standard opening phrase for association type data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-42. Standard opening phrase for augmentation type data definition
+Rule 11-43. Standard opening phrase for augmentation type data definition
 
-   [Rule 11-42] (REF, EXT)
+   [Rule 11-43] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:complexType[ends-with(@name, 'AugmentationType')]/xs:annotation/xs:documentation[1]">
@@ -5498,9 +5528,9 @@ Rule 11-42. Standard opening phrase for augmentation type data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-43. Standard opening phrase for metadata type data definition
+Rule 11-44. Standard opening phrase for metadata type data definition
 
-   [Rule 11-43] (REF, EXT)
+   [Rule 11-44] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:complexType[ends-with(@name, 'MetadataType')]/xs:annotation/xs:documentation[1]">
@@ -5511,9 +5541,9 @@ Rule 11-43. Standard opening phrase for metadata type data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-44. Standard opening phrase for complex type data definition
+Rule 11-45. Standard opening phrase for complex type data definition
 
-   [Rule 11-44] (REF, EXT)
+   [Rule 11-45] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:complexType/xs:annotation/xs:documentation[1]">
@@ -5523,9 +5553,9 @@ Rule 11-44. Standard opening phrase for complex type data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-45. Standard opening phrase for simple type data definition
+Rule 11-46. Standard opening phrase for simple type data definition
 
-   [Rule 11-45] (REF, EXT)
+   [Rule 11-46] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:simpleType/xs:annotation/xs:documentation[1]">
@@ -5539,15 +5569,15 @@ Rule 11-45. Standard opening phrase for simple type data definition
 
 11.7.1. xs:schema document element restrictions
 
-Rule 11-46. Same namespace means same components
+Rule 11-47. Same namespace means same components
 
-   [Rule 11-46] (REF, EXT)
+   [Rule 11-47] (REF, EXT)
 
       Two XML Schema documents MUST have the same value for attribute targetNamespace carried by the element xs:schema, if and only if they represent the same set of components.
 
-Rule 11-47. Different version means different view
+Rule 11-48. Different version means different view
 
-   [Rule 11-47] (REF, EXT)
+   [Rule 11-48] (REF, EXT)
 
       Two XML Schema documents MUST have the same value for attribute targetNamespace carried by the element xs:schema, and different values for attribute version carried by the element xs:schema if and only if they are profiles of the same set of components.
 
@@ -5555,9 +5585,9 @@ Rule 11-47. Different version means different view
 
 11.8. Schema assembly
 
-Rule 11-48. Reference schema document imports reference schema document
+Rule 11-49. Reference schema document imports reference schema document
 
-   [Rule 11-48] (SET)
+   [Rule 11-49] (SET)
 
       <sch:pattern>
         <sch:rule context="xs:import[
@@ -5574,9 +5604,9 @@ Rule 11-48. Reference schema document imports reference schema document
 
    This document defines the term [reference schema document].
 
-Rule 11-49. Extension schema document imports reference or extension schema document
+Rule 11-50. Extension schema document imports reference or extension schema document
 
-   [Rule 11-49] (SET)
+   [Rule 11-50] (SET)
 
       <sch:pattern>
         <sch:rule context="xs:import[
@@ -5598,9 +5628,9 @@ Rule 11-49. Extension schema document imports reference or extension schema docu
 
    There are several namespaces that are treated specially by the NIEM NDR. When the following namespaces are imported into a conformant schema document, they must be imported as if they are conformant. That is, the xs:import element must not have an attribute appinfo:externalImportIndicator with a value of "true".
 
-Rule 11-50. Structures imported as conformant
+Rule 11-51. Structures imported as conformant
 
-   [Rule 11-50] (REF, EXT)
+   [Rule 11-51] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:import[exists(@namespace)
@@ -5610,9 +5640,9 @@ Rule 11-50. Structures imported as conformant
         </sch:rule>
       </sch:pattern>
 
-Rule 11-51. XML namespace imported as conformant
+Rule 11-52. XML namespace imported as conformant
 
-   [Rule 11-51] (REF, EXT)
+   [Rule 11-52] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:import[exists(@namespace)
@@ -5622,9 +5652,9 @@ Rule 11-51. XML namespace imported as conformant
         </sch:rule>
       </sch:pattern>
 
-Rule 11-52. Each namespace may have only a single root schema in a schema set
+Rule 11-53. Each namespace may have only a single root schema in a schema set
 
-   [Rule 11-52] (SET)
+   [Rule 11-53] (SET)
 
       <sch:pattern>
         <sch:rule context="xs:schema[exists(@targetNamespace)
@@ -5636,11 +5666,11 @@ Rule 11-52. Each namespace may have only a single root schema in a schema set
         </sch:rule>
       </sch:pattern>
 
-Rule 11-53. Consistently marked namespace imports
+Rule 11-54. Consistently marked namespace imports
 
    XML Schemas allows multiple xs:import elements for the same namespace, which allows for multiple sets of annotations and schema locations. 
 
-   [Rule 11-53] (REF, EXT)
+   [Rule 11-54] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:import">
@@ -6610,39 +6640,40 @@ Appendix E. Index of rules
    Rule 10-42, Name of element that ends in "Representation" is abstract: Section 10.7, The "Representation" pattern
    Rule 10-43, A substitution for a representation element declaration is a value for a type: Section 10, Rules for NIEM modeling, by NIEM concept
    Rule 10-44, Schema component name composed of English words: Section 10.8, Naming rules
-   Rule 10-45, Schema component names have only specific characters: Section 10.8, Naming rules
-   Rule 10-46, Punctuation in component name is a separator: Section 10.8, Naming rules
-   Rule 10-47, Names use camel case: Section 10.8.1, Character case
-   Rule 10-48, Attribute name begins with lower case letter: Section 10.8.1, Character case
-   Rule 10-49, Name of schema component other than attribute and proxy type begins with upper case letter: Section 10.8.1, Character case
-   Rule 10-50, Names use common abbreviations: Section 10.8.2, Use of acronyms and abbreviations
-   Rule 10-51, Local term declaration is local to its schema document: Section 10.8.2.1, Use of Acronyms, Initialisms, Abbreviations, and Jargon
-   Rule 10-52, Local terminology interpretation: Section 10.8.2.1, Use of Acronyms, Initialisms, Abbreviations, and Jargon
-   Rule 10-53, Singular form is preferred in name: Section 10.8.3, Word forms
-   Rule 10-54, Present tense is preferred in name: Section 10.8.3, Word forms
-   Rule 10-55, Name does not have nonessential words: Section 10.8.3, Word forms
-   Rule 10-56, Element or attribute name follows pattern: Section 10.8, Naming rules
-   Rule 10-57, Object-class term identifies concrete category: Section 10.8.4, Object-class term
-   Rule 10-58, Property term describes characteristic or subpart: Section 10.8.5, Property term
-   Rule 10-59, Name may have multiple qualifier terms: Section 10.8.6, Qualifier terms
-   Rule 10-60, Name has minimum necessary number of qualifier terms: Section 10.8.6, Qualifier terms
-   Rule 10-61, Order of qualifiers is not significant: Section 10.8.6, Qualifier terms
-   Rule 10-62, Redundant term in name is omitted: Section 10.8.7, Representation terms
-   Rule 10-63, Element with simple content has representation term: Section 10.8.7, Representation terms
-   Rule 10-64, Element with complex content has representation term when appropriate: Section 10.8.7, Representation terms
-   Rule 10-65, Element with complex content has representation term only when appropriate: Section 10.8.7, Representation terms
-   Rule 10-66, Machine-readable annotations are valid: Section 10.9, Machine-readable annotations
-   Rule 10-67, Component marked as deprecated is deprecated component: Section 10.9.1.1, Deprecation
-   Rule 10-68, Deprecated annotates schema component: Section 10.9.1.1, Deprecation
-   Rule 10-69, External import indicator annotates import: Section 10.9.1.2, External adapters
-   Rule 10-70, External adapter type indicator annotates complex type: Section 10.9.1.2, External adapters
-   Rule 10-71, appinfo:appliesToTypes annotates metadata element: Section 10.9.1.3, appinfo:appliesToTypes annotation
-   Rule 10-72, appinfo:appliesToTypes references types: Section 10.9.1.3, appinfo:appliesToTypes annotation
-   Rule 10-73, appinfo:appliesToElements annotates metadata element: Section 10.9.1.4, appinfo:appliesToElements annotation
-   Rule 10-74, appinfo:appliesToElements references elements: Section 10.9.1.4, appinfo:appliesToElements annotation
-   Rule 10-75, appinfo:LocalTerm annotates schema: Section 10.9.2, Local terminology
-   Rule 10-76, appinfo:LocalTerm has literal or definition: Section 10.9.2, Local terminology
-   Rule 10-77, Use structures consistent with specification: Section 10.10, NIEM structural facilities
+   Rule 10-45, Schema component name has xml:lang: Section 10.8, Naming rules
+   Rule 10-46, Schema component names have only specific characters: Section 10.8, Naming rules
+   Rule 10-47, Punctuation in component name is a separator: Section 10.8, Naming rules
+   Rule 10-48, Names use camel case: Section 10.8.1, Character case
+   Rule 10-49, Attribute name begins with lower case letter: Section 10.8.1, Character case
+   Rule 10-50, Name of schema component other than attribute and proxy type begins with upper case letter: Section 10.8.1, Character case
+   Rule 10-51, Names use common abbreviations: Section 10.8.2, Use of acronyms and abbreviations
+   Rule 10-52, Local term declaration is local to its schema document: Section 10.8.2.1, Use of Acronyms, Initialisms, Abbreviations, and Jargon
+   Rule 10-53, Local terminology interpretation: Section 10.8.2.1, Use of Acronyms, Initialisms, Abbreviations, and Jargon
+   Rule 10-54, Singular form is preferred in name: Section 10.8.3, Word forms
+   Rule 10-55, Present tense is preferred in name: Section 10.8.3, Word forms
+   Rule 10-56, Name does not have nonessential words: Section 10.8.3, Word forms
+   Rule 10-57, Element or attribute name follows pattern: Section 10.8, Naming rules
+   Rule 10-58, Object-class term identifies concrete category: Section 10.8.4, Object-class term
+   Rule 10-59, Property term describes characteristic or subpart: Section 10.8.5, Property term
+   Rule 10-60, Name may have multiple qualifier terms: Section 10.8.6, Qualifier terms
+   Rule 10-61, Name has minimum necessary number of qualifier terms: Section 10.8.6, Qualifier terms
+   Rule 10-62, Order of qualifiers is not significant: Section 10.8.6, Qualifier terms
+   Rule 10-63, Redundant term in name is omitted: Section 10.8.7, Representation terms
+   Rule 10-64, Element with simple content has representation term: Section 10.8.7, Representation terms
+   Rule 10-65, Element with complex content has representation term when appropriate: Section 10.8.7, Representation terms
+   Rule 10-66, Element with complex content has representation term only when appropriate: Section 10.8.7, Representation terms
+   Rule 10-67, Machine-readable annotations are valid: Section 10.9, Machine-readable annotations
+   Rule 10-68, Component marked as deprecated is deprecated component: Section 10.9.1.1, Deprecation
+   Rule 10-69, Deprecated annotates schema component: Section 10.9.1.1, Deprecation
+   Rule 10-70, External import indicator annotates import: Section 10.9.1.2, External adapters
+   Rule 10-71, External adapter type indicator annotates complex type: Section 10.9.1.2, External adapters
+   Rule 10-72, appinfo:appliesToTypes annotates metadata element: Section 10.9.1.3, appinfo:appliesToTypes annotation
+   Rule 10-73, appinfo:appliesToTypes references types: Section 10.9.1.3, appinfo:appliesToTypes annotation
+   Rule 10-74, appinfo:appliesToElements annotates metadata element: Section 10.9.1.4, appinfo:appliesToElements annotation
+   Rule 10-75, appinfo:appliesToElements references elements: Section 10.9.1.4, appinfo:appliesToElements annotation
+   Rule 10-76, appinfo:LocalTerm annotates schema: Section 10.9.2, Local terminology
+   Rule 10-77, appinfo:LocalTerm has literal or definition: Section 10.9.2, Local terminology
+   Rule 10-78, Use structures consistent with specification: Section 10.10, NIEM structural facilities
    Rule 11-1, Name of type ends in "Type": Section 11.1, Type definition components
    Rule 11-2, Base type definition defined by conformant schema: Section 11.1.1, Type definition hierarchy
    Rule 11-3, Name of simple type ends in "SimpleType": Section 11.1.2, Simple type definition
@@ -6671,31 +6702,32 @@ Appendix E. Index of rules
    Rule 11-26, Do not leak representation into data definition: Section 11.6.1, Human-readable documentation
    Rule 11-27, Data definition follows 11179-4 requirements: Section 11.6.1, Human-readable documentation
    Rule 11-28, Data definition follows 11179-4 recommendations: Section 11.6.1, Human-readable documentation
-   Rule 11-29, Standard opening phrase for augmentation point element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-30, Standard opening phrase for augmentation element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-31, Standard opening phrase for metadata element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-32, Standard opening phrase for association element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-33, Standard opening phrase for abstract element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-34, Standard opening phrase for date element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-35, Standard opening phrase for quantity element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-36, Standard opening phrase for picture element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-37, Standard opening phrase for indicator element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-38, Standard opening phrase for identification element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-39, Standard opening phrase for name element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-40, Standard opening phrase for element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-41, Standard opening phrase for association type data definition: Section 11.6.1.1.2, Complex type opening phrases
-   Rule 11-42, Standard opening phrase for augmentation type data definition: Section 11.6.1.1.2, Complex type opening phrases
-   Rule 11-43, Standard opening phrase for metadata type data definition: Section 11.6.1.1.2, Complex type opening phrases
-   Rule 11-44, Standard opening phrase for complex type data definition: Section 11.6.1.1.2, Complex type opening phrases
-   Rule 11-45, Standard opening phrase for simple type data definition: Section 11.6.1.1, Data definition opening phrases
-   Rule 11-46, Same namespace means same components: Section 11.7.1, xs:schema document element restrictions
-   Rule 11-47, Different version means different view: Section 11.7.1, xs:schema document element restrictions
-   Rule 11-48, Reference schema document imports reference schema document: Section 11.8, Schema assembly
-   Rule 11-49, Extension schema document imports reference or extension schema document: Section 11.8, Schema assembly
-   Rule 11-50, Structures imported as conformant: Section 11.8.1, Supporting namespaces are imported as conformant
-   Rule 11-51, XML namespace imported as conformant: Section 11.8.1, Supporting namespaces are imported as conformant
-   Rule 11-52, Each namespace may have only a single root schema in a schema set: Section 11.8, Schema assembly
-   Rule 11-53, Consistently marked namespace imports: Section 11.8, Schema assembly
+   Rule 11-29, xs:documentation has xml:lang: Section 11.6.1, Human-readable documentation
+   Rule 11-30, Standard opening phrase for augmentation point element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-31, Standard opening phrase for augmentation element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-32, Standard opening phrase for metadata element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-33, Standard opening phrase for association element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-34, Standard opening phrase for abstract element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-35, Standard opening phrase for date element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-36, Standard opening phrase for quantity element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-37, Standard opening phrase for picture element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-38, Standard opening phrase for indicator element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-39, Standard opening phrase for identification element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-40, Standard opening phrase for name element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-41, Standard opening phrase for element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-42, Standard opening phrase for association type data definition: Section 11.6.1.1.2, Complex type opening phrases
+   Rule 11-43, Standard opening phrase for augmentation type data definition: Section 11.6.1.1.2, Complex type opening phrases
+   Rule 11-44, Standard opening phrase for metadata type data definition: Section 11.6.1.1.2, Complex type opening phrases
+   Rule 11-45, Standard opening phrase for complex type data definition: Section 11.6.1.1.2, Complex type opening phrases
+   Rule 11-46, Standard opening phrase for simple type data definition: Section 11.6.1.1, Data definition opening phrases
+   Rule 11-47, Same namespace means same components: Section 11.7.1, xs:schema document element restrictions
+   Rule 11-48, Different version means different view: Section 11.7.1, xs:schema document element restrictions
+   Rule 11-49, Reference schema document imports reference schema document: Section 11.8, Schema assembly
+   Rule 11-50, Extension schema document imports reference or extension schema document: Section 11.8, Schema assembly
+   Rule 11-51, Structures imported as conformant: Section 11.8.1, Supporting namespaces are imported as conformant
+   Rule 11-52, XML namespace imported as conformant: Section 11.8.1, Supporting namespaces are imported as conformant
+   Rule 11-53, Each namespace may have only a single root schema in a schema set: Section 11.8, Schema assembly
+   Rule 11-54, Consistently marked namespace imports: Section 11.8, Schema assembly
    Rule 12-1, Instance must be schema-valid: Section 12, XML instance document rules
    Rule 12-2, Empty content has no meaning: Section 12.1, The meaning of NIEM data
    Rule 12-3, Element has only one resource identifying attribute: Section 12.2, Identifiers and references

@@ -61,9 +61,24 @@ do command=$1
            open publish/niem-ndr.html
            ;;
 
+       #HELP:  open: Open the HTML doc without rebuilding it.
+       open ) 
+           open publish/niem-ndr.html
+           ;;
+
+       #HELP:  pre: Run pre-processing validity checks; make sure inputs are well-formed
+       pre )
+           make -j 8 pre-valid
+           ;;
+
        #HELP:  all: Build artifacts; no testing
        all )
            time make -j 8 all
+           ;;
+
+       #HELP:  valid: Run post-processing validity checks
+       valid )
+           make -j 8 valid
            ;;
 
        #HELP:  cdiff: color diff
@@ -73,9 +88,7 @@ do command=$1
        #HELP:  rebuild: scrub & rebuild everything from nothing
        rebuild )
            make clean
-           make depend
-           make -j 8 all
-           make -j 8 valid
+           "$0" d pre all valid
            ;;
 
        #HELP:  grep: find something in the doc XML
