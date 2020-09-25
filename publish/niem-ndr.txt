@@ -821,6 +821,7 @@ Rule 4-6. Schema claims extension conformance target
    * Section 5.6.3.5, Attribute as a simple property of an object or association
    * Section 5.6.3.6, Elements via an augmentation type
    * Section 5.6.3.7, Attributes via an augmentation type
+   * Section 5.6.3.8, Properties applied via a structures:metadata
 
 5.6.3.1. XML document mapping
 
@@ -954,7 +955,29 @@ Rule 4-6. Schema claims extension conformance target
 
          *  $literal is the literal value for $attribute, as described in Section 5.6.2, RDF Literals, above.
 
-5.6.4. NIEM complex type definitions to RDF
+5.6.3.8. Properties applied via a structures:metadata
+
+   Given a [conformant element information item] $context that has attribute structures:metadata with a value that is a list of references, each item $item in the list entails the RDF:
+
+      $subject structures:metadata $object
+
+      Where:
+
+         *  $subject is a node identifier for the object held by $context.
+
+         *  $object is a node identifier for the object referenced by $item.
+
+5.6.4. NIEM schema component definitions to RDF
+
+   The definition of schema components within NIEM-conformant schemas a parallel representation in RDF. This section describes the mapping of selected XML Schema constructs to RDF.
+
+   This section has the following subsections:
+
+   * Section 5.6.4.1, NIEM complex type definitions to RDF
+   * Section 5.6.4.2, NIEM element declaration mappings to RDF
+   * Section 5.6.4.3, NIEM attribute declarations to RDF
+
+5.6.4.1. NIEM complex type definitions to RDF
 
    The following RDF mappings apply to the content of a [reference schema document] or [extension schema document].
 
@@ -970,7 +993,7 @@ Rule 4-6. Schema claims extension conformance target
 
       Where $base-resource is the resource IRI for $base.
 
-5.6.5. NIEM element declaration mappings to RDF
+5.6.4.2. NIEM element declaration mappings to RDF
 
    The following RDF mappings apply to the content of a [reference schema document] or [extension schema document].
 
@@ -1008,7 +1031,7 @@ Rule 4-6. Schema claims extension conformance target
 
          *  $type-resource is the resource IRI for $type.
 
-5.6.6. NIEM attribute declarations to RDF
+5.6.4.3. NIEM attribute declarations to RDF
 
    The following RDF mappings apply to the content of a [reference schema document] or [extension schema document].
 

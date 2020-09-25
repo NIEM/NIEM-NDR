@@ -1288,7 +1288,7 @@
     <section><title>Mapping of NIEM concepts to RDF concepts</title>
 
       <p>This section provides RDF implementations for many aspects of NIEM-conformant schemas and instance
-      documents.</p>
+        documents.</p>
 
       <section><title>Resource IRIs for XML Schema components and information items</title>
         <p>The term <q>qualified name</q> is defined by
@@ -1324,11 +1324,11 @@
 
       <section id="sec-rdf-literals"><title>RDF Literals</title>
         <p>A simple value may be incorporated into a <termRef>conformant instance XML document</termRef> as the
-        value of an attribute information item, or as a child of an element information item. This section
-        describes how a simple value is mapped to an RDF literal. Note that there is no mapping for the simple
-        content of an element that is not a <termRef>conformant element information item</termRef>, nor for
-        attributes defined by non-conformant schema documents, so there is no accommodation of mixed content,
-        untyped values, or other cases outside of what conformant schema documents define.</p>
+          value of an attribute information item, or as a child of an element information item. This section
+          describes how a simple value is mapped to an RDF literal. Note that there is no mapping for the simple
+          content of an element that is not a <termRef>conformant element information item</termRef>, nor for
+          attributes defined by non-conformant schema documents, so there is no accommodation of mixed content,
+          untyped values, or other cases outside of what conformant schema documents define.</p>
 
         <p>For each occurrence of a simple value, the following may be relevant:</p>
         <ul>
@@ -1477,15 +1477,15 @@
             child <termRef>conformant element information item</termRef> <var>$element</var> that is an instance of
             an <termRef>object type</termRef> or an <termRef>association type</termRef>, entails the RDF:</p>
 
-        <sub>
-          <pre>$subject $predicate $object .</pre>
-          <p>Where:</p>
-          <ul>
-            <li><p><var>$subject</var> is a node identifier for the object held by <var>$context</var>.</p></li>
-            <li><p><var>$predicate</var> is the IRI for <var>$element</var>.</p></li>
-            <li><p><var>$object</var> is a node identifier for the object held by <var>$element</var>.</p></li>
-          </ul>
-        </sub>
+          <sub>
+            <pre>$subject $predicate $object .</pre>
+            <p>Where:</p>
+            <ul>
+              <li><p><var>$subject</var> is a node identifier for the object held by <var>$context</var>.</p></li>
+              <li><p><var>$predicate</var> is the IRI for <var>$element</var>.</p></li>
+              <li><p><var>$object</var> is a node identifier for the object held by <var>$element</var>.</p></li>
+            </ul>
+          </sub>
 
         </section>
         <section><title>Attribute as a simple property of an object or association</title>
@@ -1513,7 +1513,7 @@
         </section>
         <section><title>Elements via an augmentation type</title>
           <p>An element of an augmentation type contains a set of elements and attributes that are applied to
-          some base object or association.</p>
+            some base object or association.</p>
 
           <p>For each element applied to a type via an augmentation type:</p>
           <ul>
@@ -1526,7 +1526,7 @@
                 by <var>$augmentation</var>, and</p></li>
             <li><p>Element information item <var>$element</var> that is a child
                 of <var>$resolved-augmentation</var>, that has [type definition] that is an <termRef>object
-                type</termRef> or an <termRef>association type</termRef>.</p></li>
+                  type</termRef> or an <termRef>association type</termRef>.</p></li>
           </ul>
           <p>entails the RDF:</p>
           <sub>
@@ -1543,7 +1543,7 @@
         </section>
         <section><title>Attributes via an augmentation type</title>
           <p>An element of an augmentation type contains a set of elements and attributes that are applied to
-          some base object or association.</p>
+            some base object or association.</p>
 
           <p>For each attribute applied to a type via an augmentation type:</p>
           <ul>
@@ -1557,7 +1557,7 @@
             <li><p>Attribute information item <var>$attribute</var> that is owned
                 by <var>$resolved-augmentation</var>, that has an [attribute declaration] that is defined by
                 a <termRef>reference schema document</termRef> or an <termRef>extension schema
-                document</termRef></p></li>
+                  document</termRef></p></li>
           </ul>
           <p>entails the RDF:</p>
           <sub>
@@ -1571,84 +1571,109 @@
             </ul>
           </sub>
         </section>
+
+        <section><title>Properties applied via a <qName>structures:metadata</qName></title>
+
+          <p>Given a <termRef>conformant element information item</termRef> <var>$context</var> that has attribute <qName>structures:metadata</qName> with a value that is a list of references, each item <var>$item</var> in the list entails the RDF:</p>
+
+          <sub>
+            <pre>$subject structures:metadata $object</pre>
+            
+            <p>Where:</p>
+            <ul>
+              <li><p><var>$subject</var> is a node identifier for the object held by <var>$context</var>.</p></li>
+              <li><p><var>$object</var> is a node identifier for the object referenced by <var>$item</var>.</p></li>
+            </ul>
+          </sub>
+          
+        </section>
+        
       </section>
+      <section><title>NIEM schema component definitions to RDF</title>
 
-      <section><title>NIEM complex type definitions to RDF</title>
+        <p>The definition of schema components within NIEM-conformant schemas a parallel representation in RDF. This section describes the mapping of selected XML Schema constructs to RDF.</p>
 
-        <p>The following RDF mappings apply to the content of a <termRef>reference schema document</termRef>
-          or <termRef>extension schema document</termRef>.</p>
+        <p>This section has the following subsections:</p>
 
-        <p>An <termRef>object type</termRef> or <termRef>association type</termRef> $type entails the following
-          RDF:</p>
-        <sub>
-          <pre>$resource rdf:type rdf:Class .</pre>
-          <p>Where <var>$resource</var> is the resource IRI for <var>$type</var>.</p>
-        </sub>
+        <listOfSections/>
 
-        <p>An <termRef>object type</termRef> or <termRef>association type</termRef> <var>$type</var> that has
-        property {base type definition} <var>$base</var> also entails the RDF:</p>
-        <sub>
-          <pre>$resource rdfs:subClassOf $base-resource</pre>
-          <p>Where <var>$base-resource</var> is the resource IRI for <var>$base</var>.</p>
-        </sub>
+        <section><title>NIEM complex type definitions to RDF</title>
 
-      </section>
+          <p>The following RDF mappings apply to the content of a <termRef>reference schema document</termRef>
+            or <termRef>extension schema document</termRef>.</p>
 
-      <section><title>NIEM element declaration mappings to RDF</title>
+          <p>An <termRef>object type</termRef> or <termRef>association type</termRef> $type entails the following
+            RDF:</p>
+          <sub>
+            <pre>$resource rdf:type rdf:Class .</pre>
+            <p>Where <var>$resource</var> is the resource IRI for <var>$type</var>.</p>
+          </sub>
 
-        <p>The following RDF mappings apply to the content of a <termRef>reference schema document</termRef>
-          or <termRef>extension schema document</termRef>.</p>
+          <p>An <termRef>object type</termRef> or <termRef>association type</termRef> <var>$type</var> that has
+            property {base type definition} <var>$base</var> also entails the RDF:</p>
+          <sub>
+            <pre>$resource rdfs:subClassOf $base-resource</pre>
+            <p>Where <var>$base-resource</var> is the resource IRI for <var>$base</var>.</p>
+          </sub>
 
-        <p>A top-level element declaration schema component <var>$element-declaration</var> that has property
-          {type definition} that is</p>
-        <ul>
-          <li><p>the ur-type, or</p></li>
-          <li><p>is, or is derived from, <qName>structures:ObjectType</qName>, or</p></li>
-          <li><p>is, or is derived from, <qName>structures:AssociationType</qName></p></li>
-        </ul>
-        <p>entails the RDF:</p>
-        <sub>
-          <pre>$element-resource rdf:type rdf:Property .</pre>
-          <p>Where <var>$element-resource</var> is the resource IRI for <var>$element-declaration</var>.</p>
-        </sub>
+        </section>
 
-        <p>If <var>$element-declaration</var> has property {substitution group affiliation} with a value
-        of element declaration <var>$base</var>, then it entails the RDF:</p>
-        <sub>
-          <pre>$element-resource rdfs:subPropertyOf $base-resource</pre>
-          <p>Where:</p>
+        <section><title>NIEM element declaration mappings to RDF</title>
+
+          <p>The following RDF mappings apply to the content of a <termRef>reference schema document</termRef>
+            or <termRef>extension schema document</termRef>.</p>
+
+          <p>A top-level element declaration schema component <var>$element-declaration</var> that has property
+            {type definition} that is</p>
           <ul>
-            <li><p><var>$element-resource</var> is the resource IRI for <var>$element-declaration</var>.</p></li>
-            <li><p><var>$base-resource</var> is the resource IRI for <var>$base</var>.</p></li>
+            <li><p>the ur-type, or</p></li>
+            <li><p>is, or is derived from, <qName>structures:ObjectType</qName>, or</p></li>
+            <li><p>is, or is derived from, <qName>structures:AssociationType</qName></p></li>
           </ul>
-        </sub>
+          <p>entails the RDF:</p>
+          <sub>
+            <pre>$element-resource rdf:type rdf:Property .</pre>
+            <p>Where <var>$element-resource</var> is the resource IRI for <var>$element-declaration</var>.</p>
+          </sub>
 
-        <p>If <var>$element-declaration</var> has property {type definition} with a value <var>$type</var> that is
-          an <termRef>object type</termRef> or <termRef>association type</termRef>, then it entails the RDF:</p>
+          <p>If <var>$element-declaration</var> has property {substitution group affiliation} with a value
+            of element declaration <var>$base</var>, then it entails the RDF:</p>
+          <sub>
+            <pre>$element-resource rdfs:subPropertyOf $base-resource</pre>
+            <p>Where:</p>
+            <ul>
+              <li><p><var>$element-resource</var> is the resource IRI for <var>$element-declaration</var>.</p></li>
+              <li><p><var>$base-resource</var> is the resource IRI for <var>$base</var>.</p></li>
+            </ul>
+          </sub>
 
-        <sub>
-          <pre>$element-resource rdfs:range $type-resource</pre>
-          <p>Where:</p>
-          <ul>
-            <li><p><var>$element-resource</var> is the resource IRI for <var>$element-declaration</var>.</p></li>
-            <li><p><var>$type-resource</var> is the resource IRI for <var>$type</var>.</p></li>
-          </ul>
-        </sub>
-      </section>
-      <section><title>NIEM attribute declarations to RDF</title>
+          <p>If <var>$element-declaration</var> has property {type definition} with a value <var>$type</var> that is
+            an <termRef>object type</termRef> or <termRef>association type</termRef>, then it entails the RDF:</p>
 
-        <p>The following RDF mappings apply to the content of a <termRef>reference schema document</termRef>
-          or <termRef>extension schema document</termRef>.</p>
+          <sub>
+            <pre>$element-resource rdfs:range $type-resource</pre>
+            <p>Where:</p>
+            <ul>
+              <li><p><var>$element-resource</var> is the resource IRI for <var>$element-declaration</var>.</p></li>
+              <li><p><var>$type-resource</var> is the resource IRI for <var>$type</var>.</p></li>
+            </ul>
+          </sub>
+        </section>
+        <section><title>NIEM attribute declarations to RDF</title>
 
-        <p>A top-level attribute declaration schema component <var>$attribute-declaration</var> that has property
-          {type definition} that is a simple type definition defined within a <termRef>reference schema
-          document</termRef> or an <termRef>extension schema document</termRef>, then it entails the RDF:</p>
+          <p>The following RDF mappings apply to the content of a <termRef>reference schema document</termRef>
+            or <termRef>extension schema document</termRef>.</p>
 
-        <sub>
-          <pre>$attribute-resource rdf:type rdf:Property .</pre>
-          <p>Where <var>$attribute-resource</var> is the resource IRI for <var>$attribute-declaration</var>.</p>
-        </sub>
+          <p>A top-level attribute declaration schema component <var>$attribute-declaration</var> that has property
+            {type definition} that is a simple type definition defined within a <termRef>reference schema
+              document</termRef> or an <termRef>extension schema document</termRef>, then it entails the RDF:</p>
 
+          <sub>
+            <pre>$attribute-resource rdf:type rdf:Property .</pre>
+            <p>Where <var>$attribute-resource</var> is the resource IRI for <var>$attribute-declaration</var>.</p>
+          </sub>
+
+        </section>
       </section>
     </section>
 
