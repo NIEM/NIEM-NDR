@@ -50,7 +50,7 @@
 
   <subsection>
     <title>Abstract</title>
-    <p>This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version 4.0.</p>
+    <p>This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version MACRO_NIEM_VERSION.</p>
   </subsection>
 
   <subsection>
@@ -61,7 +61,7 @@
   <subsection><title>Status</title>
 
     <p>This document is a draft of the specification for XML Schema documents, components, and instances
-      for use with NIEM 4. It presents a technical architecture that has evolved through the collaborative work
+      for use with NIEM MACRO_NIEM_VERSION. It presents a technical architecture that has evolved through the collaborative work
       of the NIEM Business Architecture Committee (NBAC), the NIEM Technical Architecture Committee (NTAC), and
       their predecessors.</p>
 
@@ -100,7 +100,7 @@
       exchange within the United States at federal, state, tribal, and local levels of government. NIEM may have
       started in the U.S., but its reach does not stop there. International governments and private sector
       organizations can benefit from the value of NIEM, as well. Communities in Europe, North America, and
-      Australia already use NIEM for their information exchange efforts. NIEM 4.0 represents an initial step
+      Australia already use NIEM for their information exchange efforts. NIEM MACRO_NIEM_VERSION represents an initial step
       toward evolving NIEM to support a more-global exchange environment</p>
 
     <p>NIEM specifies a set of reusable information components for defining standard information exchange
@@ -127,7 +127,7 @@
     <section id="section-scope">
       <title>Scope</title>
 
-      <p>This document was developed to specify NIEM 4.0. Later releases of NIEM may be specified by later
+      <p>This document was developed to specify NIEM MACRO_NIEM_VERSION. Later releases of NIEM may be specified by later
         versions of this document. The document covers the following issues in depth:</p>
 
       <ul>
@@ -5079,7 +5079,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         </section>
         <section id="section-proxy-types"><title>Proxy types</title>
 
-            <p>The NIEM 4.0 release schema <code>niem/proxy/xsd/4.0/xs.xsd</code> provides complex type bases for
+            <p>The NIEM MACRO_NIEM_VERSION release schema <code>MACRO_NS_NIEM_XS_PROXY</code> provides complex type bases for
               some of the simple types in the XML Schema namespace. The complex types in this schema reuse the
               local names of the XML Schema simple types they extend, even though those names
               don<char name="rsquo"/>t follow the naming structure of most conformant complex types. There is a
@@ -5150,7 +5150,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
         <p>An example of an association type defined by an XML Schema document follows, in
           <ref idref="figure-defn-of-assn-type"/>.</p>
 
-        <p>Note that the NIEM Core schema in NIEM 4.0 defines a type <qName>nc:AssociationType</qName>, which
+        <p>Note that the NIEM Core schema in NIEM MACRO_NIEM_VERSION defines a type <qName>nc:AssociationType</qName>, which
           acts as the base type for all of the other association types defined within NIEM Core. This is a
           convention adopted by that version of NIEM Core namespace, but is not a requirement of this
           document. An implementer of a NIEM-conformant schema is not required by this specification to base a

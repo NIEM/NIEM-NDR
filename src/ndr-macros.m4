@@ -1,5 +1,6 @@
 m4_define([[[MACRO_COMMENT]]],)m4_dnl
 m4_define([[[MACRO_DOCUMENT_URI]]],[[[http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/]]])m4_dnl
+m4_define([[[MACRO_NIEM_VERSION]]],[[[5.0]]])m4_dnl version of niem this NDR is for
 m4_define([[[MACRO_NDR_VERSION]]],[[[5.0]]])m4_dnl
 m4_define([[[MACRO_NDR_DATE]]],[[[2020-06-29]]])m4_dnl
 m4_dnl
@@ -36,6 +37,7 @@ m4_define([[[MACRO_NS_SCH]]],[[[http://purl.oclc.org/dsdl/schematron]]])m4_dnl
 m4_define([[[MACRO_XS_NS]]],[[[http://www.w3.org/2001/XMLSchema]]])m4_dnl
 m4_define([[[MACRO_NS_APPINFO]]],[[[http://release.niem.gov/niem/appinfo/MACRO_NDR_VERSION/]]])m4_dnl
 m4_define([[[MACRO_NS_STRUCTURES]]],[[[http://release.niem.gov/niem/structures/MACRO_NDR_VERSION/]]])m4_dnl
+m4_define([[[MACRO_NS_NIEM_XS_PROXY]]],[[[http://release.niem.gov/niem/proxy/niem-xs/5.0/]]])m4_dnl
 m4_define([[[MACRO_NS_NIEM_CORE]]],[[[http://release.niem.gov/niem/niem-core/5.0/]]])m4_dnl
 m4_define([[[MACRO_NS_NIEM_DOMAIN_J]]],[[[http://release.niem.gov/niem/domains/jxdm/7.0/]]])m4_dnl
 m4_define([[[MACRO_NS_NIEM_DOMAIN_SCR]]],[[[http://release.niem.gov/niem/domains/screening/5.0/]]])m4_dnl

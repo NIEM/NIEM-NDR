@@ -8,7 +8,7 @@ NIEM Technical Architecture Committee (NTAC)
 
 Abstract
 
-   This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version 4.0.
+   This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version 5.0.
 
 Authors
 
@@ -16,7 +16,7 @@ Authors
 
 Status
 
-   This document is a draft of the specification for XML Schema documents, components, and instances for use with NIEM 4. It presents a technical architecture that has evolved through the collaborative work of the NIEM Business Architecture Committee (NBAC), the NIEM Technical Architecture Committee (NTAC), and their predecessors.
+   This document is a draft of the specification for XML Schema documents, components, and instances for use with NIEM 5.0. It presents a technical architecture that has evolved through the collaborative work of the NIEM Business Architecture Committee (NBAC), the NIEM Technical Architecture Committee (NTAC), and their predecessors.
 
    This specification is a product of the NIEM Program Management Office (PMO).
 
@@ -38,7 +38,7 @@ Table of Tables
 
    This Naming and Design Rules (NDR) document specifies XML Schema documents for use with the National Information Exchange Model (NIEM). NIEM is an information sharing framework based on the World Wide Web Consortium (W3C) Extensible Markup Language (XML) Schema standard. In February 2005, the U.S. Departments of Justice (DOJ) and Homeland Security (DHS) signed a cooperative agreement to jointly develop NIEM by leveraging and expanding the Global Justice XML Data Model (GJXDM) into multiple domains.
 
-   NIEM is a product of a combined government and industry effort to improve information interoperability and exchange within the United States at federal, state, tribal, and local levels of government. NIEM may have started in the U.S., but its reach does not stop there. International governments and private sector organizations can benefit from the value of NIEM, as well. Communities in Europe, North America, and Australia already use NIEM for their information exchange efforts. NIEM 4.0 represents an initial step toward evolving NIEM to support a more-global exchange environment
+   NIEM is a product of a combined government and industry effort to improve information interoperability and exchange within the United States at federal, state, tribal, and local levels of government. NIEM may have started in the U.S., but its reach does not stop there. International governments and private sector organizations can benefit from the value of NIEM, as well. Communities in Europe, North America, and Australia already use NIEM for their information exchange efforts. NIEM 5.0 represents an initial step toward evolving NIEM to support a more-global exchange environment
 
    NIEM specifies a set of reusable information components for defining standard information exchange messages, transactions, and documents on a large scale: across multiple communities of interest and lines of business. These reusable components are rendered in XML Schema documents as type, element, and attribute declarations that comply with the W3C XML Schema specification. The resulting reference schemas are available to government practitioners and developers at http://niem.gov/.
 
@@ -48,7 +48,7 @@ Table of Tables
 
 1.1. Scope
 
-   This document was developed to specify NIEM 4.0. Later releases of NIEM may be specified by later versions of this document. The document covers the following issues in depth:
+   This document was developed to specify NIEM 5.0. Later releases of NIEM may be specified by later versions of this document. The document covers the following issues in depth:
 
       *  The underlying NIEM data model
 
@@ -3527,7 +3527,7 @@ Rule 10-19. Element of code type has code representation term
 
 10.2.5. Proxy types
 
-   The NIEM 4.0 release schema niem/proxy/xsd/4.0/xs.xsd provides complex type bases for some of the simple types in the XML Schema namespace. The complex types in this schema reuse the local names of the XML Schema simple types they extend, even though those names don't follow the naming structure of most conformant complex types. There is a special exception to naming rules to allow the reuse of the XML Schema simple type names in conformant schemas. This is done to make conformant schemas more understandable to people that are familiar with the names of the XML Schema namespace simple types.
+   The NIEM 5.0 release schema http://release.niem.gov/niem/proxy/niem-xs/5.0/ provides complex type bases for some of the simple types in the XML Schema namespace. The complex types in this schema reuse the local names of the XML Schema simple types they extend, even though those names don't follow the naming structure of most conformant complex types. There is a special exception to naming rules to allow the reuse of the XML Schema simple type names in conformant schemas. This is done to make conformant schemas more understandable to people that are familiar with the names of the XML Schema namespace simple types.
 
    A complex type that is a direct extension of a simple type from the XML Schema namespace (e.g., xs:string, xs:integer, xs:boolean) is allowed to have the same local name as the XML Schema simple type, if and only if the extension adds no content other than the attribute group structures:SimpleObjectAttributeGroup. This allows for an intuitive name when using an XML Schema simple type in a conformant schema.
 
@@ -3575,7 +3575,7 @@ Rule 10-20. Proxy type has designated structure
 
    An example of an association type defined by an XML Schema document follows, in Figure 10-8, A definition of an association type, below.
 
-   Note that the NIEM Core schema in NIEM 4.0 defines a type nc:AssociationType, which acts as the base type for all of the other association types defined within NIEM Core. This is a convention adopted by that version of NIEM Core namespace, but is not a requirement of this document. An implementer of a NIEM-conformant schema is not required by this specification to base a new association type on nc:AssociationType.
+   Note that the NIEM Core schema in NIEM 5.0 defines a type nc:AssociationType, which acts as the base type for all of the other association types defined within NIEM Core. This is a convention adopted by that version of NIEM Core namespace, but is not a requirement of this document. An implementer of a NIEM-conformant schema is not required by this specification to base a new association type on nc:AssociationType.
 
    Figure 10-8: A definition of an association type
 
