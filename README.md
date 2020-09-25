@@ -4,6 +4,8 @@
 The NIEM Naming and Design Rules specifies the data model, XML Schema
 components, and XML data for use with the National Information Exchange Model.
 
+See artifacts in [publish](publish).
+
 The NDR is governed by the NIEM Technical Architecture Committee (NTAC), with
 input from the NIEM Business Architecture Committee (NBAC) and the community.
 
