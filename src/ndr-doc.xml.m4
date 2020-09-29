@@ -1572,12 +1572,12 @@
           </sub>
         </section>
 
-        <section><title>Properties applied via a <qName>structures:metadata</qName></title>
+        <section><title>Properties applied via <qName>structures:metadata</qName></title>
 
           <p>Given a <termRef>conformant element information item</termRef> <var>$context</var> that has attribute <qName>structures:metadata</qName> with a value that is a list of references, each item <var>$item</var> in the list entails the RDF:</p>
 
           <sub>
-            <pre>$subject structures:metadata $object</pre>
+            <pre>$subject structures:metadata $object .</pre>
             
             <p>Where:</p>
             <ul>
@@ -1612,7 +1612,7 @@
           <p>An <termRef>object type</termRef> or <termRef>association type</termRef> <var>$type</var> that has
             property {base type definition} <var>$base</var> also entails the RDF:</p>
           <sub>
-            <pre>$resource rdfs:subClassOf $base-resource</pre>
+            <pre>$resource rdfs:subClassOf $base-resource .</pre>
             <p>Where <var>$base-resource</var> is the resource IRI for <var>$base</var>.</p>
           </sub>
 
@@ -1639,7 +1639,7 @@
           <p>If <var>$element-declaration</var> has property {substitution group affiliation} with a value
             of element declaration <var>$base</var>, then it entails the RDF:</p>
           <sub>
-            <pre>$element-resource rdfs:subPropertyOf $base-resource</pre>
+            <pre>$element-resource rdfs:subPropertyOf $base-resource .</pre>
             <p>Where:</p>
             <ul>
               <li><p><var>$element-resource</var> is the resource IRI for <var>$element-declaration</var>.</p></li>
@@ -1651,7 +1651,7 @@
             an <termRef>object type</termRef> or <termRef>association type</termRef>, then it entails the RDF:</p>
 
           <sub>
-            <pre>$element-resource rdfs:range $type-resource</pre>
+            <pre>$element-resource rdfs:range $type-resource .</pre>
             <p>Where:</p>
             <ul>
               <li><p><var>$element-resource</var> is the resource IRI for <var>$element-declaration</var>.</p></li>

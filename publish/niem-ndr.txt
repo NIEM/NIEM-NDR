@@ -821,7 +821,7 @@ Rule 4-6. Schema claims extension conformance target
    * Section 5.6.3.5, Attribute as a simple property of an object or association
    * Section 5.6.3.6, Elements via an augmentation type
    * Section 5.6.3.7, Attributes via an augmentation type
-   * Section 5.6.3.8, Properties applied via a structures:metadata
+   * Section 5.6.3.8, Properties applied via structures:metadata
 
 5.6.3.1. XML document mapping
 
@@ -955,11 +955,11 @@ Rule 4-6. Schema claims extension conformance target
 
          *  $literal is the literal value for $attribute, as described in Section 5.6.2, RDF Literals, above.
 
-5.6.3.8. Properties applied via a structures:metadata
+5.6.3.8. Properties applied via structures:metadata
 
    Given a [conformant element information item] $context that has attribute structures:metadata with a value that is a list of references, each item $item in the list entails the RDF:
 
-      $subject structures:metadata $object
+      $subject structures:metadata $object .
 
       Where:
 
@@ -989,7 +989,7 @@ Rule 4-6. Schema claims extension conformance target
 
    An [object type] or [association type] $type that has property {base type definition} $base also entails the RDF:
 
-      $resource rdfs:subClassOf $base-resource
+      $resource rdfs:subClassOf $base-resource .
 
       Where $base-resource is the resource IRI for $base.
 
@@ -1013,7 +1013,7 @@ Rule 4-6. Schema claims extension conformance target
 
    If $element-declaration has property {substitution group affiliation} with a value of element declaration $base, then it entails the RDF:
 
-      $element-resource rdfs:subPropertyOf $base-resource
+      $element-resource rdfs:subPropertyOf $base-resource .
 
       Where:
 
@@ -1023,7 +1023,7 @@ Rule 4-6. Schema claims extension conformance target
 
    If $element-declaration has property {type definition} with a value $type that is an [object type] or [association type], then it entails the RDF:
 
-      $element-resource rdfs:range $type-resource
+      $element-resource rdfs:range $type-resource .
 
       Where:
 
