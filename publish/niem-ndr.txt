@@ -696,6 +696,14 @@ Rule 4-6. Schema claims extension conformance target
 
       An RDF triple is conventionally written in the order subject, predicate, object.
 
+   [RDF Concepts] Section 4, RDF Datasets defines an RDF dataset:
+
+      An RDF dataset is a collection of RDF graphs, and comprises:
+
+         *  Exactly one default graph, being an RDF graph. The default graph does not have a name and MAY be empty.
+
+         *  Zero or more named graphs. Each named graph is a pair consisting of an IRI or a blank node (the graph name), and an RDF graph. Graph names are unique within an RDF dataset.
+
 5.3. NIEM in terms of RDF
 
    The RDF view of the meaning of data carries into NIEM: NIEM elements form statements that make claims about the world: that a person has a name, a residence location, a spouse, etc. The assertion of one set of facts does not necessarily rule out other statements: A person could have multiple names, could have moved, or could be divorced. Each statement is a claim asserted to be true by the originator of the statement.
@@ -707,6 +715,8 @@ Rule 4-6. Schema claims extension conformance target
    The XML Schema types that define NIEM objects and associations are related to each other via elements and attributes. That is, a type contains elements and attributes, and an element or attribute has a value that is an instance of an XML Schema type. These elements and attributes are XML Schema representations, which correspond to RDF properties. NIEM-conformant XML Schemas describe things and their properties. NIEM-conformant data contains elements and attributes. These correspond to RDF resources and their properties, which describe their characteristics and relationships.
 
    The order of properties of an object is not defined, in general, by RDF. NIEM expresses the relative order of properties of an object through the use of attribute structures:sequenceID. This specification does not define a mapping for this mechanism to RDF.
+
+   This document describes most RDF data as triples, omitting a graph name. Users of NIEM data may assign these triples to a named graph, as needed. NIEM data only explicitly assigns triples into specific named graphs to support the use of structures:relationshipMetadata, which attributes metadata to triples using named graphs identified by metadata objects.
 
 5.4. Unique identification of data objects
 
@@ -745,6 +755,34 @@ Rule 4-6. Schema claims extension conformance target
 5.6. Mapping of NIEM concepts to RDF concepts
 
    This section provides RDF implementations for many aspects of NIEM-conformant schemas and instance documents.
+
+   [N-Quads] Section 2, N-Quads Language defines a plain text format for encoding an RDF dataset:
+
+      The simplest statement is a sequence of (subject, predicate, object) terms forming an RDF triple and an optional blank node label or IRI labeling what graph in a dataset the triple belongs to, all are separated by whitespace and terminated by "." after each statement.
+
+      <http://example.org/#spiderman> <http://www.perceive.net/schemas/relationship/enemyOf> <http://example.org/#green-goblin> <http://example.org/graphs/spiderman> .
+
+      The graph label IRI can be omitted, in which case the triples are considered part of the default graph of the RDF dataset.
+
+   RDF examples and templates within this document are provided using a modified N-Quads format, where qualified names (e.g., nc:PersonType) and variables (e.g., $object may be substituted for full URIs and their surrounding angle brackets. Within this section, the following substitutions apply:
+
+      *  Prefix rdf denotes http://www.w3.org/1999/02/22-rdf-syntax-ns#.
+
+            *  rdf:type denotes IRI http://www.w3.org/1999/02/22-rdf-syntax-ns#type.
+
+            *  rdf:value denotes IRI http://www.w3.org/1999/02/22-rdf-syntax-ns#value.
+
+      *  Prefix rdfs denotes http://www.w3.org/2000/01/rdf-schema#.
+
+            *  rdfs:subClassOf denotes IRI http://www.w3.org/2000/01/rdf-schema#subClassOf.
+
+            *  rdfs:subPropertyOf denotes IRI http://www.w3.org/2000/01/rdf-schema#subPropertyOf.
+
+            *  rdfs:range denotes IRI http://www.w3.org/2000/01/rdf-schema#range.
+
+      *  Prefix structures denotes http://release.niem.gov/niem/structures/5.0/.
+
+            *  structures:metadata denotes IRI http://release.niem.gov/niem/structures/5.0/metadata.
 
 5.6.1. Resource IRIs for XML Schema components and information items
 
@@ -810,152 +848,179 @@ Rule 4-6. Schema claims extension conformance target
 
             Where: $lexical-form is a Unicode string for $value.
 
-5.6.3. NIEM instance mappings to RDF
+5.6.3. Instance document mapped to RDF
 
    This section has the following subsections:
 
-   * Section 5.6.3.1, XML document mapping
-   * Section 5.6.3.2, Element instance
-   * Section 5.6.3.3, Element as a property with unknown context 
-   * Section 5.6.3.4, Element as a simple property of an object or association
-   * Section 5.6.3.5, Attribute as a simple property of an object or association
-   * Section 5.6.3.6, Elements via an augmentation type
-   * Section 5.6.3.7, Attributes via an augmentation type
-   * Section 5.6.3.8, Properties applied via structures:metadata
+   * Section 5.6.3.1, Instance document
+   * Section 5.6.3.2, Element as a simple property without relationship metadata
+   * Section 5.6.3.3, Element as a simple property with relationship metadata
+   * Section 5.6.3.4, Element simple value without relationship metadata
+   * Section 5.6.3.5, Element simple value with relationship metadata
+   * Section 5.6.3.6, Attribute as a simple property without relationship metadata
+   * Section 5.6.3.7, Attribute as a simple property, with relationship metadata
+   * Section 5.6.3.8, Elements and attributes via an augmentation type
+   * Section 5.6.3.9, Properties applied via structures:metadata
 
-5.6.3.1. XML document mapping
+5.6.3.1. Instance document
 
-   A [conformant instance XML document] entails a corresponding RDF graph, which is a set of triples, which are entailed by the mapping of the contents of the XML document to RDF.
+   A [conformant instance XML document] entails a dataset, described by mappings of its content to RDF triples and quads.
 
-5.6.3.2. Element instance
+5.6.3.2. Element as a simple property without relationship metadata
 
-   A [conformant element information item] $element that has property [type definition] that is an [object type] or an [association type], entails the RDF:
+   Given:
 
-      $object rdf:type $type .
+      *  $predicate-element is a [conformant element information item], and is an instance of an [object type] or [association type].
 
-      Where:
+      *  $context-element is parent of $predicate-element, is a [conformant element information item], and is an instance of an [object type], [association type], or [metadata type].
 
-         *  $object is a node identifier for the object held by $element.
+      *  $predicate-element either owns has no attribute structures:relationshipMetadata or it owns an attribute structures:relationshipMetadata that contains no items.
 
-         *  $type is resource IRI for the value of the [type definition] property of $element.
+   The following RDF is entailed:
 
-   If $element has a non-empty simple value, then it also entails the RDF:
-
-      $object rdf:value $literal .
-
-      Where:
-
-         *  $object is as above.
-
-         *  $literal is the literal value for $element, as described in Section 5.6.2, RDF Literals, above.
-
-5.6.3.3. Element as a property with unknown context 
-
-   A [conformant element information item] $element that
-
-      *  has [type definition] that is the ur-type, an [object type], or an [association type], and that
-
-      *  has a [parent] that is not an element information item, or that is an element information item that is not a [conformant element information item]
-
-   entails the RDF:
-
-      $context $predicate $object .
+      $context-node-id $predicate-id $predicate-node-id .
 
       Where:
 
-         *  $context is a blank node, to represent the unknown context in which $element occurs.
+         *  $context-node-id is a node identifier for the object held by $context-element.
 
-         *  $predicate is the IRI for element information item $element, to represent the semantics of the relationship.
+         *  $predicate-id is the IRI for $predicate-element.
 
-         *  $object is a node identifier for the object held by $element.
+         *  $predicate-node-id is a node identifier for the object held by $predicate-element.
 
-5.6.3.4. Element as a simple property of an object or association
+5.6.3.3. Element as a simple property with relationship metadata
 
-   A [conformant element information item] $context that is an instance of an [object type] or [association type], and that has a child [conformant element information item] $element that is an instance of an [object type] or an [association type], entails the RDF:
+   Given:
 
-      $subject $predicate $object .
+      *  $predicate-element is a [conformant element information item], and is an instance of an [object type] or [association type].
 
-      Where:
+      *  $context-element is parent of $predicate-element, is a [conformant element information item], and is an instance of an [object type], [association type], or [metadata type].
 
-         *  $subject is a node identifier for the object held by $context.
+      *  $predicate-element owns attribute $relationship-metadata-attribute that has name structures:relationshipMetadata, and that contains one or more references to metadata objects.
 
-         *  $predicate is the IRI for $element.
+   For each item $metadata-reference in the list held by $relationship-metadata-attribute, the following RDF quad is entailed:
 
-         *  $object is a node identifier for the object held by $element.
-
-5.6.3.5. Attribute as a simple property of an object or association
-
-   An attribute information item $attribute where:
-
-      *  $attribute is owned by a [conformant element information item] $context that has property [type definition] that is an [object type] or an [association type], and
-
-      *  $attribute has property [attribute declaration] that is defined by a [reference schema document] or an [extension schema document]
-
-   entails the RDF:
-
-      $subject $predicate $literal .
+      $context-node-id $predicate-id $predicate-node-id $metadata-node-id .
 
       Where:
 
-         *  $subject is a node identifier for the object held by $context.
+         *  $context-node-id is a node identifier for the object held by $context-element.
 
-         *  $predicate is the resource IRI for $attribute.
+         *  $predicate-id is the IRI for $predicate-element.
+
+         *  $predicate-node-id is a node identifier for the object held by $predicate-element.
+
+         *  $metadata-node-id is a node identifier for the object referenced by $metadata-reference.
+
+5.6.3.4. Element simple value without relationship metadata
+
+   Given:
+
+      *  $context-element is a [conformant element information item] that is an instance of an [object type].
+
+      *  $context-element either owns has no attribute structures:relationshipMetadata or it owns an attribute structures:relationshipMetadata that contains no items.
+
+      *  $context-element has a non-empty simple value.
+
+   The following RDF is entailed:
+
+      $context-node-id rdf:value $literal .
+
+      Where:
+
+         *  $context-node-id is a node identifier for the object held by $context-element.
+
+         *  rdf:value denotes IRI http://www.w3.org/1999/02/22-rdf-syntax-ns#value.
+
+         *  $literal is the literal value for $context-element, as described in Section 5.6.2, RDF Literals, above.
+
+5.6.3.5. Element simple value with relationship metadata
+
+   Given:
+
+      *  $context-element is a [conformant element information item] that is an instance of an [object type].
+
+      *  $context-element owns attribute $relationship-metadata-attribute that has name structures:relationshipMetadata, and that contains one or more references to metadata objects.
+
+      *  $context-element has a non-empty simple value.
+
+   For each item $metadata-reference in the list held by $relationship-metadata-attribute, the following RDF quad is entailed:
+
+      $context-node-id rdf:value $literal $metadata-node-id .
+
+      Where:
+
+         *  $context-node-id is a node identifier for the object held by $context-element.
+
+         *  rdf:value denotes IRI http://www.w3.org/1999/02/22-rdf-syntax-ns#value.
+
+         *  $literal is the literal value for $context-element, as described in Section 5.6.2, RDF Literals, above.
+
+         *  $metadata-node-id is a node identifier for the object referenced by $metadata-reference.
+
+5.6.3.6. Attribute as a simple property without relationship metadata
+
+   Given:
+
+      *  $context-element is a [conformant element information item] and is an instance of an [object type], [association type], or [metadata type].
+
+      *  $predicate-attribute is a attribute that has owner $context-element, and has property [attribute declaration] that is defined by a [reference schema document] or an [extension schema document].
+
+      *  $context-element either owns has no attribute structures:relationshipMetadata or it owns an attribute structures:relationshipMetadata that contains no items.
+
+   The following RDF is entailed:
+
+      $context-node-id $predicate-id $literal .
+
+      Where:
+
+         *  $context-node-id is a node identifier for the object held by $context-element.
+
+         *  $predicate-id is the resource IRI for $predicate-attribute.
 
          *  $literal is the literal value for $attribute, as described in Section 5.6.2, RDF Literals, above.
 
-5.6.3.6. Elements via an augmentation type
+5.6.3.7. Attribute as a simple property, with relationship metadata
 
-   An element of an augmentation type contains a set of elements and attributes that are applied to some base object or association.
+   Given:
 
-   For each element applied to a type via an augmentation type:
+      *  $context-element is a [conformant element information item] and is an instance of an [object type], [association type], or [metadata type].
 
-      *  Element information item $base that is an instance of an [object type] or [association type],
+      *  $predicate-attribute is a attribute that has owner $context-element, and has property [attribute declaration] that is defined by a [reference schema document] or an [extension schema document].
 
-      *  Element information item $augmentation that is a child of $base that has [type definition] that is an [augmentation type],
+      *  $context-element owns attribute $relationship-metadata-attribute that has name structures:relationshipMetadata, and that contains one or more references to metadata objects.
 
-      *  Element information item $resolved-augmentation is any augmentation element with an object that has the the same node identifier as the object held by $augmentation, and
+   For each item $metadata-reference in $metadata-list, the following RDF quad is entailed:
 
-      *  Element information item $element that is a child of $resolved-augmentation, that has [type definition] that is an [object type] or an [association type].
-
-   entails the RDF:
-
-      $subject $predicate $object .
+      $context-node-id $predicate-id $literal $metadata-node-id .
 
       Where:
 
-         *  $subject is the node identifier for the object held by $base.
+         *  $context-node-id is a node identifier for the object held by $context-element.
 
-         *  $predicate is the resource IRI for [element declaration] of $element.
-
-         *  $object is the node identifier for the object held by $element
-
-5.6.3.7. Attributes via an augmentation type
-
-   An element of an augmentation type contains a set of elements and attributes that are applied to some base object or association.
-
-   For each attribute applied to a type via an augmentation type:
-
-      *  Element information item $base that is an instance of an [object type] or [association type],
-
-      *  Element information item $augmentation that is a child of $base that has [type definition] that is an [augmentation type],
-
-      *  Element information item $resolved-augmentation that is any augmentation element with an object that has the same node identifier as the object held by $augmentation,
-
-      *  Attribute information item $attribute that is owned by $resolved-augmentation, that has an [attribute declaration] that is defined by a [reference schema document] or an [extension schema document]
-
-   entails the RDF:
-
-      $subject $predicate $literal .
-
-      Where:
-
-         *  $subject is a node identifier for the object held by $base.
-
-         *  $predicate is the resource IRI for $attribute.
+         *  $predicate-id is the resource IRI for $predicate-attribute.
 
          *  $literal is the literal value for $attribute, as described in Section 5.6.2, RDF Literals, above.
 
-5.6.3.8. Properties applied via structures:metadata
+         *  $metadata-node-id is a node identifier for the object referenced by $metadata-reference.
+
+5.6.3.8. Elements and attributes via an augmentation type
+
+   Given:
+
+      *  $base is a [conformant element information item] and is an instance of an [object type] or [association type].
+
+      *  $augmentation-element is a [conformant element information item], is a child of $base, and is an instance of an [augmentation type].
+
+      *  $augmentation-identifier is a node identifier for the object help by $augmentation-element.
+
+   For each $resolved-element that is a [conformant element information item] holding an object with node identifier $augmentation-identifier:
+
+      Each element child of $resolved-element entails RDF as if it were an element child of $base.
+
+      Each attribute that has property [attribute owner] equal to $resolved-element entails RDF as if it were an attribute with property [attribute owner] equal to $base.
+
+5.6.3.9. Properties applied via structures:metadata
 
    Given a [conformant element information item] $context that has attribute structures:metadata with a value that is a list of references, each item $item in the list entails the RDF:
 
@@ -967,17 +1032,29 @@ Rule 4-6. Schema claims extension conformance target
 
          *  $object is a node identifier for the object referenced by $item.
 
-5.6.4. NIEM schema component definitions to RDF
+5.6.4. Type information for instance documents
+
+   A [conformant element information item] $element that is an instance of an [object type] or [association type] entails the following RDF:
+
+      $element-object rdf:type $element-type .
+
+      Where:
+
+         *  $element-object is a node identifier for the object held by $element.
+
+         *  $element-type is resource IRI for the value of the [type definition] property of $element.
+
+5.6.5. NIEM schema component definitions to RDF
 
    The definition of schema components within NIEM-conformant schemas a parallel representation in RDF. This section describes the mapping of selected XML Schema constructs to RDF.
 
    This section has the following subsections:
 
-   * Section 5.6.4.1, NIEM complex type definitions to RDF
-   * Section 5.6.4.2, NIEM element declaration mappings to RDF
-   * Section 5.6.4.3, NIEM attribute declarations to RDF
+   * Section 5.6.5.1, NIEM complex type definitions to RDF
+   * Section 5.6.5.2, NIEM element declaration mappings to RDF
+   * Section 5.6.5.3, NIEM attribute declarations to RDF
 
-5.6.4.1. NIEM complex type definitions to RDF
+5.6.5.1. NIEM complex type definitions to RDF
 
    The following RDF mappings apply to the content of a [reference schema document] or [extension schema document].
 
@@ -993,7 +1070,7 @@ Rule 4-6. Schema claims extension conformance target
 
       Where $base-resource is the resource IRI for $base.
 
-5.6.4.2. NIEM element declaration mappings to RDF
+5.6.5.2. NIEM element declaration mappings to RDF
 
    The following RDF mappings apply to the content of a [reference schema document] or [extension schema document].
 
@@ -1031,7 +1108,7 @@ Rule 4-6. Schema claims extension conformance target
 
          *  $type-resource is the resource IRI for $type.
 
-5.6.4.3. NIEM attribute declarations to RDF
+5.6.5.3. NIEM attribute declarations to RDF
 
    The following RDF mappings apply to the content of a [reference schema document] or [extension schema document].
 
@@ -5760,7 +5837,7 @@ Rule 12-1. Instance must be schema-valid
 
       3. The names of the XML Schema complex types and simple types describe the data objects.
 
-   NIEM is designed so that NIEM XML data is a form of RDF data. This is described in some detail by Section 5, The NIEM conceptual model, above, in particular Section 5.6.3, NIEM instance mappings to RDF, above. The XML data, above, corresponds to the following graph. Here, the circles are data objects, and the arrows show relationships, between the objects, and between the objects and their types:
+   NIEM is designed so that NIEM XML data is a form of RDF data. This is described in some detail by Section 5, The NIEM conceptual model, above, in particular Section 5.6.3, Instance document mapped to RDF, above. The XML data, above, corresponds to the following graph. Here, the circles are data objects, and the arrows show relationships, between the objects, and between the objects and their types:
 
    Figure 12-2: Diagram showing the meaning of XML data
 
@@ -6112,51 +6189,59 @@ Rule 12-10. Order of properties is expressed via structures:sequenceID
 
 12.4. Instance metadata
 
-   NIEM provides the metadata mechanism for giving information about object assertions. An object may have an attribute that refers to one or more metadata objects. A structures:metadata attribute indicates that a data item has the given metadata. A structures:relationshipMetadata attribute asserts that the link (or relationship) established by an element has the given metadata.
+   NIEM defines the term [metadata type] to refer to complex types that define data about other data. Metadata properties in the NIEM data model describe characteristics of data, including information about how data is collected, who reported it, creation dates, effective dates, and expiration dates. Metadata can be defined an used by exchange developers to describe characteristics of their data. Metadata is distinct from data held by regular objects, which generally describe things in the world. A developer can use metadata to describe information about the collection of data about a person, with modifying the data definitions that describe the characteristics of a person.
 
-   Figure 12-13: Example of metadata used in an instance
+   NIEM provides two different attributes to to attach metadata to data, and each attribute carries a meaning distinct from the other:
 
-      <nc:Person>
-        <nc:PersonBirthDate structures:metadata="j86">
-          <nc:Date>1945-12-01</nc:Date>
-        </nc:PersonBirthDate>
-        <nc:PersonName structures:metadata="s22 j86" structures:relationshipMetadata="k25">
-          <nc:PersonFullName>John Doe</nc:PersonFullName>
+      *  Attribute structures:metadata applies metadata to an object. This attribute occurring on an element applies metadata to the object held by the element.
+
+      *  Attribute structures:relationshipMetadata applies metadata to the relationship between an object and its parent. An occurrence of this attribute on an element $element applies metadata to the relationship established by $element, between the object that holds $element object held by $element.
+
+   The example below shows metadata applied to an object. In this example, the object representing the person named "Theresa Turvey" has a repository identifier ("an identifier assigned to the repository from which the information originated") of "A-237-Z".
+
+   Figure 12-13: A simple example of object metadata
+
+      <nc:Person structures:metadata="object-metadata-1">
+        <nc:PersonName>
+          <nc:PersonFullName>Theresa Turvey</nc:PersonFullName>
         </nc:PersonName>
       </nc:Person>
-      <nc:Metadata structures:id="s22">
-        <nc:SourceText>Adam Barber</nc:SourceText>
-      </nc:Metadata>
-      <nc:Metadata structures:id="j86">
-        <nc:ReportedDate>
-          <nc:Date>2005-04-26</nc:Date>
-        </nc:ReportedDate>
-      </nc:Metadata>
-      <nc:Metadata structures:id="k25">
-        <nc:ProbabilityPercent>25</nc:ProbabilityPercent>
+      <nc:Metadata structures:id="object-metadata-1">
+        <nc:RepositoryID>A-237-Z</nc:RepositoryID>
       </nc:Metadata>
 
-   This example shows a person named John Doe, born 12/1/1945. This data has several pieces of metadata on it:
+   The example below shows metadata applied to the relationship between a person and a location. This example shows a celebrity's birth location. The source for the birth location information is a Wikipedia page. The source information is not applicable to the entire person object, nor is it applicable to the entire location object. Is is only applicable to the birth location relationship between the person and the location.
 
-      *  Metadata s22 asserts Adam Barber gave the name.
+   Figure 12-14: A simple example of relationship metadata
 
-      *  Metadata j86 asserts the name and the birth date were reported on 4/26/2005.
+      <nc:Person>
+        <nc:PersonBirthLocation structures:relationshipMetadata="wp-ds">
+          <nc:Address>
+            <nc:AddressCityName>Bethesda</nc:AddressCityName>
+            <nc:AddressState>
+              <nc:StateName>Maryland</nc:StateName>
+            </nc:AddressState>
+          </nc:Address>
+        </nc:PersonBirthLocation>
+        <nc:PersonName>
+          <nc:PersonFullName>Daniel Stern</nc:PersonFullName>
+        </nc:PersonName>
+      </nc:Person>
+      <nc:Metadata structures:id="wp-ds">
+        <nc:SourceIDText>https://en.wikipedia.org/wiki/Daniel_Stern_(actor)</nc:SourceIDText>
+      </nc:Metadata>
 
-      *  Relationship metadata k25 asserts a 25% probability that the name goes with the person.
+   Characteristics of metadata include:
 
-   This shows several characteristics of metadata:
+      *  Metadata objects may appear outside the data they describe. They applied by reference via the metadata attributes.
 
-      *  Metadata objects may appear outside the data they describe.
+      *  Metadata objects may be applied to multiple objects within the same document.
 
-      *  Metadata objects may be reused.
-
-      *  Data may refer to more than one metadata object.
-
-      *  Metadata pertains to an object or simple content, while relationship metadata pertains to the relationship between objects.
+      *  Each metadata attribute may hold references to multiple metadata objects, which enables messages to apply multiple metadata properties to objects and relationships.
 
    An instance would not be valid XML if the structures:metadata or structures:relationshipMetadata attributes contained references for which there were no defined IDs. The instance would not be NIEM-conformant if the references were not to IDs defined with the structures:id attribute.
 
-   Application of metadata to a type or element to which it is not applicable is not NIEM-conformant. A metadata element may be labeled as applicable to multiple elements via attribute appinfo:appliesToElements, or to multiple types via attribute appinfo:appliesToTypes. In either case it may apply to an instance of any of the listed elements or types. For an example, see Figure 10-14, Sample use of appinfo:appliesToTypes, above. A metadata element with neither attribute appinfo:appliesToElements nor attribute appinfo:appliesToTypes may be applied to any element of any type.
+   Application of metadata to a type or element to which it is not applicable is not NIEM-conformant. A metadata element may be labeled as applicable to multiple elements via attribute appinfo:appliesToElements, or to multiple types via attribute appinfo:appliesToTypes. In either case it may apply to an instance of any of the listed elements or types. For an example, see Figure 10-14, Sample use of appinfo:appliesToTypes, above. A metadata element with neither attribute appinfo:appliesToElements nor attribute appinfo:appliesToTypes may be applied to any element or to an instance of any type.
 
 Rule 12-11. Metadata applies to referring entity
 
@@ -6257,6 +6342,8 @@ Appendix A. References
    [JSON LD]: Manu Sporny, Dave Longley, Gregg Kellogg, Markus Lanthaler, and Niklas Lindstrom. "JSON-LD 1.0, A JSON-Based Serialization for Linked Data, W3C Recommendation." Edited by Manu Sporny, Gregg Kellogg, and Markus Lanthaler. W3C, January 16, 2014. https://www.w3.org/TR/2014/REC-json-ld-20140116/.
 
    [N-ary]: "Defining N-ary Relations on the Semantic Web", W3C Working Group Note, 12 April 2006. Available from http://www.w3.org/TR/2006/NOTE-swbp-n-aryRelations-20060412//.
+
+   [N-Quads]: Gavin Carothers. "RDF 1.1 N-Quads." W3C, February 25, 2014. https://www.w3.org/TR/2014/REC-n-quads-20140225/.
 
    [OED]: "Oxford English Dictionary, Third Edition", Oxford University Press, November 2010. http://dictionary.oed.com/.
 

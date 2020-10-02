@@ -1,7 +1,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([NIEM JSON Specification],[0],[wr@gatech.edu],[niem-json-spec],[wr@gatech.edu])
+AC_INIT([NIEM Naming and Design Rules],[0],[wr@gatech.edu],[niem-ndr],[wr@gatech.edu])
 AC_CONFIG_SRCDIR([Makefile.in])
 
 ####  Checks for programs.

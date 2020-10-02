@@ -9,13 +9,20 @@ set -o nounset -o errexit -o pipefail
 #HELP:COMMAND_NAME: Run some convenient stuff
 #HELP:Usage: COMMAND_NAME $global-options* $command ...
 #HELP:global-options:
-#HELP:  --help | -h: Print this help
+#HELP:    --help | -h: Print this help
+#HELP:    -j ${number of jobs}: run this many jobs in parallel
+#HELP:        default = number of processing units available
+number_of_jobs=$(nproc)
 
 OPTIND=1
-while getopts :hv-: option
+while getopts :hj:v-: option
 do
     case "$option" in
         h ) opt_help;;
+        j )
+            if ! printf -v number_of_jobs '%d' "$OPTARG"
+            then fail "Error: parameter to -j must be a number (got \"$OPTARG\")"
+            fi;;
         v ) opt_verbose;;
         - )
             case "$OPTARG" in
@@ -33,9 +40,10 @@ do
 done
 shift $((OPTIND - 1))
 
+default_commands=( pre d all post )
 if (( $# == 0 ))
-then echo "No command given. Defaulting to \"d all\"" >&2
-     set -- d all
+then echo "No command given. Defaulting to \"${default_commands[*]}\"" >&2
+     set -- ${default_commands[@]}
 fi
 
 while (( $# > 0 ))
@@ -50,14 +58,19 @@ do command=$1
        #HELP:  help: Print this help
        help ) opt_help;;
 
+       #HELP:  reconfigure: Run './configure' with the current settings
+       reconfigure )
+           @srcdir@/configure
+           ;;
+
        #HELP:  d: Build dependencies, if needed
        d )
-           make -j 8 depend build_dependencies=true
+           make -j $number_of_jobs depend build_dependencies=true
            ;;
 
        #HELP:  oh: "open html": Build the HTML doc ASAP, then open it
        oh )
-           time make -j 8 publish/niem-ndr.html
+           time make -j $number_of_jobs publish/niem-ndr.html
            open publish/niem-ndr.html
            ;;
 
@@ -68,17 +81,17 @@ do command=$1
 
        #HELP:  pre: Run pre-processing validity checks; make sure inputs are well-formed
        pre )
-           make -j 8 pre-valid
+           make -j $number_of_jobs pre-valid
            ;;
 
        #HELP:  all: Build artifacts; no testing
        all )
-           time make -j 8 all
+           time make -j $number_of_jobs all
            ;;
 
-       #HELP:  valid: Run post-processing validity checks
-       valid )
-           make -j 8 valid
+       #HELP:  post | valid: Run post-processing validity checks
+       post | valid )
+           make -j $number_of_jobs valid
            ;;
 
        #HELP:  cdiff: color diff
@@ -95,7 +108,7 @@ do command=$1
        #HELP:    usage: COMMAND_NAME grep $grep-args...
        grep )
            (( $# > 0 )) || fail "grep needs args; what am I looking for?" 
-           make -j 8 tmp/ndr-doc.xml
+           make -j $number_of_jobs tmp/ndr-doc.xml
            exec 3>&1
            grep -nH "$@" tmp/ndr-doc.xml | tee /dev/fd/3 | emacsclientgrep
            ;;

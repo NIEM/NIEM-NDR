@@ -7,11 +7,12 @@ m4_dnl
 m4_dnl HREFs...
 m4_dnl
 m4_define([[[MACRO_HREF_JSON_LD]]],[[[https://www.w3.org/TR/2014/REC-json-ld-20140116/]]])m4_dnl
-m4_dnl
+m4_dnl RDF stuff
 m4_define([[[MACRO_HREF_RDF_SEMANTICS]]],[[[http://www.w3.org/TR/2014/REC-rdf11-mt-20140225/]]])m4_dnl
 m4_define([[[MACRO_HREF_RDF_SCHEMA]]],[[[http://www.w3.org/TR/2014/REC-rdf-schema-20140225/]]])m4_dnl
 m4_define([[[MACRO_HREF_RDF_CONCEPTS]]],[[[http://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/]]])m4_dnl
 m4_define([[[MACRO_HREF_RDF_PRIMER]]],[[[http://www.w3.org/TR/2014/NOTE-rdf11-primer-20140225/]]])m4_dnl
+m4_define([[[MACRO_HREF_N_QUADS]]],[[[https://www.w3.org/TR/2014/REC-n-quads-20140225/]]])m4_dnl
 m4_dnl
 m4_define([[[MACRO_HREF_XML_BASE]]],[[[http://www.w3.org/TR/2009/REC-xmlbase-20090128/]]])m4_dnl
 m4_define([[[MACRO_HREF_XML_SCHEMA_1]]],[[[http://www.w3.org/TR/2004/REC-xmlschema-1-20041028/]]])m4_dnl
@@ -254,3 +255,13 @@ Section $3, <em>$4</em>m4_dnl
 ]]])m4_dnl
 m4_ifelse([[[$2]]],[[[]]],[[[]]],</a>)m4_dnl
 ]]])m4_dnl
+m4_dnl
+m4_dnl # MACRO_CAPTURE lets you use some text and also define it as a macro for reuse later.
+m4_dnl
+m4_dnl blah blah MACRO_CAPTURE([[[MACRO_myname]]],[[[This is some text.]]]) blah blah
+m4_dnl 
+m4_dnl # and later you can
+m4_dnl 
+m4_dnl blah blah MACRO_myname blah blah
+m4_dnl
+m4_define([[[MACRO_CAPTURE]]],[[[m4_define([[[$1]]],[[[$2]]])[[[$2]]]]]])m4_dnl

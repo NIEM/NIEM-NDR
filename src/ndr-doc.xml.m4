@@ -1176,6 +1176,16 @@
         <p>An RDF triple is conventionally written in the order subject, predicate, object.</p>
       </blockquote>
 
+      <p>MACRO_REF_EXTERNAL(RDFConcepts,MACRO_HREF_RDF_CONCEPTS#dfn-rdf-dataset,4,RDF Datasets) defines an RDF dataset:</p>
+
+      <blockquote>
+        <p>An RDF dataset is a collection of RDF graphs, and comprises:</p>
+        <ul>
+          <li><p>Exactly one <strong>default graph</strong>, being an RDF graph. The default graph does not have a name and MAY be empty.</p></li>
+          <li><p>Zero or more <strong>named graphs</strong>. Each named graph is a pair consisting of an IRI or a blank node (the <strong>graph name</strong>), and an RDF graph. Graph names are unique within an RDF dataset.</p></li>
+        </ul>
+      </blockquote>
+
     </section>
 
     <section><title>NIEM in terms of RDF</title>
@@ -1204,6 +1214,8 @@
       their properties, which describe their characteristics and relationships.</p>
 
       <p>The order of properties of an object is not defined, in general, by RDF. NIEM expresses the relative order of properties of an object through the use of attribute <qName>structures:sequenceID</qName>. This specification does not define a mapping for this mechanism to RDF.</p>
+
+      <p>This document describes most RDF data as triples, omitting a graph name. Users of NIEM data may assign these triples to a named graph, as needed. NIEM data only explicitly assigns triples into specific named graphs to support the use of <qName>structures:relationshipMetadata</qName>, which attributes metadata to triples using named graphs identified by metadata objects.</p>
 
     </section>
 
@@ -1289,6 +1301,42 @@
 
       <p>This section provides RDF implementations for many aspects of NIEM-conformant schemas and instance
         documents.</p>
+
+      <p>MACRO_REF_EXTERNAL(N-Quads,MACRO_HREF_N_QUADS#n-quads-language,2,N-Quads Language) defines a plain text format for encoding an RDF dataset:</p>
+
+      <blockquote>
+        <p>The simplest statement is a sequence of (subject, predicate, object) terms forming an RDF triple and an optional blank node label or IRI labeling what graph in a dataset the triple belongs to, all are separated by whitespace and terminated by <q>.</q> after each statement.</p>
+
+        <pre><![CDATA[<http://example.org/#spiderman> <http://www.perceive.net/schemas/relationship/enemyOf> <http://example.org/#green-goblin> <http://example.org/graphs/spiderman> .]]></pre>
+
+        <p>The graph label IRI can be omitted, in which case the triples are considered part of the default graph of the RDF dataset.</p>
+      </blockquote>
+
+      <p>RDF examples and templates within this document are provided using a modified N-Quads format, where qualified names (e.g., <qName>nc:PersonType</qName>) and variables (e.g., <var>$object</var> may be substituted for full URIs and their surrounding angle brackets. Within this section, the following substitutions apply:</p>
+
+      <ul>
+        <li>
+          <p>Prefix <code>rdf</code> denotes <namespace-uri-for-prefix>rdf</namespace-uri-for-prefix>.</p>
+          <ul>
+            <li><p><code>rdf:type</code> denotes IRI <code><namespace-uri-for-prefix>rdf</namespace-uri-for-prefix>type</code>.</p></li>
+            <li><p><code>rdf:value</code> denotes IRI <code><namespace-uri-for-prefix>rdf</namespace-uri-for-prefix>value</code>.</p></li>
+          </ul>
+        </li>
+        <li>
+          <p>Prefix <code>rdfs</code> denotes <namespace-uri-for-prefix>rdfs</namespace-uri-for-prefix>.</p>
+          <ul>
+            <li><p><code>rdfs:subClassOf</code> denotes IRI <code><namespace-uri-for-prefix>rdfs</namespace-uri-for-prefix>subClassOf</code>.</p></li>
+            <li><p><code>rdfs:subPropertyOf</code> denotes IRI <code><namespace-uri-for-prefix>rdfs</namespace-uri-for-prefix>subPropertyOf</code>.</p></li>
+            <li><p><code>rdfs:range</code> denotes IRI <code><namespace-uri-for-prefix>rdfs</namespace-uri-for-prefix>range</code>.</p></li>
+          </ul>
+        </li>
+        <li>
+          <p>Prefix <code>structures</code> denotes <namespace-uri-for-prefix>structures</namespace-uri-for-prefix>.</p>
+          <ul>
+            <li><p><code>structures:metadata</code> denotes IRI <code><namespace-uri-for-prefix>structures</namespace-uri-for-prefix>metadata</code>.</p></li>
+          </ul>
+        </li>
+      </ul>
 
       <section><title>Resource IRIs for XML Schema components and information items</title>
         <p>The term <q>qualified name</q> is defined by
@@ -1404,56 +1452,163 @@
 
       </section>
 
-      <section id="section-instance-rdf-mapping"><title>NIEM instance mappings to RDF</title>
+      <section id="section-instance-rdf-mapping"><title>Instance document mapped to RDF</title>
 
         <p>This section has the following subsections:</p>
 
         <listOfSections/>
 
-        <section><title>XML document mapping</title>
-          <p>A <termRef>conformant instance XML document</termRef> entails a corresponding RDF graph, which is a
-            set of triples, which are entailed by the mapping of the contents of the XML document to RDF.</p>
+        <section><title>Instance document</title>
+          <p>A <termRef>conformant instance XML document</termRef> entails a dataset, described by mappings of its content to RDF triples and quads.</p>
         </section>
 
-        <section><title>Element instance</title>
+        <section><title>Element as a simple property without relationship metadata</title>
 
-          <p>A <termRef>conformant element information item</termRef> <var>$element</var> that has property [type
-            definition] that is an <termRef>object type</termRef> or an <termRef>association type</termRef>,
-            entails the RDF:</p>
+          <p>Given:</p>
+          <ul>MACRO_CAPTURE([[[MACRO_given_predicate_element_with_context_element]]],[[[
+            <li><p><var>$predicate-element</var> is a <termRef>conformant element information item</termRef>, and is an instance of an <termRef>object type</termRef> or <termRef>association type</termRef>.</p></li>
+            <li><p><var>$context-element</var> is parent of <var>$predicate-element</var>, is a <termRef>conformant element information item</termRef>, and is an instance of an <termRef>object type</termRef>, <termRef>association type</termRef>, or <termRef>metadata type</termRef>.</p></li>
+            ]]])
+            <li><p><var>$predicate-element</var> MACRO_CAPTURE([[[MACRO_has_empty_rel_md]]],[[[either owns has no attribute <qName>structures:relationshipMetadata</qName> or it owns an attribute <qName>structures:relationshipMetadata</qName> that contains no items.]]])</p></li>
+          </ul>
 
-          <sub>
-            <pre>$object rdf:type $type .</pre>
-            <p>Where:</p>
-            <ul>
-              <li><p><var>$object</var> is a node identifier for the object held by <var>$element</var>.</p></li>
-              <li><p><var>$type</var> is resource IRI for the value of the [type definition] property
-                  of <var>$element</var>.</p></li>
-            </ul>
-          </sub>
-
-          <p>If <var>$element</var> has a non-empty simple value, then it also entails the RDF:</p>
+          <p>The following RDF is entailed:</p>
 
           <sub>
-            <pre>$object rdf:value $literal .</pre>
+            <pre>$context-node-id $predicate-id $predicate-node-id .</pre>
             <p>Where:</p>
             <ul>
-              <li><p><var>$object</var> is as above.</p></li>
-              <li><p><var>$literal</var> is the literal value for <var>$element</var>, as described in
-                  <ref idref="sec-rdf-literals"/>.</p></li>
+              <li>MACRO_CAPTURE([[[MACRO_where_context_node_id]]],[[[<p><var>$context-node-id</var> is a node identifier for the object held by <var>$context-element</var>.</p>]]])</li>
+              <li>MACRO_CAPTURE([[[MACRO_where_predicate_id]]],[[[<p><var>$predicate-id</var> is the IRI for <var>$predicate-element</var>.</p>]]])</li>
+              <li>MACRO_CAPTURE([[[MACRO_where_predicate_node_id]]],[[[<p><var>$predicate-node-id</var> is a node identifier for the object held by <var>$predicate-element</var>.</p>]]])</li>
             </ul>
           </sub>
         </section>
 
+        <section><title>Element as a simple property with relationship metadata</title>
+
+          <p>Given:</p>
+          <ul>MACRO_given_predicate_element_with_context_element
+            <li><p><var>$predicate-element</var> MACRO_CAPTURE([[[MACRO_has_rel_md]]],[[[owns attribute <var>$relationship-metadata-attribute</var> that has name <qName>structures:relationshipMetadata</qName>, and that contains one or more references to metadata objects.]]])</p></li>
+          </ul>
+          
+          <p>For each item <var>$metadata-reference</var> in the list held by <var>$relationship-metadata-attribute</var>, the following RDF quad is entailed:</p>
+
+          <sub>
+            <pre>$context-node-id $predicate-id $predicate-node-id $metadata-node-id .</pre>
+            <p>Where:</p>
+            <ul>
+              <li>MACRO_where_context_node_id</li>
+              <li>MACRO_where_predicate_id</li>
+              <li>MACRO_where_predicate_node_id</li>
+              <li>MACRO_CAPTURE([[[MACRO_where_metadata_node_id]]],[[[<p><var>$metadata-node-id</var> is a node identifier for the object referenced by <var>$metadata-reference</var>.</p>]]])</li>
+            </ul>
+          </sub>
+        </section>
+
+        <section><title>Element simple value without relationship metadata</title>
+
+          <p>Given:</p>
+          <ul>
+            <li>MACRO_CAPTURE([[[MACRO_given_context_with_simple_value]]],[[[<p><var>$context-element</var> is a <termRef>conformant element information item</termRef> that is an instance of an <termRef>object type</termRef>.</p>]]])</li>
+            <li><p><var>$context-element</var> MACRO_has_empty_rel_md</p></li>
+            <li><p><var>$context-element</var> has a non-empty simple value.</p></li>
+          </ul>
+
+          <p>The following RDF is entailed:</p>
+
+          <sub>
+            <pre>$context-node-id rdf:value $literal .</pre>
+            <p>Where:</p>
+            <ul>
+              <li>MACRO_where_context_node_id</li>
+              <li>MACRO_CAPTURE([[[MACRO_where_rdf_value]]],[[[<p><code>rdf:value</code> denotes IRI <code><namespace-uri-for-prefix>rdf</namespace-uri-for-prefix>value</code>.</p>]]])</li>
+              <li>MACRO_CAPTURE([[[MACRO_where_literal]]],[[[<p><var>$literal</var> is the literal value for <var>$context-element</var>, as described in <ref idref="sec-rdf-literals"/>.</p>]]])</li>
+            </ul>
+          </sub>
+        </section>
+
+        <section><title>Element simple value with relationship metadata</title>
+
+          <p>Given:</p>
+          <ul>
+            <li>MACRO_given_context_with_simple_value</li>
+            <li><p><var>$context-element</var> MACRO_has_rel_md</p></li>
+            <li><p><var>$context-element</var> has a non-empty simple value.</p></li>
+          </ul>
+
+          <p>For each item <var>$metadata-reference</var> in the list held by <var>$relationship-metadata-attribute</var>, the following RDF quad is entailed:</p>
+          
+          <sub>
+            <pre>$context-node-id rdf:value $literal $metadata-node-id .</pre>
+            <p>Where:</p>
+            <ul>
+              <li>MACRO_where_context_node_id</li>
+              <li>MACRO_where_rdf_value</li>
+              <li>MACRO_where_literal</li>
+              <li>MACRO_where_metadata_node_id</li>
+            </ul>
+          </sub>
+
+        </section>
+        
+        <section><title>Attribute as a simple property without relationship metadata</title>
+
+          <p>Given:</p>
+          <ul>
+            <li>MACRO_CAPTURE([[[MACRO_given_context_element_for_attribute]]],[[[<p><var>$context-element</var> is a <termRef>conformant element information item</termRef> and is an instance of an <termRef>object type</termRef>, <termRef>association type</termRef>, or <termRef>metadata type</termRef>.</p>]]])</li>
+            <li>MACRO_CAPTURE([[[MACRO_given_predicate_attribute]]],[[[<p><var>$predicate-attribute</var> is a attribute that has owner <var>$context-element</var>, and has property [attribute declaration] that is defined by a <termRef>reference schema document</termRef> or an <termRef>extension schema document</termRef>.</p>]]])</li>
+            <li><p><var>$context-element</var> MACRO_has_empty_rel_md</p></li>
+          </ul>
+
+          <p>The following RDF is entailed:</p>
+
+          <sub>
+            <pre>$context-node-id $predicate-id $literal .</pre>
+
+            <p>Where:</p>
+            <ul>MACRO_CAPTURE([[[MACRO_where_predicate_attribute]]],[[[
+              <li>]]]MACRO_where_context_node_id[[[</li>
+              <li><p><var>$predicate-id</var> is the resource IRI for <var>$predicate-attribute</var>.</p></li>
+              <li><p><var>$literal</var> is the literal value for <var>$attribute</var>, as described in <ref idref="sec-rdf-literals"/>.</p></li>
+              ]]])
+            </ul>
+          </sub>
+        </section>
+
+        <section><title>Attribute as a simple property, with relationship metadata</title>
+
+          <p>Given:</p>
+          <ul>
+            <li>MACRO_given_context_element_for_attribute</li>
+            <li>MACRO_given_predicate_attribute</li>
+            <li><p><var>$context-element</var> MACRO_has_rel_md</p></li>
+          </ul>
+
+          <p>For each item <var>$metadata-reference</var> in <var>$metadata-list</var>, the following RDF quad is entailed:</p>
+
+          <sub>
+            <pre>$context-node-id $predicate-id $literal $metadata-node-id .</pre>
+
+            <p>Where:</p>
+            <ul>MACRO_where_predicate_attribute
+              <li>MACRO_where_metadata_node_id</li>
+            </ul>
+          </sub>
+        </section>
+
+<!--
         <section><title>Element as a property with unknown context </title>
 
-          <p>A <termRef>conformant element information item</termRef> <var>$element</var> that</p>
+          <p>Given:</p>
           <ul>
-            <li><p>has [type definition] that is the ur-type, an <termRef>object type</termRef>, or
-                an <termRef>association type</termRef>, and that</p></li>
-            <li><p>has a [parent] that is not an element information item, or that is an element information item
-                that is not a <termRef>conformant element information item</termRef></p></li>
+            <li><p><var>$context</var> is not a <termRef>conformant element information item</termRef>. It may be an element information item that is not conformant, or it may not be a document information item.</p></li>
+            <li><p><var>$predicate-element</var> is a is not a <termRef>conformant element information item</termRef>, has property [parent] equal to <var>$context</var>, and is an instance of an <termRef>object type</termRef> or an <termRef>association type</termRef>.</p></li>
           </ul>
-          <p>entails the RDF:</p>
+
+          <p>Entails RDF as defined by <ref idref="section-rdf-for-element-without-relationship-metadata"/> or <ref idref="section-rdf-for-element-with-relationship-metadata"/>, depending on whether <var>$predicate-element</var> does or does not have <qName>structures:relationshipMetadata</qName>
+            values for 
+          </p>
 
           <sub>
             <pre>$context $predicate $object .</pre>
@@ -1469,107 +1624,23 @@
           </sub>
 
         </section>
+-->
 
-        <section><title>Element as a simple property of an object or association</title>
-
-          <p>A <termRef>conformant element information item</termRef> <var>$context</var> that is an instance of
-            an <termRef>object type</termRef> or <termRef>association type</termRef>, and that has a
-            child <termRef>conformant element information item</termRef> <var>$element</var> that is an instance of
-            an <termRef>object type</termRef> or an <termRef>association type</termRef>, entails the RDF:</p>
-
-          <sub>
-            <pre>$subject $predicate $object .</pre>
-            <p>Where:</p>
-            <ul>
-              <li><p><var>$subject</var> is a node identifier for the object held by <var>$context</var>.</p></li>
-              <li><p><var>$predicate</var> is the IRI for <var>$element</var>.</p></li>
-              <li><p><var>$object</var> is a node identifier for the object held by <var>$element</var>.</p></li>
-            </ul>
-          </sub>
-
-        </section>
-        <section><title>Attribute as a simple property of an object or association</title>
-
-          <p>An attribute information item <var>$attribute</var> where:</p>
+        <section><title>Elements and attributes via an augmentation type</title>
+          <p>Given:</p>
           <ul>
-            <li><p><var>$attribute</var> is owned by a <termRef>conformant element information
-                  item</termRef> <var>$context</var> that has property [type definition] that is
-                an <termRef>object type</termRef> or an <termRef>association type</termRef>, and</p></li>
-            <li><p><var>$attribute</var> has property [attribute declaration]
-                that is defined by a <termRef>reference schema document</termRef> or an <termRef>extension schema
-                  document</termRef></p></li>
+            <li><p><var>$base</var> is a <termRef>conformant element information item</termRef> and is an instance of an <termRef>object type</termRef> or <termRef>association type</termRef>.</p></li>
+            <li><p><var>$augmentation-element</var> is a <termRef>conformant element information item</termRef>, is a child of <var>$base</var>, and is an instance of an <termRef>augmentation type</termRef>.</p></li>
+            <li><p><var>$augmentation-identifier</var> is a node identifier for the object help by <var>$augmentation-element</var>.</p></li>
           </ul>
-          <p>entails the RDF:</p>
+
+          <p>For each <var>$resolved-element</var> that is a <termRef>conformant element information item</termRef> holding an object with node identifier <var>$augmentation-identifier</var>:</p>
           <sub>
-            <pre>$subject $predicate $literal .</pre>
-            <p>Where:</p>
-            <ul>
-              <li><p><var>$subject</var> is a node identifier for the object held by <var>$context</var>.</p></li>
-              <li><p><var>$predicate</var> is the resource IRI for <var>$attribute</var>.</p></li>
-              <li><p><var>$literal</var> is the literal value for <var>$attribute</var>, as described in <ref idref="sec-rdf-literals"/>.</p></li>
-            </ul>
+            <p>Each element child of <var>$resolved-element</var> entails RDF as if it were an element child of <var>$base</var>.</p>
+            <p>Each attribute that has property [attribute owner] equal to <var>$resolved-element</var> entails RDF as if it were an attribute with property [attribute owner] equal to <var>$base</var>.</p>
+
           </sub>
 
-        </section>
-        <section><title>Elements via an augmentation type</title>
-          <p>An element of an augmentation type contains a set of elements and attributes that are applied to
-            some base object or association.</p>
-
-          <p>For each element applied to a type via an augmentation type:</p>
-          <ul>
-            <li><p>Element information item <var>$base</var> that is an instance of an <termRef>object
-                  type</termRef> or <termRef>association type</termRef>,</p></li>
-            <li><p>Element information item <var>$augmentation</var> that is a child of <var>$base</var> that
-                has [type definition] that is an <termRef>augmentation type</termRef>,</p></li>
-            <li><p>Element information item <var>$resolved-augmentation</var> is any augmentation element with an
-                object that has the the same node identifier as the object held
-                by <var>$augmentation</var>, and</p></li>
-            <li><p>Element information item <var>$element</var> that is a child
-                of <var>$resolved-augmentation</var>, that has [type definition] that is an <termRef>object
-                  type</termRef> or an <termRef>association type</termRef>.</p></li>
-          </ul>
-          <p>entails the RDF:</p>
-          <sub>
-            <pre>$subject $predicate $object .</pre>
-            <p>Where:</p>
-            <ul>
-              <li><p><var>$subject</var> is the node identifier for the object held by <var>$base</var>.</p></li>
-              <li><p><var>$predicate</var> is the resource IRI for [element declaration]
-                  of <var>$element</var>.</p></li>
-              <li><p><var>$object</var> is the node identifier for the object held by
-                  <var>$element</var></p></li>
-            </ul>
-          </sub>
-        </section>
-        <section><title>Attributes via an augmentation type</title>
-          <p>An element of an augmentation type contains a set of elements and attributes that are applied to
-            some base object or association.</p>
-
-          <p>For each attribute applied to a type via an augmentation type:</p>
-          <ul>
-            <li><p>Element information item <var>$base</var> that is an instance of an <termRef>object
-                  type</termRef> or <termRef>association type</termRef>,</p></li>
-            <li><p>Element information item <var>$augmentation</var> that is a child of <var>$base</var> that
-                has [type definition] that is an <termRef>augmentation type</termRef>,</p></li>
-            <li><p>Element information item <var>$resolved-augmentation</var> that is any augmentation element
-                with an object that has the same node identifier as the object held
-                by <var>$augmentation</var>,</p></li>
-            <li><p>Attribute information item <var>$attribute</var> that is owned
-                by <var>$resolved-augmentation</var>, that has an [attribute declaration] that is defined by
-                a <termRef>reference schema document</termRef> or an <termRef>extension schema
-                  document</termRef></p></li>
-          </ul>
-          <p>entails the RDF:</p>
-          <sub>
-            <pre>$subject $predicate $literal .</pre>
-            <p>Where:</p>
-            <ul>
-              <li><p><var>$subject</var> is a node identifier for the object held by <var>$base</var>.</p></li>
-              <li><p><var>$predicate</var> is the resource IRI for <var>$attribute</var>.</p></li>
-              <li><p><var>$literal</var> is the literal value for <var>$attribute</var>, as described in
-                  <ref idref="sec-rdf-literals"/>.</p></li>
-            </ul>
-          </sub>
         </section>
 
         <section><title>Properties applied via <qName>structures:metadata</qName></title>
@@ -1589,6 +1660,21 @@
         </section>
         
       </section>
+      <section>
+        <title>Type information for instance documents</title>
+
+        <p>A <termRef>conformant element information item</termRef> <var>$element</var> that is an instance of an <termRef>object type</termRef> or <termRef>association type</termRef> entails the following RDF:</p>
+
+        <sub>
+          <pre>$element-object rdf:type $element-type .</pre>
+          <p>Where:</p>
+          <ul>
+            <li><p><var>$element-object</var> is a node identifier for the object held by <var>$element</var>.</p></li>
+            <li><p><var>$element-type</var> is resource IRI for the value of the [type definition] property of <var>$element</var>.</p></li>
+          </ul>
+        </sub>
+      </section>
+
       <section><title>NIEM schema component definitions to RDF</title>
 
         <p>The definition of schema components within NIEM-conformant schemas a parallel representation in RDF. This section describes the mapping of selected XML Schema constructs to RDF.</p>
@@ -8707,49 +8793,62 @@ not be given the same name.</p></li>
     <section id="section-instance-metadata">
       <title>Instance metadata</title>
 
-      <p>NIEM provides the metadata mechanism for giving information about object assertions. An object may have
-      an attribute that refers to one or more metadata objects. A <qName>structures:metadata</qName> attribute
-      indicates that a data item has the given metadata. A <qName>structures:relationshipMetadata</qName>
-      attribute asserts that the link (or relationship) established by an element has the given metadata.</p>
+      <p>NIEM defines the term <termRef>metadata type</termRef> to refer to complex types that define data about other data. Metadata properties in the NIEM data model describe characteristics of data, including information about how data is collected, who reported it, creation dates, effective dates, and expiration dates. Metadata can be defined an used by exchange developers to describe characteristics of their data. Metadata is distinct from data held by regular objects, which generally describe things in the world. A developer can use metadata to describe information about the collection of data about a person, with modifying the data definitions that describe the characteristics of a person.</p>
+
+      <p>NIEM provides two different attributes to to attach metadata to data, and each attribute carries a meaning distinct from the other:</p>
+
+      <ul>
+        <li><p>Attribute <qName>structures:metadata</qName> applies metadata to an object. This attribute occurring on an element applies metadata to the object held by the element.</p></li>
+        <li><p>Attribute <qName>structures:relationshipMetadata</qName> applies metadata to the relationship between an object and its parent. An occurrence of this attribute on an element <var>$element</var> applies metadata to the relationship established by <var>$element</var>, between the object that holds <var>$element</var> object held by <var>$element</var>.</p></li>
+      </ul>
+
+      <p>The example below shows metadata applied to an object. In this example, the object representing the person named <q>Theresa Turvey</q> has a repository identifier (<q>an identifier assigned to the repository from which the information originated</q>) of <q>A-237-Z</q>.</p>
 
       <figure>
-        <title>Example of metadata used in an instance</title>
-        <pre><xmlBlurb id="xb-figure-metadata-in-use">
-<nc:Person>
-  <nc:PersonBirthDate structures:metadata="j86">
-    <nc:Date>1945-12-01</nc:Date>
-  </nc:PersonBirthDate>
-  <nc:PersonName structures:metadata="s22 j86" structures:relationshipMetadata="k25">
-    <nc:PersonFullName>John Doe</nc:PersonFullName>
+        <title>A simple example of object metadata</title>
+        <pre><xmlBlurb id="xb-figure-simple-object-metadata">
+<nc:Person structures:metadata="object-metadata-1">
+  <nc:PersonName>
+    <nc:PersonFullName>Theresa Turvey</nc:PersonFullName>
   </nc:PersonName>
 </nc:Person>
-<nc:Metadata structures:id="s22">
-  <nc:SourceText>Adam Barber</nc:SourceText>
-</nc:Metadata>
-<nc:Metadata structures:id="j86">
-  <nc:ReportedDate>
-    <nc:Date>2005-04-26</nc:Date>
-  </nc:ReportedDate>
-</nc:Metadata>
-<nc:Metadata structures:id="k25">
-  <nc:ProbabilityPercent>25</nc:ProbabilityPercent>
+<nc:Metadata structures:id="object-metadata-1">
+  <nc:RepositoryID>A-237-Z</nc:RepositoryID>
 </nc:Metadata>
           </xmlBlurb></pre>
-
       </figure>
-      <p>This example shows a person named John Doe, born 12/1/1945. This data has several pieces of metadata on it:</p>
+
+      <p>The example below shows metadata applied to the relationship between a person and a location. This example shows a celebrity<char name="rsquo"/>s birth location. The source for the birth location information is a Wikipedia page. The source information is not applicable to the entire person object, nor is it applicable to the entire location object. Is is only applicable to the <em>birth location</em> relationship between the person and the location.</p>
+
+      <figure>
+        <title>A simple example of relationship metadata</title>
+        <pre><xmlBlurb id="xb-figure-simple-relationship-metadata">
+<nc:Person>
+  <nc:PersonBirthLocation structures:relationshipMetadata="wp-ds">
+    <nc:Address>
+      <nc:AddressCityName>Bethesda</nc:AddressCityName>
+      <nc:AddressState>
+        <nc:StateName>Maryland</nc:StateName>
+      </nc:AddressState>
+    </nc:Address>
+  </nc:PersonBirthLocation>
+  <nc:PersonName>
+    <nc:PersonFullName>Daniel Stern</nc:PersonFullName>
+  </nc:PersonName>
+</nc:Person>
+<nc:Metadata structures:id="wp-ds">
+  <nc:SourceIDText>https://en.wikipedia.org/wiki/Daniel_Stern_(actor)</nc:SourceIDText>
+</nc:Metadata>
+        </xmlBlurb></pre>
+      </figure>
+
+      <p>Characteristics of metadata include:</p>
       <ul>
-        <li><p>Metadata <code>s22</code> asserts Adam Barber gave the name.</p></li>
-        <li><p>Metadata <code>j86</code> asserts the name and the birth date were reported on 4/26/2005.</p></li>
-        <li><p>Relationship metadata <code>k25</code> asserts a 25% probability that the name goes with the person.</p></li>
+        <li><p>Metadata objects may appear outside the data they describe. They applied by reference via the metadata attributes.</p></li>
+        <li><p>Metadata objects may be applied to multiple objects within the same document.</p></li>
+        <li><p>Each metadata attribute may hold references to multiple metadata objects, which enables messages to apply multiple metadata properties to objects and relationships.</p></li>
       </ul>
-      <p>This shows several characteristics of metadata:</p>
-      <ul>
-        <li><p>Metadata objects may appear outside the data they describe.</p></li>
-        <li><p>Metadata objects may be reused.</p></li>
-        <li><p>Data may refer to more than one metadata object.</p></li>
-        <li><p>Metadata pertains to an object or simple content, while relationship metadata pertains to the relationship between objects.</p></li>
-      </ul>
+
       <p>An instance would not be valid XML if the <qName>structures:metadata</qName> or <qName>structures:relationshipMetadata</qName> attributes contained references for which there were no defined IDs. The instance would not be NIEM-conformant if the references were not to IDs defined with the <qName>structures:id</qName> attribute.</p>
 
       <p>Application of metadata to a type or element to which it is not applicable is not NIEM-conformant. A
@@ -8758,7 +8857,7 @@ not be given the same name.</p></li>
         attribute <qName>appinfo:appliesToTypes</qName>. In either case it may apply to an instance of any of the
         listed elements or types. For an example, see <ref idref="figure-sample-applies-to-types"/>. A metadata
         element with neither attribute <qName>appinfo:appliesToElements</qName> nor
-        attribute <qName>appinfo:appliesToTypes</qName> may be applied to any element of any type.</p>
+        attribute <qName>appinfo:appliesToTypes</qName> may be applied to any element or to an instance of any type.</p>
 
       <ruleSection><title>Metadata applies to referring entity</title>
         <rule applicability="INS" class="Interpretation">
@@ -8924,6 +9023,9 @@ not be given the same name.</p></li>
     </reference>
     <reference id="N-ary">
       <p><q>Defining N-ary Relations on the Semantic Web</q>, W3C Working Group Note, 12 April 2006. Available from <link>MACRO_HREF_NARY/</link>.</p>
+    </reference>
+    <reference id="N-Quads">
+      <p>Gavin Carothers. <q>RDF 1.1 N-Quads.</q> W3C, February 25, 2014. <link>MACRO_HREF_N_QUADS</link>.</p>
     </reference>
     <reference id="OED">
       <p><q>Oxford English Dictionary, Third Edition</q>, Oxford University Press, November 2010. <link>http://dictionary.oed.com/</link>.</p>
