@@ -664,7 +664,7 @@ Rule 5-1. structures:uri denotes resource identifier
 
       The interpretation of a [conformant instance XML document] MUST be consistent with an RDFS interpretation of the RDF graph composed of the RDF entailed by the XML document and the RDF entailed by the schema.
 
-   The interpretation of NIEM-conformant schemas and instances are in place to ensure that a specific meaning can be derived from data. That is, the data makes specific assertions, which are well understood since they are derived from the data, the schema, and the NIEM rules.
+   The interpretation of NIEM-conformant data and schemas are in place to ensure that a precise meaning can be derived from data. That is, the data makes specific assertions, which are well understood since they are derived from the data, the schema, and the NIEM rules.
 
 5.2. The RDF model
 
@@ -2310,7 +2310,7 @@ Rule 9-40. Element type not in the XML Schema namespace
           <sch:assert test="for $type-qname in resolve-QName(@type, .) return
                               $type-qname = xs:QName('xs:anySimpleType')
                               or namespace-uri-from-QName($type-qname) != xs:anyURI('http://www.w3.org/2001/XMLSchema')"
-            >An element type that is not xs:anySimpleType MUST NOT have a namespace name <namespace-uri-for-prefix>xs</namespace-uri-for-prefix>.</sch:assert>
+            >An element type that is not xs:anySimpleType MUST NOT have a namespace name http://www.w3.org/2001/XMLSchema.</sch:assert>
         </sch:rule>
       </sch:pattern>
 
@@ -4804,7 +4804,7 @@ Rule 10-69. Deprecated annotates schema component
       <sch:pattern>
         <sch:rule context="*[exists(@appinfo:deprecated)]">
           <sch:assert test="namespace-uri-from-QName(node-name(.)) = xs:anyURI('http://www.w3.org/2001/XMLSchema')"
-                  >The attribute appinfo:deprecated MUST be owned by an element with a namespace name <namespace-uri-for-prefix>xs</namespace-uri-for-prefix>.</sch:assert>
+                  >The attribute appinfo:deprecated MUST be owned by an element with a namespace name http://www.w3.org/2001/XMLSchema.</sch:assert>
         </sch:rule>
       </sch:pattern>
 

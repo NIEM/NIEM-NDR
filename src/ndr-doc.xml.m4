@@ -3343,7 +3343,7 @@
     <sch:assert test="for $type-qname in resolve-QName(@type, .) return
                         $type-qname = xs:QName('xs:anySimpleType')
                         or namespace-uri-from-QName($type-qname) != xs:anyURI('MACRO_NS_XS')"
-      >An element type that is not xs:anySimpleType MUST NOT have a namespace name <namespace-uri-for-prefix>xs</namespace-uri-for-prefix>.</sch:assert>
+      >An element type that is not xs:anySimpleType MUST NOT have a namespace name MACRO_NS_XS.</sch:assert>
   </sch:rule>
 </sch:pattern>
             </xmlBlurb></pre>
@@ -6839,7 +6839,7 @@ not be given the same name.</p></li>
 <sch:pattern>
   <sch:rule context="*[exists(@appinfo:deprecated)]">
     <sch:assert test="namespace-uri-from-QName(node-name(.)) = xs:anyURI('MACRO_NS_XS')"
-            >The attribute appinfo:deprecated MUST be owned by an element with a namespace name <namespace-uri-for-prefix>xs</namespace-uri-for-prefix>.</sch:assert>
+            >The attribute appinfo:deprecated MUST be owned by an element with a namespace name MACRO_NS_XS.</sch:assert>
   </sch:rule>
 </sch:pattern>
           </xmlBlurb></pre>

@@ -2891,8 +2891,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 9-40: An element type that is not xs:anySimpleType MUST NOT have a namespace name <namespace-uri-for-prefix xmlns="https://iead.ittl.gtri.org/wr24/doc/2011-09-30-2258"
-                                            xmlns:sch="http://purl.oclc.org/dsdl/schematron">xs</namespace-uri-for-prefix>.</svrl:text>
+               <svrl:text>Rule 9-40: An element type that is not xs:anySimpleType MUST NOT have a namespace name http://www.w3.org/2001/XMLSchema.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
@@ -5320,8 +5319,7 @@
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
-               <svrl:text>Rule 10-69: The attribute appinfo:deprecated MUST be owned by an element with a namespace name <namespace-uri-for-prefix xmlns="https://iead.ittl.gtri.org/wr24/doc/2011-09-30-2258"
-                                            xmlns:sch="http://purl.oclc.org/dsdl/schematron">xs</namespace-uri-for-prefix>.</svrl:text>
+               <svrl:text>Rule 10-69: The attribute appinfo:deprecated MUST be owned by an element with a namespace name http://www.w3.org/2001/XMLSchema.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
