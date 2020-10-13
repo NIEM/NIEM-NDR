@@ -156,8 +156,7 @@
       <p>This document does NOT address the following:</p>
       <ul>
         <li>
-          <p>A <em>formal</em> definition of the NIEM data model.</p>
-          <p>Such a definition would focus on the Resource Definition Framework (RDF) and concepts not strictly required for interoperability. This document instead focuses on definition of schemas that work with the data model, to ensure translatability and interoperability.</p>
+          <p>A <em>formal</em> definition of the NIEM data model. Such a definition would focus on the Resource Description Framework (RDF) and concepts not strictly required for interoperability. This document instead focuses on definition of schemas that work with the data model, to ensure translatability and interoperability.</p>
         </li>
         <li>
           <p>A detailed discussion of NIEM architecture and schema versioning.</p>
