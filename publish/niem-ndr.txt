@@ -5969,7 +5969,7 @@ Rule 12-6. Attribute structures:ref references element of correct type
 
 12.2.2. Uniform resource identifiers in NIEM data
 
-   NIEM supports the linked data methodology through the use of uniform resource identifiers (URIs), expressed through the attribute structures:uri in XML documents . This attribute works much like structures:ref and structures:id, and overlaps somewhat. Linked data introduces key terminology:
+   NIEM supports linked data through the use of uniform resource identifiers (URIs), expressed through the attribute structures:uri in XML documents . This attribute works much like structures:ref and structures:id, and overlaps somewhat. Linked data introduces key terminology:
 
       *  Anything modeled or addressed by an information system may be called a resource: people, vehicles, reports, documents, relationships, ideas: anything that is talked about and modeled in an information system is a resource.
 

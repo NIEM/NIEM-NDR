@@ -8468,10 +8468,7 @@ not be given the same name.</p></li>
         <section>
           <title>Uniform resource identifiers in NIEM data</title>
 
-          <p>NIEM supports the linked data methodology through the use of uniform resource identifiers (URIs),
-            expressed through the attribute <qName>structures:uri</qName> in XML documents . This attribute works
-            much like <qName>structures:ref</qName> and <qName>structures:id</qName>, and overlaps
-            somewhat. Linked data introduces key terminology:</p>
+          <p>NIEM supports <a href="https://www.w3.org/standards/semanticweb/data">linked data</a> through the use of uniform resource identifiers (URIs), expressed through the attribute <qName>structures:uri</qName> in XML documents . This attribute works much like <qName>structures:ref</qName> and <qName>structures:id</qName>, and overlaps somewhat. Linked data introduces key terminology:</p>
 
           <ul>
             <li><p>Anything modeled or addressed by an information system may be called a <em>resource</em>:
