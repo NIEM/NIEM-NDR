@@ -477,6 +477,8 @@ Table of Tables
 
    The rules for reference schema documents are more stringent than are the rules for other classes of NIEM-conformant schemas. Reference schema documents are intended to support the broadest reuse. They are very uniform in their structure. As they are the primary definitions for schema components, they do not need to restrict other data definitions, and they are not allowed to use XML Schema's restriction mechanism (e.g., Rule 9-30, Complex content uses extension). Reference schema documents are intended to be as regular and simple as possible.
 
+   Many reference schemas are optional and over-inclusive. Data definitions in namespaces defined by reference schemas are designed with parts that are intended to be omitted or refined as needed for a particular exchange. Many reference schemas define more complex types than any individual exchange will need and define complex types that have more properties, with broader cardinality, than an individual exchange will need. Data definitions within reference schemas are designed to be a basis that is refined and specialized for a particular exchange. Developers of information exchanges are expected to subset, profile, and extend reference schemas to construct precise data definitions to match their information exchange requirements.
+
 4.1.2. Extension schema document
 
    [Definition: extension schema document]

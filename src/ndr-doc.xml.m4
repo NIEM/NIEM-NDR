@@ -808,6 +808,8 @@
         Schema<char name="rsquo" />s restriction mechanism (e.g., <ref idref="ct-cc-is-extension"/>).
         Reference schema documents are intended to be as regular and simple as possible.</p>
 
+      <p>Many reference schemas are <strong>optional and over-inclusive</strong>. Data definitions in namespaces defined by reference schemas are designed with parts that are intended to be omitted or refined as needed for a particular exchange. Many reference schemas define more complex types than any individual exchange will need and define complex types that have more properties, with broader cardinality, than an individual exchange will need. Data definitions within reference schemas are designed to be a basis that is refined and specialized for a particular exchange. Developers of information exchanges are expected to subset, profile, and extend reference schemas to construct precise data definitions to match their information exchange requirements.</p>
+
       </section>
 
       <section><title>Extension schema document</title>
