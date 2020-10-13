@@ -656,7 +656,15 @@ Rule 4-6. Schema claims extension conformance target
 
    With the exception of this section, NIEM rules are explained in this document without reference to RDF or RDF concepts. Understanding RDF is not required to understand NIEM-conformant schemas or data based on NIEM. However, understanding RDF concepts may deepen understanding of NIEM.
 
-   The goal of this section is to clarify the meaning of XML data that is NIEM-conformant and to outline the implications of various modeling constructs in NIEM. The rules for NIEM- conformant schemas and instances are in place to ensure that a specific meaning can be derived from data. That is, the data makes specific assertions, which are well understood since they are derived from the rules for NIEM.
+   This section defines the meaning of NIEM-conformant XML data and schemas through the definition of mappings from XML data and schema to RDF data and schema.
+
+Rule 5-1. structures:uri denotes resource identifier
+
+   [Rule 5-1] (INS)
+
+      The interpretation of a [conformant instance XML document] MUST be consistent with an RDFS interpretation of the RDF graph composed of the RDF entailed by the XML document and the RDF entailed by the schema.
+
+   The interpretation of NIEM-conformant schemas and instances are in place to ensure that a specific meaning can be derived from data. That is, the data makes specific assertions, which are well understood since they are derived from the data, the schema, and the NIEM rules.
 
 5.2. The RDF model
 
@@ -6604,6 +6612,7 @@ Appendix E. Index of rules
    Rule 4-4, Document element has attribute ct:conformanceTargets: Section 4.3, Conformance target identifiers
    Rule 4-5, Schema claims reference schema conformance target: Section 4.3, Conformance target identifiers
    Rule 4-6, Schema claims extension conformance target: Section 4.3, Conformance target identifiers
+   Rule 5-1, structures:uri denotes resource identifier: Section 5.1, Purpose of the NIEM conceptual model
    Rule 7-1, Document is an XML document: Section 7.1, Conformance to XML
    Rule 7-2, Document uses XML namespaces properly: Section 7.2, Conformance to XML Namespaces
    Rule 7-3, Document is a schema document: Section 7.3, Conformance to XML Schema

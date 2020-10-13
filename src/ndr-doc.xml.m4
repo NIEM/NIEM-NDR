@@ -1109,10 +1109,17 @@
       RDF concepts. Understanding RDF is not required to understand NIEM-conformant schemas or data based on
       NIEM. However, understanding RDF concepts may deepen understanding of NIEM.</p>
 
-    <p>The goal of this section is to clarify the meaning of XML data that is NIEM-conformant and to outline the
-      implications of various modeling constructs in NIEM. The rules for NIEM- conformant schemas and instances
-      are in place to ensure that a specific meaning can be derived from data. That is, the data makes specific
-      assertions, which are well understood since they are derived from the rules for NIEM.</p>
+    <p>This section defines the meaning of NIEM-conformant XML data and schemas through the definition of mappings from XML data and schema to RDF data and schema.</p>
+
+    <ruleSection>
+      <title><qName>structures:uri</qName> denotes resource identifier</title>
+      <rule applicability="INS" id="rule-meaning-of-xml" class="Interpretation">
+        <p>The interpretation of a <termRef>conformant instance XML document</termRef> MUST be consistent with an RDFS interpretation of the RDF graph composed of the RDF entailed by the XML document and the RDF entailed by the schema.</p>
+      </rule>
+    </ruleSection>
+
+    <p>The interpretation of NIEM-conformant data and schemas are in place to ensure that a precise meaning can be derived from data. That is, the data makes specific assertions, which are well understood since they are derived from the data, the schema, and the NIEM rules.</p>
+
     </section>
 
     <section><title>The RDF model</title>

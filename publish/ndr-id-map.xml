@@ -9,6 +9,7 @@
    <map:rule descriptiveID="req-ct" ruleID="rule_4-4"/>
    <map:rule descriptiveID="req-ct-ref" ruleID="rule_4-5"/>
    <map:rule descriptiveID="req-ct-ext" ruleID="rule_4-6"/>
+   <map:rule descriptiveID="rule-meaning-of-xml" ruleID="rule_5-1"/>
    <map:rule descriptiveID="well-formed-xml" ruleID="rule_7-1"/>
    <map:rule descriptiveID="ns-valid" ruleID="rule_7-2"/>
    <map:rule descriptiveID="is-schema-doc" ruleID="rule_7-3"/>
