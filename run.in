@@ -8,6 +8,10 @@ set -o nounset -o errexit -o pipefail
 
 #HELP:COMMAND_NAME: Run some convenient stuff
 #HELP:Usage: COMMAND_NAME $global-options* $command ...
+
+default_commands=( pre d all post )
+#HELP:Default commands: pre d all post
+
 #HELP:global-options:
 #HELP:    --help | -h: Print this help
 #HELP:    -j ${number of jobs}: run this many jobs in parallel
@@ -40,7 +44,6 @@ do
 done
 shift $((OPTIND - 1))
 
-default_commands=( pre d all post )
 if (( $# == 0 ))
 then echo "No command given. Defaulting to \"${default_commands[*]}\"" >&2
      set -- ${default_commands[@]}
@@ -60,7 +63,8 @@ do command=$1
 
        #HELP:  reconfigure: Run './configure' with the current settings
        reconfigure )
-           @srcdir@/configure
+           (( $# == 0 )) || fail "Don't append commands after $command"
+           exec @srcdir@/configure
            ;;
 
        #HELP:  d: Build dependencies, if needed
@@ -70,7 +74,7 @@ do command=$1
 
        #HELP:  oh: "open html": Build the HTML doc ASAP, then open it
        oh )
-           time make -j $number_of_jobs publish/niem-ndr.html
+           make -j $number_of_jobs publish/niem-ndr.html
            open publish/niem-ndr.html
            ;;
 
@@ -86,7 +90,7 @@ do command=$1
 
        #HELP:  all: Build artifacts; no testing
        all )
-           time make -j $number_of_jobs all
+           make -j $number_of_jobs all
            ;;
 
        #HELP:  post | valid: Run post-processing validity checks
