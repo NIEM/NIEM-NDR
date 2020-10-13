@@ -6541,7 +6541,7 @@ not be given the same name.</p></li>
       that may represent more specific uses of the concept associated with the primary representation term.</p>
 
           <table id="table-representation-terms">
-            <title>Representation terms</title>
+            <title>Property representation terms</title>
             <theadr>
               <th>Primary Representation Term</th>
               <th>Secondary Representation Term</th>

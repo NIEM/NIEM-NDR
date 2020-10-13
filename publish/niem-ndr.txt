@@ -4643,9 +4643,9 @@ Rule 10-63. Redundant term in name is omitted
 
    This rule, carried over from 11179, is designed to prevent repeating terms unnecessarily within component names. For example, this rule allows designers to avoid naming an element "PersonFirstNameName."
 
-   The valid value set of a data element or value domain is described by the representation term. NIEM uses a standard set of representation terms in the representation portion of a NIEM-conformant component name. Table Table 10-2, Representation terms, below, lists the primary representation terms and a definition for the concept associated with the use of that term. The table also lists secondary representation terms that may represent more specific uses of the concept associated with the primary representation term.
+   The valid value set of a data element or value domain is described by the representation term. NIEM uses a standard set of representation terms in the representation portion of a NIEM-conformant component name. Table Table 10-2, Property representation terms, below, lists the primary representation terms and a definition for the concept associated with the use of that term. The table also lists secondary representation terms that may represent more specific uses of the concept associated with the primary representation term.
 
-   Table 10-2: Representation terms
+   Table 10-2: Property representation terms
 
       Primary Representation Term|Secondary Representation Term|Definition
 
@@ -4701,7 +4701,7 @@ Rule 10-64. Element with simple content has representation term
 
    [Rule 10-64] (REF, EXT)
 
-      Within the schema, the name of an element declaration that is of simple content SHOULD use an appropriate representation term as found in Table Table 10-2, Representation terms.
+      Within the schema, the name of an element declaration that is of simple content SHOULD use an appropriate representation term as found in Table Table 10-2, Property representation terms.
 
    This rule is also supported by Rule 11-14, Name of element declaration with simple content has representation term and Rule 11-15, Name of element declaration with simple content has representation term, which provide tests that a top-level declaration has a representation term.
 
@@ -4709,7 +4709,7 @@ Rule 10-65. Element with complex content has representation term when appropriat
 
    [Rule 10-65] (REF, EXT)
 
-      Within the schema, the name of an element declaration that is of complex content, and that corresponds to a concept listed in Table Table 10-2, Representation terms, SHOULD use a representation term from that table.
+      Within the schema, the name of an element declaration that is of complex content, and that corresponds to a concept listed in Table Table 10-2, Property representation terms, SHOULD use a representation term from that table.
 
    An element that represents a value listed in the table should have a representation term. It should do so even if its type is complex with multiple parts. For example, a type with multiple fields may represent an audio binary, a date, or a name.
 
@@ -4717,7 +4717,7 @@ Rule 10-66. Element with complex content has representation term only when appro
 
    [Rule 10-66] (REF, EXT)
 
-      Within the schema, the name of an element declaration that is of complex content and that does not correspond to a concept listed in Table Table 10-2, Representation terms SHOULD NOT use a representation term.
+      Within the schema, the name of an element declaration that is of complex content and that does not correspond to a concept listed in Table Table 10-2, Property representation terms SHOULD NOT use a representation term.
 
 10.9. Machine-readable annotations
 
@@ -5186,7 +5186,7 @@ Rule 11-14. Name of element declaration with simple content has representation t
         </sch:rule>
       </sch:pattern>
 
-   Representation terms are defined by Table Table 10-2, Representation terms, above. This Schematron rule supports Rule 10-64, Element with simple content has representation term.
+   Representation terms are defined by Table Table 10-2, Property representation terms, above. This Schematron rule supports Rule 10-64, Element with simple content has representation term.
 
 Rule 11-15. Name of element declaration with simple content has representation term
 
@@ -5209,7 +5209,7 @@ Rule 11-15. Name of element declaration with simple content has representation t
         </sch:rule>
       </sch:pattern>
 
-   Representation terms are defined by Table Table 10-2, Representation terms, above. This rule supports Rule 10-64, Element with simple content has representation term.
+   Representation terms are defined by Table Table 10-2, Property representation terms, above. This rule supports Rule 10-64, Element with simple content has representation term.
 
 11.2.2. Element substitution group
 
