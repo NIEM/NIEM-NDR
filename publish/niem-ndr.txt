@@ -4675,7 +4675,7 @@ Rule 10-63. Redundant term in name is omitted
 
       DateTime||A particular point in the progression of time together with relevant supplementary information.
 
-      |Date|A particular day, month, and year in the Gregorian calendar.
+      |Date|A continuous or recurring period of time, of a duration greater than or equal to a day.
 
       |Time|A particular point in the progression of time within an unspecified 24-hour day.
 

@@ -6599,7 +6599,7 @@ not be given the same name.</p></li>
             <tr>
               <td></td>
               <td>MACRO_REPRESENTATION_TERM_DATE</td>
-              <td>A particular day, month, and year in the Gregorian calendar.</td>
+              <td>A continuous or recurring period of time, of a duration greater than or equal to a day.</td>
             </tr>
             <tr>
               <td></td>
