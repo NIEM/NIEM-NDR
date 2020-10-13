@@ -1220,7 +1220,7 @@
       properties. NIEM-conformant data contains elements and attributes. These correspond to RDF resources and
       their properties, which describe their characteristics and relationships.</p>
 
-      <p>The order of properties of an object is not defined, in general, by RDF. NIEM expresses the relative order of properties of an object through the use of attribute <qName>structures:sequenceID</qName>. This specification does not define a mapping for this mechanism to RDF.</p>
+      <p>Although within an XML document, the XML element children of a parent element have a specific order, that element order is not reflected in the NIEM conceptual model. NIEM provides for the order of properties relative to each other to be expressed using the attribute <qName>structures:sequenceID</qName>, as defined by <ref idref="section-sequence-id"/>. Without the use of <qName>structures:sequenceID</qName>, the NIEM conceptual model does not define relative order of properties of an object, which means that processors may present properties in whatever order is most convenient, natural, or appropriate. Should a particular order of elements be desired, it should be expressed using <qName>structures:sequenceID</qName>. Should a data set include <qName>structures:sequenceID</qName>, it must be respected. This specification does not define a mapping for this mechanism to RDF.</p>
 
       <p>This document describes most RDF data as triples, omitting a graph name. Users of NIEM data may assign these triples to a named graph, as needed. NIEM data only explicitly assigns triples into specific named graphs to support the use of <qName>structures:relationshipMetadata</qName>, which attributes metadata to triples using named graphs identified by metadata objects.</p>
 
@@ -8739,7 +8739,7 @@ not be given the same name.</p></li>
 
     </section>
 
-    <section>
+    <section id="section-sequence-id">
       <title>Property order and sequence identifiers</title>
 
       <p>The properties of a NIEM data object, by default, have no specific order, regardless of their lexical order in XML data. A NIEM data object instance has a set of properties; these properties will appear in an XML instance as child elements of one or more parent elements.  An object may be composed from multiple XML element instances, through the use of <qName>structures:id</qName>, <qName>structures:ref</qName>, and <qName>structures:uri</qName>. Order of child elements within each parent element is defined by the schema, which can specify exact element order, or can have flexible ordering (for example, elements provided via a substitution group may appear in any order). The order of parent and child elements in a document does not dictate the order of properties of an object.</p>
