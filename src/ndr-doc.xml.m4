@@ -6029,7 +6029,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
 
     </section>
 
-    <section>
+    <section id="section-representation-pattern">
       <title>The <q>Representation</q> pattern</title>
 
       <p>One need frequently faced by schema developers is for multiple representations for a single concept. For
@@ -6674,6 +6674,11 @@ not be given the same name.</p></li>
               <td>MACRO_REPRESENTATION_TERM_ABSTRACT</td>
               <td></td>
               <td>An element that may represent a concept, rather than a concrete property. This representation term may be used in tandem with another of the listed representation terms.</td>
+            </tr>
+            <tr>
+              <td>Representation</td>
+              <td></td>
+              <td>An element that acts as a placeholder for alternative representations of the value of a type (see <ref idref="section-representation-pattern"/>).</td>
             </tr>
           </table>
 

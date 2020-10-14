@@ -4705,6 +4705,8 @@ Rule 10-63. Redundant term in name is omitted
 
       Abstract||An element that may represent a concept, rather than a concrete property. This representation term may be used in tandem with another of the listed representation terms.
 
+      Representation||An element that acts as a placeholder for alternative representations of the value of a type (see Section 10.7, The "Representation" pattern, above).
+
 Rule 10-64. Element with simple content has representation term
 
    [Rule 10-64] (REF, EXT)
