@@ -1,8 +1,8 @@
 National Information Exchange Model Naming and Design Rules
 
-Version 5.0
+Version 5.0beta1
 
-June 29, 2020
+October 14, 2020
 
 NIEM Technical Architecture Committee (NTAC)
 

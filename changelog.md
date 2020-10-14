@@ -9,6 +9,8 @@ Added run script "run.in" for easy execution of common targets, without clutteri
 
 ## Tracked issues:
 
+- Issue https://github.com/NIEM/NIEM-NDR/issues/95: Fixed error "used to by" in section 10.4.
+
 - Issue https://github.com/NIEM/NIEM-NDR/issues/82: Remove metadata from `structures:AugmentationType`.
 
 - Issue https://github.com/NIEM/NIEM-NDR/issues/86: Added documentation to components in the structures namespace.

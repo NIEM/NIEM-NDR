@@ -21,7 +21,7 @@
    xmlns="https://iead.ittl.gtri.org/wr24/doc/2011-09-30-2258"
    >
   <title>National Information Exchange Model Naming and Design Rules</title>
-  <version>MACRO_NDR_VERSION</version>
+  <version>MACRO_NDR_DOCUMENT_VERSION</version>
   <date>MACRO_NDR_DATE</date>
   <author>NIEM Technical Architecture Committee (NTAC)</author>
 
