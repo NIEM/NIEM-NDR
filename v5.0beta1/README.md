@@ -16,7 +16,7 @@ repository. You may also test against the rules using
 
 See [the wiki](https://github.com/NIEM/NIEM-NDR/wiki) for additional documentation.
 
-See this release on Github at <https://github.com/NIEM/NIEM-NDR/releases/tag/5.0beta1>.
+See this release on Github at <https://github.com/NIEM/NIEM-NDR/releases/tag/v5.0beta1>.
 
 # Files
 
