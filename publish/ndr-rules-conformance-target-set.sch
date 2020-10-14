@@ -35,27 +35,27 @@
   </sch:rule>
 </sch:pattern>
             
-<sch:pattern id="rule_11-15"><sch:title>Name of element declaration with simple content has representation term</sch:title>
+<sch:pattern id="rule_11-16"><sch:title>Name of element declaration with simple content has representation term</sch:title>
   <sch:rule context="xs:element[@name and @type        and (nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/#ReferenceSchemaDocument'))             or nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/#ExtensionSchemaDocument')))        and (some $type-qname in resolve-QName(@type, .) satisfies (               nf:get-target-namespace(.) != namespace-uri-from-QName($type-qname)               and nf:resolve-type(., $type-qname)/xs:simpleContent))]">
-    <sch:report role="warning" test="every $representation-term               in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List')               satisfies not(ends-with(@name, $representation-term))">Rule 11-15: the name of an element declaration that is of simple content SHOULD use a representation term.</sch:report>
+    <sch:report role="warning" test="every $representation-term               in ('Amount', 'BinaryObject', 'Graphic', 'Picture', 'Sound', 'Video', 'Code', 'DateTime', 'Date', 'Time', 'Duration', 'ID', 'URI', 'Indicator', 'Measure', 'Numeric', 'Value', 'Rate', 'Percent', 'Quantity', 'Text', 'Name', 'List')               satisfies not(ends-with(@name, $representation-term))">Rule 11-16: the name of an element declaration that is of simple content SHOULD use a representation term.</sch:report>
   </sch:rule>
 </sch:pattern>
               
-<sch:pattern id="rule_11-49"><sch:title>Reference schema document imports reference schema document</sch:title>
+<sch:pattern id="rule_11-50"><sch:title>Reference schema document imports reference schema document</sch:title>
   <sch:rule context="xs:import[                          nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/#ReferenceSchemaDocument'))                          and exists(@namespace)                          and empty(@appinfo:externalImportIndicator)                          and not(xs:anyURI(@namespace) = (xs:anyURI('http://release.niem.gov/niem/structures/5.0/'),                                                           xs:anyURI('http://www.w3.org/XML/1998/namespace')))]">
-    <sch:assert test="some $schema in nf:resolve-namespace(., @namespace) satisfies                         nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/#ReferenceSchemaDocument'))">Rule 11-49: A namespace imported as conformant from a reference schema document MUST identify a namespace defined by a reference schema document.</sch:assert>
+    <sch:assert test="some $schema in nf:resolve-namespace(., @namespace) satisfies                         nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/#ReferenceSchemaDocument'))">Rule 11-50: A namespace imported as conformant from a reference schema document MUST identify a namespace defined by a reference schema document.</sch:assert>
   </sch:rule>
 </sch:pattern>
           
-<sch:pattern id="rule_11-50"><sch:title>Extension schema document imports reference or extension schema document</sch:title>
+<sch:pattern id="rule_11-51"><sch:title>Extension schema document imports reference or extension schema document</sch:title>
   <sch:rule context="xs:import[                          nf:has-effective-conformance-target-identifier(., xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/#ExtensionSchemaDocument'))                          and exists(@namespace)                          and empty(@appinfo:externalImportIndicator)                          and not(xs:anyURI(@namespace) = (xs:anyURI('http://release.niem.gov/niem/structures/5.0/'),                                                           xs:anyURI('http://www.w3.org/XML/1998/namespace')))]">
-    <sch:assert test="some $schema in nf:resolve-namespace(., @namespace) satisfies (                         nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/#ReferenceSchemaDocument'))                         or nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/#ExtensionSchemaDocument')))">Rule 11-50: A namespace imported as conformant from an extension schema document MUST identify a namespace defined by a reference schema document or an extension schema document.</sch:assert>
+    <sch:assert test="some $schema in nf:resolve-namespace(., @namespace) satisfies (                         nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/#ReferenceSchemaDocument'))                         or nf:has-effective-conformance-target-identifier($schema, xs:anyURI('http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/#ExtensionSchemaDocument')))">Rule 11-51: A namespace imported as conformant from an extension schema document MUST identify a namespace defined by a reference schema document or an extension schema document.</sch:assert>
   </sch:rule>
 </sch:pattern>
           
-<sch:pattern id="rule_11-53"><sch:title>Each namespace may have only a single root schema in a schema set</sch:title>
+<sch:pattern id="rule_11-54"><sch:title>Each namespace may have only a single root schema in a schema set</sch:title>
   <sch:rule context="xs:schema[exists(@targetNamespace)                                and (some $element                                    in nf:resolve-namespace(., xs:anyURI(@targetNamespace))                                    satisfies $element is .)]">
-    <sch:assert test="count(nf:resolve-namespace(., xs:anyURI(@targetNamespace))) = 1">Rule 11-53: A namespace may appear as a root schema in a schema set only once.</sch:assert>
+    <sch:assert test="count(nf:resolve-namespace(., xs:anyURI(@targetNamespace))) = 1">Rule 11-54: A namespace may appear as a root schema in a schema set only once.</sch:assert>
   </sch:rule>
 </sch:pattern>
           </sch:schema>

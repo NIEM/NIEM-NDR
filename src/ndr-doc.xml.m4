@@ -7050,6 +7050,26 @@ not be given the same name.</p></li>
 
       </ruleSection>
 
+      <ruleSection><title>Only types have name ending in <q>Type</q> or <q>SimpleType</q></title>
+        <rule applicability="REF EXT" id="only-type-has-type-name-suffix" class="Constraint">
+          <pre><xmlBlurb memberOf="ref ext" id="xb-only-type-has-type-name-suffix">
+<sch:pattern>
+  <sch:rule context="xs:*[exists(@name) and ends-with(@name, 'SimpleType')]">
+    <sch:assert test="local-name() = 'simpleType'"
+                >A schema component with a name that ends in 'SimpleType' MUST be a simple type definition.</sch:assert>
+  </sch:rule>
+  <sch:rule context="xs:*[exists(@name) and ends-with(@name, 'Type')]">
+    <sch:assert test="local-name() = 'complexType'"
+                >A schema component with a name that ends in 'Type' and does not end in 'SimpleType' MUST be a complex type definition.</sch:assert>
+  </sch:rule>
+</sch:pattern>
+          </xmlBlurb></pre>
+        </rule>
+
+        <p>Use of the representation terms <q>Type</q> and <q>SimpleType</q> helps identify complex and simple types, respectively, in a NIEM-conformant schema, and helps to prevent naming collisions with elements and attributes.</p>
+
+      </ruleSection>
+
       <section><title>Type definition hierarchy</title>
         <ruleSection>
           <title>Base type definition defined by conformant schema</title>

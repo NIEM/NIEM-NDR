@@ -1579,7 +1579,7 @@ Rule 7-4. Document element is xs:schema
         </xs:annotation>
       </xs:element>
 
-   See Rule 11-27, Data definition follows 11179-4 requirements and Rule 11-28, Data definition follows 11179-4 recommendations for application of [ISO 11179-4] to constrain NIEM [data definitions].
+   See Rule 11-28, Data definition follows 11179-4 requirements and Rule 11-29, Data definition follows 11179-4 recommendations for application of [ISO 11179-4] to constrain NIEM [data definitions].
 
 7.5. ISO 11179 Part 5
 
@@ -1619,7 +1619,7 @@ Rule 7-5. Component name follows ISO 11179 Part 5 Annex A
 
       *  NIEM base types defined by the [structures namespace] incorporate xs:anyAttribute declarations, which allow the use of attributes from the ISM and NTK namespaces. See Appendix B, Structures namespace, below, for the reference schema.
 
-      *  Rule 11-22, Schema uses only known attribute groups allows conformant data types to reference attribute groups defined in the ISM and NTK namespaces.
+      *  Rule 11-23, Schema uses only known attribute groups allows conformant data types to reference attribute groups defined in the ISM and NTK namespaces.
 
       *  Complex types may be constructed that use external attributes, including attributes from the ISM and NTK namespaces. Each such attribute use must be a [documented component], as specified by Rule 10-14, External attribute use has data definition.
 
@@ -2814,7 +2814,7 @@ Rule 9-75. No use of xs:group
 
 Rule 9-76. No definition of attribute groups
 
-   Per Rule 11-22, Schema uses only known attribute groups, the only attribute groups used in NIEM-conformant schemas are structures:SimpleObjectAttributeGroup and attribute groups defined by the IC-ISM and IC-NTK schemas. Therefore, NIEM-conformant schemas do not define additional attribute groups.
+   Per Rule 11-23, Schema uses only known attribute groups, the only attribute groups used in NIEM-conformant schemas are structures:SimpleObjectAttributeGroup and attribute groups defined by the IC-ISM and IC-NTK schemas. Therefore, NIEM-conformant schemas do not define additional attribute groups.
 
    [Rule 9-76] (REF, EXT)
 
@@ -3224,7 +3224,7 @@ Rule 10-2. Object type with complex content is derived from structures:ObjectTyp
         </sch:rule>
       </sch:pattern>
 
-   A [base type definition] with a {target namespace} that is the XML namespace is prohibited by Rule 9-1, No base type in the XML namespace. A [base type definition] with a {target namespace} that is not imported as conformant is prohibited by Rule 11-2, Base type definition defined by conformant schema.
+   A [base type definition] with a {target namespace} that is the XML namespace is prohibited by Rule 9-1, No base type in the XML namespace. A [base type definition] with a {target namespace} that is not imported as conformant is prohibited by Rule 11-3, Base type definition defined by conformant schema.
 
 10.2.2. Role types and roles
 
@@ -3346,7 +3346,7 @@ Rule 10-3. RoleOf element type is an object type
         </sch:rule>
       </sch:pattern>
 
-   Note that by Rule 11-12, Element type is from conformant namespace, the element's type must be from a conformant namespace.
+   Note that by Rule 11-13, Element type is from conformant namespace, the element's type must be from a conformant namespace.
 
 Rule 10-4. Only object type has RoleOf element
 
@@ -3421,7 +3421,7 @@ Rule 10-6. Instance of RoleOf element indicates a role object
 
    To construct such a component, a NIEM-conformant schema must import the namespace defined by the [external schema document].
 
-   Rule 11-49, Reference schema document imports reference schema document and Rule 11-50, Extension schema document imports reference or extension schema document require that xs:import elements be consistent with an importing [schema document].
+   Rule 11-50, Reference schema document imports reference schema document and Rule 11-51, Extension schema document imports reference or extension schema document require that xs:import elements be consistent with an importing [schema document].
 
    A NIEM-conformant schema has well-known documentation points. Therefore, a schema that imports a NIEM-conformant namespace need not provide additional documentation for the imported namespace. However, when an external schema document is imported, appropriate documentation must be provided on the xs:import element. This ensures that documentation for all external schema documents will be both available and accessible in a consistent manner.
 
@@ -3904,7 +3904,7 @@ Rule 10-22. Association element type is an association type
 
    This method can be used by an information exchange developer to define individual attributes that can be applied to any augmentable type.
 
-   Note that the augmentation method can introduce an additional element into every [object type] or [association type] in an exchange, which provides opportunity for some errors in schema development. It is important that developers of exchanges not introduce elements substitutable for an augmentation point into complex types multiple ways, as it can introduce XML Schema's Unique Particle Attribution errors. A single complex type should not introduce an element via both element substitution and element reference. This constraint is also supported by Rule 11-19, Element or attribute declaration introduced only once into a type.
+   Note that the augmentation method can introduce an additional element into every [object type] or [association type] in an exchange, which provides opportunity for some errors in schema development. It is important that developers of exchanges not introduce elements substitutable for an augmentation point into complex types multiple ways, as it can introduce XML Schema's Unique Particle Attribution errors. A single complex type should not introduce an element via both element substitution and element reference. This constraint is also supported by Rule 11-20, Element or attribute declaration introduced only once into a type.
 
 10.4.1. Augmentable types
 
@@ -4123,7 +4123,7 @@ Rule 10-34. Schema component with name ending in "AugmentationType" is an augmen
         </sch:rule>
       </sch:pattern>
 
-   The [base type definition] of an augmentation type is required to be from a conformant namespace by Rule 11-2, Base type definition defined by conformant schema.
+   The [base type definition] of an augmentation type is required to be from a conformant namespace by Rule 11-3, Base type definition defined by conformant schema.
 
 Rule 10-35. Type derived from structures:AugmentationType is an augmentation type
 
@@ -4711,7 +4711,7 @@ Rule 10-64. Element with simple content has representation term
 
       Within the schema, the name of an element declaration that is of simple content SHOULD use an appropriate representation term as found in Table Table 10-2, Property representation terms.
 
-   This rule is also supported by Rule 11-14, Name of element declaration with simple content has representation term and Rule 11-15, Name of element declaration with simple content has representation term, which provide tests that a top-level declaration has a representation term.
+   This rule is also supported by Rule 11-15, Name of element declaration with simple content has representation term and Rule 11-16, Name of element declaration with simple content has representation term, which provide tests that a top-level declaration has a representation term.
 
 Rule 10-65. Element with complex content has representation term when appropriate
 
@@ -4958,11 +4958,28 @@ Rule 11-1. Name of type ends in "Type"
 
    Note that the first sch:rule and subsequent sch:report serve to provide an exception to the rule for proxy types. It does not establish a constraint on the data.
 
-11.1.1. Type definition hierarchy
-
-Rule 11-2. Base type definition defined by conformant schema
+Rule 11-2. Only types have name ending in "Type" or "SimpleType"
 
    [Rule 11-2] (REF, EXT)
+
+      <sch:pattern>
+        <sch:rule context="xs:*[exists(@name) and ends-with(@name, 'SimpleType')]">
+          <sch:assert test="local-name() = 'simpleType'"
+                      >A schema component with a name that ends in 'SimpleType' MUST be a simple type definition.</sch:assert>
+        </sch:rule>
+        <sch:rule context="xs:*[exists(@name) and ends-with(@name, 'Type')]">
+          <sch:assert test="local-name() = 'complexType'"
+                      >A schema component with a name that ends in 'Type' and does not end in 'SimpleType' MUST be a complex type definition.</sch:assert>
+        </sch:rule>
+      </sch:pattern>
+
+   Use of the representation terms "Type" and "SimpleType" helps identify complex and simple types, respectively, in a NIEM-conformant schema, and helps to prevent naming collisions with elements and attributes.
+
+11.1.1. Type definition hierarchy
+
+Rule 11-3. Base type definition defined by conformant schema
+
+   [Rule 11-3] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:*[exists(@base)]">
@@ -4977,9 +4994,9 @@ Rule 11-2. Base type definition defined by conformant schema
 
 11.1.2. Simple type definition
 
-Rule 11-3. Name of simple type ends in "SimpleType"
+Rule 11-4. Name of simple type ends in "SimpleType"
 
-   [Rule 11-3] (REF, EXT)
+   [Rule 11-4] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:simpleType[@name]">
@@ -4992,9 +5009,9 @@ Rule 11-3. Name of simple type ends in "SimpleType"
 
 11.1.2.1. Derivation by list
 
-Rule 11-4. Use lists only when data is uniform
+Rule 11-5. Use lists only when data is uniform
 
-   [Rule 11-4] (REF, EXT)
+   [Rule 11-5] (REF, EXT)
 
       Within the schema, a simple type definition that uses xs:list SHOULD NOT be defined if any member of the list requires a property or metadata that is different than other members of the list. All members of the list SHOULD have the same metadata, and should be related via the same properties.
 
@@ -5002,9 +5019,9 @@ Rule 11-4. Use lists only when data is uniform
 
    Items in a list are not individually addressable by NIEM metadata techniques. The items may not be individually referenced by elements or attributes; one will have a value of the entire list, including all the items in the list. NIEM provides no method for individually addressing an item in a list. If an individual item in a list needs to be marked up in a manner different than other items in the list, the use of individual elements may be preferred to the definition of a list simple type.
 
-Rule 11-5. List item type defined by conformant schemas
+Rule 11-6. List item type defined by conformant schemas
 
-   [Rule 11-5] (REF, EXT)
+   [Rule 11-6] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:list[exists(@itemType)]">
@@ -5019,9 +5036,9 @@ Rule 11-5. List item type defined by conformant schemas
 
 11.1.2.2. Derivation by union
 
-Rule 11-6. Union member types defined by conformant schemas
+Rule 11-7. Union member types defined by conformant schemas
 
-   [Rule 11-6] (REF, EXT)
+   [Rule 11-7] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:union[exists(@memberTypes)]">
@@ -5045,9 +5062,9 @@ Rule 11-6. Union member types defined by conformant schemas
 
    Many code simple types are composed of xs:enumeration values. Code simple types may also be constructed using the NIEM Code Lists Specification [Code Lists], which supports code lists defined using a variety of methods, including CSV spreadsheets.
 
-Rule 11-7. Name of a code simple type ends in "CodeSimpleType"
+Rule 11-8. Name of a code simple type ends in "CodeSimpleType"
 
-   [Rule 11-7] (REF, EXT)
+   [Rule 11-8] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:simpleType[exists(@name)
@@ -5058,15 +5075,15 @@ Rule 11-7. Name of a code simple type ends in "CodeSimpleType"
         </sch:rule>
       </sch:pattern>
 
-Rule 11-8. Code simple type corresponds to a code list
+Rule 11-9. Code simple type corresponds to a code list
 
-   [Rule 11-8] (REF, EXT)
+   [Rule 11-9] (REF, EXT)
 
       A simple type SHOULD have a name ending in "CodeSimpleType" if and only if it has a correspondence to a list of distinct conceptual entities.
 
-Rule 11-9. Attribute of code simple type has code representation term
+Rule 11-10. Attribute of code simple type has code representation term
 
-   [Rule 11-9] (REF, EXT)
+   [Rule 11-10] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:attribute[exists(@name) and exists(@type) and ends-with(@type, 'CodeSimpleType')]">
@@ -5079,7 +5096,7 @@ Rule 11-9. Attribute of code simple type has code representation term
 
 11.1.3. Complex type definition
 
-Rule 11-10. Complex type with simple content has structures:SimpleObjectAttributeGroup
+Rule 11-11. Complex type with simple content has structures:SimpleObjectAttributeGroup
 
    Within a [reference schema document], a complex type with simple content can be created in one of two ways:
 
@@ -5089,7 +5106,7 @@ Rule 11-10. Complex type with simple content has structures:SimpleObjectAttribut
 
    Both of these methods use the element xs:extension. Although these two methods have similar syntax, there are subtle differences. NIEM's conformance rules ensure that any complex type has the necessary attributes for representing IDs, references, metadata, and relationship metadata. Case 1 does not require adding these attributes, as they are guaranteed to occur in the base type. However, in case 2, in which a new complex type is created from a simple type, the attributes for complex types must be added. This is done by reference to the attribute group structures:SimpleObjectAttributeGroup.
 
-   [Rule 11-10] (REF, EXT)
+   [Rule 11-11] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:simpleContent/xs:extension[
@@ -5123,11 +5140,11 @@ Rule 11-10. Complex type with simple content has structures:SimpleObjectAttribut
 
 11.2.1. Element declaration
 
-Rule 11-11. Element type does not have a simple type name
+Rule 11-12. Element type does not have a simple type name
 
-   This rule, in conjunction with Rule 11-3, Name of simple type ends in "SimpleType", ensures that all conformant elements will have complex types that contain attributes from the structures namespace, enabling a consistent approach for using IDs, references, metadata, relationship metadata, and security markup data.
+   This rule, in conjunction with Rule 11-4, Name of simple type ends in "SimpleType", ensures that all conformant elements will have complex types that contain attributes from the structures namespace, enabling a consistent approach for using IDs, references, metadata, relationship metadata, and security markup data.
 
-   [Rule 11-11] (REF, EXT)
+   [Rule 11-12] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[exists(@type)]">
@@ -5138,9 +5155,9 @@ Rule 11-11. Element type does not have a simple type name
 
    This document defines the term [element declaration].
 
-Rule 11-12. Element type is from conformant namespace
+Rule 11-13. Element type is from conformant namespace
 
-   [Rule 11-12] (REF, EXT)
+   [Rule 11-13] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[exists(@type)]">
@@ -5158,9 +5175,9 @@ Rule 11-12. Element type is from conformant namespace
 
    Additional prohibitions on element types are defined by Rule 9-41, Element type not in the XML namespace and Rule 9-42, Element type is not simple type.
 
-Rule 11-13. Name of element that ends in "Abstract" is abstract
+Rule 11-14. Name of element that ends in "Abstract" is abstract
 
-   [Rule 11-13] (REF, EXT)
+   [Rule 11-14] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[@name]">
@@ -5177,9 +5194,9 @@ Rule 11-13. Name of element that ends in "Abstract" is abstract
 
    This rule checks all cases that are testable in a single schema document.
 
-Rule 11-14. Name of element declaration with simple content has representation term
+Rule 11-15. Name of element declaration with simple content has representation term
 
-   [Rule 11-14] (REF, EXT)
+   [Rule 11-15] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[@name and @type
@@ -5196,11 +5213,11 @@ Rule 11-14. Name of element declaration with simple content has representation t
 
    Representation terms are defined by Table Table 10-2, Property representation terms, above. This Schematron rule supports Rule 10-64, Element with simple content has representation term.
 
-Rule 11-15. Name of element declaration with simple content has representation term
+Rule 11-16. Name of element declaration with simple content has representation term
 
    This rule only checks the cases not testable in the (REF, EXT) version.
 
-   [Rule 11-15] (SET)
+   [Rule 11-16] (SET)
 
       <sch:pattern>
         <sch:rule context="xs:element[@name and @type
@@ -5221,9 +5238,9 @@ Rule 11-15. Name of element declaration with simple content has representation t
 
 11.2.2. Element substitution group
 
-Rule 11-16. Element substitution group defined by conformant schema
+Rule 11-17. Element substitution group defined by conformant schema
 
-   [Rule 11-16] (REF, EXT)
+   [Rule 11-17] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[exists(@substitutionGroup)]">
@@ -5238,9 +5255,9 @@ Rule 11-16. Element substitution group defined by conformant schema
 
 11.2.3. Attribute declaration
 
-Rule 11-17. Attribute type defined by conformant schema
+Rule 11-18. Attribute type defined by conformant schema
 
-   [Rule 11-17] (REF, EXT)
+   [Rule 11-18] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:attribute[exists(@type)]">
@@ -5253,9 +5270,9 @@ Rule 11-17. Attribute type defined by conformant schema
         </sch:rule>
       </sch:pattern>
 
-Rule 11-18. Attribute name uses representation term
+Rule 11-19. Attribute name uses representation term
 
-   [Rule 11-18] (REF, EXT)
+   [Rule 11-19] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:attribute[exists(@name)]">
@@ -5281,9 +5298,9 @@ Rule 11-18. Attribute name uses representation term
 
 11.3.2.1. Element use
 
-Rule 11-19. Element or attribute declaration introduced only once into a type
+Rule 11-20. Element or attribute declaration introduced only once into a type
 
-   [Rule 11-19] (REF, EXT)
+   [Rule 11-20] (REF, EXT)
 
       Within the schema, an element declaration or attribute declaration MUST NOT be introduced more than once into a type definition. This applies to content acquired by a type by any means, including from a base type definition, via element substitution groups, or through the use of attribute groups.
 
@@ -5293,9 +5310,9 @@ Rule 11-19. Element or attribute declaration introduced only once into a type
 
    This rule is also intended to prevent developers from creating complicated sequences of recurring elements. Such definitions are difficult for developers to satisfy in code, and can cause havoc with XML Schema language binding tools. If an element is needed more than once, or if a particular sequence of elements is needed, a developer should consider the use of flexible content models (via substitution groups) along with additional rules.
 
-Rule 11-20. Element reference defined by conformant schema
+Rule 11-21. Element reference defined by conformant schema
 
-   [Rule 11-20] (REF, EXT)
+   [Rule 11-21] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[exists(ancestor::xs:complexType[empty(@appinfo:externalAdapterTypeIndicator)]) and @ref]">
@@ -5312,9 +5329,9 @@ Rule 11-20. Element reference defined by conformant schema
 
 11.3.3. Attribute use
 
-Rule 11-21. Referenced attribute defined by conformant schemas
+Rule 11-22. Referenced attribute defined by conformant schemas
 
-   [Rule 11-21] (REF, EXT)
+   [Rule 11-22] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:attribute[@ref]">
@@ -5331,11 +5348,11 @@ Rule 11-21. Referenced attribute defined by conformant schemas
 
 11.3.3.1. Attribute group use
 
-Rule 11-22. Schema uses only known attribute groups
+Rule 11-23. Schema uses only known attribute groups
 
    In conformant schemas, use of attribute groups is restricted. The only attribute group defined by NIEM for use in conformant schemas is structures:SimpleObjectAttributeGroup. This attribute group provides the attributes necessary for IDs, references, metadata, and relationship metadata. In addition, there are attributes defined by ISM and NTK namespaces, which may be used in conformant schemas. Rationale for this use is provided in Section 7.6, IC-ISM and IC-NTK, above.
 
-   [Rule 11-22] (REF, EXT)
+   [Rule 11-23] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:attributeGroup[@ref]">
@@ -5377,55 +5394,55 @@ Rule 11-22. Schema uses only known attribute groups
 
 11.6.1. Human-readable documentation
 
-   Note that Rule 11-27, Data definition follows 11179-4 requirements and Rule 11-28, Data definition follows 11179-4 recommendations apply [ISO 11179-4] definition rules to documented components.
+   Note that Rule 11-28, Data definition follows 11179-4 requirements and Rule 11-29, Data definition follows 11179-4 recommendations apply [ISO 11179-4] definition rules to documented components.
 
-Rule 11-23. Data definition does not introduce ambiguity
+Rule 11-24. Data definition does not introduce ambiguity
 
-   [Rule 11-23] (REF, EXT)
+   [Rule 11-24] (REF, EXT)
 
       Words or synonyms for the words within a data definition MUST NOT be reused as terms in the corresponding component name if those words dilute the semantics and understanding of, or impart ambiguity to, the entity or concept that the component represents.
 
    This document defines the term [data definition].
 
-Rule 11-24. Object class has only one meaning
+Rule 11-25. Object class has only one meaning
 
-   [Rule 11-24] (REF, EXT)
+   [Rule 11-25] (REF, EXT)
 
       An object class MUST have one and only one associated semantic meaning (i.e., a single word sense) as described in the definition of the component that represents that object class.
 
-Rule 11-25. Data definition of a part does not redefine the whole
+Rule 11-26. Data definition of a part does not redefine the whole
 
-   [Rule 11-25] (REF, EXT)
+   [Rule 11-26] (REF, EXT)
 
       An object class MUST NOT be redefined within the definitions of the components that represent properties or subparts of that entity or class.
 
    Data definitions should be concise, precise, and unambiguous without embedding additional definitions of data elements that have already been defined once elsewhere (such as object classes). [ISO 11179-4] says that definitions should not be nested inside other definitions. Furthermore, a data dictionary is not a language dictionary. It is acceptable to reuse terms (object class, property term, and qualifier terms) from a component name within its corresponding definition to enhance clarity, as long as the requirements and recommendations of [ISO 11179-4] are not violated. This further enhances brevity and precision.
 
-Rule 11-26. Do not leak representation into data definition
+Rule 11-27. Do not leak representation into data definition
 
-   [Rule 11-26] (REF, EXT)
+   [Rule 11-27] (REF, EXT)
 
       A data definition SHOULD NOT contain explicit representational or data typing information such as number of characters, classes of characters, range of mathematical values, etc., unless the very nature of the component can be described only by such information.
 
    A component definition is intended to describe semantic meaning only, not representation or structure. How a component with simple content is represented is indicated through the representation term, but the primary source of representational information should come from the XML Schema definition of the types themselves. A developer should try to keep a component's data definition decoupled from its representation.
 
-Rule 11-27. Data definition follows 11179-4 requirements
-
-   [Rule 11-27] (REF, EXT)
-
-      Each [data definition] MUST conform to the requirements for data definitions provided by [ISO 11179-4] Section 5.2, Requirements.
-
-Rule 11-28. Data definition follows 11179-4 recommendations
+Rule 11-28. Data definition follows 11179-4 requirements
 
    [Rule 11-28] (REF, EXT)
 
+      Each [data definition] MUST conform to the requirements for data definitions provided by [ISO 11179-4] Section 5.2, Requirements.
+
+Rule 11-29. Data definition follows 11179-4 recommendations
+
+   [Rule 11-29] (REF, EXT)
+
       Each [data definition] SHOULD conform to the recommendations for data definitions provided by [ISO 11179-4] Section 5.3, Recommendations.
 
-Rule 11-29. xs:documentation has xml:lang
+Rule 11-30. xs:documentation has xml:lang
 
    [XML] Section 2.12, Language Identification defines attribute xml:lang, which establishes the language used in the contents and attributes of an XML document. To facilitate clarity and future support for languages other than US English, each occurrence of xs:documentation in a conformant schema is in the scope of an occurrence of xml:lang, which defines the language used in the documentation.
 
-   [Rule 11-29] (REF, EXT)
+   [Rule 11-30] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:documentation">
@@ -5442,9 +5459,9 @@ Rule 11-29. xs:documentation has xml:lang
 
 11.6.1.1.1. Element and attribute opening phrases
 
-Rule 11-30. Standard opening phrase for augmentation point element data definition
+Rule 11-31. Standard opening phrase for augmentation point element data definition
 
-   [Rule 11-30] (REF, EXT)
+   [Rule 11-31] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[ends-with(@name, 'AugmentationPoint')]/xs:annotation/xs:documentation[1]">
@@ -5454,9 +5471,9 @@ Rule 11-30. Standard opening phrase for augmentation point element data definiti
         </sch:rule>
       </sch:pattern>
 
-Rule 11-31. Standard opening phrase for augmentation element data definition
+Rule 11-32. Standard opening phrase for augmentation element data definition
 
-   [Rule 11-31] (REF, EXT)
+   [Rule 11-32] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[ends-with(@name, 'Augmentation')]/xs:annotation/xs:documentation[1]">
@@ -5468,9 +5485,9 @@ Rule 11-31. Standard opening phrase for augmentation element data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-32. Standard opening phrase for metadata element data definition
+Rule 11-33. Standard opening phrase for metadata element data definition
 
-   [Rule 11-32] (REF, EXT)
+   [Rule 11-33] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[ends-with(@name, 'Metadata')
@@ -5481,9 +5498,9 @@ Rule 11-32. Standard opening phrase for metadata element data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-33. Standard opening phrase for association element data definition
+Rule 11-34. Standard opening phrase for association element data definition
 
-   [Rule 11-33] (REF, EXT)
+   [Rule 11-34] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[ends-with(@name, 'Association')
@@ -5494,9 +5511,9 @@ Rule 11-33. Standard opening phrase for association element data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-34. Standard opening phrase for abstract element data definition
+Rule 11-35. Standard opening phrase for abstract element data definition
 
-   [Rule 11-34] (REF, EXT)
+   [Rule 11-35] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:element[xs:boolean(@abstract) = true()
@@ -5507,9 +5524,9 @@ Rule 11-34. Standard opening phrase for abstract element data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-35. Standard opening phrase for date element or attribute data definition
+Rule 11-36. Standard opening phrase for date element or attribute data definition
 
-   [Rule 11-35] (REF, EXT)
+   [Rule 11-36] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5521,9 +5538,9 @@ Rule 11-35. Standard opening phrase for date element or attribute data definitio
         </sch:rule>
       </sch:pattern>
 
-Rule 11-36. Standard opening phrase for quantity element or attribute data definition
+Rule 11-37. Standard opening phrase for quantity element or attribute data definition
 
-   [Rule 11-36] (REF, EXT)
+   [Rule 11-37] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5535,9 +5552,9 @@ Rule 11-36. Standard opening phrase for quantity element or attribute data defin
         </sch:rule>
       </sch:pattern>
 
-Rule 11-37. Standard opening phrase for picture element or attribute data definition
+Rule 11-38. Standard opening phrase for picture element or attribute data definition
 
-   [Rule 11-37] (REF, EXT)
+   [Rule 11-38] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5549,9 +5566,9 @@ Rule 11-37. Standard opening phrase for picture element or attribute data defini
         </sch:rule>
       </sch:pattern>
 
-Rule 11-38. Standard opening phrase for indicator element or attribute data definition
+Rule 11-39. Standard opening phrase for indicator element or attribute data definition
 
-   [Rule 11-38] (REF, EXT)
+   [Rule 11-39] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5563,9 +5580,9 @@ Rule 11-38. Standard opening phrase for indicator element or attribute data defi
         </sch:rule>
       </sch:pattern>
 
-Rule 11-39. Standard opening phrase for identification element or attribute data definition
+Rule 11-40. Standard opening phrase for identification element or attribute data definition
 
-   [Rule 11-39] (REF, EXT)
+   [Rule 11-40] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5577,9 +5594,9 @@ Rule 11-39. Standard opening phrase for identification element or attribute data
         </sch:rule>
       </sch:pattern>
 
-Rule 11-40. Standard opening phrase for name element or attribute data definition
+Rule 11-41. Standard opening phrase for name element or attribute data definition
 
-   [Rule 11-40] (REF, EXT)
+   [Rule 11-41] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5591,9 +5608,9 @@ Rule 11-40. Standard opening phrase for name element or attribute data definitio
         </sch:rule>
       </sch:pattern>
 
-Rule 11-41. Standard opening phrase for element or attribute data definition
+Rule 11-42. Standard opening phrase for element or attribute data definition
 
-   [Rule 11-41] (REF, EXT)
+   [Rule 11-42] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="*[(self::xs:element or self::xs:attribute)
@@ -5611,9 +5628,9 @@ Rule 11-41. Standard opening phrase for element or attribute data definition
 
 11.6.1.1.2. Complex type opening phrases
 
-Rule 11-42. Standard opening phrase for association type data definition
+Rule 11-43. Standard opening phrase for association type data definition
 
-   [Rule 11-42] (REF, EXT)
+   [Rule 11-43] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:complexType[ends-with(@name, 'AssociationType')]/xs:annotation/xs:documentation[1]">
@@ -5623,9 +5640,9 @@ Rule 11-42. Standard opening phrase for association type data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-43. Standard opening phrase for augmentation type data definition
+Rule 11-44. Standard opening phrase for augmentation type data definition
 
-   [Rule 11-43] (REF, EXT)
+   [Rule 11-44] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:complexType[ends-with(@name, 'AugmentationType')]/xs:annotation/xs:documentation[1]">
@@ -5636,9 +5653,9 @@ Rule 11-43. Standard opening phrase for augmentation type data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-44. Standard opening phrase for metadata type data definition
+Rule 11-45. Standard opening phrase for metadata type data definition
 
-   [Rule 11-44] (REF, EXT)
+   [Rule 11-45] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:complexType[ends-with(@name, 'MetadataType')]/xs:annotation/xs:documentation[1]">
@@ -5649,9 +5666,9 @@ Rule 11-44. Standard opening phrase for metadata type data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-45. Standard opening phrase for complex type data definition
+Rule 11-46. Standard opening phrase for complex type data definition
 
-   [Rule 11-45] (REF, EXT)
+   [Rule 11-46] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:complexType/xs:annotation/xs:documentation[1]">
@@ -5661,9 +5678,9 @@ Rule 11-45. Standard opening phrase for complex type data definition
         </sch:rule>
       </sch:pattern>
 
-Rule 11-46. Standard opening phrase for simple type data definition
+Rule 11-47. Standard opening phrase for simple type data definition
 
-   [Rule 11-46] (REF, EXT)
+   [Rule 11-47] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:simpleType/xs:annotation/xs:documentation[1]">
@@ -5677,15 +5694,15 @@ Rule 11-46. Standard opening phrase for simple type data definition
 
 11.7.1. xs:schema document element restrictions
 
-Rule 11-47. Same namespace means same components
+Rule 11-48. Same namespace means same components
 
-   [Rule 11-47] (REF, EXT)
+   [Rule 11-48] (REF, EXT)
 
       Two XML Schema documents MUST have the same value for attribute targetNamespace carried by the element xs:schema, if and only if they represent the same set of components.
 
-Rule 11-48. Different version means different view
+Rule 11-49. Different version means different view
 
-   [Rule 11-48] (REF, EXT)
+   [Rule 11-49] (REF, EXT)
 
       Two XML Schema documents MUST have the same value for attribute targetNamespace carried by the element xs:schema, and different values for attribute version carried by the element xs:schema if and only if they are profiles of the same set of components.
 
@@ -5693,9 +5710,9 @@ Rule 11-48. Different version means different view
 
 11.8. Schema assembly
 
-Rule 11-49. Reference schema document imports reference schema document
+Rule 11-50. Reference schema document imports reference schema document
 
-   [Rule 11-49] (SET)
+   [Rule 11-50] (SET)
 
       <sch:pattern>
         <sch:rule context="xs:import[
@@ -5712,9 +5729,9 @@ Rule 11-49. Reference schema document imports reference schema document
 
    This document defines the term [reference schema document].
 
-Rule 11-50. Extension schema document imports reference or extension schema document
+Rule 11-51. Extension schema document imports reference or extension schema document
 
-   [Rule 11-50] (SET)
+   [Rule 11-51] (SET)
 
       <sch:pattern>
         <sch:rule context="xs:import[
@@ -5736,9 +5753,9 @@ Rule 11-50. Extension schema document imports reference or extension schema docu
 
    There are several namespaces that are treated specially by the NIEM NDR. When the following namespaces are imported into a conformant schema document, they must be imported as if they are conformant. That is, the xs:import element must not have an attribute appinfo:externalImportIndicator with a value of "true".
 
-Rule 11-51. Structures imported as conformant
+Rule 11-52. Structures imported as conformant
 
-   [Rule 11-51] (REF, EXT)
+   [Rule 11-52] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:import[exists(@namespace)
@@ -5748,9 +5765,9 @@ Rule 11-51. Structures imported as conformant
         </sch:rule>
       </sch:pattern>
 
-Rule 11-52. XML namespace imported as conformant
+Rule 11-53. XML namespace imported as conformant
 
-   [Rule 11-52] (REF, EXT)
+   [Rule 11-53] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:import[exists(@namespace)
@@ -5760,9 +5777,9 @@ Rule 11-52. XML namespace imported as conformant
         </sch:rule>
       </sch:pattern>
 
-Rule 11-53. Each namespace may have only a single root schema in a schema set
+Rule 11-54. Each namespace may have only a single root schema in a schema set
 
-   [Rule 11-53] (SET)
+   [Rule 11-54] (SET)
 
       <sch:pattern>
         <sch:rule context="xs:schema[exists(@targetNamespace)
@@ -5774,11 +5791,11 @@ Rule 11-53. Each namespace may have only a single root schema in a schema set
         </sch:rule>
       </sch:pattern>
 
-Rule 11-54. Consistently marked namespace imports
+Rule 11-55. Consistently marked namespace imports
 
    XML Schemas allows multiple xs:import elements for the same namespace, which allows for multiple sets of annotations and schema locations. 
 
-   [Rule 11-54] (REF, EXT)
+   [Rule 11-55] (REF, EXT)
 
       <sch:pattern>
         <sch:rule context="xs:import">
@@ -6794,59 +6811,60 @@ Appendix E. Index of rules
    Rule 10-77, appinfo:LocalTerm has literal or definition: Section 10.9.2, Local terminology
    Rule 10-78, Use structures consistent with specification: Section 10.10, NIEM structural facilities
    Rule 11-1, Name of type ends in "Type": Section 11.1, Type definition components
-   Rule 11-2, Base type definition defined by conformant schema: Section 11.1.1, Type definition hierarchy
-   Rule 11-3, Name of simple type ends in "SimpleType": Section 11.1.2, Simple type definition
-   Rule 11-4, Use lists only when data is uniform: Section 11.1.2.1, Derivation by list
-   Rule 11-5, List item type defined by conformant schemas: Section 11.1.2.1, Derivation by list
-   Rule 11-6, Union member types defined by conformant schemas: Section 11.1.2.2, Derivation by union
-   Rule 11-7, Name of a code simple type ends in "CodeSimpleType": Section 11.1.2.3, Code simple types
-   Rule 11-8, Code simple type corresponds to a code list: Section 11.1.2.3, Code simple types
-   Rule 11-9, Attribute of code simple type has code representation term: Section 11.1.2.3, Code simple types
-   Rule 11-10, Complex type with simple content has structures:SimpleObjectAttributeGroup: Section 11.1.3, Complex type definition
-   Rule 11-11, Element type does not have a simple type name: Section 11.2.1, Element declaration
-   Rule 11-12, Element type is from conformant namespace: Section 11.2.1, Element declaration
-   Rule 11-13, Name of element that ends in "Abstract" is abstract: Section 11.2.1, Element declaration
-   Rule 11-14, Name of element declaration with simple content has representation term: Section 11.2.1.1, Object element declarations
+   Rule 11-2, Only types have name ending in "Type" or "SimpleType": Section 11.1, Type definition components
+   Rule 11-3, Base type definition defined by conformant schema: Section 11.1.1, Type definition hierarchy
+   Rule 11-4, Name of simple type ends in "SimpleType": Section 11.1.2, Simple type definition
+   Rule 11-5, Use lists only when data is uniform: Section 11.1.2.1, Derivation by list
+   Rule 11-6, List item type defined by conformant schemas: Section 11.1.2.1, Derivation by list
+   Rule 11-7, Union member types defined by conformant schemas: Section 11.1.2.2, Derivation by union
+   Rule 11-8, Name of a code simple type ends in "CodeSimpleType": Section 11.1.2.3, Code simple types
+   Rule 11-9, Code simple type corresponds to a code list: Section 11.1.2.3, Code simple types
+   Rule 11-10, Attribute of code simple type has code representation term: Section 11.1.2.3, Code simple types
+   Rule 11-11, Complex type with simple content has structures:SimpleObjectAttributeGroup: Section 11.1.3, Complex type definition
+   Rule 11-12, Element type does not have a simple type name: Section 11.2.1, Element declaration
+   Rule 11-13, Element type is from conformant namespace: Section 11.2.1, Element declaration
+   Rule 11-14, Name of element that ends in "Abstract" is abstract: Section 11.2.1, Element declaration
    Rule 11-15, Name of element declaration with simple content has representation term: Section 11.2.1.1, Object element declarations
-   Rule 11-16, Element substitution group defined by conformant schema: Section 11.2.2, Element substitution group
-   Rule 11-17, Attribute type defined by conformant schema: Section 11.2.3, Attribute declaration
-   Rule 11-18, Attribute name uses representation term: Section 11.2.3, Attribute declaration
-   Rule 11-19, Element or attribute declaration introduced only once into a type: Section 11.3.2.1, Element use
-   Rule 11-20, Element reference defined by conformant schema: Section 11.3.2.1, Element use
-   Rule 11-21, Referenced attribute defined by conformant schemas: Section 11.3.3, Attribute use
-   Rule 11-22, Schema uses only known attribute groups: Section 11.3.3.1, Attribute group use
-   Rule 11-23, Data definition does not introduce ambiguity: Section 11.6.1, Human-readable documentation
-   Rule 11-24, Object class has only one meaning: Section 11.6.1, Human-readable documentation
-   Rule 11-25, Data definition of a part does not redefine the whole: Section 11.6.1, Human-readable documentation
-   Rule 11-26, Do not leak representation into data definition: Section 11.6.1, Human-readable documentation
-   Rule 11-27, Data definition follows 11179-4 requirements: Section 11.6.1, Human-readable documentation
-   Rule 11-28, Data definition follows 11179-4 recommendations: Section 11.6.1, Human-readable documentation
-   Rule 11-29, xs:documentation has xml:lang: Section 11.6.1, Human-readable documentation
-   Rule 11-30, Standard opening phrase for augmentation point element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-31, Standard opening phrase for augmentation element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-32, Standard opening phrase for metadata element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-33, Standard opening phrase for association element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-34, Standard opening phrase for abstract element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-35, Standard opening phrase for date element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-36, Standard opening phrase for quantity element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-37, Standard opening phrase for picture element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-38, Standard opening phrase for indicator element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-39, Standard opening phrase for identification element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-40, Standard opening phrase for name element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-41, Standard opening phrase for element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
-   Rule 11-42, Standard opening phrase for association type data definition: Section 11.6.1.1.2, Complex type opening phrases
-   Rule 11-43, Standard opening phrase for augmentation type data definition: Section 11.6.1.1.2, Complex type opening phrases
-   Rule 11-44, Standard opening phrase for metadata type data definition: Section 11.6.1.1.2, Complex type opening phrases
-   Rule 11-45, Standard opening phrase for complex type data definition: Section 11.6.1.1.2, Complex type opening phrases
-   Rule 11-46, Standard opening phrase for simple type data definition: Section 11.6.1.1, Data definition opening phrases
-   Rule 11-47, Same namespace means same components: Section 11.7.1, xs:schema document element restrictions
-   Rule 11-48, Different version means different view: Section 11.7.1, xs:schema document element restrictions
-   Rule 11-49, Reference schema document imports reference schema document: Section 11.8, Schema assembly
-   Rule 11-50, Extension schema document imports reference or extension schema document: Section 11.8, Schema assembly
-   Rule 11-51, Structures imported as conformant: Section 11.8.1, Supporting namespaces are imported as conformant
-   Rule 11-52, XML namespace imported as conformant: Section 11.8.1, Supporting namespaces are imported as conformant
-   Rule 11-53, Each namespace may have only a single root schema in a schema set: Section 11.8, Schema assembly
-   Rule 11-54, Consistently marked namespace imports: Section 11.8, Schema assembly
+   Rule 11-16, Name of element declaration with simple content has representation term: Section 11.2.1.1, Object element declarations
+   Rule 11-17, Element substitution group defined by conformant schema: Section 11.2.2, Element substitution group
+   Rule 11-18, Attribute type defined by conformant schema: Section 11.2.3, Attribute declaration
+   Rule 11-19, Attribute name uses representation term: Section 11.2.3, Attribute declaration
+   Rule 11-20, Element or attribute declaration introduced only once into a type: Section 11.3.2.1, Element use
+   Rule 11-21, Element reference defined by conformant schema: Section 11.3.2.1, Element use
+   Rule 11-22, Referenced attribute defined by conformant schemas: Section 11.3.3, Attribute use
+   Rule 11-23, Schema uses only known attribute groups: Section 11.3.3.1, Attribute group use
+   Rule 11-24, Data definition does not introduce ambiguity: Section 11.6.1, Human-readable documentation
+   Rule 11-25, Object class has only one meaning: Section 11.6.1, Human-readable documentation
+   Rule 11-26, Data definition of a part does not redefine the whole: Section 11.6.1, Human-readable documentation
+   Rule 11-27, Do not leak representation into data definition: Section 11.6.1, Human-readable documentation
+   Rule 11-28, Data definition follows 11179-4 requirements: Section 11.6.1, Human-readable documentation
+   Rule 11-29, Data definition follows 11179-4 recommendations: Section 11.6.1, Human-readable documentation
+   Rule 11-30, xs:documentation has xml:lang: Section 11.6.1, Human-readable documentation
+   Rule 11-31, Standard opening phrase for augmentation point element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-32, Standard opening phrase for augmentation element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-33, Standard opening phrase for metadata element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-34, Standard opening phrase for association element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-35, Standard opening phrase for abstract element data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-36, Standard opening phrase for date element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-37, Standard opening phrase for quantity element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-38, Standard opening phrase for picture element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-39, Standard opening phrase for indicator element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-40, Standard opening phrase for identification element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-41, Standard opening phrase for name element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-42, Standard opening phrase for element or attribute data definition: Section 11.6.1.1.1, Element and attribute opening phrases
+   Rule 11-43, Standard opening phrase for association type data definition: Section 11.6.1.1.2, Complex type opening phrases
+   Rule 11-44, Standard opening phrase for augmentation type data definition: Section 11.6.1.1.2, Complex type opening phrases
+   Rule 11-45, Standard opening phrase for metadata type data definition: Section 11.6.1.1.2, Complex type opening phrases
+   Rule 11-46, Standard opening phrase for complex type data definition: Section 11.6.1.1.2, Complex type opening phrases
+   Rule 11-47, Standard opening phrase for simple type data definition: Section 11.6.1.1, Data definition opening phrases
+   Rule 11-48, Same namespace means same components: Section 11.7.1, xs:schema document element restrictions
+   Rule 11-49, Different version means different view: Section 11.7.1, xs:schema document element restrictions
+   Rule 11-50, Reference schema document imports reference schema document: Section 11.8, Schema assembly
+   Rule 11-51, Extension schema document imports reference or extension schema document: Section 11.8, Schema assembly
+   Rule 11-52, Structures imported as conformant: Section 11.8.1, Supporting namespaces are imported as conformant
+   Rule 11-53, XML namespace imported as conformant: Section 11.8.1, Supporting namespaces are imported as conformant
+   Rule 11-54, Each namespace may have only a single root schema in a schema set: Section 11.8, Schema assembly
+   Rule 11-55, Consistently marked namespace imports: Section 11.8, Schema assembly
    Rule 12-1, Instance must be schema-valid: Section 12, XML instance document rules
    Rule 12-2, Empty content has no meaning: Section 12.1, The meaning of NIEM data
    Rule 12-3, Element has only one resource identifying attribute: Section 12.2, Identifiers and references
