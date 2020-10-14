@@ -529,7 +529,7 @@ Rule 4-2. Schema marked as extension schema document must conform
 
    [Definition: conformant instance XML document]
 
-      A conformant instance XML document is an [XML document] that is [instance document] [valid] to a [conformant schema document set]. It is a [conformance target] of this specification. A conformant instance XML document MUST conform to all rules of this specification that apply to this conformance target.
+      A conformant instance XML document is an [XML document] that is an [instance document] [valid] to a [conformant schema document set]. It is a [conformance target] of this specification. A conformant instance XML document MUST conform to all rules of this specification that apply to this conformance target.
 
    Characteristics of a [conformant instance XML document] include:
 

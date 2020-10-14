@@ -910,7 +910,7 @@
 
       <definition term="conformant instance XML document">
         <p>A <strong>conformant instance XML document</strong> is an <termRef>XML document</termRef> that
-          is <termRef>instance document</termRef> <termRef>valid</termRef> to a <termRef>conformant schema
+          is an <termRef>instance document</termRef> <termRef>valid</termRef> to a <termRef>conformant schema
           document set</termRef>.  It is a <termRef>conformance target</termRef> of this specification. A
           conformant instance XML document MUST conform to all rules of this specification that apply to this
           conformance target.</p>
