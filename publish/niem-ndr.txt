@@ -3768,7 +3768,7 @@ Rule 10-22. Association element type is an association type
 
       *  j:PersonFBIIdentification
 
-   There are several approaches that could be used to by a domain to add elements to a common type. One method is to have each domain create an extension of nc:PersonType (using xs:extension) that adds elements and attributes for the needed content. Some of the problems with this approach include:
+   There are several approaches that could be used by a domain to add elements to a common type. One method is to have each domain create an extension of nc:PersonType (using xs:extension) that adds elements and attributes for the needed content. Some of the problems with this approach include:
 
       *  It results in numerous, domain-specific specializations of nc:PersonType, each with common content and extension-specific content.
 

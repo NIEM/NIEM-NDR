@@ -5384,7 +5384,7 @@ m4_dnl   MACRO_HAS_DATA_DEFINITION(Schema, sch, xs:schema, A schema document ele
           <li><p><qName>j:PersonFBIIdentification</qName></p></li>
         </ul>
 
-        <p>There are several approaches that could be used to by a domain to add elements to a common type. One
+        <p>There are several approaches that could be used by a domain to add elements to a common type. One
           method is to have each domain create an extension of <qName>nc:PersonType</qName>
           (using <qName>xs:extension</qName>) that adds elements and attributes for the needed content. Some of
           the problems with this approach include:</p>
