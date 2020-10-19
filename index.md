@@ -6,9 +6,9 @@ The NIEM Naming and Design Rules specifies the data model, XML Schema components
 
 # Version under development
 
-The NIEM Naming and Design Rules version 5.0 is currently under development  The latest draft is [5.0beta1](v5.0beta1/niem-ndr.html).
+The NIEM Naming and Design Rules version 5.0 is currently under development. The latest draft is [5.0beta1](v5.0beta1/niem-ndr.html).
 
-This document is in a public review period. We invite comments on the document and supporting files, which available [on this website](v5.0beta1). Comments on the current version will be accepted through November 2, 2020. 
+This document is in a public review period. We invite comments on the document and supporting files, which is available [on this website](v5.0beta1). Comments on the current version will be accepted through November 2, 2020. 
 
 Comments are being accepted as [GitHub issues](https://github.com/NIEM/NIEM-NDR/issues/new/choose?milestone=v5.0beta1+review). If you find an issue that should be addressed, please add it as a new issue. Please try to submit no more than one topic per issue, but please submit as many issues as you like.
 
