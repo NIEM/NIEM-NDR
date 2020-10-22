@@ -1,5 +1,7 @@
 ---
 title: NIEM Naming and Design Rules
+redirect_from: "/ /"
+redirect_from: "/bogus/"
 ---
 
 The NIEM Naming and Design Rules specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM).
