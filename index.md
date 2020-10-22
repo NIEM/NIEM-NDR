@@ -1,7 +1,5 @@
 ---
 title: NIEM Naming and Design Rules
-redirect_from: "/ /"
-redirect_from: "/bogus/"
 ---
 
 The NIEM Naming and Design Rules specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM).
@@ -21,6 +19,7 @@ We will be conducting a review of each submitted comment, and will be updating t
 ## Relevant links:
 
 - The NDR document, v5.0beta1, HTML format: <https://niem.github.io/NIEM-NDR/v5.0beta1/niem-ndr.html>
+    - [Changes since v4.0](v5.0beta1-changes-since-v4.0.html) (diff of the text version)
 - The landing page for v5.0beta1, with links to each included artifact: <https://niem.github.io/NIEM-NDR/v5.0beta1/>
 - The GitHub repository for the NDR, development branch: <https://github.com/NIEM/NIEM-NDR/tree/dev>
 - The NDR v5.0beta1 release with change log: <https://github.com/NIEM/NIEM-NDR/releases/tag/v5.0beta1>
