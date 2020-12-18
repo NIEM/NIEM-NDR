@@ -34,7 +34,6 @@ head = @head@
 identify = @identify@ # from ImageMagick
 m4 = @m4@
 touch = @touch@
-zip = @zip@
 
 # doc-processing
 check_doc = @check_doc@

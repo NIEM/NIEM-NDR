@@ -164,6 +164,17 @@ do command=$1
        #HELP:  show: open grep-friendly buffer on copied text (e.g., jump to an error from a message)
        show ) pbpaste | emacsclientgrep;;
 
+       #HELP:  zip: Generate zip file for published products
+       zip )
+           (( $# == 1 )) || fail "Need 1 arg: version number"
+           version=$1
+           shift
+           destination=@abs_builddir@/tmp/niem-ndr-${version}.zip
+           rm -f "$destination"
+           ( cd @builddir@/publish && find . -mindepth 1 -maxdepth 1 -print0 | xargs -0 zip -r -9 "$destination" )
+           printf 'Zip file is %s\n' "$destination"
+           ;;
+
        * )
            fail "Unknown command \"$command\"";;
    esac
