@@ -180,7 +180,7 @@ ${publish_dir}/%: ${temp_dir}/%
 	@ ${MKDIR_P} ${dir $@}
 	${cp} $< $@
 
-%.sch.xsl: %.sch
+${publish_dir}/%.sch.xsl: ${publish_dir}/%.sch
 	${schematron_compile} --output-file=$@ $<
 
 # # temp_dir
