@@ -2237,8 +2237,10 @@ fi
 
 test "x$diff" = "x" && as_fn_error $? "diff not found" "$LINENO" 5
 
-# Extract the first word of "gegrep egrep", so it can be a program name with args.
-set dummy gegrep egrep; ac_word=$2
+for ac_prog in gegrep egrep
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
 if ${ac_cv_path_egrep+:} false; then :
@@ -2277,10 +2279,15 @@ $as_echo "no" >&6; }
 fi
 
 
+  test -n "$egrep" && break
+done
+
 test "x$egrep" = "x" && as_fn_error $? "egrep not found" "$LINENO" 5
 
-# Extract the first word of "gfind find", so it can be a program name with args.
-set dummy gfind find; ac_word=$2
+for ac_prog in gfind find
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
 if ${ac_cv_path_find+:} false; then :
@@ -2319,10 +2326,15 @@ $as_echo "no" >&6; }
 fi
 
 
+  test -n "$find" && break
+done
+
 test "x$find" = "x" && as_fn_error $? "find not found" "$LINENO" 5
 
-# Extract the first word of "ggrep grep", so it can be a program name with args.
-set dummy ggrep grep; ac_word=$2
+for ac_prog in ggrep grep
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
 if ${ac_cv_path_grep+:} false; then :
@@ -2360,6 +2372,9 @@ else
 $as_echo "no" >&6; }
 fi
 
+
+  test -n "$grep" && break
+done
 
 test "x$grep" = "x" && as_fn_error $? "grep not found" "$LINENO" 5
 
@@ -2448,8 +2463,10 @@ fi
 
 test "x$identify" = "x" && as_fn_error $? "identify not found" "$LINENO" 5
 
-# Extract the first word of "gm4 m4", so it can be a program name with args.
-set dummy gm4 m4; ac_word=$2
+for ac_prog in gm4 m4
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
 if ${ac_cv_path_m4+:} false; then :
@@ -2488,10 +2505,15 @@ $as_echo "no" >&6; }
 fi
 
 
+  test -n "$m4" && break
+done
+
 test "x$m4" = "x" && as_fn_error $? "m4 not found" "$LINENO" 5
 
-# Extract the first word of "gsort sort", so it can be a program name with args.
-set dummy gsort sort; ac_word=$2
+for ac_prog in gsort sort
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
 if ${ac_cv_path_sort+:} false; then :
@@ -2529,6 +2551,9 @@ else
 $as_echo "no" >&6; }
 fi
 
+
+  test -n "$sort" && break
+done
 
 test "x$sort" = "x" && as_fn_error $? "sort not found" "$LINENO" 5
 

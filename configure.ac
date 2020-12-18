@@ -35,13 +35,13 @@ test "x$cp" = "x" && AC_MSG_ERROR([cp not found])
 AC_PATH_PROG(diff,diff)
 test "x$diff" = "x" && AC_MSG_ERROR([diff not found])
 
-AC_PATH_PROG(egrep,gegrep egrep)
+AC_PATH_PROGS(egrep,gegrep egrep)
 test "x$egrep" = "x" && AC_MSG_ERROR([egrep not found])
 
-AC_PATH_PROG(find,gfind find)
+AC_PATH_PROGS(find,gfind find)
 test "x$find" = "x" && AC_MSG_ERROR([find not found])
 
-AC_PATH_PROG(grep,ggrep grep)
+AC_PATH_PROGS(grep,ggrep grep)
 test "x$grep" = "x" && AC_MSG_ERROR([grep not found])
 
 AC_PATH_PROG(head,head)
@@ -51,10 +51,10 @@ test "x$head" = "x" && AC_MSG_ERROR([head not found])
 AC_PATH_PROG(identify,identify)
 test "x$identify" = "x" && AC_MSG_ERROR([identify not found])
 
-AC_PATH_PROG(m4,gm4 m4)
+AC_PATH_PROGS(m4,gm4 m4)
 test "x$m4" = "x" && AC_MSG_ERROR([m4 not found])
 
-AC_PATH_PROG(sort,gsort sort)
+AC_PATH_PROGS(sort,gsort sort)
 test "x$sort" = "x" && AC_MSG_ERROR([sort not found])
 
 AC_PATH_PROG(touch,touch)
