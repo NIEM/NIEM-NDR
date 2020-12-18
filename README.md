@@ -22,3 +22,9 @@ which features rules from version 3.0 and version 4.0.
 See [the wiki](https://github.com/NIEM/NIEM-NDR/wiki) for additional
 documentation.
 
+# Packages required to build this document
+
+- [WRTools: All](https://github.com/webb/wrtools-all). Incorporates processors for the XML source format used for this document, as well as Saxon, Schematron, Xalan, and an XML Schema validator.
+- m4
+- sed
+- ImageMagick
