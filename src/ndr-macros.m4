@@ -2,8 +2,8 @@ m4_define([[[MACRO_COMMENT]]],)m4_dnl
 m4_define([[[MACRO_DOCUMENT_URI]]],[[[http://reference.niem.gov/niem/specification/naming-and-design-rules/5.0/]]])m4_dnl
 m4_define([[[MACRO_NIEM_VERSION]]],[[[5.0]]])m4_dnl version of niem this NDR is for
 m4_define([[[MACRO_NDR_VERSION]]],[[[5.0]]])m4_dnl
-m4_define([[[MACRO_NDR_DOCUMENT_VERSION]]],[[[5.0beta1]]])m4_dnl
-m4_define([[[MACRO_NDR_DATE]]],[[[2020-10-14]]])m4_dnl
+m4_define([[[MACRO_NDR_DOCUMENT_VERSION]]],[[[5.0]]])m4_dnl
+m4_define([[[MACRO_NDR_DATE]]],[[[2020-12-18]]])m4_dnl
 m4_dnl
 m4_dnl HREFs...
 m4_dnl

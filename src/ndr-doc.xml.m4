@@ -60,10 +60,7 @@
 
   <subsection><title>Status</title>
 
-    <p>This document is a draft of the specification for XML Schema documents, components, and instances
-      for use with NIEM MACRO_NIEM_VERSION. It presents a technical architecture that has evolved through the collaborative work
-      of the NIEM Business Architecture Committee (NBAC), the NIEM Technical Architecture Committee (NTAC), and
-      their predecessors.</p>
+    <p>This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version MACRO_NIEM_VERSION.  It presents a technical architecture that has evolved through the collaborative work of the NIEM Business Architecture Committee (NBAC), the NIEM Technical Architecture Committee (NTAC), and their predecessors.</p>
 
     <p>This specification is a product of the NIEM Program Management Office (PMO).</p>
 

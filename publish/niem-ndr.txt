@@ -1,8 +1,8 @@
 National Information Exchange Model Naming and Design Rules
 
-Version 5.0beta1
+Version 5.0
 
-October 14, 2020
+December 18, 2020
 
 NIEM Technical Architecture Committee (NTAC)
 
@@ -16,7 +16,7 @@ Authors
 
 Status
 
-   This document is a draft of the specification for XML Schema documents, components, and instances for use with NIEM 5.0. It presents a technical architecture that has evolved through the collaborative work of the NIEM Business Architecture Committee (NBAC), the NIEM Technical Architecture Committee (NTAC), and their predecessors.
+   This document specifies the data model, XML Schema components, and XML data for use with the National Information Exchange Model (NIEM) version 5.0. It presents a technical architecture that has evolved through the collaborative work of the NIEM Business Architecture Committee (NBAC), the NIEM Technical Architecture Committee (NTAC), and their predecessors.
 
    This specification is a product of the NIEM Program Management Office (PMO).
 
