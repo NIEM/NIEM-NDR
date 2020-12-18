@@ -161,11 +161,7 @@
         <li>
           <p>A detailed discussion of NIEM architecture and schema versioning.</p>
         </li>
-        <li><p>Aggregate artifacts that define information exchanges and models, including
-            information exchange packages (IEPs) and their specifications, information exchange package
-            descriptions (IEPDs) or other forms of information exchange specifications (IESs),
-            as well as enterprise information exchange models (EIEMs),
-            and other forms of model package descriptions (MPDs).</p></li>
+        <li><p>Aggregate artifacts that define information exchanges and models, such as message specifications, information exchange package descriptions (IEPDs) and other forms of model package descriptions (MPDs), information exchange specifications (IESs), and enterprise information exchange models (EIEMs).</p></li>
         <li><p>Normative guidance for the location of <termRef term="schema document">schema documents</termRef>
             or for schema assembly.</p></li>
       </ul>
@@ -930,14 +926,11 @@
       <p>Schema-validity may be assessed against a single set of schemas or against multiple sets of
         schemas.</p>
 
-      <p>Assessment against schemas may be directed by a Model Package Description (MPD), by other instructions,
-      or by other tools.</p>
+      <p>Assessment against schemas may be directed by a message specification, such as an information exchange package description (IEPD), model package description (MPD), or information exchange specification, or by other instructions or tools.</p>
 
       <p>Note that this specification does not require the <termRef>document element</termRef>
         of a <termRef>conformant instance XML
-        document</termRef> to be a <termRef>conformant element information item</termRef>. Other specifications,
-        such as the MPD specification, may add additional constraints to these in order to specify MPD-specific
-        or exchange-specific conformance constraints.</p>
+        document</termRef> to be a <termRef>conformant element information item</termRef>. Other specifications may add additional conformance constraints for elements within an exchange.</p>
 
       <definition term="conformant element information item">
         <p>A <em>conformant element information item</em> is an element information item that satisfies all of
