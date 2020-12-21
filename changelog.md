@@ -1,4 +1,8 @@
 
+# NIEM Naming and Design Rules, version 5.0
+
+- Same as v5.0rc1
+
 # NIEM Naming and Design Rules, version 5.0rc1
 
 - Issue https://github.com/NIEM/NIEM-NDR/issues/96: Updated text to avoid preferring the term "MPD" for a message specification.
