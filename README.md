@@ -28,3 +28,4 @@ documentation.
 - m4
 - sed
 - ImageMagick
+- aspell, aspell-dict-en: for spell checking

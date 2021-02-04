@@ -66,6 +66,7 @@ sch_files = \
 all_files = \
   ${publish_dir}/${doc_name}.html \
   ${publish_dir}/${doc_name}.txt \
+  ${publish_dir}/${doc_name}.docx \
   ${publish_dir}/ndr-functions.xsl \
   ${publish_dir}/ctas-conformant-document.sch \
   ${publish_dir}/ctas-conformant-document.sch.xsl \
@@ -152,6 +153,10 @@ all: ${all_files}
 # products
 
 ${publish_dir}/${doc_name}.html: ${ndr_doc_xml} ${doc_html_required_files}
+	@ ${MKDIR_P} ${dir $@}
+	${process_doc} ${process_doc_flags} --in=$< --out=$@
+
+${publish_dir}/${doc_name}.docx: ${ndr_doc_xml} ${doc_html_required_files}
 	@ ${MKDIR_P} ${dir $@}
 	${process_doc} ${process_doc_flags} --in=$< --out=$@
 
